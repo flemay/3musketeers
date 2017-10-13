@@ -1,0 +1,7 @@
+.env
+!.env.example
+!.env.template
+vendor
+*.zip
+*.so
+.serverless

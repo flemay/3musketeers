@@ -1,0 +1,18 @@
+service: thethreemusketeers-gosls-example
+package:
+  artifact: package.zip
+provider:
+  name: aws
+  runtime: python2.7
+  region: ${env:AWS_REGION}
+  stage: ${env:ENV}
+
+functions:
+  greet:
+    handler: handler.Greet
+    environment:
+      GREETING_MESSAGE: ${env:GREETING_MESSAGE}
+    events:
+      - http:
+          path: greet
+          method: get

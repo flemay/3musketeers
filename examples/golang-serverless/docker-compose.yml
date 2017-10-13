@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+  serverless:
+    image: amaysim/serverless:1.23.0
+    env_file: .env
+    volumes:
+      - ~/.aws:/root/.aws
+      - .:/opt/app
+  goshim:
+    image: yunspace/serverless-golang:1.22.0
+    env_file: .env
+    volumes:
+      - .:/go/src/github.com/flemay/the-three-musketeers/examples/golang-serverless
+    working_dir: /go/src/github.com/flemay/the-three-musketeers/examples/golang-serverless
