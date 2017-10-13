@@ -12,7 +12,7 @@ import (
 const greetingMessageEnvVarName = "GREETING_MESSAGE"
 
 func Greet(evt *apigatewayproxyevt.Event, _ *runtime.Context) (interface{}, error) {
-	fmt.Printf(`GREETING_MESSAGE is set to "%v"`, os.Getenv(greetingMessageEnvVarName))
+	fmt.Println("GREETING_MESSAGE is: " + os.Getenv(greetingMessageEnvVarName))
 	return apigateway.NewAPIGatewayResponseWithBody(http.StatusOK, newGreetingMessage()), nil
 }
 

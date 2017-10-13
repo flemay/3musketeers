@@ -1,6 +1,6 @@
 # Golang Serverless Example
 
-A serverless golang application using The Three Musketeers.
+A Golang Serverless application using The Three Musketeers.
 
 ## Prerequisites
 
@@ -37,11 +37,16 @@ $ make deploy
 #   endpoints:
 #     GET - https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/greet
 $ curl https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/greet
-# <html>
-#   <body>
-#     <h1>"Welcome to Amaysim Serverless"</h1>
-#   </body>
-# </html>
+# {"message":"\"The Three Musketeers welcome you!\""}
+
+# let's see the logs with serverless
+$ make shellServerless
+$> serverless logs -f greet
+# START RequestId: 9d64b89d-b008-11e7-9c29-95aa773b2554 Version: $LATEST
+# GREETING_MESSAGE is: "The Three Musketeers welcome you!"
+# END RequestId: 9d64b89d-b008-11e7-9c29-95aa773b2554
+#REPORT RequestId: 9d64b89d-b008-11e7-9c29-95aa773b2554  Duration: 1.05 ms       Billed Duration: 100 ms         Memory Size: 1024 MB    Max Memory Used: 23 MB
+$> exit
 
 # remove the aws stack (api gateway, lambda)
 $ make remove
