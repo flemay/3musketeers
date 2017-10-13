@@ -1,4 +1,4 @@
-service: thethreemusketeers-gosls-example
+service: thethreemusketeers-gosls
 package:
   artifact: package.zip
 provider:
