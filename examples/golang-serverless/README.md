@@ -29,6 +29,8 @@ A Golang Serverless application using The Three Musketeers.
 ```bash
 # create .env file based on .env.example
 $ make dotenv DOTENV=.env.example
+# test
+$ make test
 # test/build the serverless package
 $ make build
 # deploy to aws

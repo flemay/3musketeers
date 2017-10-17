@@ -10,6 +10,11 @@ endif
 # Entry Points #
 ################
 
+# test tests the application
+test: $(DOTENV_TARGET)
+	docker-compose run --rm goshim make _depsGo _test
+.PHONY: test
+
 # build tests the application and creates the serverless artifact to be deployed
 build: $(DOTENV_TARGET)
 	docker-compose run --rm goshim make _depsGo _test _build
