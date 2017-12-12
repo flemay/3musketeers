@@ -20,12 +20,12 @@ $ ls -la
 $ cat .env
 # Let's look at the environment variable GREETING_MESSAGE
 $ env | grep GREETING_MESSAGE
-# What is the value of ENV?
+# What is the value of GREETING_MESSAGE?
 $ exit
 $ export GREETING_MESSAGE="Hello World"
 $ make shell
 $ env | grep GREETING_MESSAGE
-# Is the value "Hello World"?
+# What is the value of GREETING_MESSAGE?
 $ exit
 $ make shell DOTENV=.env.example
 # What happened to .env file?
