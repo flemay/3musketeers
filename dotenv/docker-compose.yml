@@ -1,0 +1,8 @@
+version: '2.1'
+services:
+  alpine:
+    image: alpine
+    env_file: .env
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
