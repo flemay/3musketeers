@@ -6,7 +6,7 @@
 
 ### Makefile
 
-#### Naming target vs _target
+#### Names target and _target
 
 This is just a naming convention. `target` is meant to be executed with docker and docker compose whereas `_target` inside a container.
 
@@ -22,13 +22,15 @@ _test:
 .PHONY: _test
 ```
 
-#### target dependencies
+#### Target dependencies
 
 To make the Makefile easier to read avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`
 
-#### Targets to represent the Pipeline
+#### Pipeline targets
 
-The first section of the Makefile often has targets which represent the pipeline: `deps`, `test`, `build`, `deploy`. These targets will be run in the CI.
+Pipeline targets are targets being executed on the CI server. A typical pipeline targets would have `deps, test, build, deploy`.
+
+It is best having them at the top of the Makefile as it gives an idea of the project pipeline and where to start when the project is being downloaded.
 
 #### Project dependencies
 
@@ -38,7 +40,7 @@ Create zip artifact(s) like `golang_vendor.zip` so that the CI can carry it acro
 
 ```Makefile
 deps: $(DOTENV_TARGET)
-	docker-compose run --rm goshim make _depsGo
+  docker-compose run --rm goshim make _depsGo
 .PHONY: deps
 
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
@@ -46,11 +48,11 @@ test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 .PHONY: test
 
 $(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
-	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+  unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
 
 _depsGo:
-	dep ensure
-	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
+  dep ensure
+  zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
 .PHONY: _depsGo
 ```
 
