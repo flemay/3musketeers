@@ -24,14 +24,17 @@ A Golang Serverless application using The Three Musketeers.
     $ git clone https://github.com/flemay/the-three-musketeers.git
     $ cp -r the-three-musketeers/tree/master/examples/golang-serverless/ your-project
     $ rm -fr the-three-musketeers/tree/master/examples/golang-serverless/
+
 ## Usage
 
 ```bash
 # create .env file based on .env.example
 $ make dotenv DOTENV=.env.example
+# install deps
+$ make deps
 # test
 $ make test
-# test/build the serverless package
+# build the serverless package
 $ make build
 # deploy to aws
 $ make deploy

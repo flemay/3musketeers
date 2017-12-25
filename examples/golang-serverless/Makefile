@@ -1,29 +1,40 @@
 HANDLER ?= handler
 PACKAGE ?= package
+GOLANG_DEPS_ARTIFACT = golang_vendor.zip
+GOLANG_DEPS_DIR = vendor
 ifdef DOTENV
 	DOTENV_TARGET=dotenv
 else
 	DOTENV_TARGET=.env
 endif
 
-################
-# Entry Points #
-################
+####################
+# Pipeline targets #
+####################
+
+# deps installs all dependencies for testing/building. This example only has golang dependencies
+deps: $(DOTENV_TARGET)
+	docker-compose run --rm goshim make _depsGo
+.PHONY: deps
 
 # test tests the application
-test: $(DOTENV_TARGET)
-	docker-compose run --rm goshim make _depsGo _test
+test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+	docker-compose run --rm goshim make _test
 .PHONY: test
 
 # build tests the application and creates the serverless artifact to be deployed
-build: $(DOTENV_TARGET)
-	docker-compose run --rm goshim make _depsGo _test _build
+build: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+	docker-compose run --rm goshim make _build
 .PHONY: build
 
 # deploy deploys the serverless artifact
-deploy: $(ARTIFACT_NAME) $(DOTENV_TARGET)
+deploy: $(DOTENV_TARGET) $(ARTIFACT_NAME)
 	docker-compose run --rm serverless make _deploy
 .PHONY: deploy
+
+#############################
+# Other entry point targets #
+#############################
 
 # remove removes the api gateway and the lambda
 remove: $(DOTENV_TARGET)
@@ -40,9 +51,9 @@ shellGo: $(DOTENV_TARGET)
 	docker-compose run --rm goshim bash
 .PHONY: shellGo
 
-##########
-# Others #
-##########
+###################
+# Files/Artifacts #
+###################
 
 # .env creates .env based on .env.template if .env does not exist
 .env:
@@ -55,9 +66,18 @@ dotenv:
 	cp $(DOTENV) .env
 .PHONY: dotenv
 
-# _depsGo installs go dependencies for the project
+# if there is no vendor directory then unzip from golang_vendor.zip artefact
+$(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
+	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+
+##########
+# Others #
+##########
+
+# _depsGo installs go dependencies for the project and zip them into an artifact
 _depsGo:
 	dep ensure
+	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
 .PHONY: _depsGo
 
 # _test tests the go source
@@ -87,5 +107,5 @@ _remove:
 
 # _clean cleans the repo from the created artifacts
 _clean:
-	rm -rf $(HANDLER).so $(PACKAGE).zip .serverless vendor
+	rm -rf $(HANDLER).so $(PACKAGE).zip .serverless $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR) .env
 .PHONY: _clean
