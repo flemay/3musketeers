@@ -13,12 +13,12 @@ This is just a naming convention. `target` is meant to be executed with docker a
 `_target` can also be executed on the computer if the environment satisfies the target requirements. For instance, you can have a Go development environment setup locally and run `$ make _test`.
 
 ```Makefile
-test:
+test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm goshim make _test
 .PHONY: test
 
 _test:
-  go test
+  go test -v
 .PHONY: _test
 ```
 
@@ -34,19 +34,24 @@ The first section of the Makefile often has targets which represent the pipeline
 
 It is a good thing to have a target `deps` to install all the dependencies required to test/build/deploy the project.
 
-Create zip artifact(s) like `node_modules.zip` so that the CI can carry it across tasks. Use this artifact(s) to be a dependency to other targets so if it does not exist, the targets will fail.
+Create zip artifact(s) like `golang_vendor.zip` so that the CI can carry it across tasks. Use this artifact(s) to be a dependency to other targets so if it does not exist, the targets will fail.
 
 ```Makefile
-# TODO
-deps:
-  ...
+deps: $(DOTENV_TARGET)
+	docker-compose run --rm goshim make _depsGo
 .PHONY: deps
 
-test: node_modules
-
+test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+	docker-compose run --rm goshim make _test
 .PHONY: test
 
-node_modules:
+$(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
+	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+
+_depsGo:
+	dep ensure
+	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
+.PHONY: _depsGo
 ```
 
 ### .env
