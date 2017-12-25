@@ -2,11 +2,25 @@
 
 ## Guideline
 
+> The code examples in this guideline can be found in `examples/golang-serverless`
+
 ### Makefile
 
-#### naming target vs _target
+#### Naming target vs _target
 
-This is just a naming convention. `target` is meant to be executed with docker and docker compose whereas `_target` is meant to be executed inside a container or locally.
+This is just a naming convention. `target` is meant to be executed with docker and docker compose whereas `_target` inside a container.
+
+`_target` can also be executed on the computer if the environment satisfies the target requirements. For instance, you can have a Go development environment setup locally and run `$ make _test`.
+
+```Makefile
+test:
+  docker-compose run --rm goshim make _test
+.PHONY: test
+
+_test:
+  go test
+.PHONY: _test
+```
 
 #### target dependencies
 
@@ -16,7 +30,7 @@ To make the Makefile easier to read avoid having many target dependencies: `targ
 
 The first section of the Makefile often has targets which represent the pipeline: `deps`, `test`, `build`, `deploy`. These targets will be run in the CI.
 
-#### Project Dependencies
+#### Project dependencies
 
 It is a good thing to have a target `deps` to install all the dependencies required to test/build/deploy the project.
 
