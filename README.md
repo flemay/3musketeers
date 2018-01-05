@@ -60,10 +60,26 @@ _depsGo:
 
 #### .env.template
 
-
+Contains name of all environment variables the application uses. No values are set here. `.env.template` is meant to serve as a template to `.env`. So if there is no `.env` in the directory and `DOTENV` is not specified, Make will create a `.env` file with `.env.template`.
 
 #### .env.example
 
 Very useful when starting on a project to have a `.env.example` which has defined values so that you can for instance run the test straight away with `$ make test DOTENV=.env.example`.
+
+Never include sensitive values like passwords as this file is meant to be checked in.
+
+#### AWS environment variables vs ~/.aws
+
+In the examples, `.env.template` contains the following environment variables:
+
+```
+AWS_REGION
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_SESSION_TOKEN
+AWS_PROFILE
+```
+
+If you are using ~/.aws, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 
 ### Docker Compose
