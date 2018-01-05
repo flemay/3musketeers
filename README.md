@@ -2,7 +2,7 @@
 
 ## Guideline
 
-> The code examples in this guideline can be found in `examples/golang-serverless`
+> The code examples in this guideline can be found in [examples/golang-serverless](https://github.com/flemay/3musketeers/tree/master/examples/golang-serverless).
 
 ### Makefile
 
@@ -58,9 +58,11 @@ _depsGo:
 
 ### .env
 
+`.env` is used to pass environment variables to Docker containers. To know more about it, please read [dotenv/README.md](https://github.com/flemay/3musketeers/blob/master/dotenv/README.md).
+
 #### .env.template
 
-Contains name of all environment variables the application uses. No values are set here. `.env.template` is meant to serve as a template to `.env`. So if there is no `.env` in the directory and `DOTENV` is not specified, Make will create a `.env` file with `.env.template`.
+Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `DOTENV` is not specified, Make will create a `.env` file with `.env.template`.
 
 #### .env.example
 
