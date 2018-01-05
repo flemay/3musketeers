@@ -1,4 +1,4 @@
-# The Three Musketeers
+# The 3 Musketeers
 
 ## Guideline
 

@@ -1,13 +1,14 @@
 # Golang Serverless Example
 
-A Golang Serverless application using The Three Musketeers.
+A Golang Serverless application using The 3 Musketeers.
+
+The [Go](https://golang.org) application is a very simple API that returns a greeting message as a JSON response to a GET request. [Serverless Framework](https://serverless.com) is being used to deploy the application to AWS which will create an API Gateway and a Lambda.
 
 ## Prerequisites
 
 - Docker
 - Docker Compose
 - AWS credentials in ~/.aws or environment variables
-  > Environment variables can be defined inside your shell session using `export VAR=value` or setting them in .env file. See `.env.template` for more information.
 
 ## Installation
 
