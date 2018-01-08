@@ -6,7 +6,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - .:/opt/app
-  goshim:
+  go:
     image: yunspace/serverless-golang:1.22.0
     env_file: .env
     volumes:

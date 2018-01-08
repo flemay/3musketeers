@@ -14,17 +14,17 @@ endif
 
 # deps installs all dependencies for testing/building. This example only has golang dependencies
 deps: $(DOTENV_TARGET)
-	docker-compose run --rm goshim make _depsGo
+	docker-compose run --rm go make _depsGo
 .PHONY: deps
 
 # test tests the application
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm goshim make _test
+	docker-compose run --rm go make _test
 .PHONY: test
 
 # build tests the application and creates the serverless artifact to be deployed
 build: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm goshim make _build
+	docker-compose run --rm go make _build
 .PHONY: build
 
 # deploy deploys the serverless artifact
@@ -46,9 +46,9 @@ shellServerless: $(DOTENV_TARGET)
 	docker-compose run --rm serverless bash
 .PHONY: shellServerless
 
-# shellGo let you run bash inside a goshim container
+# shellGo let you run bash inside a go container
 shellGo: $(DOTENV_TARGET)
-	docker-compose run --rm goshim bash
+	docker-compose run --rm go bash
 .PHONY: shellGo
 
 ###################

@@ -14,7 +14,7 @@ This is just a naming convention. `target` is meant to be executed with docker a
 
 ```Makefile
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm goshim make _test
+  docker-compose run --rm go make _test
 .PHONY: test
 
 _test:
@@ -40,11 +40,11 @@ Create zip artifact(s) like `golang_vendor.zip` so that the CI can carry it acro
 
 ```Makefile
 deps: $(DOTENV_TARGET)
-  docker-compose run --rm goshim make _depsGo
+  docker-compose run --rm go make _depsGo
 .PHONY: deps
 
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm goshim make _test
+	docker-compose run --rm go make _test
 .PHONY: test
 
 $(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
