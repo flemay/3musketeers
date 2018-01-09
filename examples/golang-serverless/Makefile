@@ -14,22 +14,22 @@ endif
 
 # deps installs all dependencies for testing/building. This example only has golang dependencies
 deps: $(DOTENV_TARGET)
-	docker-compose run --rm go make _depsGo
+	docker-compose run --rm serverlessGo make _depsGo
 .PHONY: deps
 
 # test tests the application
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm go make _test
+	docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
 # build tests the application and creates the serverless artifact to be deployed
 build: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm go make _build
+	docker-compose run --rm serverlessGo make _build
 .PHONY: build
 
 # deploy deploys the serverless artifact
 deploy: $(DOTENV_TARGET) $(ARTIFACT_NAME)
-	docker-compose run --rm serverless make _deploy
+	docker-compose run --rm serverlessGo make _deploy
 .PHONY: deploy
 
 #############################
@@ -38,18 +38,13 @@ deploy: $(DOTENV_TARGET) $(ARTIFACT_NAME)
 
 # remove removes the api gateway and the lambda
 remove: $(DOTENV_TARGET)
-	docker-compose run --rm serverless make _remove
+	docker-compose run --rm serverlessGo make _remove
 .PHONY: remove
 
-# shellServerless let you run bash inside a serverless container
-shellServerless: $(DOTENV_TARGET)
-	docker-compose run --rm serverless bash
-.PHONY: shellServerless
-
 # shellGo let you run bash inside a go container
-shellGo: $(DOTENV_TARGET)
-	docker-compose run --rm go bash
-.PHONY: shellGo
+shell: $(DOTENV_TARGET)
+	docker-compose run --rm serverlessGo bash
+.PHONY: shell
 
 ###################
 # Files/Artifacts #

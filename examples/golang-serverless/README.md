@@ -46,7 +46,7 @@ $ curl https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/greet
 # {"message":"\"The Three Musketeers welcome you!\""}
 
 # let's see the logs with serverless
-$ make shellServerless
+$ make shell
 $> serverless logs -f greet
 # START RequestId: 9d64b89d-b008-11e7-9c29-95aa773b2554 Version: $LATEST
 # GREETING_MESSAGE is: "The Three Musketeers welcome you!"

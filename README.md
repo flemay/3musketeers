@@ -14,7 +14,7 @@ This is just a naming convention. `target` is meant to be executed with docker a
 
 ```Makefile
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm go make _test
+  docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
 _test:
@@ -40,11 +40,11 @@ Create zip artifact(s) like `golang_vendor.zip` so that the CI can carry it acro
 
 ```Makefile
 deps: $(DOTENV_TARGET)
-  docker-compose run --rm go make _depsGo
+  docker-compose run --rm serverlessGo make _depsGo
 .PHONY: deps
 
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm go make _test
+	docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
 $(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
@@ -85,3 +85,7 @@ AWS_PROFILE
 If you are using ~/.aws, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 
 ### Docker Compose
+
+#### Composition over Inheritance
+
+With Docker, it is pretty easy to have all the tooling a project needs inside one image. However, if the project requires a new dependency, the image would need to be modified, tested, and rebuilt. In order to avoid this, use dedicated images that do specific things.
