@@ -4,5 +4,6 @@ services:
     image: yunspace/serverless-golang:1.25.0
     env_file: .env
     volumes:
+      - ~/.aws:/root/.aws
       - .:/go/src/github.com/flemay/the-three-musketeers/examples/golang-serverless
     working_dir: /go/src/github.com/flemay/the-three-musketeers/examples/golang-serverless

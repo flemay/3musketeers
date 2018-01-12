@@ -12,7 +12,7 @@ endif
 # Pipeline targets #
 ####################
 
-# deps installs all dependencies for testing/building. This example only has golang dependencies
+# deps installs all dependencies for testing/building/deploying. This example only has golang dependencies
 deps: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo make _depsGo
 .PHONY: deps
