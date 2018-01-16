@@ -10,25 +10,11 @@ The [Go](https://golang.org) application is a very simple API that returns a gre
 - Docker Compose
 - AWS credentials in ~/.aws or environment variables
 
-## Installation
-
-### With Serverless
-
-    $ serverless install -u https://github.com/flemay/the-three-musketeers/tree/master/examples/golang-serverless -n your-project
-
-### With Docker
-
-    $ docker run --rm -v ${PWD}:/opt/app amaysim/serverless:1.23.0 serverless install -u https://github.com/flemay/the-three-musketeers/tree/master/examples/golang-serverless -n your-project
-
-### With git
-
-    $ git clone https://github.com/flemay/the-three-musketeers.git
-    $ cp -r the-three-musketeers/tree/master/examples/golang-serverless/ your-project
-    $ rm -fr the-three-musketeers/tree/master/examples/golang-serverless/
-
 ## Usage
 
 ```bash
+# clone the repo
+$ git clone https://github.com/flemay/3musketeers.git
 # create .env file based on .env.example
 $ make dotenv DOTENV=.env.example
 # install deps

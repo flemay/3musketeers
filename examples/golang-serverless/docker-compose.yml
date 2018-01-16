@@ -5,5 +5,5 @@ services:
     env_file: .env
     volumes:
       - ~/.aws:/root/.aws
-      - .:/go/src/github.com/flemay/the-three-musketeers/examples/golang-serverless
-    working_dir: /go/src/github.com/flemay/the-three-musketeers/examples/golang-serverless
+      - .:/go/src/github.com/flemay/3musketeers/examples/golang-serverless
+    working_dir: /go/src/github.com/flemay/3musketeers/examples/golang-serverless
