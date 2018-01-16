@@ -6,6 +6,7 @@ The [Go](https://golang.org) application is a very simple API that returns a gre
 
 ## Prerequisites
 
+- git
 - Docker
 - Docker Compose
 - AWS credentials in ~/.aws or environment variables
@@ -15,6 +16,7 @@ The [Go](https://golang.org) application is a very simple API that returns a gre
 ```bash
 # clone the repo
 $ git clone https://github.com/flemay/3musketeers.git
+$ cd 3musketeers/examples/golang-serverless
 # create .env file based on .env.example
 $ make dotenv DOTENV=.env.example
 # install deps
