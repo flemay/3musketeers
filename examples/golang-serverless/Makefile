@@ -41,7 +41,7 @@ remove: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo make _remove
 .PHONY: remove
 
-# shellGo let you run bash inside a go container
+# shellGo let you run bash inside a serverlessGo container
 shell: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo bash
 .PHONY: shell
