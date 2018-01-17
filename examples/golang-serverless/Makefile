@@ -22,7 +22,7 @@ test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
-# build tests the application and creates the serverless artifact to be deployed
+# build builds the application and creates the serverless artifact to be deployed
 build: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm serverlessGo make _build
 .PHONY: build
