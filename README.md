@@ -25,9 +25,9 @@ $ docker run --rm -v ${PWD}:/git -w /git alpine sh -c "apk --update add git open
 
 `$ git clone https://github.com/flemay/3musketeers.git`
 
-### Download from GitHub
+### Download from GitHub website
 
-1. Go to [https://github.com/flemay/3musketeers]()
+1. Go to [https://github.com/flemay/3musketeers](https://github.com/flemay/3musketeers)
 2. Click on the "Clone or download" green button
 3. Download ZIP
 
