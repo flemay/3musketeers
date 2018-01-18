@@ -20,6 +20,6 @@ dotenv:
 .PHONY: dotenv
 
 # clean cleans the current directory
-clean:
+clean: $(DOTENV_TARGET)
 	docker-compose run --rm alpine sh -c "rm -f .env"
 .PHONY: clean

@@ -34,5 +34,5 @@ $ make echo
 # remove the aws stack (api gateway, lambda)
 $ make remove
 # clean your folder
-$ make _clean
+$ make clean
 ```
