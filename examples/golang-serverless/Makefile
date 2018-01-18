@@ -62,7 +62,6 @@ clean: $(DOTENV_TARGET)
 
 # .env creates .env based on .env.template if .env does not exist
 .env:
-	@echo "Create .env with .env.template"
 	cp .env.template .env
 
 # dotenv creates/overwrites .env with $(DOTENV)
