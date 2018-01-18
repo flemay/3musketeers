@@ -1,0 +1,3 @@
+.DS_Store
+examples/golang-lambda
+examples/golang-shim-serverless

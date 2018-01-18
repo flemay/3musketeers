@@ -3,16 +3,16 @@ package:
   artifact: package.zip
 provider:
   name: aws
-  runtime: python2.7
+  runtime: go1.x
   region: ${env:AWS_REGION}
   stage: ${env:ENV}
 
 functions:
-  greet:
-    handler: handler.Greet
+  echo:
+    handler: bin/main
     environment:
-      GREETING_MESSAGE: ${env:GREETING_MESSAGE}
+      ECHO_MESSAGE: ${env:ECHO_MESSAGE}
     events:
       - http:
-          path: greet
+          path: echo
           method: get

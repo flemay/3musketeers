@@ -1,4 +1,4 @@
-HANDLER ?= handler
+HANDLER ?= main
 PACKAGE ?= package
 GOLANG_DEPS_ARTIFACT = golang_vendor.zip
 GOLANG_DEPS_DIR = vendor
@@ -22,7 +22,7 @@ test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
-# build builds the application and creates the serverless artifact to be deployed
+# build tests the application and creates the serverless artifact to be deployed
 build: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm serverlessGo make _build
 .PHONY: build
@@ -41,10 +41,14 @@ remove: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo make _remove
 .PHONY: remove
 
-# shellGo let you run bash inside a serverlessGo container
+# shellGolang let you run a shell inside a go container
 shell: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo bash
 .PHONY: shell
+
+echo: $(DOTENV_TARGET)
+	docker-compose run --rm serverlessGo make _echo
+.PHONY: echo
 
 ###################
 # Files/Artifacts #
@@ -82,10 +86,8 @@ _test:
 
 # build makes a golang binary and zip it for the serverless package
 _build:
-	go build -buildmode=plugin -ldflags='-w -s' -o $(HANDLER).so
-	chown $(shell stat -c '%u:%g' .) $(HANDLER).so
-	pack $(HANDLER) $(HANDLER).so $(PACKAGE).zip
-	chown $(shell stat -c '%u:%g' .) $(HANDLER).so $(PACKAGE).zip
+	GOOS=linux go build -o bin/main
+	zip -r $(PACKAGE).zip bin
 .PHONY: _build
 
 # _deploy deploys the package using serverless
@@ -93,6 +95,11 @@ _deploy:
 	rm -fr .serverless
 	sls deploy -v
 .PHONY: _deploy
+
+# _echo calls the echo api endpoint
+_echo:
+	sls info -f echo | grep GET | cut -d' ' -f 5 | xargs curl
+.PHONY: _echo
 
 # _remove removes the aws stack created by serverless
 _remove:
@@ -102,5 +109,5 @@ _remove:
 
 # _clean cleans the repo from the created artifacts
 _clean:
-	rm -rf $(HANDLER).so $(PACKAGE).zip .serverless $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR) .env
+	rm -rf .serverless *.zip $(GOLANG_DEPS_DIR) .env bin
 .PHONY: _clean
