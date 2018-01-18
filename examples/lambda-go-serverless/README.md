@@ -1,8 +1,8 @@
-# Golang Serverless Example
+# Lambda Go Serverless Example
 
-A Lambda written in Go using The 3 Musketeers.
+This example illustrates how to use the 3 Musketeers to build, test, and deploy a [Lambda written in Go](https://github.com/aws/aws-lambda-go) using [Serverless Framework](https://serverless.com).
 
-The [Go](https://golang.org) application is a very simple API that returns a message to a GET request. [Serverless Framework](https://serverless.com) is being used to deploy the application to AWS which will create an API Gateway and a Lambda.
+The [Go](https://golang.org) application is a very simple API that echos the value of the environment variable ECHO_MESSAGE on a GET request.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ The [Go](https://golang.org) application is a very simple API that returns a mes
 ```bash
 # clone the repo
 $ git clone https://github.com/flemay/3musketeers.git
-$ cd 3musketeers/examples/golang-serverless
+$ cd 3musketeers/examples/lambda-go-serverless
 # create .env file based on .env.example
 $ make dotenv DOTENV=.env.example
 # install deps
