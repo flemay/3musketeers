@@ -51,6 +51,11 @@ echo: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo make _echo
 .PHONY: echo
 
+# clean removes build artifacts
+clean: $(DOTENV_TARGET)
+	docker-compose run --rm serverlessGo make _clean
+.PHONY: clean
+
 ###################
 # Files/Artifacts #
 ###################
@@ -62,7 +67,6 @@ echo: $(DOTENV_TARGET)
 
 # dotenv creates/overwrites .env with $(DOTENV)
 dotenv:
-	@echo "Overwrite .env with $(DOTENV)"
 	cp $(DOTENV) .env
 .PHONY: dotenv
 
