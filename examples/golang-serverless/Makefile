@@ -46,6 +46,7 @@ shell: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo bash
 .PHONY: shell
 
+# echo calls the echo API endpoint
 echo: $(DOTENV_TARGET)
 	docker-compose run --rm serverlessGo make _echo
 .PHONY: echo
