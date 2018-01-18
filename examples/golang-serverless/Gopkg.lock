@@ -9,30 +9,30 @@
     "lambda/messages",
     "lambdacontext"
   ]
-  revision = "28a6e9fa1fc02d45d9a8c0a8d22c7d5c3580aa03"
+  revision = "6e2e37798efbb1dfd8e9c6681702e683a6046517"
+  version = "v1.0.1"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/davecgh/go-spew"
-  packages = ["spew"]
-  revision = "5215b55f46b2b919f50a1df0eaa5886afe4e3b3d"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/pmezard/go-difflib"
-  packages = ["difflib"]
-  revision = "e8554b8641db39598be7f6342874b958f12ae1d4"
-
-[[projects]]
-  branch = "master"
   name = "github.com/stretchr/testify"
   packages = ["assert"]
-  revision = "e3a8ff8ce36581f87a15341206f205b1da467059"
+  revision = "b91bfb9ebec76498946beb6af7c0230c7cc7ba6c"
+  version = "v1.2.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8e57ab2c0af5ec9d368ed79b804db019613f68ca7f166f7efaeaaf06802d9a37"
+  inputs-digest = "ab49957dba90bb4fd462f39e8ede33990f6852627775bd9873ecc3304d88611f"
   solver-name = "gps-cdcl"
   solver-version = 1

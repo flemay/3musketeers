@@ -13,7 +13,7 @@ var echotests = []struct {
 	configureEnvVar configureEnvVar
 	expectedMessage string
 }{
-	{func() { os.Setenv(echoMessageEnvVarName, "The 3 Musketeers welcome you!") }, "The 3 Musketeers welcome you!"},
+	{func() { os.Setenv(echoMessageEnvVarName, "Thank you for using the 3 Musketeers!") }, "Thank you for using the 3 Musketeers!"},
 	{func() { os.Setenv(echoMessageEnvVarName, "") }, ""},
 	{func() { os.Unsetenv(echoMessageEnvVarName) }, ""},
 }

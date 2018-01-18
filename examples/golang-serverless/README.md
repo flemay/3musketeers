@@ -30,7 +30,7 @@ $ make deploy
 #   endpoints:
 #     GET - https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/echo
 $ make echo
-# "The Three Musketeers welcome you!"
+# "Thank you for using the 3 Musketeers!"
 # remove the aws stack (api gateway, lambda)
 $ make remove
 # clean your folder
