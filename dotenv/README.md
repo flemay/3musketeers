@@ -5,7 +5,7 @@ Tutorial showing how `.env` file works with Docker and Docker Compose.
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/engine/installation/) (_Docker on Mac/Windows is recommended if you do not use Unix_)
-- [Docker Compose](https://docs.docker.com/compose/install/) (_which comes bundled with Docker on Mac/Windows_)
+- [Compose](https://docs.docker.com/compose/install/) (_which comes bundled with Docker on Mac/Windows_)
 - Make (_which is native to Mac/Unix_)
 
 ## Tutorial
@@ -18,20 +18,20 @@ $ make shell
 # See the new .env file?
 $ ls -la
 $ cat .env
-# Let's look at the environment variable GREETING_MESSAGE
-$ env | grep GREETING_MESSAGE
-# What is the value of GREETING_MESSAGE?
+# Let's look at the environment variable ECHO_MESSAGE
+$ env | grep ECHO_MESSAGE
+# What is the value of ECHO_MESSAGE?
 $ exit
-$ export GREETING_MESSAGE="Hello World"
+$ export ECHO_MESSAGE="Hello World"
 $ make shell
-$ env | grep GREETING_MESSAGE
-# What is the value of GREETING_MESSAGE?
+$ env | grep ECHO_MESSAGE
+# What is the value of ECHO_MESSAGE?
 $ exit
 $ make shell DOTENV=.env.example
 # What happened to .env file?
 $ cat .env
-$ env | grep GREETING_MESSAGE
-# What's the value of GREETING_MESSAGE? Why isn't "Hello World"?
+$ env | grep ECHO_MESSAGE
+# What's the value of ECHO_MESSAGE? Why isn't "Hello World"?
 $ exit
 # Clean the work directory
 $ make _clean
