@@ -1,5 +1,9 @@
 # The 3 Musketeers
 
+## Guidelines
+
+Guidelines for the 3 Musketeers can be found [here](https://github.com/flemay/3musketeers/blob/master/Guidelines.md).
+
 ## Prerequisites for the examples
 
 - [Docker](https://docs.docker.com/engine/installation/)
