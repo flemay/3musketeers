@@ -12,16 +12,14 @@ shell: $(DOTENV_TARGET)
 
 # .env creates a .env based on .env.template if .env does not exist
 .env:
-	@echo "Create .env with .env.template"
 	cp .env.template .env
 
 # Create/Overwrite .env with $(DOTENV)
 dotenv:
-	@echo "Overwrite .env with $(DOTENV)"
 	cp $(DOTENV) .env
 .PHONY: dotenv
 
-# _clean cleans the current directory
-_clean:
-	rm .env
-.PHONY: _clean
+# clean cleans the current directory
+clean:
+	docker-compose run --rm alpine sh -c "rm -f .env"
+.PHONY: clean

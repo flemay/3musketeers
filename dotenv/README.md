@@ -11,8 +11,6 @@ Tutorial showing how `.env` file works with Docker and Docker Compose.
 ## Tutorial
 
 ```bash
-# Clean the work directory
-$ make _clean
 # Let's go inside a container.
 $ make shell
 # See the new .env file?
@@ -34,7 +32,7 @@ $ env | grep ECHO_MESSAGE
 # What's the value of ECHO_MESSAGE? Why isn't "Hello World"?
 $ exit
 # Clean the work directory
-$ make _clean
+$ make clean
 # Let's create .env from .env.template
 $ make .env
 # Pay attention to the output
@@ -48,4 +46,7 @@ $ make dotenv DOTENV=.env.example
 # Then use "make shell" without specifying DOTENV
 $ make shell
 # In practice, you could create a file like .env.dev with the config of your dev environment and use that file to manually deploy/delete/etc your app
+
+# Clean your current repository
+$ make clean
 ```
