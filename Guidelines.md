@@ -92,7 +92,7 @@ AWS_PROFILE
 
 If you are using ~/.aws, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 
-## Docker Compose
+## Compose
 
 ### Composition over Inheritance
 

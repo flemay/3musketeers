@@ -1,8 +1,8 @@
 # Golang Serverless Example
 
-A Golang Serverless application using The 3 Musketeers.
+A Lambda written in Go using The 3 Musketeers.
 
-The [Go](https://golang.org) application is a very simple API that returns a message to a GET echo request. [Serverless Framework](https://serverless.com) is being used to deploy the application to AWS which will create an API Gateway and a Lambda.
+The [Go](https://golang.org) application is a very simple API that returns a message to a GET request. [Serverless Framework](https://serverless.com) is being used to deploy the application to AWS which will create an API Gateway and a Lambda.
 
 ## Prerequisites
 
