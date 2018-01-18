@@ -4,9 +4,7 @@ Tutorial showing how `.env` file works with Docker and Docker Compose.
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/engine/installation/) (_Docker on Mac/Windows is recommended if you do not use Unix_)
-- [Compose](https://docs.docker.com/compose/install/) (_which comes bundled with Docker on Mac/Windows_)
-- Make (_which is native to Mac/Unix_)
+- see [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
 
 ## Tutorial
 

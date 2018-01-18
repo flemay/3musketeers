@@ -6,9 +6,7 @@ The [Go](https://golang.org) application is a very simple API that echos the val
 
 ## Prerequisites
 
-- Docker
-- Docker Compose
-- AWS credentials in ~/.aws or environment variables
+- see [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
 
 ## Usage
 
