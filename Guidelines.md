@@ -1,6 +1,6 @@
 # Guidelines
 
-> The code examples in this guideline can be found in [examples/golang-serverless](https://github.com/flemay/3musketeers/tree/master/examples/golang-serverless).
+> The code snippets in this document are taken from the [Lambda Go Serverless](https://github.com/flemay/3musketeers/tree/master/examples/lambda-go-serverless) example.
 
 ## Makefile
 
