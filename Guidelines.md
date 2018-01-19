@@ -6,19 +6,27 @@
 
 ### Names target and _target
 
-This is just a naming convention. `target` is meant to be executed with docker and docker compose whereas `_target` inside a container.
+This is just a naming convention. `target` is meant to be cross-platform like running Docker and Compose, whereas `_target` inside a container.
 
 `_target` can also be executed on the computer if the environment satisfies the target requirements. For instance, you can have a Go development environment setup locally and run `$ make _test`.
 
 ```Makefile
+# .env target uses cp which is available in Windows, Unix, MacOS
+.env:
+	cp .env.template .env
+
+# test target uses docker-compose which is available in Windows, Unix, MacOS (requisite for the 3 Musketeers)
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
+# _test target depends on a go environment which may not be available on the host but it is executed in a Docker container
 _test:
   go test -v
 .PHONY: _test
 ```
+
+### .PHONY
 
 ### Target dependencies
 
@@ -64,6 +72,8 @@ _depsGo:
 .PHONY: _depsGo
 ```
 
+### Makefile too big?
+
 ## .env
 
 `.env` is used to pass environment variables to Docker containers. To know more about it, please read [dotenv/README.md](https://github.com/flemay/3musketeers/blob/master/dotenv/README.md).
@@ -97,3 +107,5 @@ If you are using ~/.aws, no need to set values and they won't be included in the
 ### Composition over Inheritance
 
 With Docker, it is pretty easy to have all the tooling a project needs inside one image. However, if the project requires a new dependency, the image would need to be modified, tested, and rebuilt. In order to avoid this, use dedicated images that do specific things.
+
+### Many Compose files?
