@@ -1,9 +1,15 @@
 version: '3.4'
 services:
-  serverlessGo:
-    image: yunspace/serverless-golang:1.25.0
+  golang:
+    image: flemay/golang:1.9.2-stretch
+    volumes:
+      - .:/go/src/github.com/flemay/3musketeers/examples/lambda-go-serverless
+    working_dir: /go/src/github.com/flemay/3musketeers/examples/lambda-go-serverless
+
+  serverless:
+    image: amaysim/serverless:1.25.0
     env_file: .env
     volumes:
       - ~/.aws:/root/.aws
-      - .:/go/src/github.com/flemay/3musketeers/examples/lambda-go-serverless
-    working_dir: /go/src/github.com/flemay/3musketeers/examples/lambda-go-serverless
+      - .:/opt/app
+    working_dir: /opt/app

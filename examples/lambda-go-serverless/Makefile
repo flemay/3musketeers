@@ -14,22 +14,22 @@ endif
 
 # deps installs all dependencies for testing/building/deploying. This example only has golang dependencies
 deps: $(DOTENV_TARGET)
-	docker-compose run --rm serverlessGo make _depsGo
+	docker-compose run --rm golang make _depsGo
 .PHONY: deps
 
 # test tests the application
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm serverlessGo make _test
+	docker-compose run --rm golang make _test
 .PHONY: test
 
 # build tests the application and creates the serverless artifact to be deployed
-build: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm serverlessGo make _build
+build: $(GOLANG_DEPS_DIR)
+	docker-compose run --rm golang make _build
 .PHONY: build
 
 # deploy deploys the serverless artifact
 deploy: $(DOTENV_TARGET) $(ARTIFACT_NAME)
-	docker-compose run --rm serverlessGo make _deploy
+	docker-compose run --rm serverless make _deploy
 .PHONY: deploy
 
 #############################
@@ -38,22 +38,27 @@ deploy: $(DOTENV_TARGET) $(ARTIFACT_NAME)
 
 # remove removes the api gateway and the lambda
 remove: $(DOTENV_TARGET)
-	docker-compose run --rm serverlessGo make _remove
+	docker-compose run --rm serverless make _remove
 .PHONY: remove
 
 # shellGolang let you run a shell inside a go container
-shell: $(DOTENV_TARGET)
-	docker-compose run --rm serverlessGo bash
-.PHONY: shell
+shellGolang: $(DOTENV_TARGET)
+	docker-compose run --rm golang bash
+.PHONY: shellGolang
+
+# shellServerless let you run a shell inside a serverless container
+shellServerless: $(DOTENV_TARGET)
+	docker-compose run --rm golang bash
+.PHONY: shellServerless
 
 # echo calls the echo API endpoint
 echo: $(DOTENV_TARGET)
-	docker-compose run --rm serverlessGo make _echo
+	docker-compose run --rm serverless make _echo
 .PHONY: echo
 
 # clean removes build artifacts
 clean: $(DOTENV_TARGET)
-	docker-compose run --rm serverlessGo make _clean
+	docker-compose run --rm golang make _clean
 .PHONY: clean
 
 ###################

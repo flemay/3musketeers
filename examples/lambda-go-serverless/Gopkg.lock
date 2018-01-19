@@ -3,12 +3,7 @@
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
-  packages = [
-    "events",
-    "lambda",
-    "lambda/messages",
-    "lambdacontext"
-  ]
+  packages = ["events","lambda","lambda/messages","lambdacontext"]
   revision = "6e2e37798efbb1dfd8e9c6681702e683a6046517"
   version = "v1.0.1"
 
