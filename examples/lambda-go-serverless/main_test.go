@@ -9,6 +9,8 @@ import (
 
 type configureEnvVar func()
 
+const echoMessageEnvVarName = "ECHO_MESSAGE"
+
 var echotests = []struct {
 	configureEnvVar configureEnvVar
 	expectedMessage string
