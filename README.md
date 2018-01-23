@@ -1,9 +1,5 @@
 # The 3Musketeers
 
-## Guidelines
-
-Guidelines for the 3Musketeers can be found [here](https://github.com/flemay/3musketeers/blob/master/GUIDELINES.md).
-
 ## Prerequisites for the examples
 
 - [Docker](https://docs.docker.com/engine/installation/)
@@ -37,4 +33,6 @@ $ docker run --rm -v ${PWD}:/git -w /git alpine sh -c "apk --update add git open
 
 ## Links
 
+- 3Musketeers [guidelines](https://github.com/flemay/3musketeers/blob/master/GUIDELINES.md)
+- Tutorial on how `.env` works with Docker and Compose
 - My [slides](https://www.slideshare.net/FredericLemay/the-three-musketeers-83691981) of my talk about the 3Musketeers at Sydney Docker Meetup
