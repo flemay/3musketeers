@@ -74,7 +74,7 @@ dotenv:
 	cp $(DOTENV) .env
 .PHONY: dotenv
 
-# if there is no vendor directory then unzip from golang_vendor.zip artefact
+# if there is no vendor directory then unzip from golang_vendor.zip artifact
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
 	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
 

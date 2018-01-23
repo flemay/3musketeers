@@ -1,12 +1,12 @@
 # Lambda Go Serverless Example
 
-This example illustrates how to use the 3 Musketeers to build, test, and deploy a [Lambda written in Go](https://github.com/aws/aws-lambda-go) using [Serverless Framework](https://serverless.com).
+This example illustrates how to use the 3Musketeers to build, test, and deploy a [Lambda written in Go](https://github.com/aws/aws-lambda-go) using [Serverless Framework](https://serverless.com).
 
-The [Go](https://golang.org) application is a very simple API that echos the value of the environment variable ECHO_MESSAGE on a GET request.
+The [Go](https://golang.org) application is a very simple API that echos the value of the environment variable ECHO_MESSAGE on a `GET /echo` request.
 
 ## Prerequisites
 
-- see [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
+- see [3Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
 
 ## Usage
 
@@ -28,7 +28,7 @@ $ make deploy
 #   endpoints:
 #     GET - https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/echo
 $ make echo
-# "Thank you for using the 3 Musketeers!"
+# "Thank you for using the 3Musketeers!"
 # remove the aws stack (api gateway, lambda)
 $ make remove
 # clean your folder

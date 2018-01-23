@@ -1,8 +1,8 @@
-# The 3 Musketeers
+# The 3Musketeers
 
 ## Guidelines
 
-Guidelines for the 3 Musketeers can be found [here](https://github.com/flemay/3musketeers/blob/master/Guidelines.md).
+Guidelines for the 3Musketeers can be found [here](https://github.com/flemay/3musketeers/blob/master/GUIDELINES.md).
 
 ## Prerequisites for the examples
 
@@ -37,4 +37,4 @@ $ docker run --rm -v ${PWD}:/git -w /git alpine sh -c "apk --update add git open
 
 ## Links
 
-- My [slides](https://www.slideshare.net/FredericLemay/the-three-musketeers-83691981) of my talk about the 3 Musketeers at Sydney Docker Meetup
+- My [slides](https://www.slideshare.net/FredericLemay/the-three-musketeers-83691981) of my talk about the 3Musketeers at Sydney Docker Meetup

@@ -4,7 +4,7 @@ Tutorial showing how `.env` file works with Docker and Docker Compose.
 
 ## Prerequisites
 
-- see [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
+- see [3Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
 
 ## Tutorial
 

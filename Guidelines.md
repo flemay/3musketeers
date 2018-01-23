@@ -4,23 +4,23 @@
 
 ## Makefile
 
-### Names target and _target
+### target vs _target
 
-This is just a naming convention. `target` is meant to be cross-platform like running Docker and Compose, whereas `_target` inside a container.
+Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
-`_target` can also be executed on the computer if the environment satisfies the target requirements. For instance, you can have a Go development environment setup locally and run `$ make _test`.
+Assuming Docker and Compose are required for the 3Musketeers, a pattern has been established: `target` like `test` will run a `_target`, like `_test`, inside a container.
 
 ```Makefile
 # .env target uses cp which is available in Windows, Unix, MacOS
 .env:
-	cp .env.template .env
+  cp .env.template .env
 
-# test target uses docker-compose which is available in Windows, Unix, MacOS (requisite for the 3 Musketeers)
+# test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3Musketeers)
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm serverlessGo make _test
+  docker-compose run --rm golang make _test
 .PHONY: test
 
-# _test target depends on a go environment which may not be available on the host but it is executed in a Docker container
+# _test target depends on a go environment which may not be available on the host but it is executed in a Docker container. If you have a go environment on your host, `$ make test` can also be called.
 _test:
   go test -v
 .PHONY: _test
@@ -56,11 +56,11 @@ Create zip artifact(s) like `golang_vendor.zip` so that the CI can carry it acro
 
 ```Makefile
 deps: $(DOTENV_TARGET)
-  docker-compose run --rm serverlessGo make _depsGo
+  docker-compose run --rm golang make _depsGo
 .PHONY: deps
 
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm serverlessGo make _test
+	docker-compose run --rm golang make _test
 .PHONY: test
 
 $(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
