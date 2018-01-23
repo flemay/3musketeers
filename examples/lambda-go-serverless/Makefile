@@ -1,4 +1,3 @@
-HANDLER ?= main
 PACKAGE ?= package
 GOLANG_DEPS_ARTIFACT = golang_vendor.zip
 GOLANG_DEPS_DIR = vendor
@@ -7,6 +6,10 @@ ifdef DOTENV
 else
 	DOTENV_TARGET=.env
 endif
+
+# all is the default Make target. it installs the dependencies, tests, and builds the application
+all: deps test build
+.PHONY: all
 
 ####################
 # Pipeline targets #
