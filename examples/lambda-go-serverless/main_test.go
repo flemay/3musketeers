@@ -20,14 +20,14 @@ var echotests = []struct {
 	{func() { os.Unsetenv(echoMessageEnvVarName) }, ""},
 }
 
-func TestEcho(t *testing.T) {
+func TestHandleEchoRequest(t *testing.T) {
 	for _, gt := range echotests {
 		// given
 		evt := events.APIGatewayProxyRequest{}
 		gt.configureEnvVar()
 
 		// when
-		response, err := Echo(nil, evt)
+		response, err := handleEchoRequest(nil, evt)
 
 		// then
 		assert.NoError(t, err)

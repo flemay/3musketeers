@@ -7,8 +7,8 @@ import (
 	"os"
 )
 
-// Echo returns an APIGatewayProxyResponse with the value of the environment variable ECHO_MESSAGE
-func Echo(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+// handleEchoRequest returns an APIGatewayProxyResponse with the value of the environment variable ECHO_MESSAGE
+func handleEchoRequest(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	return events.APIGatewayProxyResponse{
 		Body:       os.Getenv("ECHO_MESSAGE"),
 		StatusCode: 200,
@@ -16,5 +16,5 @@ func Echo(ctx context.Context, request events.APIGatewayProxyRequest) (events.AP
 }
 
 func main() {
-	lambda.Start(Echo)
+	lambda.Start(handleEchoRequest)
 }
