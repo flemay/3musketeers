@@ -1,4 +1,4 @@
-service: thethreemusketeers-gosls
+service: the3musketeers-lambdagosls
 package:
   artifact: package.zip
 provider:
@@ -10,6 +10,8 @@ provider:
 functions:
   echo:
     handler: bin/main
+    description: returns the value of environment variable ECHO_MESSAGE
+    memorySize: 128
     environment:
       ECHO_MESSAGE: ${env:ECHO_MESSAGE}
     events:
