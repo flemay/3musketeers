@@ -8,14 +8,14 @@
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
-Assuming Docker and Compose are required for the 3Musketeers, a pattern has been established: `target` like `test` will run a `_target`, like `_test`, inside a container.
+Assuming Docker and Compose are required for the 3 Musketeers, a pattern has been established: `target` like `test` will run a `_target`, like `_test`, inside a container.
 
 ```Makefile
 # .env target uses cp which is available in Windows, Unix, MacOS
 .env:
   cp .env.template .env
 
-# test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3Musketeers)
+# test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm golang make _test
 .PHONY: test
