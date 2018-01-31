@@ -105,7 +105,7 @@ _build:
 # _deploy deploys the package using serverless
 _deploy:
 	rm -fr .serverless
-	sls deploy -v
+	sls deploy
 .PHONY: _deploy
 
 # _echo calls the echo api endpoint
@@ -115,7 +115,7 @@ _echo:
 
 # _remove removes the aws stack created by serverless
 _remove:
-	sls remove -v
+	sls remove
 	rm -fr .serverless
 .PHONY: _remove
 
