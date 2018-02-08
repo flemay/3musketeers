@@ -51,7 +51,7 @@ shellGolang: $(DOTENV_TARGET)
 
 # shellServerless let you run a shell inside a serverless container
 shellServerless: $(DOTENV_TARGET)
-	docker-compose run --rm golang bash
+	docker-compose run --rm serverless bash
 .PHONY: shellServerless
 
 # echo calls the echo API endpoint
