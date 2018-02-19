@@ -18,6 +18,7 @@ all: deps test build
 # deps installs all dependencies for testing/building/deploying. This example only has golang dependencies
 deps: $(DOTENV_TARGET)
 	docker-compose run --rm golang make _depsGo
+	docker-compose run --rm serverless make _zipGoDeps
 .PHONY: deps
 
 # test tests the application
@@ -28,6 +29,7 @@ test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 # build tests the application and creates the serverless artifact to be deployed
 build: $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _build
+	docker-compose run --rm serverless make _pack
 .PHONY: build
 
 # deploy deploys the serverless artifact
@@ -79,28 +81,41 @@ dotenv:
 
 # if there is no vendor directory then unzip from golang_vendor.zip artifact
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+	docker-compose run --rm golang make _unzipGoDeps
 
 ##########
 # Others #
 ##########
 
-# _depsGo installs go dependencies for the project and zip them into an artifact
+# _depsGo installs go dependencies for the project
 _depsGo:
 	dep ensure
-	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
 .PHONY: _depsGo
+
+# _zipGoDeps zips the go dependencies so they can be passed along with a single zip file
+_zipGoDeps:
+	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
+.PHONY: _zipGoDeps
+
+# _unzipGoDeps unzips the go dependencies zip file
+_unzipGoDeps:
+	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+.PHONY: _unzipGoDeps
 
 # _test tests the go source
 _test:
 	go test -v
 .PHONY: _test
 
-# build makes a golang binary and zip it for the serverless package
+# build makes a golang binary and
 _build:
 	GOOS=linux go build -o bin/main
-	zip -r $(PACKAGE).zip bin
 .PHONY: _build
+
+# zip the go binary for the serverless package
+_pack:
+	zip -r $(PACKAGE).zip bin
+.PHONY: _pack
 
 # _deploy deploys the package using serverless
 _deploy:
