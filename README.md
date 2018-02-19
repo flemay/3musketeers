@@ -29,5 +29,5 @@ $ docker run --rm -v ${PWD}:/git -w /git alpine sh -c "apk --update add git open
 
 ## Links
 
-- Tutorial on how `.env` works with Docker and Compose
+- [Tutorial](https://github.com/flemay/3musketeers/tree/master/dotenv) on how `.env` works with Docker and Compose
 - My [slides](https://www.slideshare.net/FredericLemay/the-three-musketeers-83691981) of my talk about the 3 Musketeers at Sydney Docker Meetup
