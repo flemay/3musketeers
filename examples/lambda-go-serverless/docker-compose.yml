@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   golang:
-    image: flemay/golang:1.10.0-stretch
+    image: amaysim/golang:1.10.0-stretch
     volumes:
       - .:/go/src/github.com/flemay/3musketeers/examples/lambda-go-serverless
     working_dir: /go/src/github.com/flemay/3musketeers/examples/lambda-go-serverless

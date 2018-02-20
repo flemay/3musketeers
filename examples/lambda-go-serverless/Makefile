@@ -81,7 +81,7 @@ dotenv:
 
 # if there is no vendor directory then unzip from golang_vendor.zip artifact
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-	docker-compose run --rm golang make _unzipGoDeps
+	docker-compose run --rm serverless make _unzipGoDeps
 
 ##########
 # Others #
