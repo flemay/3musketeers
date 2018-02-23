@@ -104,6 +104,17 @@ _test:
 include Makefiles/*.mk
 ```
 
+### Complex targets
+
+Sometimes target may become very complex due to the syntax and limitations of Make. A way to make it simpler and cleaner is to create a shell script file and call it from the target.
+
+```Makefile
+# _target executes a shell script from the scripts folder
+_target:
+  ./scripts/dosomething.sh
+.PHONY: _target
+```
+
 ## .env
 
 `.env` is used to pass environment variables to Docker containers. To know more about it, please read [dotenv/README.md](https://github.com/flemay/3musketeers/blob/master/dotenv/README.md).
