@@ -9,7 +9,7 @@ else
 endif
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application
-all: deps test build
+all: deps test build pack
 .PHONY: all
 
 ####################
@@ -26,9 +26,6 @@ deps: $(DOTENV_TARGET)
 test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _test
 .PHONY: test
-
-buildAndPack: build pack
-.PHONY: buildAndPack
 
 # build tests the application and creates the serverless artifact to be deployed
 build: $(GOLANG_DEPS_DIR)
