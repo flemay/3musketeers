@@ -20,8 +20,8 @@ $ make dotenv DOTENV=.env.example
 $ make deps
 # test
 $ make test
-# compile the go lambda and create the package for serverless
-$ make build
+# compile the go function and create package for serverless
+$ make build pack
 # deploy to aws
 $ make deploy
 # you should see something like:

@@ -1,6 +1,6 @@
 service: the3musketeers-lambdagosls
 package:
-  artifact: package.zip
+  individually: true
 provider:
   name: aws
   runtime: go1.x
@@ -9,7 +9,9 @@ provider:
 
 functions:
   echo:
-    handler: bin/main
+    package:
+      artifact: bin/echo.zip
+    handler: bin/echo
     description: returns the value of environment variable ECHO_MESSAGE
     memorySize: 128
     environment:

@@ -1,4 +1,5 @@
-PACKAGE ?= package
+BIN_DIR = bin
+BIN_PACKAGES_ARTIFACT = bin_packages.zip
 GOLANG_DEPS_ARTIFACT = golang_vendor.zip
 GOLANG_DEPS_DIR = vendor
 ifdef DOTENV
@@ -26,14 +27,21 @@ test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _test
 .PHONY: test
 
+buildAndPack: build pack
+.PHONY: buildAndPack
+
 # build tests the application and creates the serverless artifact to be deployed
 build: $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _build
-	docker-compose run --rm serverless make _pack
 .PHONY: build
 
+# pack zips all binary functions individually and zip the bin dir into 1 artifact
+pack:
+	docker-compose run --rm serverless make _pack
+.PHONY: pack
+
 # deploy deploys the serverless artifact
-deploy: $(DOTENV_TARGET) $(ARTIFACT_NAME)
+deploy: $(DOTENV_TARGET) $(BIN_DIR)
 	docker-compose run --rm serverless make _deploy
 .PHONY: deploy
 
@@ -83,6 +91,10 @@ dotenv:
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
 	docker-compose run --rm serverless make _unzipGoDeps
 
+# if bin directory is not present, it unzips all the zip binaries into bin directory
+$(BIN_DIR): | $(BIN_PACKAGES_ARTIFACT)
+	docker-compose run --rm serverless make _unzipBinPackagesArtifact
+
 ##########
 # Others #
 ##########
@@ -102,19 +114,36 @@ _unzipGoDeps:
 	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
 .PHONY: _unzipGoDeps
 
+# _unzipBinPackagesArtifact unzips the artifact that contains the binary packages
+_unzipBinPackagesArtifact:
+	unzip -qo -d . $(BIN_PACKAGES_ARTIFACT)
+.PHONY: _unzipBinPackagesArtifact
+
+# _unzipGolangDepsArtifact unzips the golang dependencies artifact which contains all the dependencies
+_unzipGolangDepsArtifact:
+	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+.PHONY: _unzipGolangDepsArtifact
+
 # _test tests the go source
 _test:
-	go test -v
+	go test -v ./...
 .PHONY: _test
 
-# build makes a golang binary and
+# build builds all functions individually
 _build:
-	GOOS=linux go build -o bin/main
+	@for dir in $(wildcard functions/*/) ; do \
+		fxn=$$(basename $$dir) ; \
+		GOOS=linux go build -ldflags="-s -w" -o $(BIN_DIR)/$$fxn functions/$$fxn/main.go ; \
+	done
 .PHONY: _build
 
-# zip the go binary for the serverless package
+# _pack zips all binary functions individually and zip the bin dir into 1 artifact
 _pack:
-	zip -r $(PACKAGE).zip bin
+	@for dir in $(wildcard functions/*/) ; do \
+		fxn=$$(basename $$dir) ; \
+		zip -m -D $(BIN_DIR)/$$fxn.zip $(BIN_DIR)/$$fxn ; \
+	done
+		zip -r $(BIN_PACKAGES_ARTIFACT) $(BIN_DIR)
 .PHONY: _pack
 
 # _deploy deploys the package using serverless
