@@ -130,7 +130,7 @@ _test:
 _build:
 	@for dir in $(wildcard functions/*/) ; do \
 		fxn=$$(basename $$dir) ; \
-		GOOS=linux go build -ldflags="-s -w" -o $(BIN_DIR)/$$fxn functions/$$fxn/main.go ; \
+		GOOS=linux go build -ldflags="-s -w" -o $(BIN_DIR)/$$fxn functions/$$fxn/*.go ; \
 	done
 .PHONY: _build
 
