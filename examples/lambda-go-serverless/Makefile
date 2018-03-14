@@ -2,10 +2,10 @@ BIN_DIR = bin
 BIN_PACKAGES_ARTIFACT = bin_packages.zip
 GOLANG_DEPS_ARTIFACT = golang_vendor.zip
 GOLANG_DEPS_DIR = vendor
-ifdef DOTENV
-	DOTENV_TARGET=dotenv
+ifdef ENVFILE
+	ENVFILE_TARGET=envfile
 else
-	DOTENV_TARGET=.env
+	ENVFILE_TARGET=.env
 endif
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application
@@ -17,13 +17,13 @@ all: deps test build pack
 ####################
 
 # deps installs all dependencies for testing/building/deploying. This example only has golang dependencies
-deps: $(DOTENV_TARGET)
+deps: $(ENVFILE_TARGET)
 	docker-compose run --rm golang make _depsGo
 	docker-compose run --rm serverless make _zipGoDeps
 .PHONY: deps
 
 # test tests the application
-test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _test
 .PHONY: test
 
@@ -38,7 +38,7 @@ pack:
 .PHONY: pack
 
 # deploy deploys the serverless artifact
-deploy: $(DOTENV_TARGET) $(BIN_DIR)
+deploy: $(ENVFILE_TARGET) $(BIN_DIR)
 	docker-compose run --rm serverless make _deploy
 .PHONY: deploy
 
@@ -47,27 +47,27 @@ deploy: $(DOTENV_TARGET) $(BIN_DIR)
 #############################
 
 # remove removes the api gateway and the lambda
-remove: $(DOTENV_TARGET)
+remove: $(ENVFILE_TARGET)
 	docker-compose run --rm serverless make _remove
 .PHONY: remove
 
 # shellGolang let you run a shell inside a go container
-shellGolang: $(DOTENV_TARGET)
+shellGolang: $(ENVFILE_TARGET)
 	docker-compose run --rm golang bash
 .PHONY: shellGolang
 
 # shellServerless let you run a shell inside a serverless container
-shellServerless: $(DOTENV_TARGET)
+shellServerless: $(ENVFILE_TARGET)
 	docker-compose run --rm serverless bash
 .PHONY: shellServerless
 
 # echo calls the echo API endpoint
-echo: $(DOTENV_TARGET)
+echo: $(ENVFILE_TARGET)
 	docker-compose run --rm serverless make _echo
 .PHONY: echo
 
 # clean removes build artifacts
-clean: $(DOTENV_TARGET)
+clean: $(ENVFILE_TARGET)
 	docker-compose run --rm golang make _clean
 .PHONY: clean
 
@@ -79,10 +79,10 @@ clean: $(DOTENV_TARGET)
 .env:
 	cp .env.template .env
 
-# dotenv creates/overwrites .env with $(DOTENV)
-dotenv:
-	cp $(DOTENV) .env
-.PHONY: dotenv
+# envfile creates/overwrites .env with $(ENVFILE)
+envfile:
+	cp $(ENVFILE) .env
+.PHONY: envfile
 
 # if there is no vendor directory then unzip from golang_vendor.zip artifact
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)

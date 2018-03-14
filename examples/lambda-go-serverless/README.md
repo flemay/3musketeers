@@ -15,7 +15,7 @@ Read [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/REA
 $ git clone https://github.com/flemay/3musketeers.git
 $ cd 3musketeers/examples/lambda-go-serverless
 # create .env file based on .env.example
-$ make dotenv DOTENV=.env.example
+$ make envfile ENVFILE=.env.example
 # install deps
 $ make deps
 # test
