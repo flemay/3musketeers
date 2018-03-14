@@ -14,7 +14,7 @@ Using `target` and `_target` is a naming convention to distinguish targets that 
   cp .env.template .env
 
 # test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
-test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm golang make _test
 .PHONY: test
 
@@ -37,7 +37,7 @@ By being explicit it makes it clear which targets are not related to the file sy
   cp .env.template .env
 
 # test is not a file based target and specifying .PHONY will not conflict with a file or folder test
-test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm golang make _test
 .PHONY: test
 ```
@@ -47,7 +47,7 @@ test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
 To make the Makefile easier to read avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`
 
 ```Makefile
-test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
@@ -69,11 +69,11 @@ It is a good thing to have a target `deps` to install all the dependencies requi
 Create an artifact as a zip file for dependencies to be passed along through the stages. This step is quite useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building.
 
 ```Makefile
-deps: $(DOTENV_TARGET)
+deps: $(ENVFILE_TARGET)
   docker-compose run --rm golang make _depsGo
 .PHONY: deps
 
-test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _test
 .PHONY: test
 
@@ -92,7 +92,7 @@ The Makefile can be split into smaller files if it becomes unreadable.
 
 ```Makefile
 # Makefiles/test.mk
-test: $(DOTENV_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
   docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
@@ -117,15 +117,15 @@ _target:
 
 ## .env
 
-`.env` is used to pass environment variables to Docker containers. To know more about it, please read [dotenv/README.md](https://github.com/flemay/3musketeers/blob/master/dotenv/README.md).
+`.env` is used to pass environment variables to Docker containers. To know more about it, please read [envfile/README.md](https://github.com/flemay/3musketeers/blob/master/envfile/README.md).
 
 ### .env.template
 
-Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `DOTENV` is not specified, Make will create a `.env` file with `.env.template`.
+Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
 
 ### .env.example
 
-`.env.example` defines values so that it can be used straight away with Make like `$ make test DOTENV=.env.example`. It also gives an example of values that is being used in the project.
+`.env.example` defines values so that it can be used straight away with Make like `$ make test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
 
 > Never include sensitive values like passwords as this file is meant to be checked in.
 
