@@ -1,12 +1,12 @@
-# Specifying DOTENV allows you to choose a file as your .env file
-ifdef DOTENV
-	DOTENV_TARGET=dotenv
+# Specifying ENVFILE allows you to choose a file as your .env file
+ifdef ENVFILE
+	ENVFILE_TARGET=envfile
 else
-	DOTENV_TARGET=.env
+	ENVFILE_TARGET=.env
 endif
 
-# shell creates a shell environment inside a container. It uses .env by default unless DOTENV is set.
-shell: $(DOTENV_TARGET)
+# shell creates a shell environment inside a container. It uses .env by default unless ENVFILE is set.
+shell: $(ENVFILE_TARGET)
 	docker-compose run --rm alpine sh
 .PHONY: shell
 
@@ -14,12 +14,12 @@ shell: $(DOTENV_TARGET)
 .env:
 	cp .env.template .env
 
-# Create/Overwrite .env with $(DOTENV)
-dotenv:
-	cp $(DOTENV) .env
-.PHONY: dotenv
+# Create/Overwrite .env with $(ENVFILE)
+envfile:
+	cp $(ENVFILE) .env
+.PHONY: envfile
 
 # clean cleans the current directory
-clean: $(DOTENV_TARGET)
+clean: $(ENVFILE_TARGET)
 	docker-compose run --rm alpine sh -c "rm -f .env"
 .PHONY: clean

@@ -23,7 +23,7 @@ $ make shell
 $ env | grep ECHO_MESSAGE
 # What is the value of ECHO_MESSAGE?
 $ exit
-$ make shell DOTENV=.env.example
+$ make shell ENVFILE=.env.example
 # What happened to .env file?
 $ cat .env
 $ env | grep ECHO_MESSAGE
@@ -37,11 +37,11 @@ $ make .env
 # Let's do it again
 $ make .env
 # Any difference? What would happened if you modify values in the .env and rerun the command?
-# Any difference in the Makefile for targets dotenv and .env? (.PHONY)
+# Any difference in the Makefile for targets envfile and .env? (.PHONY)
 
 # Create a .env file based on the .env.example
-$ make dotenv DOTENV=.env.example
-# Then use "make shell" without specifying DOTENV
+$ make envfile ENVFILE=.env.example
+# Then use "make shell" without specifying ENVFILE
 $ make shell
 # In practice, you could create a file like .env.dev with the config of your dev environment and use that file to manually deploy/delete/etc your app
 
