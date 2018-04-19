@@ -56,6 +56,40 @@ _test:
 .PHONY: _test
 ```
 
+### Managing containers in target
+
+Sometimes, target needs running containers in order to be executed. Once common example is for testing. Let's say `make test` needs a database to run in order to execute the tests.
+
+#### Starting
+
+A target `startPostgres` which starts a database container can be used as a dependency to the target test.
+
+```Makefile
+startPostgres:
+  docker-compose up -d postgres
+  sleep 10
+.PHONY: startPostgres
+```
+
+#### Stopping/Cleaning
+
+Once the test target finishes, the database would be still running. So it is a good idea to not let it running. A target that removes all countainers can help us.
+
+```Makefile
+removeContainers:
+	docker-compose down --remove-orphans
+.PHONY: removeContainers
+```
+
+#### target test
+
+```Makefile
+test: removeContainers startPostgres
+	...
+	$(MAKE) removeContainers
+.PHONY: test
+```
+
 ### Pipeline targets
 
 Pipeline targets are targets being executed on the CI/CD server. A typical pipeline targets would have `deps, test, build, deploy`.
