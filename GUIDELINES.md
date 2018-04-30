@@ -56,6 +56,22 @@ _test:
 .PHONY: _test
 ```
 
+### Clean Docker and files
+
+Using Compose creates a network that you may want to remove after your pipeline is done. You may also want to remove existing stopped and running containers. Moreover, files and folders that have been created can also be cleaned up after. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `$ make test clean`.
+
+`clean` could also have the command to clean Docker. However having the target `cleanDocker` may be very useful for targets that want to only clean the containers. See section "Managing containers in target".
+
+```Makefile
+cleanDocker:
+  docker-compose down --remove-orphans
+.PHONY: cleanDocker
+
+clean: cleanDocker
+  rm -fr files folders
+.PHONY: clean
+
+```
 ### Managing containers in target
 
 Sometimes, target needs running containers in order to be executed. Once common example is for testing. Let's say `make test` needs a database to run in order to execute the tests.
@@ -71,28 +87,16 @@ startPostgres:
 .PHONY: startPostgres
 ```
 
-#### Stopping/Cleaning
+#### Target test with cleanDocker
 
-Once the test target finishes, the database would be still running. So it is a good idea to not let it running. A target that removes all countainers can help us.
-
-```Makefile
-removeContainers:
-	docker-compose down --remove-orphans
-.PHONY: removeContainers
-```
-
-#### Target test
+Once the test target finishes, the database would be still running. So it is a good idea to not let it running. The target `test` can run `cleanDocker` to remove the running database container. See "Clean Docker and files" section.
 
 ```Makefile
-test: removeContainers startPostgres
-	...
-	$(MAKE) removeContainers
+test: cleanDocker startPostgres
+  ...
+  $(MAKE) cleanDocker
 .PHONY: test
 ```
-
-#### Target clean
-
-A target `clean` could also be used to remove the containers and the Docker network created with Compose. It could remove files and folders too. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `$ make test clean`
 
 ### Pipeline targets
 
