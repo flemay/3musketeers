@@ -81,7 +81,7 @@ removeContainers:
 .PHONY: removeContainers
 ```
 
-#### target test
+#### Target test
 
 ```Makefile
 test: removeContainers startPostgres
@@ -89,6 +89,10 @@ test: removeContainers startPostgres
 	$(MAKE) removeContainers
 .PHONY: test
 ```
+
+#### Target clean
+
+A target `clean` could also be used to remove the docker containers with docker network created with Compose. It could remove files and folders too.
 
 ### Pipeline targets
 
