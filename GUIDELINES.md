@@ -92,7 +92,7 @@ test: removeContainers startPostgres
 
 #### Target clean
 
-A target `clean` could also be used to remove the containers and the Docker network created with Compose. It could remove files and folders too.
+A target `clean` could also be used to remove the containers and the Docker network created with Compose. It could remove files and folders too. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `$ make test clean`
 
 ### Pipeline targets
 
