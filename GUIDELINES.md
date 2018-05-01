@@ -1,6 +1,18 @@
 # Guidelines
 
-> The code snippets in this document are taken from the [Lambda Go Serverless](https://github.com/flemay/3musketeers/tree/master/examples/lambda-go-serverless) example.
+> Most of the code snippets in this document are taken from the [Lambda Go Serverless](https://github.com/flemay/3musketeers/tree/master/examples/lambda-go-serverless) example.
+
+## Managing environment variables
+
+Development following [the twelve-factor app](https://12factor.net) use the [environment variables to configure](https://12factor.net/config) their application. Many time, there are many and having an environment variables file `.env` becomes handy. Docker and Compose do use [environment variables file](https://docs.docker.com/compose/env-file/) to pass the variables to the containers.
+
+Read [envfile/README.md](https://github.com/flemay/3musketeers/blob/master/envfile/README.md) for more information about ways to manage environments variables with files.
+
+### AWS environment variables vs ~/.aws
+
+In the examples, `envvars.yml` contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the `docker-compose.yml` mounts the volume `~/.aws`.
+
+If you are using `~/.aws`, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 
 ## Makefile
 
@@ -9,12 +21,8 @@
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
 ```Makefile
-# .env target uses cp which is available in Windows, Unix, MacOS
-.env:
-  cp .env.template .env
-
 # test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
-test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE) $(GOLANG_DEPS_DIR)
   docker-compose run --rm golang make _test
 .PHONY: test
 
@@ -34,10 +42,10 @@ By being explicit it makes it clear which targets are not related to the file sy
 ```Makefile
 # .env is file based target. It creates a .env file if it does not exist
 .env:
-  cp .env.template .env
+  $(ENVVARS_CMD) envfile
 
 # test is not a file based target and specifying .PHONY will not conflict with a file or folder test
-test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE) $(GOLANG_DEPS_DIR)
   docker-compose run --rm golang make _test
 .PHONY: test
 ```
@@ -47,7 +55,7 @@ test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
 To make the Makefile easier to read avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`
 
 ```Makefile
-test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE) $(GOLANG_DEPS_DIR)
   docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
@@ -63,7 +71,7 @@ Using Compose creates a network that you may want to remove after your pipeline 
 `clean` could also have the command to clean Docker. However having the target `cleanDocker` may be very useful for targets that want to only clean the containers. See section "Managing containers in target".
 
 ```Makefile
-cleanDocker:
+cleanDocker: $(ENVFILE)
   docker-compose down --remove-orphans
 .PHONY: cleanDocker
 
@@ -81,7 +89,7 @@ Sometimes, target needs running containers in order to be executed. Once common 
 A target `startPostgres` which starts a database container can be used as a dependency to the target test.
 
 ```Makefile
-startPostgres:
+startPostgres: $(ENVFILE)
   docker-compose up -d postgres
   sleep 10
 .PHONY: startPostgres
@@ -111,21 +119,29 @@ It is a good thing to have a target `deps` to install all the dependencies requi
 Create an artifact as a zip file for dependencies to be passed along through the stages. This step is quite useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building.
 
 ```Makefile
-deps: $(ENVFILE_TARGET)
+deps: $(ENVFILE)
   docker-compose run --rm golang make _depsGo
+	docker-compose run --rm serverless make _zipGoDeps
 .PHONY: deps
 
-test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE) $(GOLANG_DEPS_DIR)
 	docker-compose run --rm golang make _test
 .PHONY: test
 
-$(GOLANG_DEPS_DIR): $(GOLANG_DEPS_ARTIFACT)
-  unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+$(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
+	docker-compose run --rm serverless make _unzipGoDeps
 
 _depsGo:
   dep ensure
-  zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
 .PHONY: _depsGo
+
+_zipGoDeps:
+	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
+.PHONY: _zipGoDeps
+
+_unzipGoDeps:
+	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
+.PHONY: _unzipGoDeps
 ```
 
 ### Makefile too big?
@@ -134,7 +150,7 @@ The Makefile can be split into smaller files if it becomes unreadable.
 
 ```Makefile
 # Makefiles/test.mk
-test: $(ENVFILE_TARGET) $(GOLANG_DEPS_DIR)
+test: $(ENVFILE) $(GOLANG_DEPS_DIR)
   docker-compose run --rm serverlessGo make _test
 .PHONY: test
 
@@ -156,34 +172,6 @@ _target:
   ./scripts/dosomething.sh
 .PHONY: _target
 ```
-
-## .env
-
-`.env` is used to pass environment variables to Docker containers. To know more about it, please read [envfile/README.md](https://github.com/flemay/3musketeers/blob/master/envfile/README.md).
-
-### .env.template
-
-Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
-
-### .env.example
-
-`.env.example` defines values so that it can be used straight away with Make like `$ make test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
-
-> Never include sensitive values like passwords as this file is meant to be checked in.
-
-### AWS environment variables vs ~/.aws
-
-In the examples, `.env.template` contains the following environment variables:
-
-```
-AWS_REGION
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_SESSION_TOKEN
-AWS_PROFILE
-```
-
-If you are using ~/.aws, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 
 ## Compose
 

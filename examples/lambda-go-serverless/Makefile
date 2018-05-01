@@ -72,7 +72,7 @@ cleanDocker: $(ENVFILE)
 .PHONY: cleanDocker
 
 # clean removes build artifacts
-clean: $(ENVFILE) cleanDocker
+clean: cleanDocker
 	rm -rf .serverless *.zip $(GOLANG_DEPS_DIR) .env bin
 .PHONY: clean
 

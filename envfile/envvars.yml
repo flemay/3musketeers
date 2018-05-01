@@ -1,0 +1,4 @@
+envvars:
+  - name: ECHO_MESSAGE
+    desc: Message to be echoed
+    example: Hello 3 Musketeers

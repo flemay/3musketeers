@@ -1,25 +1,27 @@
-# Specifying ENVFILE allows you to choose a file as your .env file
-ifdef ENVFILE
-	ENVFILE_TARGET=envfile
-else
-	ENVFILE_TARGET=.env
-endif
+ENVFILE = .env
+# ENVVARS_CMD is the docker command to run envvars. The reason why it is not part of the docker-compose.yml is because Compose will fail if there is no ".env" file.
+ENVVARS_CMD = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/envvars:0.0.3 envfile
 
 # shell creates a shell environment inside a container. It uses .env by default unless ENVFILE is set.
-shell: $(ENVFILE_TARGET)
+shell: $(ENVFILE)
 	docker-compose run --rm alpine sh
 .PHONY: shell
 
-# .env creates a .env based on .env.template if .env does not exist
+# .env creates .env based on envvars.yml
 .env:
-	cp .env.template .env
+	$(ENVVARS_CMD) envfile
 
-# Create/Overwrite .env with $(ENVFILE)
-envfile:
-	cp $(ENVFILE) .env
-.PHONY: envfile
+# .envfileExample creates .env with example values based on envvars.yml
+envfileExample:
+	$(ENVVARS_CMD) envfile --example --overwrite
+.PHONY: envfileExample
+
+# cleanDocker remove all containers/network created by Compose
+cleanDocker: $(ENVFILE)
+	docker-compose down --remove-orphans
+.PHONY: cleanDocker
 
 # clean cleans the current directory
-clean: $(ENVFILE_TARGET)
-	docker-compose run --rm alpine sh -c "rm -f .env"
+clean: cleanDocker
+	rm -f .env
 .PHONY: clean
