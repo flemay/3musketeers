@@ -6,7 +6,7 @@ The Lambda simply returns the value of the environment variable `ECHO_MESSAGE` o
 
 ## Prerequisites
 
-Read [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md).
+Read [3 Musketeers README](../../README.md).
 
 ## Usage
 

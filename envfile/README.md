@@ -6,15 +6,15 @@ The 3 Musketeers suggests 2 ways to handle environment variable file `.env`. One
 
 [envvars](https://github.com/flemay/envvars) is a flexible tool to describe and validate environment variables. It is the recommended way as it serves as documentation and validates that the environment variables are correctly set.
 
-> Never include sensitive values like passwords as the file `envvars.yml` is meant to be checked in.
+> Never include sensitive values like passwords as the file [envvars.yml](envvars.yml) is meant to be checked in.
 
-For a more complete implementation using envvars, see [../examples/lambda-go-serverless](https://github.com/flemay/3musketeers/tree/master/examples/lambda-go-serverless)
+For a more complete implementation using envvars, see [../examples/lambda-go-serverless](../examples/lambda-go-serverless/README.md)
 
 ## .env.template, and .env.example
 
-`.env.template` Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
+[.env.template](.env.template) Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
 
-`.env.example` defines values so that it can be used straight away with Make like `$ make test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
+[.env.example](.env.example) defines values so that it can be used straight away with Make like `$ make test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
 
 > Never include sensitive values like passwords as this file is meant to be checked in.
 
@@ -28,11 +28,11 @@ This Tutorial shows how `.env` file works with Docker and Docker Compose.
 
 ## Prerequisites
 
-- see [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/README.md)
+- see [3 Musketeers README](../README.md)
 
 ## Step by Step using envvars
 
-This section uses envvars tool. The environment variable is declared in the file `envvars.yml`.
+This section uses envvars tool. The environment variable is declared in the file [envvars.yml](envvars.yml).
 
 ```bash
 # Let's clean first
@@ -78,7 +78,7 @@ $ make clean
 
 ## Step by Step using example/template
 
-This section shows the way `.env` was managed before the tool `.env` was born. The Make commands are inside `Makefile.env.mk` and will be refered in this step by step.
+This section shows the way `.env` was managed before the tool envvars was born. The Make commands are inside [Makefile.env.mk](Makefile.env.mk) and will be refered in this step by step.
 
 ```bash
 # Let's clean first

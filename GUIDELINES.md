@@ -1,16 +1,16 @@
 # Guidelines
 
-> Most of the code snippets in this document are taken from the [Lambda Go Serverless](https://github.com/flemay/3musketeers/tree/master/examples/lambda-go-serverless) example.
+> Most of the code snippets in this document are taken from the [Lambda Go Serverless Makefile](examples/lambda-go-serverless/Makefile) example.
 
 ## Managing environment variables
 
 Development following [the twelve-factor app](https://12factor.net) use the [environment variables to configure](https://12factor.net/config) their application. Many time, there are many and having an environment variables file `.env` becomes handy. Docker and Compose do use [environment variables file](https://docs.docker.com/compose/env-file/) to pass the variables to the containers.
 
-Read [envfile/README.md](https://github.com/flemay/3musketeers/blob/master/envfile/README.md) for more information about ways to manage environments variables with files.
+Read [envfile/README.md](envfile/README.md) for more information about ways to manage environments variables with files.
 
 ### AWS environment variables vs ~/.aws
 
-In the examples, `envvars.yml` contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the `docker-compose.yml` mounts the volume `~/.aws`.
+In the examples, [envvars.yml](examples/lambda-go-serverless/envvars.yml) contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the [docker-compose.yml](examples/lambda-go-serverless/docker-compose.yml) mounts the volume `~/.aws`.
 
 If you are using `~/.aws`, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 

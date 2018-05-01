@@ -6,7 +6,7 @@ Read More on [Medium](https://amaysim.engineering/the-3-musketeers-how-make-dock
 
 ## Guidelines
 
-Read the [guidelines](https://github.com/flemay/3musketeers/blob/master/GUIDELINES.md)
+Read the [guidelines](GUIDELINES.md)
 
 ## Prerequisites for the examples
 
@@ -29,5 +29,5 @@ $ docker run --rm -v ${PWD}:/git -w /git alpine sh -c "apk --update add git open
 
 ## Links
 
-- [Tutorial](https://github.com/flemay/3musketeers/tree/master/envfile) on how `.env` works with Docker and Compose
+- [Tutorial](envfile/README.md) on how `.env` works with Docker and Compose
 - My [slides](https://www.slideshare.net/FredericLemay/the-three-musketeers-83691981) of my talk about the 3 Musketeers at Sydney Docker Meetup
