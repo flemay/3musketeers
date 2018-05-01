@@ -1,0 +1,29 @@
+envvars:
+  - name: ECHO_MESSAGE
+    desc: message to be displayed
+    example: Thank you for using the 3 Musketeers!
+    optional: true
+
+  - name: ENV
+    desc: environment target where the deployment will be done
+    example: dev
+
+  - name: AWS_REGION
+    desc: AWS region where the lambda will be deployed
+    example: ap-southeast-2
+
+  - name: AWS_ACCESS_KEY_ID
+    desc: AWS access key ID used for deployment.
+    optional: true
+
+  - name: AWS_SECRET_ACCESS_KEY
+    desc: AWS access key used for deployment.
+    optional: true
+
+  - name: AWS_SESSION_TOKEN
+    desc: AWS session token used for deployment.
+    optional: true
+
+  - name: AWS_PROFILE
+    desc: AWS profile used for deployment.
+    optional: true

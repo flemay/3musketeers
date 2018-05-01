@@ -14,8 +14,8 @@ Read [3 Musketeers README](https://github.com/flemay/3musketeers/blob/master/REA
 # clone the repo
 $ git clone https://github.com/flemay/3musketeers.git
 $ cd 3musketeers/examples/lambda-go-serverless
-# create .env file based on .env.example
-$ make envfile ENVFILE=.env.example
+# create .env file based on envvars.yml with example values
+$ make envfileExample
 # install deps
 $ make deps
 # test
@@ -32,6 +32,6 @@ $ make echo
 # "Thank you for using the 3 Musketeers!"
 # remove the aws stack (api gateway, lambda)
 $ make remove
-# clean your folder
+# clean your folder and docker
 $ make clean
 ```
