@@ -1,6 +1,6 @@
 # envfile
 
-The 3 Musketeers suggests 2 ways to handle environment variable file `.env`. One is to use the files `.env.template`, and `.env.examples`. The second (and the recommended) is to use a tool [envvars](https://github.com/flemay/envvars).
+The 3 Musketeers suggests 2 ways to handle environment variables file `.env`. One is to use the files `.env.template`, and `.env.examples`. The second (and the recommended) is to use a tool [envvars](https://github.com/flemay/envvars).
 
 ## envvars
 
@@ -8,11 +8,13 @@ The 3 Musketeers suggests 2 ways to handle environment variable file `.env`. One
 
 > Never include sensitive values like passwords as the file [envvars.yml](envvars.yml) is meant to be checked in.
 
-For a more complete implementation using envvars, see [../examples/lambda-go-serverless](../examples/lambda-go-serverless/README.md)
+Please refer to [envvars](https://github.com/flemay/envvars) to learn how to use the tool in depth. For a more complete implementation using envvars, see [../examples/lambda-go-serverless](../examples/lambda-go-serverless/README.md)
 
 ## .env.template, and .env.example
 
-[.env.template](.env.template) Contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
+> This was the way before envvars was born.
+
+[.env.template](.env.template) contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
 
 [.env.example](.env.example) defines values so that it can be used straight away with Make like `$ make test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
 
@@ -20,7 +22,11 @@ For a more complete implementation using envvars, see [../examples/lambda-go-ser
 
 ## Bottom line
 
-Bottom line is that `.env` is the essential file and can be managed different ways. In practice, you could create a file like `.env.dev` with the config of your dev environment and copy the content of it into `.env` so that you can manually deploy/delete/etc your app. This allows you to not loose accidentally the values if `.env` were to get replaced.
+Bottom line is that `.env` is a very important file that can be managed in different ways.
+
+With the 3 Musketeers, `.env` is created automatically which helps automating the CI pipeline.
+
+In a day to day development process, you could create a file like `.env.dev` with the config of your dev environment and copy the content of it into `.env` so that you can manually deploy/delete/etc your app for testing. This allows you to not loose accidentally the values if `.env` was to get replaced or the need to set all the environment variables on your machine.
 
 # Tutorial
 
@@ -32,7 +38,7 @@ This Tutorial shows how `.env` file works with Docker and Docker Compose.
 
 ## Step by Step using envvars
 
-This section uses envvars tool. The environment variable is declared in the file [envvars.yml](envvars.yml).
+This section uses envvars tool and the environment variable is declared in the file [envvars.yml](envvars.yml).
 
 ```bash
 # Let's clean first

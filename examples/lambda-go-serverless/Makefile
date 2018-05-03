@@ -5,6 +5,7 @@ GOLANG_DEPS_DIR = vendor
 ENVFILE = .env
 # ENVVARS_CMD is the docker command to run envvars. The reason why it is not part of the docker-compose.yml is because Compose will fail if there is no ".env" file.
 ENVVARS_CMD = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/envvars:0.0.3 envfile
+COMPOSE_GOLANG = docker-compose run --rm golang
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application
 all: deps test build pack
@@ -73,7 +74,8 @@ cleanDocker: $(ENVFILE)
 
 # clean removes build artifacts
 clean: cleanDocker
-	rm -rf .serverless *.zip $(GOLANG_DEPS_DIR) .env bin
+	$(COMPOSE_GOLANG) make _clean
+	$(MAKE) cleanDocker
 .PHONY: clean
 
 ############
@@ -168,3 +170,8 @@ _remove:
 	sls remove
 	rm -fr .serverless
 .PHONY: _remove
+
+# _clean removes folders and files created when building
+_clean:
+	rm -rf .serverless *.zip $(GOLANG_DEPS_DIR) .env bin
+.PHONY: _clean

@@ -4,13 +4,15 @@
 
 ## Managing environment variables
 
-Development following [the twelve-factor app](https://12factor.net) use the [environment variables to configure](https://12factor.net/config) their application. Many time, there are many and having an environment variables file `.env` becomes handy. Docker and Compose do use [environment variables file](https://docs.docker.com/compose/env-file/) to pass the variables to the containers.
+Development following [the twelve-factor app](https://12factor.net) use the [environment variables to configure](https://12factor.net/config) their application.
+
+Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file](https://docs.docker.com/compose/env-file/) to pass the variables to the containers.
 
 Read [envfile/README.md](envfile/README.md) for more information about ways to manage environments variables with files.
 
 ### AWS environment variables vs ~/.aws
 
-In the examples, [envvars.yml](examples/lambda-go-serverless/envvars.yml) contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the [docker-compose.yml](examples/lambda-go-serverless/docker-compose.yml) mounts the volume `~/.aws`.
+In the lambda example, [envvars.yml](examples/lambda-go-serverless/envvars.yml) contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the [docker-compose.yml](examples/lambda-go-serverless/docker-compose.yml) mounts the volume `~/.aws`.
 
 If you are using `~/.aws`, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
 
@@ -52,7 +54,7 @@ test: $(ENVFILE) $(GOLANG_DEPS_DIR)
 
 ### Target dependencies
 
-To make the Makefile easier to read avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`
+To make the Makefile easier to read, avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`.
 
 ```Makefile
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
@@ -70,16 +72,30 @@ Using Compose creates a network that you may want to remove after your pipeline 
 
 `clean` could also have the command to clean Docker. However having the target `cleanDocker` may be very useful for targets that want to only clean the containers. See section "Managing containers in target".
 
+It may happen that you face a permission issue like the following
+
+```
+rm -fr bin vendor
+rm: cannot remove ‘vendor/gopkg.in/yaml.v2/README.md’: Permission denied
+```
+
+This happens because the creation of those files was done with a different user (in a container as root) and the current user does not have permission to delete them. One way to mitigate this is to call the command in the docker container.
+
 ```Makefile
 cleanDocker: $(ENVFILE)
   docker-compose down --remove-orphans
 .PHONY: cleanDocker
 
-clean: cleanDocker
-  rm -fr files folders
+clean: $(ENVFILE)
+  docker-compose run --rm golang make _clean
+  $(MAKE) cleanDocker
 .PHONY: clean
 
+_clean:
+  rm -fr files folders
+.PHONY: clean
 ```
+
 ### Managing containers in target
 
 Sometimes, target needs running containers in order to be executed. Once common example is for testing. Let's say `make test` needs a database to run in order to execute the tests.
