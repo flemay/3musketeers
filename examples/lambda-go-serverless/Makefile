@@ -9,7 +9,7 @@ COMPOSE_RUN_GOLANG = docker-compose run --rm golang
 COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application
-all: clean deps test build pack
+all: deps test build pack
 .PHONY: all
 
 ####################
