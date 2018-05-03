@@ -3,9 +3,10 @@ BIN_PACKAGES_ARTIFACT = bin_packages.zip
 GOLANG_DEPS_ARTIFACT = golang_vendor.zip
 GOLANG_DEPS_DIR = vendor
 ENVFILE = .env
-# ENVVARS_CMD is the docker command to run envvars. The reason why it is not part of the docker-compose.yml is because Compose will fail if there is no ".env" file.
-ENVVARS_CMD = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/envvars:0.0.3 envfile
-COMPOSE_GOLANG = docker-compose run --rm golang
+# DOCKER_RUN_ENVVARS is the docker command to run envvars. The reason why it is not part of the docker-compose.yml is because Compose will fail if there is no ".env" file.
+DOCKER_RUN_ENVVARS = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/envvars:0.0.3 envfile
+COMPOSE_RUN_GOLANG = docker-compose run --rm golang
+COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
 
 # all is the default Make target. it installs the dependencies, tests, and builds the application
 all: deps test build pack
@@ -17,29 +18,29 @@ all: deps test build pack
 
 # deps installs all dependencies for testing/building/deploying. This example only has golang dependencies
 deps: $(ENVFILE)
-	docker-compose run --rm golang make _depsGo
-	docker-compose run --rm serverless make _zipGoDeps
+	$(COMPOSE_RUN_GOLANG) make _depsGo
+	$(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
 .PHONY: deps
 
 # test tests the application
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm golang make _test
+	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 # build tests the application and creates the serverless artifact to be deployed
 build: $(ENVFILE) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm golang make _build
+	$(COMPOSE_RUN_GOLANG) make _build
 .PHONY: build
 
 # pack zips all binary functions individually and zip the bin dir into 1 artifact
 pack: $(ENVFILE)
-	docker-compose run --rm serverless make _pack
+	$(COMPOSE_RUN_SERVERLESS) make _pack
 .PHONY: pack
 
 # deploy deploys the serverless artifact
 deploy: $(ENVFILE) $(BIN_DIR)
-	$(ENVVARS_CMD) ensure
-	docker-compose run --rm serverless make _deploy
+	$(DOCKER_RUN_ENVVARS) ensure
+	$(COMPOSE_RUN_SERVERLESS) make _deploy
 .PHONY: deploy
 
 #############################
@@ -48,24 +49,24 @@ deploy: $(ENVFILE) $(BIN_DIR)
 
 # shellGolang let you run a shell inside a go container
 shellGolang: $(ENVFILE)
-	docker-compose run --rm golang bash
+	$(COMPOSE_RUN_GOLANG) bash
 .PHONY: shellGolang
 
 # shellServerless let you run a shell inside a serverless container
 shellServerless: $(ENVFILE)
-	docker-compose run --rm serverless bash
+	$(COMPOSE_RUN_SERVERLESS) bash
 .PHONY: shellServerless
 
 # echo calls the echo API endpoint
 echo: $(ENVFILE)
-	$(ENVVARS_CMD) ensure
-	docker-compose run --rm serverless make _echo
+	$(DOCKER_RUN_ENVVARS) ensure
+	$(COMPOSE_RUN_SERVERLESS) make _echo
 .PHONY: echo
 
 # remove removes the api gateway and the lambda
 remove: $(ENVFILE)
-	$(ENVVARS_CMD) ensure
-	docker-compose run --rm serverless make _remove
+	$(DOCKER_RUN_ENVVARS) ensure
+	$(COMPOSE_RUN_SERVERLESS) make _remove
 .PHONY: remove
 
 cleanDocker: $(ENVFILE)
@@ -84,11 +85,11 @@ clean: cleanDocker
 
 # .env creates .env based on envvars.yml
 .env:
-	$(ENVVARS_CMD) envfile
+	$(DOCKER_RUN_ENVVARS) envfile
 
 # .envfileExample creates .env with example values based on envvars.yml
 envfileExample:
-	$(ENVVARS_CMD) envfile --example --overwrite
+	$(DOCKER_RUN_ENVVARS) envfile --example --overwrite
 .PHONY: envfileExample
 
 ###################
@@ -97,11 +98,11 @@ envfileExample:
 
 # if there is no vendor directory then unzip from golang_vendor.zip artifact
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-	docker-compose run --rm serverless make _unzipGoDeps
+	$(COMPOSE_RUN_SERVERLESS) make _unzipGoDeps
 
 # if bin directory is not present, it unzips all the zip binaries into bin directory
 $(BIN_DIR): | $(BIN_PACKAGES_ARTIFACT)
-	docker-compose run --rm serverless make _unzipBinPackagesArtifact
+	$(COMPOSE_RUN_SERVERLESS) make _unzipBinPackagesArtifact
 
 ##########
 # Others #
