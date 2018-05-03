@@ -18,6 +18,31 @@ If you are using `~/.aws`, no need to set values and they won't be included in t
 
 ## Makefile
 
+### Useful Makefile variables
+
+#### Docker and Compose commands
+
+Docker and Compose commands can be assigned to variables.
+
+```Makefile
+COMPOSE_RUN_GOLANG = docker-compose run --rm golang
+COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
+
+deps: $(ENVFILE)
+  $(COMPOSE_RUN_GOLANG) make _depsGo
+  $(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
+.PHONY: deps
+```
+
+### Target all
+
+Target all is a good way to document (and test locally) the sequence of the targets to test, build, run, etc. Target all can simply run with `$ make`.
+
+```Makefile
+all: clean deps test build pack
+.PHONY: all
+```
+
 ### target vs _target
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
@@ -25,7 +50,7 @@ Using `target` and `_target` is a naming convention to distinguish targets that 
 ```Makefile
 # test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm golang make _test
+  $(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 # _test target depends on a go environment which may not be available on the host but it is executed in a Docker container. If you have a go environment on your host, `$ make test` can also be called.
@@ -48,7 +73,7 @@ By being explicit it makes it clear which targets are not related to the file sy
 
 # test is not a file based target and specifying .PHONY will not conflict with a file or folder test
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm golang make _test
+  $(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 ```
 
@@ -58,7 +83,7 @@ To make the Makefile easier to read, avoid having many target dependencies: `tar
 
 ```Makefile
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm serverlessGo make _test
+  $(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 _test:
@@ -87,7 +112,7 @@ cleanDocker: $(ENVFILE)
 .PHONY: cleanDocker
 
 clean: $(ENVFILE)
-  docker-compose run --rm golang make _clean
+  $(COMPOSE_RUN_GOLANG) make _clean
   $(MAKE) cleanDocker
 .PHONY: clean
 
@@ -136,16 +161,16 @@ Create an artifact as a zip file for dependencies to be passed along through the
 
 ```Makefile
 deps: $(ENVFILE)
-  docker-compose run --rm golang make _depsGo
-	docker-compose run --rm serverless make _zipGoDeps
+  $(COMPOSE_RUN_GOLANG) make _depsGo
+  $(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
 .PHONY: deps
 
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
-	docker-compose run --rm golang make _test
+  $(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-	docker-compose run --rm serverless make _unzipGoDeps
+  $(COMPOSE_RUN_SERVERLESS) make _unzipGoDeps
 
 _depsGo:
   dep ensure
@@ -167,7 +192,7 @@ The Makefile can be split into smaller files if it becomes unreadable.
 ```Makefile
 # Makefiles/test.mk
 test: $(ENVFILE) $(GOLANG_DEPS_DIR)
-  docker-compose run --rm serverlessGo make _test
+  $(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 _test:
