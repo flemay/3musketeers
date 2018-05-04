@@ -1,5 +1,3 @@
-[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-
 # Lambda Go Serverless Example
 
 This example illustrates how to use the 3 Musketeers to test and build a very simple [AWS Lambda in Go](https://github.com/aws/aws-lambda-go), and deploy it to AWS using the [Serverless Framework](https://serverless.com).
