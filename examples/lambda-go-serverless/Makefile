@@ -75,7 +75,7 @@ cleanDocker: $(ENVFILE)
 
 # clean removes build artifacts
 clean: cleanDocker
-	$(COMPOSE_GOLANG) make _clean
+	$(COMPOSE_RUN_GOLANG) make _clean
 	$(MAKE) cleanDocker
 .PHONY: clean
 
