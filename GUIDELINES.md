@@ -214,6 +214,52 @@ _target:
 .PHONY: _target
 ```
 
+## Docker
+
+### Image without make
+
+The 3 Musketeers suggests to call `make` from Compose but not all images out there have `make` out of the box. Here are few ways to handle this situation.
+
+#### Use a different image
+
+Often image publishers offer different versions of the application/product. For instance [golang](https://hub.docker.com/_/golang/) has an image based on `alpine` which does not have `make`. It also has an image based on `stretch` which has `make`.
+
+```bash
+$ docker run --rm golang:alpine make
+# "exec: \"make\": executable file not found
+$ docker run --rm golang:stretch make
+# make: *** No targets specified and no makefile found
+```
+
+#### Install make on the fly
+
+Whenever a command runs a command it installs `make` and then execute `$ make _target`. Depending on how many time a command is run, this way may be very inefficient as it needs to download `make` every single time.
+
+```bash
+$ docker run --rm golang:alpine apk add --update make && make _target
+```
+
+#### Build your own image
+
+You may want to build and maintain your own image based on the the image you wanted to use.
+
+```Dockerfile
+FROM golang:alpine
+RUN apk add --update make
+...
+```
+
+#### Use scripts
+
+Using bash/shell scripts is also a good alternative to using `make`. `$ make target` can call Docker/Compose to execute a script (either inline or a file) instead of `make _target`. As part of the 3 Musketeers philosophy, it is important that the scripts are being tested locally as well.
+
+```bash
+# inline
+$ docker run --rm golang:alpine echo Hello World
+# script file
+$ docker run --rm -v $ENV:/opt/app -w /opt/app golang:alpine ./path/to/script.sh
+```
+
 ## Compose
 
 ### Composition over Inheritance
