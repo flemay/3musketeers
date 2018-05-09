@@ -216,6 +216,18 @@ _target:
 
 ## Docker
 
+### Image size
+
+Usually bigger images for development has `make` out of the box. However, sometimes you may want to have smaller images because it is faster to download and start. For instance, the 3 Musketeers generator uses node alpine instead of stretch because lightweight image was preferred.
+
+```bash
+$ docker images | grep node
+# node 9-stretch     892MB
+# node 9-alpine      68.4MB
+```
+
+The downside is that alpine does not provide `make`. The next section covers ways to handle this situation.
+
 ### Image without make
 
 The 3 Musketeers suggests to call `make` from Compose but not all images out there have `make` out of the box. Here are few ways to handle this situation.
