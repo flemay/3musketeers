@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# This file is used as a profile for an alpine container. It creates config directory, change permissions, and alias to yeoman cli.
+
+if ! cat /proc/1/cgroup | grep docker &>/dev/null ; then
+  echo "This script should be run inside the docker container"
+  exit 1
+fi
+
+mkdir -p /root/.config
+chmod g+rwx /root /root/.config/
+alias yo='/opt/app/node_modules/yo/lib/cli.js'

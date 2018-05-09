@@ -1,0 +1,15 @@
+{
+  "name": "generator-3musketeers",
+  "version": "0.1.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.0.0",
+    "yo": "^2.0.2"
+  }
+}

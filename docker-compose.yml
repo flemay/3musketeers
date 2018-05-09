@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  node:
+    image: node:9-alpine
+    volumes:
+      - .:/opt/app
+      - ./scripts/profile:/root/.profile
+    working_dir: /opt/app
+    environment:
+      # Setting XDG_CONFIG_HOME to the home project solve the error: EACCES: permission denied
+      - XDG_CONFIG_HOME=/opt/app/.yeoman_config/
