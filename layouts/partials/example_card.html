@@ -8,14 +8,16 @@
     {{ .desc }}
   </div>
   <div class="card-footer">
-    <a href="{{ .repo }} " class="card-footer-item">
+    <a href="{{ .url }} " class="card-footer-item">
       <span>
-        {{ if in .repo "github.com" }}
+        {{ if in .url "github.com" }}
         <i class="fab fa-github"></i>
-        {{ else if in .repo "gitlab.com" }}
+        {{ else if in .url "gitlab.com" }}
         <i class="fab fa-gitlab"></i>
+        {{ else if in .url "bitbucket" }}
+        <i class="fab fa-bitbucket"></i>
         {{ else }}
-        <i class="fab fa-git"></i>
+        <i class="fas fa-link"></i>
         {{ end }} Source
       </span>
     </a>

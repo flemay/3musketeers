@@ -1,26 +1,31 @@
 [[example]]
+  title = "Hello World"
+  desc = "The simplest example showing the 3 Musketeers in action."
+  url = "https://3musketeers.io/docs/getting-started/#hello-world"
+
+[[example]]
   title = "Echo"
   desc = "Cookiecutter template for a basic example that echoes the value of an environment variable."
-  repo = "https://gitlab.com/flemay/cookiecutter-musketeers-echo"
+  url = "https://gitlab.com/flemay/cookiecutter-musketeers-echo"
 
 [[example]]
   title = "Lambda Go Serverless"
   desc = "Cookiecutter template for a simple Lambda written in Go and deployed with Serverless Framework."
-  repo = "https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless"
+  url = "https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless"
 
 [[example]]
   title = "Go command line application"
   desc = "A cookiecutter template for a CLI go application."
-  repo = "https://gitlab.com/flemay/cookiecutter-musketeers-go"
+  url = "https://gitlab.com/flemay/cookiecutter-musketeers-go"
 
 [[example]]
   title = "Pipelines with GitLab and Docker Hub"
   desc = "flemay/cookiecutter uses 3 Musketeers to be tested, built, and deployed."
-  repo = "https://gitlab.com/flemay/docker-cookiecutter"
+  url = "https://gitlab.com/flemay/docker-cookiecutter"
 
 [[example]]
   title = "Pipelines with Travis CI and Docker Hub"
   desc = "flemay/musketeers uses 3 Musketeers to be tested, built, and deployed."
-  repo = "https://github.com/flemay/docker-musketeers"
+  url = "https://github.com/flemay/docker-musketeers"
 
 
