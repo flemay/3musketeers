@@ -41,7 +41,7 @@ deploy:
 .PHONY: deploy
 
 clean:
-	rm -fr node_modules public resources/_gen
+	$(COMPOSE_RUN_DEV) bash -c "rm -fr node_modules public resources/_gen"
 	docker-compose down --remove-orphans
 .PHONY: clean
 
