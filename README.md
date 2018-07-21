@@ -1,5 +1,8 @@
 <p align="center"><img src="assets/img/logo.jpg" width="300"></p>
 
+[![Build Status](https://travis-ci.org/flemay/3musketeers.svg?branch=master)](https://travis-ci.org/flemay/3musketeers)
+[![License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
+
 # 3 Musketeers
 
 Test, build, and deploy your apps from anywhere, the same way.
