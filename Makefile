@@ -7,7 +7,7 @@ CHROMA_STYLE=monokai
 ENVFILE ?= .env.template
 
 travis:
-	ENVFILE=.env.template $(MAKE) deps build deploy clean
+	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
 .PHONY: travis
 
 # envfile creates or overwrites .env with $(ENVFILE)
