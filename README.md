@@ -1,4 +1,4 @@
-<p align="center"><img src="static/img/logo.jpg" width="300"></p>
+<p align="center"><img src="assets/img/logo.jpg" width="300"></p>
 
 # 3 Musketeers
 
