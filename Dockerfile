@@ -1,7 +1,5 @@
-FROM alpine:3.8
+FROM golang
 LABEL maintainer "@flemay"
-
-RUN apk --update add bash libc6-compat nodejs npm make && rm -rf /var/cache/apk/*
 
 # install hugo
 WORKDIR /opt/hugo
@@ -11,12 +9,14 @@ ENV HUGO_BIN_URL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERS
 RUN wget -qO- "${HUGO_BIN_URL}" | tar xz
 ENV PATH "/opt/hugo:${PATH}"
 
+# install node and few modules needed by Hugo
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g postcss-cli
+
 # install netlifyctl tool
 WORKDIR /opt/netlifyctl
 RUN wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
 ENV PATH "/opt/netlifyctl:${PATH}"
-
-# install postcss globally for hugo
-RUN npm install -g postcss-cli
 
 WORKDIR /opt/app
