@@ -1,5 +1,5 @@
 {
-  "name": "hugo-3musketeersio",
+  "name": "3musketeers",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/flemay/hugo-3musketeersio.git"
+    "url": "git+ssh://git@github.com/flemay/3musketeers.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/flemay/hugo-3musketeersio/issues"
+    "url": "https://github.com/flemay/3musketeers/issues"
   },
-  "homepage": "https://gitlab.com/flemay/hugo-3musketeersio#README",
+  "homepage": "https://github.com/flemay/3musketeers#README",
   "devDependencies": {
     "bulma": "^0.7.1",
     "autoprefixer": "^9.0.0"
