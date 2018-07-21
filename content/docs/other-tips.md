@@ -16,19 +16,19 @@ On Windows/Mac, accessing the host localhost is to use the url like `docker.for.
 
 ## Access environment variables in command argument
 
- ```bash
- # writing something like the following
- $ docker run --rm -e ECHO=musketeers alpine sh -c "echo $ECHO"
- # will simply echo nothing even if ECHO is being passed.
+```bash
+# writing something like the following
+$ docker run --rm -e ECHO=musketeers alpine sh -c "echo $ECHO"
+# will simply echo nothing even if ECHO is being passed.
 
- # To access ECHO, either use '\'
- $ docker run --rm -e ECHO=musketeers alpine sh -c "echo \$ECHO"
+# To access ECHO, either use '\'
+$ docker run --rm -e ECHO=musketeers alpine sh -c "echo \$ECHO"
 
- # or use single quote
- $ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
+# or use single quote
+$ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
 
 # Same applies to Compose.
- ```
+```
 
 ## One shell script file
 
