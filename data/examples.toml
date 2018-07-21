@@ -1,26 +1,26 @@
 [[example]]
-  title = "echo"
-  desc = "A very basic cookiecutter template"
+  title = "Echo"
+  desc = "Cookiecutter template for a basic example that echoes the value of an environment variable."
   repo = "https://gitlab.com/flemay/cookiecutter-musketeers-echo"
 
 [[example]]
   title = "Lambda Go Serverless"
-  desc = "A cookiecutter template for "
+  desc = "Cookiecutter template for a simple Lambda written in Go and deployed with Serverless Framework."
   repo = "https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless"
 
 [[example]]
   title = "Go command line application"
-  desc = "A cookiecutter template for a CLI go application"
+  desc = "A cookiecutter template for a CLI go application."
   repo = "https://gitlab.com/flemay/cookiecutter-musketeers-go"
 
 [[example]]
   title = "Pipelines with GitLab and Docker Hub"
-  desc = "How the image flemay/cookiecutter is being tested, built, and deployed"
+  desc = "flemay/cookiecutter uses 3 Musketeers to be tested, built, and deployed."
   repo = "https://gitlab.com/flemay/docker-cookiecutter"
 
 [[example]]
   title = "Pipelines with Travis CI and Docker Hub"
-  desc = "How the image flemay/musketeers is being tested, built, and deployed"
+  desc = "flemay/musketeers uses 3 Musketeers to be tested, built, and deployed."
   repo = "https://github.com/flemay/docker-musketeers"
 
 
