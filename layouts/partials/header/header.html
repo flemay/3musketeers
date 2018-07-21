@@ -1,0 +1,44 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <span class="icon is-medium">
+            <i class="fas fa-home fa-1x"></i>
+          </span>
+          <span>Home</span>
+        </a>
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-start">
+          {{ range $.Site.Menus.header }}
+            <a class="navbar-item" href="{{ .URL }}">
+              {{ .Title }}
+            </a>
+          {{ end }}
+
+          <!-- <div class="navbar-item">
+            {{ partial "header/search.html" . }}
+          </div> -->
+        </div>
+        <div class="navbar-end">
+          <a class="navbar-item" href="{{ $.Site.Params.urls.medium }}">
+            <span class="icon is-large">
+              <i class="fab fa-medium fa-2x"></i>
+            </span>
+            <span>Read</span>
+          </a>
+          <a class="navbar-item" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
+            <span class="icon is-large">
+              <i class="fab fa-github fa-2x"></i>
+            </span>
+            <span>Source</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>

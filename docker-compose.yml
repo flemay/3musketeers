@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  dev:
+    build: .
+    volumes:
+      - .:/opt/app
+    env_file: .env
+    ports:
+      - "1313:1313"
+    command: make _server
+    env_file: .env

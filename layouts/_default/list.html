@@ -1,0 +1,12 @@
+{{define "main"}}
+  <div class="content">
+    {{ .Content }}
+  </div>
+  <div class="row columns is-multiline">
+    {{ range .Data.Pages.ByWeight }}
+      <div class="column is-half-tablet is-one-third-desktop">
+        {{ partial "doc_card" .}}
+      </div>
+    {{ end }}
+  </div>
+{{end}}

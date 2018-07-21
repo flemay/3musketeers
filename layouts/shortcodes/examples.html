@@ -1,0 +1,8 @@
+<div class="row columns is-multiline">
+  {{ range $_, $example := $.Site.Data.examples.example }}
+    <div class="column is-half-tablet is-one-third-desktop">
+      {{ partial "example_card" . }}
+    </div>
+  {{ end }}
+</div>
+

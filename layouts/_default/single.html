@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <div class="columns">
+    <div class="column is-one-quarter">
+      {{ partial "menu" . }}
+    </div>
+    <div class="column is-three-quarters">
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+{{ end }}

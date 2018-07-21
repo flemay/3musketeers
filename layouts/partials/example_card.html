@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">
+    <div class="card-header-title">
+      {{ .title }}
+    </div>
+  </div>
+  <div class="card-content">
+    {{ .desc }}
+  </div>
+  <div class="card-footer">
+    <a href="{{ .repo }} " class="card-footer-item">
+      <span>
+        {{ if in .repo "github.com" }}
+        <i class="fab fa-github"></i>
+        {{ else if in .repo "gitlab.com" }}
+        <i class="fab fa-gitlab"></i>
+        {{ else }}
+        <i class="fab fa-git"></i>
+        {{ end }} Source
+      </span>
+    </a>
+  </div>
+</div>

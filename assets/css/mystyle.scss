@@ -1,0 +1,22 @@
+.doc-card-content {
+  height: 150px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: initial;
+  border-radius: 5px;
+
+}
+
+/////////////////////////
+// Bulma customisation //
+/////////////////////////
+
+// Import the initial variables
+@import "../../node_modules/bulma/sass/utilities/_all";
+
+#TableOfContents {
+  ul {
+    @extend .menu-list;
+  }
+}
+
+@import "../../node_modules/bulma/bulma";

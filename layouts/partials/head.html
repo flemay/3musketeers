@@ -1,0 +1,15 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3 Musketeers</title>
+
+  {{ $style := resources.Get "css/mystyle.scss" | toCSS | postCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+  {{ $chroma := resources.Get "css/chroma.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $chroma.Permalink }}">
+
+  {{ $fa := resources.Get "js/fontawesome.js" }}
+  {{ $myscript := resources.Get "js/myscript.js" }}
+  {{ $js := slice $fa $myscript | resources.Concat "js/bundle.js" }}
+  <script defer src="{{ $js.Permalink }}"></script>
+</head>

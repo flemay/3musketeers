@@ -1,0 +1,23 @@
+{
+  "name": "hugo-3musketeersio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/flemay/hugo-3musketeersio.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/flemay/hugo-3musketeersio/issues"
+  },
+  "homepage": "https://gitlab.com/flemay/hugo-3musketeersio#README",
+  "devDependencies": {
+    "bulma": "^0.7.1",
+    "autoprefixer": "^9.0.0"
+  }
+}
