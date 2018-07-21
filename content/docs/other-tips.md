@@ -69,8 +69,8 @@ Often, there is a need to wait for a service before doing something else. For in
 
 ```Makefile
 dbStart:
-  docker-compose up -d db
-  docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
+	docker-compose up -d db
+	docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
 .PHONY: dbStart
 ```
 

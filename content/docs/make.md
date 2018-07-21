@@ -21,12 +21,12 @@ Using `target` and `_target` is a naming convention to distinguish targets that 
 ```Makefile
 # test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
 test: $(GOLANG_DEPS_DIR)
-  $(COMPOSE_RUN_GOLANG) make _test
+	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 # _test target depends on a go environment which may not be available on the host but it is executed in a Docker container. If you have a go environment on your host, `$ make test` can also be called.
 _test:
-  go test
+	go test
 .PHONY: _test
 ```
 
@@ -46,8 +46,8 @@ COMPOSE_RUN_GOLANG = docker-compose run --rm golang
 COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
 
 deps:
-  $(COMPOSE_RUN_GOLANG) make _depsGo
-  $(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
+	$(COMPOSE_RUN_GOLANG) make _depsGo
+	$(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
 .PHONY: deps
 ```
 
@@ -59,11 +59,11 @@ Use [Pipeline targets](#pipeline-targets) as a way to describe the dependencies.
 
 ```Makefile
 test: $(GOLANG_DEPS_DIR)
-  $(COMPOSE_RUN_GOLANG) make _test
+	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 _test:
-  go test
+	go test
 .PHONY: _test
 ```
 
@@ -108,7 +108,7 @@ ENVFILE ?= .env.template
 
 # envfile creates or overwrites .env with $(ENVFILE)
 envfile:
-  cp -f $(ENVFILE) .env
+	cp -f $(ENVFILE) .env
 .PHONY: envfile
 ```
 
@@ -138,7 +138,7 @@ The symbol `@` tells Make to not echo the command prior execution. Useful when t
 
 ```Makefile
 _triggerDockerHubBuildForTagLatest:
-  @curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL)
+	@curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL)
 .PHONY: _triggerDockerHubBuildForTagLatest
 ```
 
@@ -148,10 +148,10 @@ The symbol `-` allows the execution to continue even if the command failed. [Env
 
 ```Makefile
 _tag:
-  -git tag -d $(TAG)
-  -git push origin :refs/tags/$(TAG)
-  git tag $(TAG)
-  git push origin $(TAG)
+	-git tag -d $(TAG)
+	-git push origin :refs/tags/$(TAG)
+	git tag $(TAG)
+	git push origin $(TAG)
 .PHONY: _tag
 ```
 
@@ -178,16 +178,16 @@ This happens because the creation of those files was done with a different user 
 
 ```Makefile
 cleanDocker:
-  docker-compose down --remove-orphans
+	docker-compose down --remove-orphans
 .PHONY: cleanDocker
 
 clean:
-  $(COMPOSE_RUN_GOLANG) make _clean
-  $(MAKE) cleanDocker
+	$(COMPOSE_RUN_GOLANG) make _clean
+	$(MAKE) cleanDocker
 .PHONY: clean
 
 _clean:
-  rm -fr files folders
+	rm -fr files folders
 .PHONY: clean
 ```
 
@@ -201,8 +201,8 @@ A target `startPostgres` which starts a database container can be used as a depe
 
 ```Makefile
 startPostgres:
-  docker-compose up -d postgres
-  sleep 10
+	docker-compose up -d postgres
+	sleep 10
 .PHONY: startPostgres
 ```
 
@@ -212,8 +212,8 @@ Once the test target finishes, the database would be still running. So it is a g
 
 ```Makefile
 test: cleanDocker startPostgres
-  ...
-  $(MAKE) cleanDocker
+	...
+	$(MAKE) cleanDocker
 .PHONY: test
 ```
 
@@ -225,19 +225,19 @@ Create an artifact as a zip file for dependencies to be passed along through the
 
 ```Makefile
 deps:
-  $(COMPOSE_RUN_GOLANG) make _depsGo
-  $(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
+	$(COMPOSE_RUN_GOLANG) make _depsGo
+	$(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
 .PHONY: deps
 
 test: $(GOLANG_DEPS_DIR)
-  $(COMPOSE_RUN_GOLANG) make _test
+	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-  $(COMPOSE_RUN_SERVERLESS) make _unzipGoDeps
+	$(COMPOSE_RUN_SERVERLESS) make _unzipGoDeps
 
 _depsGo:
-  dep ensure
+	dep ensure
 .PHONY: _depsGo
 
 _zipGoDeps:
@@ -256,11 +256,11 @@ The Makefile can be split into smaller files if it becomes unreadable.
 ```Makefile
 # Makefiles/test.mk
 test: $(GOLANG_DEPS_DIR)
-  $(COMPOSE_RUN_GOLANG) make _test
+	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
 _test:
-  go test
+	go test
 .PHONY: _test
 
 # Makefile
@@ -274,7 +274,7 @@ Sometimes target may become very complex due to the syntax and limitations of Ma
 ```Makefile
 # _target executes a shell script from the scripts folder
 _target:
-  ./scripts/dosomething.sh
+	./scripts/dosomething.sh
 .PHONY: _target
 ```
 

@@ -50,12 +50,12 @@ services:
 
 # echo calls Compose to run _echo within a Docker container
 echo:
-  docker-compose run musketeers make _echo
+	docker-compose run musketeers make _echo
 .PHONY: echo
 
 # _echo will be executed inside a Docker container
 _echo:
-  echo "Hello World!"
+	echo "Hello World!"
 .PHONY: _echo
 ```
 
