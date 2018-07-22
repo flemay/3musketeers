@@ -46,10 +46,12 @@ clean:
 .PHONY: clean
 
 _build:
+	rm -fr resources/_gen
 	hugo -b $${HUGO_BASE_URL}
 .PHONY: _build
 
 _server:
+	rm -fr resources/_gen
 	hugo server -b $${HUGO_BASE_URL} --bind="0.0.0.0"
 .PHONY: _server
 
