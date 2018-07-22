@@ -20,7 +20,7 @@ deps: dockerBuild
 .PHONY: deps
 
 dockerBuild:
-	docker-compose build --no-cache dev
+	docker-compose build dev
 .PHONY: dockerBuild
 
 shell:
