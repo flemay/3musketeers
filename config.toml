@@ -2,6 +2,7 @@ languageCode = "en-us"
 title = "3 Musketeers"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
+enableRobotsTXT = true
 [params]
   [params.urls]
     threeMusketeersRepo="https://github.com/flemay/3musketeers"
