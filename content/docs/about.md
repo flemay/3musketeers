@@ -16,4 +16,4 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
 
 <br/>
 
-<sub>_The Three Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo has been inspired by existing drawings on internet._</sub>
+<sub>_The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo has been inspired by existing drawings on internet._</sub>
