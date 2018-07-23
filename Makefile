@@ -16,7 +16,7 @@ envfile:
 .PHONY: envfile
 
 deps: dockerBuild
-	$(COMPOSE_RUN_NODE) npm install
+	$(COMPOSE_RUN_DEV) npm install
 .PHONY: deps
 
 dockerBuild:
