@@ -39,7 +39,6 @@ version: '3.4'
 services:
   musketeers:
     image: flemay/musketeers
-    env_file: .env
     volumes:
       - .:/opt/app
     working_dir: /opt/app
