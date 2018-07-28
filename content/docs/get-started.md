@@ -10,12 +10,6 @@ menu: "header"
 
 # Get Started
 
-## Overview
-
-{{< figure src="/img/overview.jpg" alt="overview" width="400" >}}
-
-A host, be it Mac, Linux, Windows, CI, etc, calls a Make target which delegates the execution of a command inside a Docker container to Compose.
-
 ## Prerequisites
 
 These are the prerequisites for a project that follows the 3 Musketeers:
@@ -34,11 +28,10 @@ Create the 2 following files in any empty directory:
 ```yml
 # file: docker-compose.yml
 
-# compose defines services to be used in Make
 version: '3.4'
 services:
-  musketeers:
-    image: flemay/musketeers
+  alpine:
+    image: alpine
     volumes:
       - .:/opt/app
     working_dir: /opt/app
@@ -47,13 +40,9 @@ services:
 ```Makefile
 # file: Makefile
 
-# echo calls Compose to run _echo within a Docker container
+# echo calls Compose to run the command "echo 'Hello World!'" in a Docker container
 echo:
-	docker-compose run musketeers make _echo
-
-# _echo will be executed inside a Docker container
-_echo:
-	echo "Hello World!"
+	docker-compose run alpine echo 'Hello World!'
 ```
 
 Then simply echo "Hello World!" with the following command:
