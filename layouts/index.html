@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
-  {{ partial "head" }}
-  <body>
-    {{ partial "header/header" . }}
+{{ partial "head" }}
 
-    {{ partial "hero" . }}
-  </body>
+<body>
+  {{ partial "header/header" . }}
+
+  {{ partial "hero" . }}
+
+  <section class="section hero is-dark">
+    <div class="container content">
+      {{ partial "about" }}
+    </div>
+  </section>
+</body>
+
 </html>
