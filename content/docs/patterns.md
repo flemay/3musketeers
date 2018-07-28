@@ -3,7 +3,7 @@ title: Patterns
 draft: false
 date: "2018-07-28"
 lastmod:
-description: Overview of the patterns that can be used with 3 Musketeers
+description: Overview of the patterns that can be used with the 3 Musketeers.
 weight: 75
 toc: true
 ---

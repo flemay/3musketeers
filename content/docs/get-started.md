@@ -3,7 +3,7 @@ title: Get Started
 draft: false
 date:
 lastmod:
-description: Everything you need to know about creating your very first `Hello World` using the 3 Musketeers
+description: Everything you need to know about creating your very first `Hello World` using the 3 Musketeers.
 weight: 50
 menu: "header"
 ---
