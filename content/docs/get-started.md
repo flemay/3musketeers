@@ -8,7 +8,7 @@ weight: 50
 menu: "header"
 ---
 
-# Getting Started
+# Get Started
 
 ## Overview
 
