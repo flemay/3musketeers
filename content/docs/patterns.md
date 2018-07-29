@@ -10,7 +10,7 @@ toc: true
 
 # Patterns
 
-There are different patterns that can be applied with the 3 Musketeers.
+Here are common patterns used with the 3 Musketeers.
 
 ## Make - Compose - Docker - Make
 
