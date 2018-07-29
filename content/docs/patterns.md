@@ -98,6 +98,43 @@ echo:
 $ make echo
 ```
 
+## Make - Compose - Docker - Task management tool
+
+There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello World" by invoking npm.
+
+```json
+// package.json
+
+{
+  "name": "helloworld",
+  "description": "echos Hello World!",
+  "scripts": {
+    "echo": "echo \"Hello World!\""
+  },
+}
+```
+
+```yml
+# docker-compose.yml
+version: '3.4'
+services:
+  node:
+    image: node:alpine
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+```
+
+```Makefile
+# Makefile
+echo:
+	docker-compose run --rm node npm run echo
+```
+
+```bash
+$ make echo
+```
+
 ---
 
 More patterns coming soon!
