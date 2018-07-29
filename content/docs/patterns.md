@@ -14,7 +14,7 @@ There are different patterns that can be applied with the 3 Musketeers.
 
 ## Make - Compose - Docker - Make
 
-This pattern is the original one of the 3 Musketeers. In this pattern Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if the image does not contain Make can be found [here][docker].
+This pattern is the original one of the 3 Musketeers. In this pattern Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][docker].
 
 ```yml
 # docker-compose.yml
@@ -64,7 +64,7 @@ $ make echo
 
 ## Make - Compose - Docker - Shell file
 
-In this pattern Make calls Compose which executes a shell/bash command inside a Docker container.
+In this pattern Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][other-tips].
 
 ```bash
 # echo.sh
@@ -140,3 +140,4 @@ $ make echo
 More patterns coming soon!
 
 [docker]: ../docker
+[other-tips]: ../other-tips
