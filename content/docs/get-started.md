@@ -32,9 +32,6 @@ version: '3.4'
 services:
   alpine:
     image: alpine
-    volumes:
-      - .:/opt/app
-    working_dir: /opt/app
 ```
 
 ```Makefile
