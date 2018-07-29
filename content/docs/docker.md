@@ -24,7 +24,7 @@ The downside is that alpine does not provide `make`. The next section covers way
 
 ## Image without make
 
-The 3 Musketeers suggests to call `make` from Compose but not all images out there have `make` out of the box. Here are few ways to handle this situation.
+One of the [patterns][] is to call Make from Compose, and if you want to do it but found out that your image does not have it installed, here are some solutions to address that.
 
 ### Use a different image
 
@@ -59,19 +59,6 @@ RUN apk add --update make
 ...
 ```
 
-### Use shell scripts
-
-Using bash/shell scripts is also a good alternative to using `make`. `$ make target` can call Docker/Compose to execute a script (either inline or a file) instead of `make _target`. As part of the 3 Musketeers philosophy, it is important that the scripts are being tested locally as well.
-
-```bash
-# inline
-$ docker run --rm golang:alpine echo Hello World
-# script file
-$ docker run --rm -v $ENV:/opt/app -w /opt/app golang:alpine ./path/to/script.sh
-```
-
-An alternative to using multiple script files is to have just [one with the _target functions][docsOtherTips].
-
 [golang]: https://hub.docker.com/_/golang/
 [dockerMusketeersRepo]: https://github.com/flemay/docker-musketeers
-[docsOtherTips]: {{< docsOtherTips >}}
+[patterns]: ../patterns
