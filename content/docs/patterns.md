@@ -2,7 +2,7 @@
 title: Patterns
 draft: false
 date: "2018-07-28"
-lastmod:
+lastmod: "2018-07-31"
 description: Overview of the patterns that can be used with the 3 Musketeers.
 weight: 75
 toc: true
@@ -10,7 +10,7 @@ toc: true
 
 # Patterns
 
-Here are common patterns used with the 3 Musketeers.
+Here are some common patterns used with the 3 Musketeers. All examples in this Patterns section work out of the box as long as Docker, Compose, and Make are installed.
 
 ## Make - Compose - Docker - Make
 
