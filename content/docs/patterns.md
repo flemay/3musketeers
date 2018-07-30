@@ -10,7 +10,7 @@ toc: true
 
 # Patterns
 
-Here are some common patterns used with the 3 Musketeers. All examples in this Patterns section work out of the box as long as Docker, Compose, and Make are installed.
+Here are some common patterns used with the 3 Musketeers. All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
 
 ## Make - Compose - Docker - Make
 
