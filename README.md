@@ -31,5 +31,4 @@ $ make build
 $ make deploy
 ```
 
-
 [3musketeers.io]: https://3musketeers.io

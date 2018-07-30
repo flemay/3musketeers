@@ -3,7 +3,7 @@ LABEL maintainer "@flemay"
 
 # install hugo
 WORKDIR /opt/hugo
-ENV HUGO_VERSION 0.44
+ENV HUGO_VERSION 0.45.1
 ENV HUGO_BIN_NAME hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz
 ENV HUGO_BIN_URL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BIN_NAME}
 RUN wget -qO- "${HUGO_BIN_URL}" | tar xz
