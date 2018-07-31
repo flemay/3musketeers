@@ -25,7 +25,7 @@ If you think the 3 Musketeers would be valuable to your friends, teammates, and 
 
 ## Feedback
 
-Feedback is greatly appreciated. Do you have workflows that the tool supports well, or doesn't support at all? Do any of the commands have surprising effects, output, or results? Let us know by filing an issue, describing what you did or wanted to do, what you expected to happen, and what actually happened.
+Feedback is greatly appreciated. Is there anything from the documentation that is not clear or missing? Is there anything you want to see? What would make the documentation better? Let us know by filing an issue, describing what you did or wanted to do, what you expected to happen, and what actually happened.
 
 ## Contributing code
 
