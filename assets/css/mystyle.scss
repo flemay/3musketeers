@@ -1,17 +1,27 @@
-.doc-card-content {
-  height: 150px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: initial;
-  border-radius: 5px;
+// Import the initial variables
+@import "../../node_modules/bulma/sass/utilities/_all";
 
+@include until($tablet) {
+  .doc-card-content {
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: initial;
+    border-radius: 5px;
+  }
+}
+
+@include from($tablet) {
+  .doc-card-content {
+    height: 150px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: initial;
+    border-radius: 5px;
+  }
 }
 
 /////////////////////////
 // Bulma customisation //
 /////////////////////////
-
-// Import the initial variables
-@import "../../node_modules/bulma/sass/utilities/_all";
 
 #TableOfContents {
   ul {
