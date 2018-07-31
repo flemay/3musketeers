@@ -100,7 +100,7 @@ all: deps test build pack clean
 
 ## Target: envfile
 
-The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See docs [Environment Variables & envfile][docsEnvironmentVariables].
+The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][environmentVariables].
 
 ```Makefile
 # ENVFILE is .env.template by default but can be overwritten
@@ -153,12 +153,6 @@ _tag:
 	git tag $(TAG)
 	git push origin $(TAG)
 .PHONY: _tag
-```
-
-## Bash vs Shell
-
-```Makefile
-SHELL := /bin/bash
 ```
 
 ## Clean Docker and files
@@ -269,14 +263,7 @@ include Makefiles/*.mk
 
 ## Complex targets
 
-Sometimes target may become very complex due to the syntax and limitations of Make. A way to make it simpler and cleaner is to create a shell script file and call it from the target.
-
-```Makefile
-# _target executes a shell script from the scripts folder
-_target:
-	./scripts/dosomething.sh
-.PHONY: _target
-```
+Sometimes, target may become very complex due to the syntax and limitations of Make. Refer to the [patterns][] section for other alternatives.
 
 ## Self-Documented Makefile
 
@@ -323,8 +310,9 @@ target02: This message will show up too!!!
 [musketeersLambdaGoServerless]: https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless/
 [phonyStackoverflow]: https://stackoverflow.com/questions/2145590/what-is-the-purpose-of-phony-in-a-makefile#2145605/
 [dockerCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
-[docsEnvironmentVariables]: {{< docsEnvironmentVariables >}}
 [envvars]: https://github.com/flemay/envvars
 [dockerMusketeers]: https://github.com/flemay/docker-musketeers/blob/master/Makefile
 [envvarsTagTarget]: https://github.com/flemay/envvars/blob/master/Makefile
 [selfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133
+[patterns]: ../patterns
+[environmentVariables]: ../environment-variables
