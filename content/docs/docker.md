@@ -10,21 +10,24 @@ toc: true
 
 # Docker
 
-## Image size
+This section contains some tips related to Docker.
 
-Usually bigger images for development has `make` out of the box. However, sometimes you may want to have smaller images because it is faster to download and start. For instance, node stretch is a lot bigger than node alpine.
+## Useful Docker Images
 
-```bash
-$ docker images | grep node
-# node 9-stretch     892MB
-# node 9-alpine      68.4MB
+### jwilder/dockerize
+
+Often, there is a need to wait for a service before doing something else. For instance, waiting for a database container to be ready before running migration. The image `jwilder/dockerize` can be used.
+
+```Makefile
+dbStart:
+	docker-compose up -d db
+	docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
+.PHONY: dbStart
 ```
-
-The downside is that alpine does not provide `make`. The next section covers ways to handle this situation.
 
 ## Image without make
 
-One of the [patterns][] is to call Make from Compose, and if you want to do it but found out that your image does not have it installed, here are some solutions to address that.
+One of the [patterns][] is to call Make from Compose. If you want to follow this pattern and your image does not have `make`, here are some solutions to address that.
 
 ### Use a different image
 
@@ -59,6 +62,32 @@ RUN apk add --update make
 ...
 ```
 
+## Docker development is slow
+
+It may happen that using Docker when mounting volumes is slow on Mac and Windows. For instance, developing a rails application. An handy tool to have is [docker-sync][dockerSync]
+
+On Mac, I found using the strategy `native_osx` to work well.
+
+The Docker Compose file would look like the following:
+
+```yml
+ yourservice:
+    image: animage
+    volumes:
+      - app-sync:/opt/app:nocopy
+...
+
+volumes:
+  # this volume is created by docker-sync. See docker-sync.yml for the config
+  app-sync:
+    external: true
+```
+
+This would work well on Windows/Mac but what about Linux? Either docker-sync is still used, which uses the native strategy and would not sync, or you use an environment variable which set the volume: `app-sync:/opt/app:nocopy` or `.:/opt/app`.
+
+
+[dockerSync]: http://docker-sync.io
+[musketeersLambdaGoServerless]: https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless/
 [golang]: https://hub.docker.com/_/golang/
 [dockerMusketeersRepo]: https://github.com/flemay/docker-musketeers
 [patterns]: ../patterns

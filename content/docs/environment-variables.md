@@ -141,6 +141,13 @@ $ exit
 $ make clean
 ```
 
+## AWS environment variables vs ~/.aws
+
+In the [lambda example][musketeersLambdaGoServerless], `envvars.yml` contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the `docker-compose.yml` mounts the volume `~/.aws`.
+
+If you are using `~/.aws`, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
+
+
 [12factor]: https://12factor.net
 [12factorConfig]: https://12factor.net/config
 [dockerEnvfile]: https://docs.docker.com/compose/env-file/
