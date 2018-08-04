@@ -6,7 +6,7 @@
 [[example]]
   title = "Echo"
   desc = "Cookiecutter template for a basic example that echoes the value of an environment variable."
-  url = "https://gitlab.com/flemay/cookiecutter-musketeers-echo"
+  url = "https://github.com/3musketeersio/cookiecutter-musketeers-echo"
 
 [[example]]
   title = "3musketeers.io"
@@ -16,12 +16,12 @@
 [[example]]
   title = "Lambda Go Serverless"
   desc = "Cookiecutter template for a simple Lambda written in Go and deployed with Serverless Framework."
-  url = "https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless"
+  url = "https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless"
 
 [[example]]
   title = "Go command line application"
   desc = "A cookiecutter template for a CLI go application."
-  url = "https://gitlab.com/flemay/cookiecutter-musketeers-go"
+  url = "https://github.com/3musketeersio/cookiecutter-musketeers-go"
 
 [[example]]
   title = "Pipelines with GitLab and Docker Hub"
