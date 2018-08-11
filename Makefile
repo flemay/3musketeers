@@ -60,7 +60,7 @@ _deploy:
 		$(NETLIFYCTL) --yes -A $(NETLIFY_TOKEN) deploy --site-id $(NETLIFY_SITE_ID); \
 		echo " DEPLOYED!"; \
 	else \
-		ech " SKIPPED deployment"; \
+		echo " SKIPPED deployment"; \
 	fi;
 .PHONY: _deploy
 
