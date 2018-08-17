@@ -17,7 +17,7 @@ There are different ways to contribute to this project.
 
 ## Star it
 
-If you like the project, go on [GitHub][3musketeersrepo] and ⭐️ it!
+If you like the project, go on [GitHub][link3musketeersrepo] and ⭐️ it!
 
 ## Share it
 
@@ -31,4 +31,4 @@ Feedback is greatly appreciated. Is there anything from the documentation that i
 
 The project follows the typical GitHub pull request model. Before starting any work, please either comment on an existing issue, or file a new one.
 
-[3musketeersrepo]:{{< configParamsUrlsThreeMusketeersrepo >}})
+[link3musketeersrepo]:{{< configParamsUrlsThreeMusketeersrepo >}}
