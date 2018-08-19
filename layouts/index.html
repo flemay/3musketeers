@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
-{{ partial "head" }}
-
+  <head>
+    {{ partial "head/metadata" . }}
+    {{ partial "head/assets" . }}
+  </head>
 <body>
   {{ partial "header/header" . }}
 

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
-  {{ partial "head.html" . }}
+  <head>
+    {{ partial "head/metadata" . }}
+    {{ partial "head/assets" . }}
+    <title>{{ block "title" . }}
+        3 Musketeers
+    {{ end }}</title>
+  </head>
   <body>
-  {{ partial "header/header.html" . }}
+  {{ partial "header/header" . }}
   <section class="section">
     <div class="container">
       {{block "main" .}}
