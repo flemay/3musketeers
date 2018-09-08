@@ -1,11 +1,16 @@
 version: '3.4'
 services:
-  dev:
-    build: .
+  hugo:
+    image: flemay/hugo
     volumes:
       - .:/opt/app
     env_file: .env
     ports:
       - "1313:1313"
-    command: make _server
+    command: ./scripts/server.sh
+
+  netlify:
+    image: flemay/netlify
+    volumes:
+      - .:/opt/app
     env_file: .env
