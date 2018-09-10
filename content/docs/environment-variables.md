@@ -25,6 +25,102 @@ Often there are many environment variables and having them in a `.env` file beco
 > Those files could be replaced with the tool [envvars][].
 > `envvars` is a flexible tool to describe and validate environment variables. The process is similar to using `.env.template` and `.env.example`.
 
+## Makefile
+
+### Explicit creation of .env
+
+```Makefile
+ENVFILE ?= .env.template
+
+# Create/Overwrite .env with $(ENVFILE)
+envfile:
+	@echo "Overwrite .env with $(ENVFILE)"
+	cp $(ENVFILE) .env
+.PHONY: envfile
+
+# target requiring .env
+target: .env
+...
+```
+
+```bash
+# fails if .env does not exist
+$ make target
+
+# create .env with a specific file
+$ make envfile ENVFILE=.env.example
+# or
+$ make envfile target ENVFILE=.env.example
+```
+
+### Implicit creation .env
+
+```Makefile
+ENVFILE ?= .env.template
+
+# Create .env based on .env.template if .env does not exist
+.env:
+	@echo "Create .env with .env.template"
+	cp $.env.template .env
+
+# Create/Overwrite .env with $(ENVFILE)
+envfile:
+	@echo "Overwrite .env with $(ENVFILE)"
+	cp $(ENVFILE) .env
+.PHONY: envfile
+
+# target requiring .env
+target: .env
+...
+```
+
+```bash
+# create default .env if it does not exist
+$ make target
+
+# create .env with a specific file
+$ make envfile ENVFILE=.env.example
+# or
+$ make envfile target ENVFILE=.env.example
+```
+
+### Implicit creation of .env with ENVFILE
+
+```Makefile
+ifdef ENVFILE
+	ENVFILE_TARGET=envfile
+else
+	ENVFILE_TARGET=.env
+endif
+
+# Create .env based on .env.template if .env does not exist
+.env:
+	@echo "Create .env with .env.template"
+	cp $.env.template .env
+
+# Create/Overwrite .env with $(ENVFILE)
+envfile:
+	@echo "Overwrite .env with $(ENVFILE)"
+	cp $(ENVFILE) .env
+.PHONY: envfile
+
+# target requiring $(ENVFILE_TARGET)
+target: $(ENVFILE_TARGET)
+...
+```
+
+```bash
+# create default .env if it does not exist
+$ make target
+
+# create .env with a specific file
+$ make envfile ENVFILE=.env.example
+# or
+$ make envfile target ENVFILE=.env.example
+# or (no need to specify envfile)
+$ make target ENVFILE=.env.example
+```
+
 ## CI and .env.template
 
 Usually, the `.env` file will be created from the `.env.template` with `make envfile`. Given the environment variables are already been set in the CI, those will be passed to Docker and Compose.
