@@ -215,32 +215,42 @@ test: cleanDocker startPostgres
 
 It is a good thing to have a target `deps` to install all the dependencies required to test, build, and deploy an application.
 
-Create an artifact as a zip file for dependencies to be passed along through the stages. This step is quite useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building.
+Create a tar file as an artifact for dependencies to be passed along through the stages. This step is quite useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building.
 
 ```Makefile
+COMPOSE_RUN_GOLANG=docker-compose run --rm golang
+GOLANG_DEPS_DIR=vendor
+GOLANG_DEPS_ARTIFACT=$(GOLANG_DEPS_DIR).tar.gz
+
+# deps will create the folder vendor and the file vendor.tar.gz
 deps:
-	$(COMPOSE_RUN_GOLANG) make _depsGo
-	$(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
+	$(COMPOSE_RUN_GOLANG) make _depsGo _packGoDeps
 .PHONY: deps
 
+# test requires the folder vendor
 test: $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
+# if folder vendor exist, do nothing
+# if folder vendor does not exist, unpack file vendor.tar.gz
+# if file vendor.tar.gz does not exist, fail
 $(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-	$(COMPOSE_RUN_SERVERLESS) make _unzipGoDeps
+	$(COMPOSE_RUN_GOLANG) make _unpackGoDeps
 
 _depsGo:
 	dep ensure
 .PHONY: _depsGo
 
-_zipGoDeps:
-	zip -rq $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)/
-.PHONY: _zipGoDeps
+_packGoDeps:
+	rm -f $(GOLANG_DEPS_ARTIFACT)
+	tar czf $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)
+.PHONY: _packGoDeps
 
-_unzipGoDeps:
-	unzip -qo -d . $(GOLANG_DEPS_ARTIFACT)
-.PHONY: _unzipGoDeps
+_unpackGoDeps:
+	rm -fr $(GOLANG_DEPS_DIR)
+	tar -xzf $(GOLANG_DEPS_ARTIFACT)
+.PHONY: _unpackGoDeps
 ```
 
 ## Makefile too big
