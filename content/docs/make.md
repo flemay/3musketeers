@@ -121,6 +121,48 @@ $ make envfile ENVFILE=your.envfile
 
 Also a tool like [envvars][envvars] can be used.
 
+## Project dependencies
+
+It is a good thing to have a target `deps` to install all the dependencies required to test, build, and deploy an application.
+
+A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building. Moreover, it is faster to pass along a tar file than a folder with many files.
+
+```Makefile
+COMPOSE_RUN_GOLANG=docker-compose run --rm golang
+GOLANG_DEPS_DIR=vendor
+GOLANG_DEPS_ARTIFACT=$(GOLANG_DEPS_DIR).tar.gz
+
+# deps will create the folder vendor and the file vendor.tar.gz
+deps:
+	$(COMPOSE_RUN_GOLANG) make _depsGo _packGoDeps
+.PHONY: deps
+
+# test requires the folder vendor
+test: $(GOLANG_DEPS_DIR)
+	$(COMPOSE_RUN_GOLANG) make _test
+.PHONY: test
+
+# if folder vendor exist, do nothing
+# if folder vendor does not exist, unpack file vendor.tar.gz
+# if file vendor.tar.gz does not exist, fail
+$(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
+	$(COMPOSE_RUN_GOLANG) make _unpackGoDeps
+
+_depsGo:
+	dep ensure
+.PHONY: _depsGo
+
+_packGoDeps:
+	rm -f $(GOLANG_DEPS_ARTIFACT)
+	tar czf $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)
+.PHONY: _packGoDeps
+
+_unpackGoDeps:
+	rm -fr $(GOLANG_DEPS_DIR)
+	tar -xzf $(GOLANG_DEPS_ARTIFACT)
+.PHONY: _unpackGoDeps
+```
+
 ## Calling multiple targets in a single command
 
 Make allows you to call multiple targets in a single command like this `$ make targetA targetB targetC`. This is useful if you want to use a different `.env` file and call another target
@@ -209,48 +251,6 @@ test: cleanDocker startPostgres
 	...
 	$(MAKE) cleanDocker
 .PHONY: test
-```
-
-## Project dependencies
-
-It is a good thing to have a target `deps` to install all the dependencies required to test, build, and deploy an application.
-
-Create a tar file as an artifact for dependencies to be passed along through the stages. This step is quite useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building.
-
-```Makefile
-COMPOSE_RUN_GOLANG=docker-compose run --rm golang
-GOLANG_DEPS_DIR=vendor
-GOLANG_DEPS_ARTIFACT=$(GOLANG_DEPS_DIR).tar.gz
-
-# deps will create the folder vendor and the file vendor.tar.gz
-deps:
-	$(COMPOSE_RUN_GOLANG) make _depsGo _packGoDeps
-.PHONY: deps
-
-# test requires the folder vendor
-test: $(GOLANG_DEPS_DIR)
-	$(COMPOSE_RUN_GOLANG) make _test
-.PHONY: test
-
-# if folder vendor exist, do nothing
-# if folder vendor does not exist, unpack file vendor.tar.gz
-# if file vendor.tar.gz does not exist, fail
-$(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
-	$(COMPOSE_RUN_GOLANG) make _unpackGoDeps
-
-_depsGo:
-	dep ensure
-.PHONY: _depsGo
-
-_packGoDeps:
-	rm -f $(GOLANG_DEPS_ARTIFACT)
-	tar czf $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)
-.PHONY: _packGoDeps
-
-_unpackGoDeps:
-	rm -fr $(GOLANG_DEPS_DIR)
-	tar -xzf $(GOLANG_DEPS_ARTIFACT)
-.PHONY: _unpackGoDeps
 ```
 
 ## Makefile too big
