@@ -98,28 +98,105 @@ all: deps test build pack clean
 .PHONY: all
 ```
 
-## Target: envfile
+## Targets .env and envfile
 
 The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][environmentVariables].
 
+Also a tool like [envvars][envvars] can be used.
+
+### Explicit
+
 ```Makefile
-# ENVFILE is .env.template by default but can be overwritten
 ENVFILE ?= .env.template
 
-# envfile creates or overwrites .env with $(ENVFILE)
+# Create/Overwrite .env with $(ENVFILE)
 envfile:
-	cp -f $(ENVFILE) .env
+	@echo "Overwrite .env with $(ENVFILE)"
+	cp $(ENVFILE) .env
 .PHONY: envfile
+
+# target requiring .env
+target: .env
 ```
 
 ```bash
-# create a .env file the default file (.env.template)
+# fails if .env does not exist
+$ make target
+# create .env based on .env.template
 $ make envfile
-# create a .env file using file your.envfile
-$ make envfile ENVFILE=your.envfile
+# create .env with a specific file
+$ make envfile ENVFILE=.env.example
+# execute a target with a specific .env file
+$ make envfile target ENVFILE=.env.example
 ```
 
-Also a tool like [envvars][envvars] can be used.
+### Semi-Implicit
+
+```Makefile
+ENVFILE ?= .env.template
+
+# Create .env based on .env.template if .env does not exist
+.env:
+	@echo "Create .env with .env.template"
+	cp $.env.template .env
+
+# Create/Overwrite .env with $(ENVFILE)
+envfile:
+	@echo "Overwrite .env with $(ENVFILE)"
+	cp $(ENVFILE) .env
+.PHONY: envfile
+
+# target requiring .env
+target: .env
+```
+
+```bash
+# create .env based on .env.template if it does not exist
+$ make target
+# create .env based on .env.template
+$ make envfile
+# create .env with a specific file
+$ make envfile ENVFILE=.env.example
+# execute a target with a specific .env file
+$ make envfile target ENVFILE=.env.example
+```
+
+### Implicit
+
+```Makefile
+ifdef ENVFILE
+	ENVFILE_TARGET=envfile
+else
+	ENVFILE_TARGET=.env
+endif
+
+# Create .env based on .env.template if .env does not exist
+.env:
+	@echo "Create .env with .env.template"
+	cp $.env.template .env
+
+# Create/Overwrite .env with $(ENVFILE)
+envfile:
+	@echo "Overwrite .env with $(ENVFILE)"
+	cp $(ENVFILE) .env
+.PHONY: envfile
+
+# target requiring $(ENVFILE_TARGET)
+target: $(ENVFILE_TARGET)
+```
+
+```bash
+# create .env based on .env.template if it does not exist
+$ make target
+# create .env based on .env.template
+$ make envfile
+# create .env with a specific file
+$ make envfile ENVFILE=.env.example
+# execute a target with a specific .env file
+$ make envfile target ENVFILE=.env.example
+# or (no need to specify envfile)
+$ make target ENVFILE=.env.example
+```
 
 ## Project dependencies
 

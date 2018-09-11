@@ -8,11 +8,13 @@ weight: 350
 toc: true
 ---
 
-# Environment variables & envfile
+# Environment variables & .env file
 
 Development following [the twelve-factor app][12factor] use the [environment variables to configure][12factorConfig] their application.
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][dockerEnvfile] to pass the variables to the containers.
+
+> Refer to [Targets .env and envfile][linkMakeTargetEnvfile] of section Make for ways to handle `.env` file.
 
 ## .env.template, and .env.example
 
@@ -21,105 +23,6 @@ Often there are many environment variables and having them in a `.env` file beco
 `.env.example` defines values so that it can be used straight away with Make like `$ make envfile test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
 
 > Never include sensitive values like passwords as this file is meant to be checked in.
-
-> Those files could be replaced with the tool [envvars][].
-> `envvars` is a flexible tool to describe and validate environment variables. The process is similar to using `.env.template` and `.env.example`.
-
-## Makefile
-
-### Explicit creation of .env
-
-```Makefile
-ENVFILE ?= .env.template
-
-# Create/Overwrite .env with $(ENVFILE)
-envfile:
-	@echo "Overwrite .env with $(ENVFILE)"
-	cp $(ENVFILE) .env
-.PHONY: envfile
-
-# target requiring .env
-target: .env
-...
-```
-
-```bash
-# fails if .env does not exist
-$ make target
-
-# create .env with a specific file
-$ make envfile ENVFILE=.env.example
-# or
-$ make envfile target ENVFILE=.env.example
-```
-
-### Implicit creation .env
-
-```Makefile
-ENVFILE ?= .env.template
-
-# Create .env based on .env.template if .env does not exist
-.env:
-	@echo "Create .env with .env.template"
-	cp $.env.template .env
-
-# Create/Overwrite .env with $(ENVFILE)
-envfile:
-	@echo "Overwrite .env with $(ENVFILE)"
-	cp $(ENVFILE) .env
-.PHONY: envfile
-
-# target requiring .env
-target: .env
-...
-```
-
-```bash
-# create default .env if it does not exist
-$ make target
-
-# create .env with a specific file
-$ make envfile ENVFILE=.env.example
-# or
-$ make envfile target ENVFILE=.env.example
-```
-
-### Implicit creation of .env with ENVFILE
-
-```Makefile
-ifdef ENVFILE
-	ENVFILE_TARGET=envfile
-else
-	ENVFILE_TARGET=.env
-endif
-
-# Create .env based on .env.template if .env does not exist
-.env:
-	@echo "Create .env with .env.template"
-	cp $.env.template .env
-
-# Create/Overwrite .env with $(ENVFILE)
-envfile:
-	@echo "Overwrite .env with $(ENVFILE)"
-	cp $(ENVFILE) .env
-.PHONY: envfile
-
-# target requiring $(ENVFILE_TARGET)
-target: $(ENVFILE_TARGET)
-...
-```
-
-```bash
-# create default .env if it does not exist
-$ make target
-
-# create .env with a specific file
-$ make envfile ENVFILE=.env.example
-# or
-$ make envfile target ENVFILE=.env.example
-# or (no need to specify envfile)
-$ make target ENVFILE=.env.example
-```
 
 ## CI and .env.template
 
@@ -248,3 +151,4 @@ If you are using `~/.aws`, no need to set values and they won't be included in t
 [12factorConfig]: https://12factor.net/config
 [dockerEnvfile]: https://docs.docker.com/compose/env-file/
 [envvars]: https://github.com/flemay/envvars/
+[linkMakeTargetEnvfile]: ../make#targets-env-and-envfile
