@@ -10,11 +10,11 @@ toc: true
 
 # Patterns
 
-Here are some common patterns used with the 3 Musketeers. All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
+This section covers different patterns about executing tasks with the 3 Musketeers. All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
 
-## Make - Compose - Docker - Make
+## Make
 
-This pattern is the original one of the 3 Musketeers. In this pattern Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][docker].
+Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][docker].
 
 ```yml
 # docker-compose.yml
@@ -40,9 +40,9 @@ _echo:
 $ make echo
 ```
 
-## Make - Compose - Docker - Shell command
+## Shell command
 
-In this pattern Make calls Compose which executes a shell/bash command inside a Docker container.
+Make calls Compose which executes a shell/bash command inside a Docker container.
 
 ```yml
 # docker-compose.yml
@@ -62,9 +62,9 @@ echo:
 $ make echo
 ```
 
-## Make - Compose - Docker - Shell file
+## Shell file
 
-In this pattern Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][other-tips].
+Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][other-tips].
 
 ```bash
 # echo.sh
@@ -98,7 +98,7 @@ echo:
 $ make echo
 ```
 
-## Make - Compose - Docker - Task management tool
+## Task management tool
 
 There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello World" by invoking npm.
 
