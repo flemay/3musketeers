@@ -135,6 +135,18 @@ echo:
 $ make echo
 ```
 
+## Docker
+
+Make calls directly Docker instead of Compose. All example above can replace Compose with Docker but using Compose makes it more manageable. However, there are situations where calling straight Docker is required. For example, if you were to generate a `.env` file from a container, then using Compose would fail if one service in `docker-compose.yml` needs a `.env` file.
+
+```Makefile
+echo:
+	docker run --rm alpine echo Hello World
+```
+
+```bash
+$ make echo
+```
 ---
 
 More patterns coming soon!
