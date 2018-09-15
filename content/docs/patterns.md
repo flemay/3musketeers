@@ -98,6 +98,36 @@ echo:
 $ make echo
 ```
 
+## Languages
+
+Languages like Python, JavaScript, Golang, Ruby, etc can be used as an alternative to shell/bash scripts. The following example uses JavaScript to echo hello world.
+
+```js
+// helloworld.js
+console.log('Hello World');
+```
+
+```yml
+# docker-compose.yml
+version: '3.4'
+services:
+  node:
+    image: node:alpine
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+```
+
+```Makefile
+# Makefile
+echo:
+	docker-compose run --rm node node helloworld.js
+```
+
+```bash
+$ make echo
+```
+
 ## Task management tool
 
 There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello World" by invoking npm.
