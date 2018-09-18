@@ -1,7 +1,7 @@
 [[example]]
   title = "Hello World"
   desc = "The simplest example showing the 3 Musketeers in action."
-  url = "https://3musketeers.io/docs/getting-started/#hello-world"
+  url = "https://3musketeers.io/docs/get-started"
 
 [[example]]
   title = "Echo"
