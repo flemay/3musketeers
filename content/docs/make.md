@@ -107,12 +107,12 @@ Also a tool like [envvars][envvars] can be used.
 ### Explicit
 
 ```Makefile
+DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ENVFILE ?= .env.template
 
-# Create/Overwrite .env with $(ENVFILE)
+# envfile creates/overwrites .env with $(ENVFILE)
 envfile:
-	@echo "Overwrite .env with $(ENVFILE)"
-	cp $(ENVFILE) .env
+	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
 .PHONY: envfile
 
 # target requiring .env
@@ -133,17 +133,16 @@ $ make envfile target ENVFILE=.env.example
 ### Semi-Implicit
 
 ```Makefile
+DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ENVFILE ?= .env.template
 
 # Create .env based on .env.template if .env does not exist
 .env:
-	@echo "Create .env with .env.template"
-	cp $.env.template .env
+	$(DOCKER_RUN_ALPINE) cp .env.template .env
 
 # Create/Overwrite .env with $(ENVFILE)
 envfile:
-	@echo "Overwrite .env with $(ENVFILE)"
-	cp $(ENVFILE) .env
+	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
 .PHONY: envfile
 
 # target requiring .env
@@ -164,6 +163,7 @@ $ make envfile target ENVFILE=.env.example
 ### Implicit
 
 ```Makefile
+DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
 else
@@ -172,13 +172,11 @@ endif
 
 # Create .env based on .env.template if .env does not exist
 .env:
-	@echo "Create .env with .env.template"
-	cp $.env.template .env
+	$(DOCKER_RUN_ALPINE) cp .env.template .env
 
 # Create/Overwrite .env with $(ENVFILE)
 envfile:
-	@echo "Overwrite .env with $(ENVFILE)"
-	cp $(ENVFILE) .env
+	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
 .PHONY: envfile
 
 # target requiring $(ENVFILE_TARGET)
