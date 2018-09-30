@@ -1,9 +1,9 @@
-{{ $style := resources.Get "css/mystyle.scss" | toCSS | postCSS | minify | fingerprint }}
+{{ $style := resources.Get "css/main.css" | postCSS | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 {{ $chroma := resources.Get "css/chroma.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $chroma.Permalink }}">
 
 {{ $fa := resources.Get "js/fontawesome.js" }}
-{{ $myscript := resources.Get "js/myscript.js" }}
-{{ $js := slice $fa $myscript | resources.Concat "js/bundle.js" }}
+{{ $script := resources.Get "js/main.js" }}
+{{ $js := slice $fa $script | resources.Concat "js/bundle.js" }}
 <script defer src="{{ $js.Permalink }}"></script>

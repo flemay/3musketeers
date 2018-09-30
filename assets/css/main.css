@@ -1,0 +1,71 @@
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/preflight";
+ */
+ @tailwind preflight;
+ @tailwind components;
+ @tailwind utilities;
+
+/**
+  Style for generated content
+  I use purgecss whitelist to not loose the following styles
+  https://www.purgecss.com/whitelisting
+*/
+
+/* purgecss start ignore */
+.generated-content {
+  @apply leading-normal;
+  @apply text-grey-darker;
+  @apply text-justify;
+}
+
+.generated-content a {
+  @apply text-grey-darker;
+}
+
+.generated-content a:hover {
+  @apply text-black;
+}
+
+.generated-content h2 {
+  @apply mt-6;
+  @apply mb-4;
+  @apply text-grey-darkest;
+}
+
+.generated-content p {
+  @apply mb-4;
+}
+
+.generated-content .highlight {
+  @apply mb-6;
+}
+
+.generated-content pre {
+  @apply overflow-auto;
+  @apply p-4;
+}
+
+blockquote {
+  @apply m-0;
+  @apply pl-4;
+  @apply pr-4;
+  @apply pt-2;
+  @apply pb-2;
+  @apply bg-grey-lighter;
+  @apply border-solid;
+  @apply border-l-4;
+  @apply border-grey-dark;
+}
+
+p code {
+  @apply border rounded p-1 text-red-light;
+}
+/* purgecss end ignore */
