@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/flemay/3musketeers#README",
   "devDependencies": {
-    "bulma": "^0.7.1",
-    "autoprefixer": "^9.0.0"
+    "@fullhuman/postcss-purgecss": "^1.1.0",
+    "autoprefixer": "^9.0.0",
+    "tailwindcss": "^0.6.6"
   }
 }
