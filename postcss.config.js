@@ -3,6 +3,7 @@ const autoprefixer = require('autoprefixer');
 const purgecss = require('@fullhuman/postcss-purgecss');
 
 /**
+ * purgecss allows to shrink a lot the non-used CSS (tailwindcss is quite big)
  * https://tailwindcss.com/docs/controlling-file-size
  */
 const pluginPurgeCSS = purgecss({
@@ -33,9 +34,12 @@ const pluginAutoPrefixer = autoprefixer({
 
 const plugins = [];
 plugins.push(tailwindcss('./tailwind.js'));
+
+// Only purgecss if ENV is prod so that in other environments there is no need to restart the container when adding new styles to take effect.
 if (process.env.ENV === 'prod') {
   plugins.push(pluginPurgeCSS);
 }
+
 plugins.push(pluginAutoPrefixer);
 
 module.exports = {
