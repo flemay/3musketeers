@@ -1,5 +1,5 @@
 <!-- header to be full width flex container that justifies content center -->
-<header class="flex w-full justify-center bg-black mb-5 lg:p-0">
+<header class="flex justify-center bg-black mb-5">
 
   <!-- a flex container to be 4/5 on large screen which is centered because of the flex container above-->
   <nav class="flex w-full flex-wrap md:flex-no-wrap p-6 lg:w-4/5">
@@ -22,21 +22,21 @@
     </div>
 
     <!-- menu that will show/hide on a small screen, visible from medium-->
-    <div id="nav-show-hide" class="hidden w-full md:flex">
+    <div id="nav-show-hide" class="hidden md:flex">
       <!-- menu on small screen to be vertical, horizontal from medium-->
       <div class="flex flex-col flex-wrap md:flex-row">
 
         {{- range $.Site.Menus.header -}}
-        <a class="flex min-w-full mb-3 items-center text-white mr-6 no-underline md:min-w-0" href="{{ .URL }}">
+        <a class="flex mb-3 items-center text-white mr-6 no-underline hover:underline" href="{{ .URL }}">
           <span>{{ .Title }}</span>
         </a>
         {{- end -}}
 
-        <a class="flex min-w-full mb-3 items-center text-white mr-6 no-underline md:min-w-0" href="{{ $.Site.Params.urls.medium }}">
+        <a class="flex mb-3 items-center text-white mr-6 no-underline hover:underline" href="{{ $.Site.Params.urls.medium }}">
           <i class="fab fa-medium fa-1x mr-2"></i>
           <span>Read</span>
         </a>
-        <a class="flex min-w-full mb-3 items-center text-white no-underline md:min-w-0" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
+        <a class="flex mb-3 items-center text-white no-underline hover:underline" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
           <i class="flex fab fa-github fa-1x mr-2"></i>
           <span>Source</span>
         </a>
