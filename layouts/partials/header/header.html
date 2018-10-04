@@ -1,12 +1,12 @@
 <!-- header to be full width flex container that justifies content center -->
-<header class="flex justify-center bg-black mb-5">
+<header class="flex justify-center bg-black-light mb-5 antialiased">
 
   <!-- a flex container to be 4/5 on large screen which is centered because of the flex container above-->
   <nav class="flex w-full flex-wrap md:flex-no-wrap p-6 lg:w-4/5">
 
     <!-- this flex container has the home and the burger menu -->
     <div class="flex min-w-full items-center mb-3 justify-between md:min-w-0">
-      <a class="text-white mr-8 no-underline" href="/">
+      <a class="text-white-dark mr-8 no-underline" href="/">
         <i class="fas fa-home fa-1x"></i>
       </a>
 
@@ -27,16 +27,16 @@
       <div class="flex flex-col flex-wrap md:flex-row">
 
         {{- range $.Site.Menus.header -}}
-        <a class="flex mb-3 items-center text-white mr-6 no-underline hover:underline" href="{{ .URL }}">
+        <a class="flex mb-3 items-center text-white-dark mr-6 no-underline hover:underline" href="{{ .URL }}">
           <span>{{ .Title }}</span>
         </a>
         {{- end -}}
 
-        <a class="flex mb-3 items-center text-white mr-6 no-underline hover:underline" href="{{ $.Site.Params.urls.medium }}">
+        <a class="flex mb-3 items-center text-white-dark mr-6 no-underline hover:underline" href="{{ $.Site.Params.urls.medium }}">
           <i class="fab fa-medium fa-1x mr-2"></i>
           <span>Read</span>
         </a>
-        <a class="flex mb-3 items-center text-white no-underline hover:underline" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
+        <a class="flex mb-3 items-center text-white-dark no-underline hover:underline" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
           <i class="flex fab fa-github fa-1x mr-2"></i>
           <span>Source</span>
         </a>
