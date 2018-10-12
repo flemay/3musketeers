@@ -9,11 +9,7 @@
   </head>
   <body>
   {{ partial "header/header" . }}
-  <section class="section">
-    <div class="container">
-      {{block "main" .}}
-
-      {{end}}
-  </section>
+  {{block "main" .}}
+  {{end}}
   </body>
 </html>
