@@ -22,8 +22,9 @@
 /* purgecss start ignore */
 .generated-content {
   @apply leading-normal;
-  @apply text-grey-darker;
+  @apply text-black-light;
   @apply text-justify;
+  @apply antialiased;
 }
 
 .generated-content a {
@@ -32,6 +33,11 @@
 
 .generated-content a:hover {
   @apply text-black;
+}
+
+.generated-content h1 {
+  @apply mb-4;
+  @apply text-grey-darkest;
 }
 
 .generated-content h2 {
