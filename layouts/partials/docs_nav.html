@@ -1,0 +1,20 @@
+<aside class="flex flex-col">
+  <p class="text-grey-dark">
+    Docs
+  </p>
+  <ul class="list-reset">
+    {{ $currentPage := . }} {{ range .CurrentSection.Data.Pages.ByWeight }}
+    <li class="mt-2">
+      {{ if eq $currentPage.Title .Title }}
+      <a class="text-blue-dark font-bold no-underline hover:underline" href="{{.URL}}">{{ .Title }}</a>
+      {{ else }}
+      <a class="text-black-bulma no-underline hover:underline" href="{{.URL}}">{{ .Title }}</a>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  <p class="text-grey-dark mt-5">
+    What's on this page
+  </p>
+  {{ .TableOfContents }}
+</aside>

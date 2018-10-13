@@ -1,44 +1,45 @@
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <span class="icon is-medium">
-            <i class="fas fa-home fa-1x"></i>
-          </span>
-          <span>Home</span>
-        </a>
-        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+  <!-- header to be full width flex container that justifies content center -->
+<!-- reason why it is not part of the parent container is because of the need for the background header to be black the full screen-->
+<header class="flex justify-center bg-black-bulma antialiased">
+
+  <!-- a flex container to be 4/5 on large screen which is centered because of the flex container above-->
+  <nav class="flex flex-wrap pt-6 pb-6 w-5/6">
+
+    <!-- this flex container has the home and the burger menu -->
+    <div class="flex min-w-full items-center justify-between md:min-w-0 md:mb-0">
+      <a class="text-white-bulma mr-8 no-underline" href="/">
+        <i class="fas fa-home fa-1x"></i>
+      </a>
+
+      <!-- Burger menu to be only visible on small screen -->
+      <div id="navbar-burger" class="block md:hidden">
+        <a class="text-white-bulma" href="#">
+          <i class="fas fa-bars fa-1x"></i>
         </a>
       </div>
-      <div class="navbar-menu" id="navMenu">
-        <div class="navbar-start">
-          {{ range $.Site.Menus.header }}
-            <a class="navbar-item" href="{{ .URL }}">
-              {{ .Title }}
-            </a>
-          {{ end }}
+    </div>
 
-          <!-- <div class="navbar-item">
-            {{ partial "header/search.html" . }}
-          </div> -->
-        </div>
-        <div class="navbar-end">
-          <a class="navbar-item" href="{{ $.Site.Params.urls.medium }}">
-            <span class="icon is-large">
-              <i class="fab fa-medium fa-2x"></i>
-            </span>
-            <span>Read</span>
-          </a>
-          <a class="navbar-item" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
-            <span class="icon is-large">
-              <i class="fab fa-github fa-2x"></i>
-            </span>
-            <span>Source</span>
-          </a>
-        </div>
+    <!-- menu that will show/hide on a small screen, visible from medium-->
+    <div id="nav-show-hide" class="hidden mt-3 md:flex md:mt-0">
+      <!-- menu on small screen to be vertical, horizontal from medium-->
+      <div class="flex flex-col flex-wrap md:flex-row">
+
+        {{- range $.Site.Menus.header -}}
+        <a class="flex mb-3 items-center text-white-bulma mr-6 no-underline hover:underline md:mb-0" href="{{ .URL }}">
+          <span>{{ .Title }}</span>
+        </a>
+        {{- end -}}
+
+        <a class="flex mb-3 items-center text-white-bulma mr-6 no-underline hover:underline md:mb-0" href="{{ $.Site.Params.urls.medium }}">
+          <i class="fab fa-medium fa-1x mr-2"></i>
+          <span>Read</span>
+        </a>
+        <a class="flex mb-3 items-center text-white-bulma no-underline hover:underline md:mb-0" href="{{ $.Site.Params.urls.threeMusketeersRepo }}">
+          <i class="flex fab fa-github fa-1x mr-2"></i>
+          <span>Source</span>
+        </a>
+
       </div>
     </div>
   </nav>
+</header>

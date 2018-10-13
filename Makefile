@@ -42,6 +42,6 @@ deploy:
 .PHONY: deploy
 
 clean:
-	$(COMPOSE_RUN_HUGO) bash -c "rm -fr node_modules public resources/_gen"
+	$(COMPOSE_RUN_HUGO) ./scripts/clean.sh
 	docker-compose down --remove-orphans
 .PHONY: clean

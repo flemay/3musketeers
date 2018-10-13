@@ -1,22 +1,16 @@
-<section class="section hero is-white is-small">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title">
-        3 Musketeers
-      </h1>
-      <h2 class="subtitle">
-        Test, build, and deploy your apps from anywhere, the same way.
-      </h2>
-      <figure>
-        {{ partial "logo" }}
-      </figure>
-
-      <div>
-        <br/>
-        <a class="button is-info is-large is-outlined" href="{{ with .Site.GetPage "/docs/get-started.md" }}{{ .Permalink }}{{ end }}">
-          Get Started
-        </a>
-      </div>
-    </div>
+<!-- section is a flex container that centers its child -->
+<section class="flex justify-center bg-white mt-10">
+  <!-- this vertical flex container has a width of w-4/5 which leaves space around at any screen size-->
+  <div class="flex flex-col items-center w-5/6">
+    <h1 class="font-semibold">
+      3 Musketeers
+    </h1>
+    <p class="font-normal text-xl mt-3 mb-6 text-center">
+      Test, build, and deploy your apps from anywhere, the same way.
+    </p>
+    {{ partial "logo" }}
+    <a class="mt-10 bg-transparent hover:bg-blue text-blue text-2xl hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded no-underline" href="{{ with .Site.GetPage "/docs/get-started.md" }}{{ .Permalink }}{{ end }}">
+      Get Started
+    </a>
   </div>
 </section>

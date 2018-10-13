@@ -1,12 +1,29 @@
 {{define "main"}}
-  <div class="content">
-    {{ .Content }}
+<!-- a section that centers its flex container child -->
+<section class="flex justify-center text-black-bulma antialiased mt-10 text-black-bulma">
+  <!-- a vertical container that contains all the list items-->
+  <div class="flex flex-col w-4/5 lg:w-1/2">
+    <div class="generated-content">
+      {{ .Content }}
+    </div>
+    <div class="w-full mt-10">
+      <table>
+        <tr>
+          <th>Topic</th>
+          <th>Description</th>
+        </tr>
+        {{ range .Data.Pages.ByWeight }}
+        <tr>
+          <td class="pt-4">
+            <a href="{{ .Permalink }}" class="text-black-bulma">
+              {{ .Title }}
+            </a>
+          </td>
+          <td class="pt-4">{{ .Description }}</td>
+        </tr>
+        {{ end }}
+      </table>
+    </div>
   </div>
-  <div class="row columns is-multiline">
-    {{ range .Data.Pages.ByWeight }}
-      <div class="column is-half-tablet is-one-third-desktop">
-        {{ partial "doc_card" .}}
-      </div>
-    {{ end }}
-  </div>
+</section>
 {{end}}
