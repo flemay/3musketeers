@@ -1,6 +1,6 @@
 {{define "main"}}
 <!-- a section that centers its flex container child -->
-<section class="flex justify-center text-black-light antialiased mt-10 text-black-light">
+<section class="flex justify-center text-black-bulma antialiased mt-10 text-black-bulma">
   <!-- a vertical container that contains all the list items-->
   <div class="flex flex-col w-4/5 lg:w-1/2">
     <div class="generated-content">
@@ -15,7 +15,7 @@
         {{ range .Data.Pages.ByWeight }}
         <tr>
           <td class="pt-4">
-            <a href="{{ .Permalink }}" class="text-black-light">
+            <a href="{{ .Permalink }}" class="text-black-bulma">
               {{ .Title }}
             </a>
           </td>

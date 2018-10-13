@@ -22,7 +22,7 @@
 /* purgecss start ignore */
 .generated-content {
   @apply leading-normal;
-  @apply text-black-light;
+  @apply text-black-bulma;
   @apply text-justify;
   @apply antialiased;
 }
@@ -65,13 +65,44 @@ blockquote {
   @apply pr-4;
   @apply pt-2;
   @apply pb-2;
-  @apply bg-grey-lighter;
+  @apply bg-white-bulma;
   @apply border-solid;
   @apply border-l-4;
-  @apply border-grey-dark;
+  @apply border-grey;
 }
 
 p code {
   @apply border rounded p-1 text-red-light;
 }
+
+#TableOfContents ul {
+  @apply list-reset;
+  @apply border-grey-light border-l;
+}
+#TableOfContents > ul {
+  @apply list-reset;
+  @apply border-none !important;
+}
+
+/* Make sure first li items don't have margin */
+#TableOfContents > ul > li {
+  @apply mt-2;
+  @apply ml-0 !important;
+}
+
+#TableOfContents ul li {
+  @apply mt-2;
+  @apply ml-6;
+}
+
+#TableOfContents ul li a {
+  @apply no-underline;
+  @apply text-black-bulma;
+}
+
+#TableOfContents ul li a:hover {
+  @apply underline;
+}
+
+
 /* purgecss end ignore */
