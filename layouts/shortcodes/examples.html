@@ -9,7 +9,6 @@
       <td class="p-2">
         <a href="{{ .url }} ">
           <span class="text-black-bulma">
-            {{- .title -}}
             {{ if in .url "github.com" }}
             <i class="fab fa-github"></i>
             {{ else if in .url "gitlab.com" }}
@@ -18,7 +17,7 @@
             <i class="fab fa-bitbucket"></i>
             {{ else }}
             <i class="fas fa-link"></i>
-            {{ end }}
+            {{ end }}{{- .title -}}
           </span>
         </a>
       </td>
