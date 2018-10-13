@@ -1,4 +1,6 @@
 {{ $logo := resources.Get "img/logo.jpg" }}
-<figure>
-  <img src="{{ $logo.Permalink }}" alt="3musketeers logo" width="400">
+<figure class="flex justify-center w-full">
+  <div class="flex items-center">
+    <img src="{{ $logo.Permalink }}" alt="3musketeers logo" width="400">
+  </div>
 </figure>
