@@ -23,12 +23,11 @@
 .generated-content {
   @apply leading-normal;
   @apply text-black-bulma;
-  @apply text-justify;
   @apply antialiased;
 }
 
 .generated-content a {
-  @apply text-grey-darker;
+  @apply text-black-bulma;
 }
 
 .generated-content a:hover {
