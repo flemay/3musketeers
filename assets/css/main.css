@@ -36,22 +36,20 @@
 }
 
 .generated-content h1 {
-  @apply mb-4;
   @apply text-grey-darkest;
 }
 
-.generated-content h2 {
-  @apply mt-6;
-  @apply mb-4;
+.generated-content h2, .generated-content h3, .generated-content h4 {
+  @apply mt-8;
   @apply text-grey-darkest;
 }
 
 .generated-content p {
-  @apply mb-4;
+  @apply mt-4;
 }
 
 .generated-content .highlight {
-  @apply mb-6;
+  @apply mt-4;
 }
 
 .generated-content pre {
@@ -61,14 +59,16 @@
 
 blockquote {
   @apply m-0;
-  @apply pl-4;
-  @apply pr-4;
-  @apply pt-2;
-  @apply pb-2;
+  @apply mt-4;
+  @apply p-6;
   @apply bg-white-bulma;
   @apply border-solid;
   @apply border-l-4;
   @apply border-grey;
+}
+
+blockquote p {
+  @apply m-0 !important;
 }
 
 p code {
