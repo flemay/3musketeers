@@ -35,8 +35,10 @@ const pluginAutoPrefixer = autoprefixer({
 const plugins = [];
 plugins.push(tailwindcss('./tailwind.js'));
 
-// Only purgecss if ENV is prod so that in other environments there is no need to restart the container when adding new styles to take effect.
-if (process.env.ENV === 'prod') {
+if (process.env.ENV === 'development') {
+  // don't purge css so that I can enjoy everything from tailwindcss
+} else {
+  // purge css so that it downsizes the css file a lot more
   plugins.push(pluginPurgeCSS);
 }
 
