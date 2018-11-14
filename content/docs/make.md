@@ -186,9 +186,9 @@ target: $(ENVFILE_TARGET)
 ```bash
 # create .env based on .env.template if it does not exist
 $ make target
-# create .env based on .env.template
-$ make envfile
-# create .env with a specific file
+# create .env (if it does not exist) based on .env.template
+$ make .env
+# create/overwrite .env with a specific file
 $ make envfile ENVFILE=.env.example
 # execute a target with a specific .env file
 $ make envfile target ENVFILE=.env.example
