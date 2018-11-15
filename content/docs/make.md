@@ -219,8 +219,7 @@ test: $(GOLANG_DEPS_DIR)
 
 # if folder vendor exist, do nothing
 # if folder vendor does not exist, unpack file vendor.tar.gz
-# if file vendor.tar.gz does not exist, fail
-$(GOLANG_DEPS_DIR): | $(GOLANG_DEPS_ARTIFACT)
+$(GOLANG_DEPS_DIR):
 	$(COMPOSE_RUN_GOLANG) make _unpackGoDeps
 
 _depsGo:
@@ -232,7 +231,7 @@ _packGoDeps:
 	tar czf $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)
 .PHONY: _packGoDeps
 
-_unpackGoDeps:
+_unpackGoDeps: $(GOLANG_DEPS_ARTIFACT)
 	rm -fr $(GOLANG_DEPS_DIR)
 	tar -xzf $(GOLANG_DEPS_ARTIFACT)
 .PHONY: _unpackGoDeps
