@@ -12,7 +12,7 @@ toc: true
 
 ## Accessing host's localhost
 
-On Windows/Mac, accessing the host localhost is to use the url like `docker.for.mac.localhost`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `$ curl docker.for.mac.localhost:3000`.
+On Windows/Mac, accessing the host localhost is to use the url like `host.docker.internal`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `$ curl host.docker.internal:3000`.
 
 ## Access environment variables in command argument
 
@@ -32,7 +32,7 @@ $ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
 
 ## One shell script file
 
-It may happen to want to use a singular shell script file that contains the _targets. With the following, you can call the _targets like this `scripts/make.sh _test _clean`
+It may happen that you want to use a singular shell script file that contains the _targets. With the following, you can call the _targets like this `scripts/make.sh _test _clean`
 
 ```sh
 # scripts/make.sh

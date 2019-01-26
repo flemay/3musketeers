@@ -87,7 +87,7 @@ This would work well on Windows/Mac but what about Linux? Either docker-sync is 
 
 
 [dockerSync]: http://docker-sync.io
-[musketeersLambdaGoServerless]: https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless/
+[musketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless
 [golang]: https://hub.docker.com/_/golang/
 [dockerMusketeersRepo]: https://github.com/flemay/docker-musketeers
 [patterns]: ../patterns
