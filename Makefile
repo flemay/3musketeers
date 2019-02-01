@@ -4,12 +4,16 @@ COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
 ENVFILE ?= .env.template
 
 travis:
-	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
+	./scripts/travis.sh
 .PHONY: travis
 
-travisPullRequest:
+onPullRequest:
 	ENVFILE=.env.template $(MAKE) envfile deps build clean
-.PHONY: travisPullRequest
+.PHONY: onPullRequest
+
+onMergeToMaster:
+	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
+.PHONY: onMergeToMaster
 
 # envfile creates or overwrites .env with $(ENVFILE)
 envfile:

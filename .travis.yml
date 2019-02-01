@@ -3,7 +3,4 @@ language: go
 services:
   - docker
 script:
-  # During a pull request, encryoted parameters are not passed.
-  # https://docs.travis-ci.com/user/pull-requests/#pull-requests-and-security-restrictions
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make travisPullRequest; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then make travis; fi'
+  - make travis
