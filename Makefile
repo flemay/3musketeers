@@ -7,6 +7,10 @@ travis:
 	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
 .PHONY: travis
 
+travisPullRequest:
+	ENVFILE=.env.template $(MAKE) envfile deps build clean
+.PHONY: travisPullRequest
+
 # envfile creates or overwrites .env with $(ENVFILE)
 envfile:
 	cp -f $(ENVFILE) .env
