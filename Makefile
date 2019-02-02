@@ -3,10 +3,6 @@ COMPOSE_UP_HUGO = docker-compose up hugo
 COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
 ENVFILE ?= .env.template
 
-travis:
-	./scripts/travis.sh
-.PHONY: travis
-
 onPullRequest:
 	ENVFILE=.env.template $(MAKE) envfile deps build clean
 .PHONY: onPullRequest

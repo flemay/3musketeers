@@ -3,4 +3,4 @@ language: go
 services:
   - docker
 script:
-  - make travis
+  - bash scripts/travis.sh
