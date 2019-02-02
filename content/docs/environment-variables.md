@@ -152,3 +152,4 @@ If you are using `~/.aws`, no need to set values and they won't be included in t
 [dockerEnvfile]: https://docs.docker.com/compose/env-file/
 [envvars]: https://github.com/flemay/envvars/
 [linkMakeTargetEnvfile]: ../make#targets-env-and-envfile
+[musketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless

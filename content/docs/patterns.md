@@ -30,7 +30,7 @@ services:
 ```Makefile
 # Makefile
 echo:
-	docker-compose run alpine make _echo
+	docker-compose run --rm alpine make _echo
 
 _echo:
 	echo 'Hello World!'

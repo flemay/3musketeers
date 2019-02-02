@@ -24,7 +24,7 @@ test: $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
 
-# _test target depends on a go environment which may not be available on the host but it is executed in a Docker container. If you have a go environment on your host, `$ make test` can also be called.
+# _test target depends on a go environment which may not be available on the host but it is executed in a Docker container. If you have a go environment on your host, `$ make _test` can also be called.
 _test:
 	go test
 .PHONY: _test
@@ -391,7 +391,7 @@ target01: This message will also show up when typing 'make help'
 target02: This message will show up too!!!
 ```
 
-[musketeersLambdaGoServerless]: https://gitlab.com/flemay/cookiecutter-musketeers-lambda-go-serverless/
+[musketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless
 [phonyStackoverflow]: https://stackoverflow.com/questions/2145590/what-is-the-purpose-of-phony-in-a-makefile#2145605/
 [dockerCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
 [envvars]: https://github.com/flemay/envvars
