@@ -10,7 +10,7 @@ toc: true
 
 # Make
 
-Having a clean Makefile is key. It helps to understand it quickly and to maintain. Therefore, having some conventions like [target vs _target](#target-vs-_target), [Pipeline targets](#pipeline-targets), and [Pipeline targets](#pipeline-targets) really aim to make developers' life easier.
+Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target](#target-vs-_target), [Pipeline targets](#pipeline-targets), and [Pipeline targets](#pipeline-targets) really aim to make the developer's life easier.
 
 > Most of the code snippets are taken from the [Lambda Go Serverless][musketeersLambdaGoServerless] example.
 
@@ -32,7 +32,7 @@ _test:
 
 ## .PHONY
 
-> However, sometimes you want your Makefile to run commands that do not represent physical files in the file system. Good examples for this are the common targets "clean" and "all". Chances are this isn't the case, but you may potentially have a file named clean in your main directory. In such a case Make will be confused because by default the clean target would be associated with this file and Make will only run it when the file doesn't appear to be up-to-date with regards to its dependencies.
+> However, sometimes you want your Makefile to run commands that do not represent physical files in the file system. Good examples for this are the common targets "clean" and "all". Chances are this isn't the case, but you may potentially have a file named clean in your main directory. In such a case, Make will be confused because by default the clean target would be associated with this file and Make will only run it when the file doesn't appear to be up-to-date with regards to its dependencies.
 \- _from [stackoverflow][phonyStackoverflow]_
 
 By being explicit it makes it clear which targets are not related to the file system.

@@ -23,7 +23,7 @@ These are the prerequisites for a project that follows the 3 Musketeers:
 
 ## Hello World
 
-Create the 2 following files in any empty directory:
+Create the two following files in an empty directory:
 
 ```yml
 # file: docker-compose.yml
@@ -37,12 +37,12 @@ services:
 ```Makefile
 # file: Makefile
 
-# echo calls Compose to run the command "echo 'Hello World!'" in a Docker container
+# echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
 echo:
-	docker-compose run --rm alpine echo 'Hello World!'
+	docker-compose run --rm alpine echo 'Hello, World!'
 ```
 
-Then simply echo "Hello World!" with the following command:
+Then simply echo "Hello, World!" with the following command:
 
 ```bash
 $ make echo

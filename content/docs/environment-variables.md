@@ -20,30 +20,29 @@ Often there are many environment variables and having them in a `.env` file beco
 
 `.env.template` contains names of all environment variables the application and pipeline use. No values are set here. `.env.template` is meant to serve as a template to `.env`. If there is no `.env` in the directory and `ENVFILE` is not specified, Make will create a `.env` file with `.env.template`.
 
-`.env.example` defines values so that it can be used straight away with Make like `$ make envfile test ENVFILE=.env.example`. It also gives an example of values that is being used in the project.
+`.env.example` defines values so that it can be used straight away with Make like `$ make envfile test ENVFILE=.env.example`. It also gives an example of values that are being used in the project.
 
-> Never include sensitive values like passwords as this file is meant to be checked in.
+> As this file should be committed to source control, never include sensitive values like passwords.
 
 ## CI and .env.template
 
-Usually, the `.env` file will be created from the `.env.template` with `make envfile`. Given the environment variables are already been set in the CI, those will be passed to Docker and Compose.
+Usually, the `.env` file will be created from the `.env.template` with `make envfile`. Given the environment variables have already been set in the CI tool, those will be passed to Docker and Compose.
 
-## Day to day development
+## Day-to-day development
 
-In a day to day development process, you could create a file like `.env.dev` with the config of your dev environment and copy the content of it into `.env` so that you can manually deploy/delete/etc your app for testing. This allows you to not loose accidentally the values if `.env` was to get replaced or the need to set all the environment variables on your machine.
-
-There are few ways to copy the content of your file to `.env`:
+In a day-to-day development process, you could create a file named `.env.dev` with the config of your dev environment and copy the contents of it into `.env` so that you can manually deploy/delete/etc your app for testing. This allows you to not accidentally lose the values if the `.env` file is replaced.
+There are few ways to copy the contents of your file to `.env`:
 
 - manually
 - make envfile ENVFILE=_yourfile_
 
 ## Tutorial
 
-This Tutorial shows how `.env` file works with Docker and Docker Compose.
+This tutorial shows how `.env` files work with Docker and Docker Compose.
 
 ### Files
 
-Create the following files
+Create the following files:
 
 ```bash
 # file: .env.template
@@ -52,7 +51,7 @@ ECHO_MESSAGE
 
 ```bash
 # file: .env.example
-ECHO_MESSAGE="Hello 3 Musketeers"
+ECHO_MESSAGE="Hello, 3 Musketeers!"
 ```
 
 ```yml
@@ -104,7 +103,7 @@ $ make clean
 
 # Let's go inside a container.
 $ make shell
-# Oupps! Error. Compose needs a .env file. Let's create one
+# Opps! Error. Compose needs a .env file. Let's create one...
 $ make envfile
 $ make shell
 # See the new .env file?
@@ -124,15 +123,15 @@ $ exit
 # Create a .env file based on the .env.example
 $ make envfile ENVFILE=.env.example
 $ make shell
-# What happened to .env file?
+# What happened to our .env file?
 $ cat .env
 $ env | grep ECHO_MESSAGE
-# What's the value of ECHO_MESSAGE? Why isn't "Hello World"?
+# What's the value of ECHO_MESSAGE? Why isn't it "Hello World"?
 $ exit
 # Clean the work directory
 $ make clean
 
-# The 2 previous steps can be combined into 1
+# The two previous steps can be combined into one
 $ make envfile shell ENVFILE=.env.example
 $ exit
 
@@ -144,8 +143,7 @@ $ make clean
 
 In the [lambda example][musketeersLambdaGoServerless], `envvars.yml` contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the `docker-compose.yml` mounts the volume `~/.aws`.
 
-If you are using `~/.aws`, no need to set values and they won't be included in the Docker container. If there is a value for any of the environment variables, it will have precedence over ~/.aws when using aws cli.
-
+If you are using `~/.aws`, you do not need to set values as they won't be included in the Docker container. If there is a value for any of the environment variables, it will take precedence over `~/.aws` when using aws cli.
 
 [12factor]: https://12factor.net
 [12factorConfig]: https://12factor.net/config
