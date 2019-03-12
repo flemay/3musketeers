@@ -6,7 +6,7 @@ There are different ways to contribute to this project.
 
 ## Star it
 
-If you like the project, go on [GitHub][link3musketeersrepo] and ⭐️ it!
+If you like the project, go on [GitHub][link3musketeersrepo] and :star: it!
 
 ## Share it
 
