@@ -8,7 +8,7 @@ Having a clean `Makefile` is key. It helps to understand it quickly and is easie
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
-```Makefile
+```makefile
 # test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
 test: $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _test
@@ -31,7 +31,7 @@ By being explicit it makes it clear which targets are not related to the file sy
 
 Docker and Compose commands can be assigned to variables.
 
-```Makefile
+```makefile
 COMPOSE_RUN_GOLANG = docker-compose run --rm golang
 COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
 
@@ -47,7 +47,7 @@ To make the Makefile easier to read, avoid having many target dependencies: `tar
 
 Use [Pipeline targets](#pipeline-targets) as a way to describe the dependencies.
 
-```Makefile
+```makefile
 test: $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _test
 .PHONY: test
@@ -67,7 +67,7 @@ It is best having them at the top of the Makefile as they give an understanding 
 
 Example from [Docker Cookiecutter][dockerCookiecutter] which uses 2 stages in the GitLab pipeline.
 
-```Makefile
+```makefile
 stageTest: envfile build test clean
 .PHONY: stageTest
 
@@ -83,7 +83,7 @@ Running only `$ make` will trigger the first target from the Makefile. A convent
 
 It is a good idea to make the target as focus as possible on a specific task. This leaves the flexibility to anyone to test/call each target individually for a single purpose. The responsibility of a [pipeline target](#pipeline-targets) is to get the right order of targets to call to execute a specific task.
 
-```Makefile
+```makefile
 all: deps test build pack clean
 .PHONY: all
 ```
@@ -96,7 +96,7 @@ Also a tool like [envvars][envvars] can be used.
 
 ### Explicit
 
-```Makefile
+```makefile
 DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ENVFILE ?= .env.template
 
@@ -122,7 +122,7 @@ $ make envfile target ENVFILE=.env.example
 
 ### Semi-Implicit
 
-```Makefile
+```makefile
 DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ENVFILE ?= .env.template
 
@@ -152,7 +152,7 @@ $ make envfile target ENVFILE=.env.example
 
 ### Implicit
 
-```Makefile
+```makefile
 DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
@@ -192,7 +192,7 @@ It is a good thing to have a target `deps` to install all the dependencies requi
 
 A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building. Moreover, it is faster to pass along a tar file than a folder with many files.
 
-```Makefile
+```makefile
 COMPOSE_RUN_GOLANG=docker-compose run --rm golang
 GOLANG_DEPS_DIR=vendor
 GOLANG_DEPS_ARTIFACT=$(GOLANG_DEPS_DIR).tar.gz
@@ -242,7 +242,7 @@ $ make envfile anotherTarget ENVFILE=your.envfile
 
 The symbol `@` tells Make to not echo the command prior execution. Useful when there are secrets at stake. [Docker Musketeers][dockerMusketeers] is a good example where `@` is used. If omitted, `DOCKERHUB_TRIGGER_URL`, which has a token in the URL, would be printed out in the logs.
 
-```Makefile
+```makefile
 _triggerDockerHubBuildForTagLatest:
 	@curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL)
 .PHONY: _triggerDockerHubBuildForTagLatest
@@ -252,7 +252,7 @@ _triggerDockerHubBuildForTagLatest:
 
 The symbol `-` allows the execution to continue even if the command failed. [Envvars' tag target][envvarsTagTarget] illustrates it well where an existent tag can be re-tagged.
 
-```Makefile
+```makefile
 _tag:
 	-git tag -d $(TAG)
 	-git push origin :refs/tags/$(TAG)
@@ -276,7 +276,7 @@ rm: cannot remove ‘vendor/gopkg.in/yaml.v2/README.md’: Permission denied
 
 This happens because the creation of those files was done with a different user (in a container as root) and the current user does not have permission to delete them. One way to mitigate this is to call the command in the docker container.
 
-```Makefile
+```makefile
 cleanDocker:
 	docker-compose down --remove-orphans
 .PHONY: cleanDocker
@@ -299,7 +299,7 @@ Sometimes, target needs running containers in order to be executed. Once common 
 
 A target `startPostgres` which starts a database container can be used as a dependency to the target test.
 
-```Makefile
+```makefile
 startPostgres:
 	docker-compose up -d postgres
 	sleep 10
@@ -310,7 +310,7 @@ startPostgres:
 
 Once the test target finishes, the database would be still running. So it is a good idea to not let it running. The target `test` can run `cleanDocker` to remove the running database container. See "Clean Docker and files" section.
 
-```Makefile
+```makefile
 test: cleanDocker startPostgres
 	...
 	$(MAKE) cleanDocker
@@ -321,7 +321,7 @@ test: cleanDocker startPostgres
 
 The Makefile can be split into smaller files if it becomes unreadable.
 
-```Makefile
+```makefile
 # Makefiles/test.mk
 test: $(GOLANG_DEPS_DIR)
 	$(COMPOSE_RUN_GOLANG) make _test
@@ -343,7 +343,7 @@ Sometimes, target may become very complex due to the syntax and limitations of M
 
 [This][selfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
-```Makefile
+```makefile
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'
 DOCKER_RUN_MUSKETEERS = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/musketeers

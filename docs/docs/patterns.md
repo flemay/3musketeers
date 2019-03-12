@@ -6,7 +6,7 @@ This section covers different patterns about executing tasks with the 3 Musketee
 
 Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][docker].
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.4'
 services:
@@ -17,7 +17,7 @@ services:
     working_dir: /opt/app
 ```
 
-```Makefile
+```makefile
 # Makefile
 echo:
 	docker-compose run --rm alpine make _echo
@@ -34,7 +34,7 @@ $ make echo
 
 Make calls Compose which executes a shell/bash command inside a Docker container.
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.4'
 services:
@@ -42,7 +42,7 @@ services:
     image: alpine
 ```
 
-```Makefile
+```makefile
 # Makefile
 echo:
 	docker-compose run --rm alpine sh -c 'echo Hello World!'
@@ -67,7 +67,7 @@ echo Hello World!
 $ chmod +x echo.sh
 ```
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.4'
 services:
@@ -78,7 +78,7 @@ services:
     working_dir: /opt/app
 ```
 
-```Makefile
+```makefile
 # Makefile
 echo:
 	docker-compose run --rm alpine sh echo.sh
@@ -97,7 +97,7 @@ Languages like Python, JavaScript, Golang, Ruby, etc can be used as an alternati
 console.log('Hello World');
 ```
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.4'
 services:
@@ -108,7 +108,7 @@ services:
     working_dir: /opt/app
 ```
 
-```Makefile
+```makefile
 # Makefile
 echo:
 	docker-compose run --rm node node helloworld.js
@@ -134,7 +134,7 @@ There are many languages and tools out there to make task implementation easy su
 }
 ```
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.4'
 services:
@@ -145,7 +145,7 @@ services:
     working_dir: /opt/app
 ```
 
-```Makefile
+```makefile
 # Makefile
 echo:
 	docker-compose run --rm node npm run echo
@@ -159,7 +159,7 @@ $ make echo
 
 Make calls directly Docker instead of Compose. All example above can replace Compose with Docker but using Compose makes it more manageable. However, there are situations where calling straight Docker is required. For example, if you were to generate a `.env` file from a container, then using Compose would fail if one service in `docker-compose.yml` needs a `.env` file.
 
-```Makefile
+```makefile
 echo:
 	docker run --rm alpine echo Hello World
 ```

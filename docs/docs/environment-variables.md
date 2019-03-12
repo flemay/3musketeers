@@ -44,7 +44,7 @@ ECHO_MESSAGE
 ECHO_MESSAGE="Hello, 3 Musketeers!"
 ```
 
-```yml
+```yaml
 # file: docker-compose.yml
 version: '3.4'
 services:
@@ -56,7 +56,7 @@ services:
     working_dir: /opt/app
 ```
 
-```Makefile
+```makefile
 # file: Makefile
 
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers

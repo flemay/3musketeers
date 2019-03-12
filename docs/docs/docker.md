@@ -8,7 +8,7 @@ This section contains some tips related to Docker.
 
 There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
 
-```Makefile
+```makefile
 dbStart:
 	docker-compose up -d db
 	docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
@@ -46,7 +46,7 @@ $ docker run --rm golang:alpine apk add --update make && make _target
 
 You may want to build and maintain your own image based on the the image you wanted to use.
 
-```Dockerfile
+```dockerfile
 FROM golang:alpine
 RUN apk add --update make
 ...
@@ -58,7 +58,7 @@ Mounting volumes with Docker on Mac or Windows can be slow. For instance, develo
 
 On Mac, using the `native_osx` strategy can also help. The Docker Compose file would look like the following:
 
-```yml
+```yaml
  yourservice:
     image: animage
     volumes:

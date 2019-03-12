@@ -12,7 +12,7 @@ These are the prerequisites for a project that follows the 3 Musketeers:
 
 Create the two following files in an empty directory:
 
-```yml
+```yaml
 # file: docker-compose.yml
 
 version: '3.4'
@@ -21,7 +21,7 @@ services:
     image: alpine
 ```
 
-```Makefile
+```makefile
 # file: Makefile
 
 # echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
