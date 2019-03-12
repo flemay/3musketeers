@@ -1,0 +1,30 @@
+{
+  "name": "3musketeers",
+  "version": "1.0.0",
+  "description": "Test, build, and deploy your apps from anywhere, the same way.",
+  "main": "index.js",
+  "dependencies": {
+    "vuepress": "^1.0.0-alpha.44"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.44"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flemay/3musketeers.git"
+  },
+  "keywords": [
+    "docker",
+    "make",
+    "makefile",
+    "docker-compose",
+    "cicd",
+    "methodology"
+  ],
+  "author": "flemay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flemay/3musketeers/issues"
+  },
+  "homepage": "https://github.com/flemay/3musketeers#readme"
+}

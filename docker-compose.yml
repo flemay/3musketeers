@@ -1,13 +1,13 @@
-version: '3.4'
+version: '3.7'
 services:
-  hugo:
-    image: flemay/hugo
+  vuepress:
+    image: node:alpine
     volumes:
       - .:/opt/app
-    env_file: .env
+    working_dir: /opt/app
     ports:
-      - "1313:1313"
-    command: ./scripts/server.sh
+      - "8080:8080"
+    command: ./scripts/dev.sh
 
   netlify:
     image: flemay/netlify

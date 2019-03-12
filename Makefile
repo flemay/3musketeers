@@ -1,51 +1,37 @@
-COMPOSE_RUN_HUGO = docker-compose run --rm hugo
-COMPOSE_UP_HUGO = docker-compose up hugo
+COMPOSE_RUN_VUEPRESS = docker-compose run --rm vuepress
+COMPOSE_UP_VUEPRESS = docker-compose up vuepress
 COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
 ENVFILE ?= .env.template
 
 onPullRequest:
 	ENVFILE=.env.template $(MAKE) envfile deps build clean
-.PHONY: onPullRequest
 
 onMergeToMaster:
 	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
-.PHONY: onMergeToMaster
 
 # envfile creates or overwrites .env with $(ENVFILE)
 envfile:
 	cp -f $(ENVFILE) .env
-.PHONY: envfile
 
 deps:
-	docker-compose pull hugo netlify
-	$(COMPOSE_RUN_HUGO) npm install
-.PHONY: deps
+	docker-compose pull vuepress netlify
+	$(COMPOSE_RUN_VUEPRESS) npm install
 
-generateChromaStyle:
-	$(COMPOSE_RUN_HUGO) ./scripts/generate_chroma_style.sh
-.PHONY: generateChromaStyle
-
-shellHugo:
-	$(COMPOSE_RUN_HUGO) bash
-.PHONY: shellHugo
+shellVuepress:
+	$(COMPOSE_RUN_VUEPRESS) sh
 
 shellNetlify:
 	$(COMPOSE_RUN_NETLIFY)
-.PHONY: shellNetlify
 
-server:
-	$(COMPOSE_UP_HUGO)
-.PHONY: server
+dev:
+	$(COMPOSE_UP_VUEPRESS)
 
 build:
-	$(COMPOSE_RUN_HUGO) ./scripts/build.sh
-.PHONY: build
+	$(COMPOSE_RUN_VUEPRESS) ./scripts/build.sh
 
 deploy:
 	$(COMPOSE_RUN_NETLIFY) ./scripts/deploy.sh
-.PHONY: deploy
 
 clean:
-	$(COMPOSE_RUN_HUGO) ./scripts/clean.sh
+	$(COMPOSE_RUN_VUEPRESS) ./scripts/clean.sh
 	docker-compose down --remove-orphans
-.PHONY: clean

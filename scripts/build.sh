@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
 set -u
 
-rm -fr resources/_gen public
-hugo -b ${HUGO_BASE_URL}
+npx vuepress build docs
