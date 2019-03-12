@@ -1,13 +1,3 @@
----
-title: Other tips
-draft: false
-date:
-lastmod:
-description: Other useful tips.
-weight: 500
-toc: true
----
-
 # Other tips
 
 ## Accessing host's localhost

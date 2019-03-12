@@ -1,13 +1,3 @@
----
-title: Make
-draft: false
-date:
-lastmod:
-description: Contains convention, best practices and tips related to Make and the 3 Musketeers.
-weight: 100
-toc: true
----
-
 # Make
 
 Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target](#target-vs-_target), [Pipeline targets](#pipeline-targets), and [Pipeline targets](#pipeline-targets) really aim to make the developer's life easier.
@@ -398,5 +388,5 @@ target02: This message will show up too!!!
 [dockerMusketeers]: https://github.com/flemay/docker-musketeers/blob/master/Makefile
 [envvarsTagTarget]: https://github.com/flemay/envvars/blob/master/Makefile
 [selfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133
-[patterns]: ../patterns
-[environmentVariables]: ../environment-variables
+[patterns]: patterns
+[environmentVariables]: environment-variables

@@ -1,13 +1,3 @@
----
-title: Environment variables & envfile
-draft: false
-date:
-lastmod:
-description: Explains how environment variables and envfile work with Docker and Compose.
-weight: 350
-toc: true
----
-
 # Environment variables & .env file
 
 Development following [the twelve-factor app][12factor] use the [environment variables to configure][12factorConfig] their application.
@@ -149,5 +139,5 @@ If you are using `~/.aws`, you do not need to set values as they won't be includ
 [12factorConfig]: https://12factor.net/config
 [dockerEnvfile]: https://docs.docker.com/compose/env-file/
 [envvars]: https://github.com/flemay/envvars/
-[linkMakeTargetEnvfile]: ../make#targets-env-and-envfile
+[linkMakeTargetEnvfile]: make#targets-env-and-envfile
 [musketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless

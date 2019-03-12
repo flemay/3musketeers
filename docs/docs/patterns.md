@@ -1,13 +1,3 @@
----
-title: Patterns
-draft: false
-date: "2018-07-28"
-lastmod: "2018-07-31"
-description: Overview of the patterns that can be used with the 3 Musketeers.
-weight: 75
-toc: true
----
-
 # Patterns
 
 This section covers different patterns about executing tasks with the 3 Musketeers. All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
@@ -181,5 +171,5 @@ $ make echo
 
 More patterns coming soon!
 
-[docker]: ../docker
-[other-tips]: ../other-tips
+[docker]: docker
+[other-tips]: other-tips

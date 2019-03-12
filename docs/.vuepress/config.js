@@ -33,6 +33,7 @@ function getDocsSidebar() {
     {
       title: 'Docs',
       collapsable: false,
+      path: '/docs/',
       sidebarDepth: 2,
       children: [
         '/docs/get-started',

@@ -1,14 +1,3 @@
----
-title: Contributing
-draft: false
-date:
-lastmod:
-description: Want to contribute to the 3 Musketeers? Every one can and here are some ways.
-weight: 900
-toc: true
-menu: "header"
----
-
 # Contributing
 
 The 3 Musketeers is an open source project and contributions are greatly appreciated.
@@ -31,4 +20,4 @@ Feedback is greatly appreciated. Is there anything from the documentation that i
 
 The project follows the typical GitHub pull request model. Before starting any work, please either comment on an existing issue, or file a new one.
 
-[link3musketeersrepo]:{{< configParamsUrlsThreeMusketeersrepo >}}
+[link3musketeersrepo]:https://github.com/flemay/3musketeers

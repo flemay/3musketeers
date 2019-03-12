@@ -4,7 +4,7 @@ heroImage: /hero.jpg
 heroText: 3 Musketeers
 tagline: Test, build, and deploy your apps from anywhere, the same way.
 actionText: Get Started →
-actionLink: /docs/
+actionLink: /docs/get-started
 features:
 - title: Consistency
   details: 'Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like Travis CI, CircleCI, and GitLab CI.'

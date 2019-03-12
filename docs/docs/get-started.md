@@ -1,13 +1,3 @@
----
-title: Get Started
-draft: false
-date:
-lastmod:
-description: Everything you need to know about creating your very first 'Hello World' example using the 3 Musketeers.
-weight: 50
-menu: "header"
----
-
 # Get Started
 
 ## Prerequisites
@@ -17,9 +7,6 @@ These are the prerequisites for a project that follows the 3 Musketeers:
 - [Docker][docker]
 - [Compose][compose]
 - Make
-
-[docker]: https://docs.docker.com/engine/installation/
-[compose]: https://docs.docker.com/compose/install/
 
 ## Hello World
 
@@ -47,3 +34,6 @@ Then simply echo "Hello, World!" with the following command:
 ```bash
 $ make echo
 ```
+
+[docker]: https://docs.docker.com/engine/installation/
+[compose]: https://docs.docker.com/compose/install/

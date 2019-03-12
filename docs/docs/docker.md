@@ -1,13 +1,3 @@
----
-title: Docker
-draft: false
-date:
-lastmod:
-description: Contains best practices and tips related to Docker and the 3 Musketeers.
-weight: 200
-toc: true
----
-
 # Docker
 
 This section contains some tips related to Docker.
@@ -87,4 +77,4 @@ This would work well on Windows/Mac but what about Linux? Either docker-sync is 
 [musketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless
 [golang]: https://hub.docker.com/_/golang/
 [dockerMusketeersRepo]: https://github.com/flemay/docker-musketeers
-[patterns]: ../patterns
+[patterns]: patterns
