@@ -1,5 +1,8 @@
 sudo: required
-language: go
+language: node_js
+branches:
+  only:
+    - master
 services:
   - docker
 script:
