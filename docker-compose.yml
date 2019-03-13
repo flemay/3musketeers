@@ -12,5 +12,7 @@ services:
   netlify:
     image: flemay/netlify
     volumes:
-      - .:/opt/app
+      - ./netlify.toml:/opt/app/netlify.toml:ro
+      - ./docs/.vuepress/dist:/opt/app/docs/.vuepress/dist:ro
+    working_dir: /opt/app
     env_file: .env
