@@ -16,15 +16,16 @@ module.exports = {
       { text: 'Docs', link: '/docs/' },
       { text: 'Examples', link: '/examples' },
     ],
-    sidebar: getDocsSidebar()
+    sidebar: getSidebar()
   }
 }
 
-function getDocsSidebar() {
+function getSidebar() {
   return [
     {
       title: 'About',
       collapsable: false,
+      sidebarDepth: 2,
       children: [
         '/about/',
         '/about/contributing'
@@ -43,6 +44,13 @@ function getDocsSidebar() {
         '/docs/compose',
         '/docs/environment-variables',
         '/docs/other-tips',
+      ]
+    },
+    {
+      title: 'Examples',
+      collapsable: false,
+      path: 'examples',
+      children: [
       ]
     },
   ]
