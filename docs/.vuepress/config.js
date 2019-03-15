@@ -1,12 +1,31 @@
+const domain = '3musketeers.io'
+const url = `https://${domain}`
+const desc = 'Test, build, and deploy your apps from anywhere, the same way.'
+const logoURL = 'https://3musketeers.io/logo.png'
+const title = '3 Musketeers'
+
 module.exports = {
   title: '3 Musketeers',
-  description: 'Test, build, and deploy your apps from anywhere, the same way.',
+  description: desc,
   head: [
-    ['link', { rel: 'icon', href: '/logo.png' }]
+    ['link', { rel: 'icon', href: '/logo.png' }],
+    // facebook open graph tags
+    ['meta', { property: 'og:url', content: url }],
+    ['meta', { property: 'og:title', content: title }],
+    ['meta', { property: 'og:description', content: desc }],
+    ['meta', { property: 'og:site_name', content: domain }],
+    ['meta', { property: 'og:image', content: logoURL }],
+    //twitter card tags additive with the og: tags
+    ['meta', { name: 'twitter:domain', value: domain }],
+    ['meta', { name: 'twitter:title', value: title }],
+    ['meta', { name: 'twitter:description', value: desc }],
+    ['meta', { name: 'twitter:image', content: logoURL }],
+    ['meta', { name: 'twitter:url', value: url }],
   ],
   plugins: [
     '@vuepress/back-to-top',
-    '@vuepress/search', {
+    '@vuepress/search',
+    {
       searchMaxSuggestions: 10,
     },
   ],
@@ -24,8 +43,8 @@ module.exports = {
       { text: 'Docs', link: '/docs/' },
       { text: 'Examples', link: '/examples/' },
     ],
-    sidebar: getSidebar()
-  }
+    sidebar: getSidebar(),
+  },
 }
 
 function getSidebar() {
@@ -33,10 +52,7 @@ function getSidebar() {
     {
       title: 'About',
       collapsable: false,
-      children: [
-        '/about/',
-        '/about/contributing'
-      ]
+      children: ['/about/', '/about/contributing'],
     },
     {
       title: 'Docs',
@@ -50,14 +66,13 @@ function getSidebar() {
         '/docs/compose',
         '/docs/environment-variables',
         '/docs/other-tips',
-      ]
+      ],
     },
     {
       title: 'Examples',
       collapsable: false,
       path: '/examples/',
-      children: [
-      ]
+      children: [],
     },
   ]
 }
