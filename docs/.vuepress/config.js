@@ -1,9 +1,13 @@
 module.exports = {
   title: '3 Musketeers',
   description: 'Test, build, and deploy your apps from anywhere, the same way.',
+  head: [
+    ['link', { rel: 'icon', href: '/logo.png' }]
+  ],
   plugins: ['@vuepress/back-to-top'],
   themeConfig: {
     lastUpdated: 'Last Updated',
+    searchMaxSuggestions: 10,
     repo: 'flemay/3musketeers',
     repoLabel: 'GitHub',
     docsRepo: 'flemay/3musketeers',
@@ -25,7 +29,6 @@ function getSidebar() {
     {
       title: 'About',
       collapsable: false,
-      sidebarDepth: 2,
       children: [
         '/about/',
         '/about/contributing'
@@ -35,7 +38,6 @@ function getSidebar() {
       title: 'Docs',
       collapsable: false,
       path: '/docs/',
-      sidebarDepth: 2,
       children: [
         '/docs/get-started',
         '/docs/patterns',
