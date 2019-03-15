@@ -4,10 +4,14 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/logo.png' }]
   ],
-  plugins: ['@vuepress/back-to-top'],
+  plugins: [
+    '@vuepress/back-to-top',
+    '@vuepress/search', {
+      searchMaxSuggestions: 10,
+    },
+  ],
   themeConfig: {
     lastUpdated: 'Last Updated',
-    searchMaxSuggestions: 10,
     repo: 'flemay/3musketeers',
     repoLabel: 'GitHub',
     docsRepo: 'flemay/3musketeers',
@@ -18,7 +22,7 @@ module.exports = {
     nav: [
       { text: 'About', link: '/about/' },
       { text: 'Docs', link: '/docs/' },
-      { text: 'Examples', link: '/examples' },
+      { text: 'Examples', link: '/examples/' },
     ],
     sidebar: getSidebar()
   }
@@ -51,7 +55,7 @@ function getSidebar() {
     {
       title: 'Examples',
       collapsable: false,
-      path: 'examples',
+      path: '/examples/',
       children: [
       ]
     },
