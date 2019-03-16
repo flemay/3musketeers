@@ -81,7 +81,7 @@ stageTest: build test clean
 # other targets below
 ```
 
-## make & target all
+## make and target all
 
 Running only `$ make` will trigger the first target from the Makefile. A convention among developer is to have a target `all` as the first target. In the 3 Musketeers context, `all` is a perfect [pipeline target][linkPipelineTargets] to document and test locally the sequence of targets to test, build, run, etc.
 
@@ -104,96 +104,7 @@ Targets can be composed as a [pipeline target][linkPipelineTargets] which ensure
 
 ## Targets .env and envfile
 
-The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][linkEnvironmentVariables].
-
-### Explicit
-
-```makefile
-DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
-ENVFILE ?= .env.template
-
-# envfile creates/overwrites .env with $(ENVFILE)
-envfile:
-	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
-
-# target requiring .env
-target: .env
-```
-
-```bash
-# fails if .env does not exist
-$ make target
-# create .env based on .env.template
-$ make envfile
-# create .env with a specific file
-$ make envfile ENVFILE=.env.example
-# execute a target with a specific .env file
-$ make envfile target ENVFILE=.env.example
-```
-
-### Semi-Implicit
-
-```makefile
-DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
-ENVFILE ?= .env.template
-
-# Create .env based on .env.template if .env does not exist
-.env:
-	$(DOCKER_RUN_ALPINE) cp .env.template .env
-
-# Create/Overwrite .env with $(ENVFILE)
-envfile:
-	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
-
-# target requiring .env
-target: .env
-```
-
-```bash
-# create .env based on .env.template if it does not exist
-$ make target
-# create .env based on .env.template
-$ make envfile
-# create .env with a specific file
-$ make envfile ENVFILE=.env.example
-# execute a target with a specific .env file
-$ make envfile target ENVFILE=.env.example
-```
-
-### Implicit
-
-```makefile
-DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
-ifdef ENVFILE
-	ENVFILE_TARGET=envfile
-else
-	ENVFILE_TARGET=.env
-endif
-
-# Create .env based on .env.template if .env does not exist
-.env:
-	$(DOCKER_RUN_ALPINE) cp .env.template .env
-
-# Create/Overwrite .env with $(ENVFILE)
-envfile:
-	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
-
-# target requiring $(ENVFILE_TARGET)
-target: $(ENVFILE_TARGET)
-```
-
-```bash
-# create .env based on .env.template if it does not exist
-$ make target
-# create .env (if it does not exist) based on .env.template
-$ make .env
-# create/overwrite .env with a specific file
-$ make envfile ENVFILE=.env.example
-# execute a target with a specific .env file
-$ make envfile target ENVFILE=.env.example
-# or (no need to specify envfile)
-$ make target ENVFILE=.env.example
-```
+The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][linkEnvironmentVariables] for more details.
 
 ## Project dependencies
 
@@ -375,6 +286,7 @@ target00: This message will show up when typing 'make help'
 target01: This message will also show up when typing 'make help'
 target02: This message will show up too!!!
 ```
+
 
 [linkPipelineTargets]: #pipeline-targets
 [linkTargetVSUnderscoreTarget]: #target-vs-_target
