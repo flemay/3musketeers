@@ -3,6 +3,7 @@ const url = `https://${domain}`
 const desc = 'Test, build, and deploy your apps from anywhere, the same way!'
 const logoRel = '/logo.png'
 const title = '3 Musketeers'
+const googleAnalytics = process.env.GOOGLE_ANALYTICS // UA-00000000
 
 module.exports = {
   title: '3 Musketeers',
@@ -24,10 +25,18 @@ module.exports = {
   ],
   plugins: [
     '@vuepress/back-to-top',
-    '@vuepress/search',
-    {
-      searchMaxSuggestions: 10,
-    },
+    [
+      '@vuepress/search',
+      {
+        searchMaxSuggestions: 10,
+      },
+    ],
+    [
+      '@vuepress/google-analytics',
+      {
+        ga: googleAnalytics,
+      },
+    ],
   ],
   themeConfig: {
     lastUpdated: true,
