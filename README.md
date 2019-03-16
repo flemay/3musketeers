@@ -32,7 +32,7 @@ $ make build
 $ make deploy
 ```
 
-[3musketeers.io]: https://3musketeers.io
+[link3Musketeers]: https://3musketeers.io
 [linkTravisCIBadgePart1]: https://travis-ci.org/flemay/3musketeers.svg?branch=master
 [linkTravisCIBadgePart2]: https://travis-ci.org/flemay/3musketeers
 [linkNetlifyBadgePart1]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
