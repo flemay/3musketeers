@@ -28,7 +28,7 @@ There are few ways to copy the contents of your file to `.env`:
 
 ## Understanding .env file with Docker and Compose
 
-This tutorial shows how `.env` files work with Docker and Docker Compose.
+This tutorial shows how `.env` file works with Docker and Docker Compose.
 
 ### Files
 
