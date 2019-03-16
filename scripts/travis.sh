@@ -6,8 +6,10 @@ set -u
 # https://docs.travis-ci.com/user/pull-requests/#pull-requests-and-security-restrictions
 if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
   echo Triggered on Pull Request
-  make onPullRequest
+  make travisTest
+elif [ "${TRAVIS_BRANCH}" = "master" ]; then
+  echo Triggered on Commit/Merge to Master
+  make travisDeploy
 else
-  echo Triggered on Merge to Master
-  make onMergeToMaster
+  echo Nothing to be done here!
 fi

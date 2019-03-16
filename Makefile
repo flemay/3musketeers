@@ -3,10 +3,10 @@ COMPOSE_UP_VUEPRESS = docker-compose up vuepress
 COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
 ENVFILE ?= .env.template
 
-onPullRequest:
+travisTest:
 	ENVFILE=.env.template $(MAKE) envfile deps build clean
 
-onMergeToMaster:
+travisDeploy:
 	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
 
 # envfile creates or overwrites .env with $(ENVFILE)
