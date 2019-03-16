@@ -12,7 +12,7 @@ Solutions about what to do if your image does not contain Make can be found [her
 
 ```yaml
 # docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   alpine:
     image: golang
@@ -40,7 +40,7 @@ Make calls Compose which executes a shell/bash command inside a Docker container
 
 ```yaml
 # docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   alpine:
     image: alpine
@@ -73,7 +73,7 @@ $ chmod +x echo.sh
 
 ```yaml
 # docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   alpine:
     image: alpine
@@ -103,7 +103,7 @@ console.log('Hello World');
 
 ```yaml
 # docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   node:
     image: node:alpine
@@ -140,7 +140,7 @@ There are many languages and tools out there to make task implementation easy su
 
 ```yaml
 # docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   node:
     image: node:alpine

@@ -14,7 +14,7 @@ Create the two following files in an empty directory:
 
 ```yaml
 # file: docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   alpine:
     image: alpine

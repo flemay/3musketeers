@@ -46,7 +46,7 @@ ECHO_MESSAGE="Hello, 3 Musketeers!"
 
 ```yaml
 # file: docker-compose.yml
-version: '3.4'
+version: '3'
 services:
   musketeers:
     image: flemay/musketeers
