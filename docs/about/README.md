@@ -1,5 +1,9 @@
 # 3 Musketeers
 
+::: warning LIVING DOCUMENTATION
+This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines and even [contribute][linkContributing].
+:::
+
 <img src="/hero.jpg" alt="logo" width="300"/>
 
 ## What
@@ -23,3 +27,5 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 <br/>
 
 <sub>_The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo has been inspired by existing drawings on the Internet._</sub>
+
+[linkContributing]: contributing

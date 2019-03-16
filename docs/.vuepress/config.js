@@ -57,9 +57,8 @@ function getSidebar() {
     {
       title: 'Docs',
       collapsable: false,
-      path: '/docs/',
       children: [
-        '/docs/get-started',
+        '/docs/',
         '/docs/patterns',
         '/docs/make',
         '/docs/docker',
