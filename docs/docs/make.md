@@ -1,98 +1,110 @@
 # Make
 
-Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target](#target-vs-_target), [Pipeline targets](#pipeline-targets), and [Pipeline targets](#pipeline-targets) really aim to make the developer's life easier.
+Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
-> Most of the code snippets are taken from the [Lambda Go Serverless][musketeersLambdaGoServerless] example.
+::: tip SNIPPETS
+The snippets are there to help understanding the documentation but may be incomplete or missing context. If you wish to see complete code, go over the [examples][linkExamples] section.
+:::
 
 ## target vs _target
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
 ```makefile
-# test target uses Compose which is available on Windows, Unix, MacOS (requisite for the 3 Musketeers)
-test: $(GOLANG_DEPS_DIR)
-	$(COMPOSE_RUN_GOLANG) make _test
-.PHONY: test
+# buid target uses Compose which is available on Windows, Unix, and MacOS
+deploy:
+	docker-compose run --rm serverless make _deploy
 
-# _test target depends on a go environment which may not be available on the host but it is executed in a Docker container. If you have a go environment on your host, `$ make _test` can also be called.
-_test:
-	go test
-.PHONY: _test
+# This _deploy target depends on a NodeJS environment and Serverless Framework which may not be available on the hosts.
+# It is executed in a Docker container that provides the right environment for its execution.
+# If the host has NodeJS and Serverless Framework installed, `$ make _build` can be called.
+_deploy:
+	serverless deploy
 ```
 
 ## .PHONY
 
-> However, sometimes you want your Makefile to run commands that do not represent physical files in the file system. Good examples for this are the common targets "clean" and "all". Chances are this isn't the case, but you may potentially have a file named clean in your main directory. In such a case, Make will be confused because by default the clean target would be associated with this file and Make will only run it when the file doesn't appear to be up-to-date with regards to its dependencies.
-\- _from [stackoverflow][phonyStackoverflow]_
+> A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed when you make an explicit request. There are two reasons to use a phony target: to avoid a conflict with a file of the same name, and to improve performance. - [GNU][linkPhony]
 
-By being explicit it makes it clear which targets are not related to the file system.
+By default `.PHONY` can be left out unless the target collides with the name of file/folder. One case is a target `test` which often conflicts with a folder named `test`.
+
+```makefile
+# can be written into a single line with other targets that need .PHONY
+.PHONY: test targetA targetB
+
+test:
+	docker-compose run --rm node make _test
+.PHONY: test # can be put here for the target test
+
+_test:
+	npx jest
+```
+
+Sometimes you want the target to match the name of a file in which case `.PHONY` would not be used. See [Environment variables & .env file][linkEnvironmentVariables] for an example.
 
 ## Docker and Compose commands as variables
 
 Docker and Compose commands can be assigned to variables.
 
 ```makefile
-COMPOSE_RUN_GOLANG = docker-compose run --rm golang
 COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
 
-deps:
-	$(COMPOSE_RUN_GOLANG) make _depsGo
-	$(COMPOSE_RUN_SERVERLESS) make _zipGoDeps
-.PHONY: deps
+deploy:
+	$(COMPOSE_RUN_SERVERLESS) make _deploy
 ```
 
 ## Target dependencies
 
 To make the Makefile easier to read, avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`. Even more, restrict `target` to file dependencies only. This allows one to call a specific target without worrying that other targets will be executed too.
 
-Use [Pipeline targets](#pipeline-targets) as a way to describe the dependencies.
+::: tip
+Use [Pipeline targets][linkPipelineTargets] as a way to describe the list of dependencies.
+:::
 
 ```makefile
-test: $(GOLANG_DEPS_DIR)
-	$(COMPOSE_RUN_GOLANG) make _test
-.PHONY: test
-
-_test:
-	go test
-.PHONY: _test
+deploy: package.zip
+	$(COMPOSE_RUN_NODE) make _deploy
 ```
 
 ## Pipeline targets
 
-Section [Target dependencies](#target-dependencies) suggests to limit target dependencies as mush as possible but there is one exception: pipeline targets.
+Section [Target dependencies][linkTargetDependencies] suggests to limit target dependencies as mush as possible but there is one exception: pipeline targets.
 
-Pipeline targets are targets that have a list of dependencies, usually other targets. They are often used in CI to reduce the number of Make call and keep the CI pipelines as lean as possible.
+We call Pipeline targets the targets that have a list of dependencies, usually other targets. They are often used in CI to reduce the number of Make calls and keep the CI pipelines clean.
 
 It is best having them at the top of the Makefile as they give an understanding of the application pipelines when reading the Makefile.
 
-Example from [Docker Cookiecutter][dockerCookiecutter] which uses 2 stages in the GitLab pipeline.
-
 ```makefile
-stageTest: envfile build test clean
-.PHONY: stageTest
+# pipeline targets first
+stageTest: build test clean
 
-stageTriggerDockerHubBuilds: envfile triggerDockerHubBuilds clean
-.PHONY: stageTriggerDockerHubBuilds
+# other targets below
 ```
 
 ## make & target all
 
-Running only `$ make` will trigger the first target from the Makefile. A convention among developer is to have a target `all` as the first target. In the 3 Musketeers context, `all` would be a perfect [pipeline target](#pipeline-targets) to document and test locally the sequence of target to test, build, run, etc.
+Running only `$ make` will trigger the first target from the Makefile. A convention among developer is to have a target `all` as the first target. In the 3 Musketeers context, `all` is a perfect [pipeline target][linkPipelineTargets] to document and test locally the sequence of targets to test, build, run, etc.
+
+```makefile
+# first target
+all: deps test build clean
+
+# other targets below
+```
+
+```sh
+$ make # will run the target all
+```
 
 ## Target and Single Responsibility
 
-It is a good idea to make the target as focus as possible on a specific task. This leaves the flexibility to anyone to test/call each target individually for a single purpose. The responsibility of a [pipeline target](#pipeline-targets) is to get the right order of targets to call to execute a specific task.
+It is a good idea to make the target as focus as possible on a specific task. This leaves the flexibility to anyone to manually test/call each target individually for a single purpose.
 
-```makefile
-all: deps test build pack clean
-.PHONY: all
-```
+Targets can be composed as a [pipeline target][linkPipelineTargets] which ensures the right order of targets to call for executing a specific task.
 
 ## Targets .env and envfile
 
-The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][environmentVariables].
-
-Also a tool like [envvars][envvars] can be used.
+The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][linkEnvironmentVariables].
 
 ### Explicit
 
@@ -103,7 +115,6 @@ ENVFILE ?= .env.template
 # envfile creates/overwrites .env with $(ENVFILE)
 envfile:
 	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
-.PHONY: envfile
 
 # target requiring .env
 target: .env
@@ -133,7 +144,6 @@ ENVFILE ?= .env.template
 # Create/Overwrite .env with $(ENVFILE)
 envfile:
 	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
-.PHONY: envfile
 
 # target requiring .env
 target: .env
@@ -167,7 +177,6 @@ endif
 # Create/Overwrite .env with $(ENVFILE)
 envfile:
 	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
-.PHONY: envfile
 
 # target requiring $(ENVFILE_TARGET)
 target: $(ENVFILE_TARGET)
@@ -188,43 +197,39 @@ $ make target ENVFILE=.env.example
 
 ## Project dependencies
 
-It is a good thing to have a target `deps` to install all the dependencies required to test, build, and deploy an application.
+It is a good thing to have a target `deps` for installing all the dependencies required to test, build, and deploy an application.
 
 A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building. Moreover, it is faster to pass along a tar file than a folder with many files.
 
 ```makefile
-COMPOSE_RUN_GOLANG=docker-compose run --rm golang
-GOLANG_DEPS_DIR=vendor
-GOLANG_DEPS_ARTIFACT=$(GOLANG_DEPS_DIR).tar.gz
+COMPOSE_RUN_NODE=docker-compose run --rm node
+NODE_MODULES_DIR=node_modules
+NODE_MODULES_ARTIFACT=$(NODE_MODULES_DIR).tar.gz
 
-# deps will create the folder vendor and the file vendor.tar.gz
+# deps will create the folder node_modules and the file node_modules.tar.gz
 deps:
-	$(COMPOSE_RUN_GOLANG) make _depsGo _packGoDeps
-.PHONY: deps
+	$(COMPOSE_RUN_NODE) make _depsNode _packNodeModules
 
-# test requires the folder vendor
-test: $(GOLANG_DEPS_DIR)
-	$(COMPOSE_RUN_GOLANG) make _test
+# test requires the folder node_modules
+test: $(NODE_MODULES_DIR)
+	$(COMPOSE_RUN_NODE) make _test
 .PHONY: test
 
-# if folder vendor exist, do nothing
-# if folder vendor does not exist, unpack file vendor.tar.gz
-$(GOLANG_DEPS_DIR):
-	$(COMPOSE_RUN_GOLANG) make _unpackGoDeps
+# if folder node_modules exist, do nothing
+# if folder node_modules does not exist, unpack file node_modules.tar.gz
+$(NODE_MODULES_DIR):
+	$(COMPOSE_RUN_NODE) make _unpackNodeModules
 
-_depsGo:
-	dep ensure
-.PHONY: _depsGo
+_depsNode:
+	npm install
 
-_packGoDeps:
-	rm -f $(GOLANG_DEPS_ARTIFACT)
-	tar czf $(GOLANG_DEPS_ARTIFACT) $(GOLANG_DEPS_DIR)
-.PHONY: _packGoDeps
+_packNodeModules:
+	rm -f $(NODE_MODULES_ARTIFACT)
+	tar czf $(NODE_MODULES_ARTIFACT) $(NODE_MODULES_DIR)
 
-_unpackGoDeps: $(GOLANG_DEPS_ARTIFACT)
-	rm -fr $(GOLANG_DEPS_DIR)
-	tar -xzf $(GOLANG_DEPS_ARTIFACT)
-.PHONY: _unpackGoDeps
+_unpackNodeModules: $(NODE_MODULES_ARTIFACT)
+	rm -fr $(NODE_MODULES_DIR)
+	tar -xzf $(NODE_MODULES_ARTIFACT)
 ```
 
 ## Calling multiple targets in a single command
@@ -240,32 +245,34 @@ $ make envfile anotherTarget ENVFILE=your.envfile
 
 ## Prevent echoing the command
 
-The symbol `@` tells Make to not echo the command prior execution. Useful when there are secrets at stake. [Docker Musketeers][dockerMusketeers] is a good example where `@` is used. If omitted, `DOCKERHUB_TRIGGER_URL`, which has a token in the URL, would be printed out in the logs.
+The symbol `@` prevents the command to be printed out prior its execution. Useful when there are secrets at stake.
 
 ```makefile
-_triggerDockerHubBuildForTagLatest:
+# If '@ 'is omitted, `DOCKERHUB_TRIGGER_URL`, which has a token in the URL,
+# would be printed out in the logs
+_triggerDockerHubBuild:
 	@curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL)
-.PHONY: _triggerDockerHubBuildForTagLatest
 ```
 
 ## Continue on error
 
-The symbol `-` allows the execution to continue even if the command failed. [Envvars' tag target][envvarsTagTarget] illustrates it well where an existent tag can be re-tagged.
+The symbol `-` allows the execution to continue even if the command failed.
 
 ```makefile
+TAG=v1.0.0
+# _tag create a new tag or re-tags the existing one
 _tag:
 	-git tag -d $(TAG)
 	-git push origin :refs/tags/$(TAG)
 	git tag $(TAG)
 	git push origin $(TAG)
-.PHONY: _tag
 ```
 
 ## Clean Docker and files
 
-Using Compose creates a network that you may want to remove after your pipeline is done. You may also want to remove existing stopped and running containers. Moreover, files and folders that have been created can also be cleaned up after. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `$ make test clean`.
+Using Compose creates a network that you may want to remove after your stage or pipeline is completed. You may also want to remove existing stopped and running containers. Moreover, files and folders that have been created can also be cleaned up after. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `$ make test clean`.
 
-`clean` could also have the command to clean Docker. However having the target `cleanDocker` may be very useful for targets that want to only clean the containers. See section "Managing containers in target".
+`clean` could also have the command to clean Docker. However having the target `cleanDocker` may be very useful for targets that want to only clean the containers. See section [Managing containers in target][linkManagingContainersInTarget].
 
 It may happen that you face a permission issue like the following
 
@@ -279,69 +286,62 @@ This happens because the creation of those files was done with a different user 
 ```makefile
 cleanDocker:
 	docker-compose down --remove-orphans
-.PHONY: cleanDocker
 
 clean:
 	$(COMPOSE_RUN_GOLANG) make _clean
 	$(MAKE) cleanDocker
-.PHONY: clean
 
 _clean:
 	rm -fr files folders
-.PHONY: clean
 ```
 
 ## Managing containers in target
 
-Sometimes, target needs running containers in order to be executed. Once common example is for testing. Let's say `make test` needs a database to run in order to execute the tests.
+Sometimes a target needs to run a container in order to execute its task.
 
-### Starting
-
-A target `startPostgres` which starts a database container can be used as a dependency to the target test.
+For instance, a target `test` may need a database to run prior executing the tests.
 
 ```makefile
-startPostgres:
-	docker-compose up -d postgres
-	sleep 10
-.PHONY: startPostgres
-```
-
-### Target test with cleanDocker
-
-Once the test target finishes, the database would be still running. So it is a good idea to not let it running. The target `test` can run `cleanDocker` to remove the running database container. See "Clean Docker and files" section.
-
-```makefile
+# target test calls cleanDocker before starting a postgres container
 test: cleanDocker startPostgres
-	...
+	$(DOCKER_RUN_NODE) make _test
+	# cleanDocker stops the postgrest container and removes it
 	$(MAKE) cleanDocker
 .PHONY: test
+
+postgresStart:
+	docker-compose up -d postgres
+	sleep 10
+
+cleanDocker:
+	docker-compose down --remove-orphans
 ```
 
-## Makefile too big
+## Multiple Makefiles
 
-The Makefile can be split into smaller files if it becomes unreadable.
+The Makefile can be split into smaller files.
 
 ```makefile
-# Makefiles/test.mk
-test: $(GOLANG_DEPS_DIR)
-	$(COMPOSE_RUN_GOLANG) make _test
-.PHONY: test
+# makefiles/deploy.mk
+deploy:
+	docker-compose run --rm serverless make _deploy
 
-_test:
-	go test
-.PHONY: _test
+_deploy:
+	serverless deploy
+```
 
+```makefile
 # Makefile
-include Makefiles/*.mk
+include makefiles/*.mk
 ```
 
 ## Complex targets
 
-Sometimes, target may become very complex due to the syntax and limitations of Make. Refer to the [patterns][] section for other alternatives.
+In some situations, targets become very complex due to the syntax and limitations of Make or you may simply prefer to write the task in Bash or other languages. Refer to the [patterns][linkPatterns] section for other Make alternatives.
 
 ## Self-Documented Makefile
 
-[This][selfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
+[This][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
 ```makefile
 # Add the following 'help' target to your Makefile
@@ -350,27 +350,22 @@ DOCKER_RUN_MUSKETEERS = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/mu
 
 help:           ## Show this help.
 	$(DOCKER_RUN_MUSKETEERS) make _help
-.PHONY: help
 
 _help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
-.PHONY: _help
 
 # Everything below is an example
 
 target00:       ## This message will show up when typing 'make help'
 	@echo does nothing
-.PHONY: target00
 
 target01:       ## This message will also show up when typing 'make help'
 	@echo does something
-.PHONY: target01
 
 # Remember that targets can have multiple entries (if your target specifications are very long, etc.)
 target02:       ## This message will show up too!!!
 target02: target00 target01
 	@echo does even more
-.PHONY: target02
 ```
 
 ```bash
@@ -381,12 +376,14 @@ target01: This message will also show up when typing 'make help'
 target02: This message will show up too!!!
 ```
 
-[musketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless
-[phonyStackoverflow]: https://stackoverflow.com/questions/2145590/what-is-the-purpose-of-phony-in-a-makefile#2145605/
-[dockerCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
-[envvars]: https://github.com/flemay/envvars
-[dockerMusketeers]: https://github.com/flemay/docker-musketeers/blob/master/Makefile
-[envvarsTagTarget]: https://github.com/flemay/envvars/blob/master/Makefile
-[selfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133
-[patterns]: patterns
-[environmentVariables]: environment-variables
+[linkPipelineTargets]: #pipeline-targets
+[linkTargetVSUnderscoreTarget]: #target-vs-_target
+[linkTargetDependencies]: #target-dependencies
+[linkManagingContainersInTarget]: #managing-containers-in-target
+
+[linkPatterns]: patterns
+[linkEnvironmentVariables]: environment-variables
+[linkExamples]: ../examples/
+
+[linkPhony]: https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
+[linkSelfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133
