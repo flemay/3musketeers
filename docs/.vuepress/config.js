@@ -30,7 +30,7 @@ module.exports = {
     },
   ],
   themeConfig: {
-    lastUpdated: 'Last Updated',
+    lastUpdated: true,
     repo: 'flemay/3musketeers',
     repoLabel: 'GitHub',
     docsRepo: 'flemay/3musketeers',

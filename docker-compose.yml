@@ -1,7 +1,9 @@
+# node:alpine is not used because the plugin-last-updated uses `git` and alpine
+# does not have it.
 version: '3.7'
 services:
   vuepress:
-    image: node:alpine
+    image: node
     volumes:
       - .:/opt/app
     working_dir: /opt/app
