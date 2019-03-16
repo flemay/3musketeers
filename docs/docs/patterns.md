@@ -4,7 +4,11 @@ This section covers different patterns about executing tasks with the 3 Musketee
 
 ## Make
 
-Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][linkDocker].
+Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed.
+
+::: tip
+Solutions about what to do if your image does not contain Make can be found [here][linkDocker].
+:::
 
 ```yaml
 # docker-compose.yml
