@@ -4,7 +4,7 @@ This section covers different patterns about executing tasks with the 3 Musketee
 
 ## Make
 
-Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][docker].
+Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed. Solutions about what to do if your image does not contain Make can be found [here][linkDocker].
 
 ```yaml
 # docker-compose.yml
@@ -54,7 +54,7 @@ $ make echo
 
 ## Shell file
 
-Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][other-tips].
+Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkOtherTips].
 
 ```bash
 # echo.sh
@@ -169,7 +169,6 @@ $ make echo
 ```
 ---
 
-More patterns coming soon!
 
-[docker]: docker
-[other-tips]: other-tips
+[linkDocker]: docker
+[linkOtherTips]: other-tips
