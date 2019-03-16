@@ -1,7 +1,6 @@
 .vscode
 .DS_Store
 node_modules
-public
 .env*
 !.env.template
 !.env.example

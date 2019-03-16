@@ -1,16 +1,22 @@
-version: '3.4'
+# node:alpine is not used because the plugin-last-updated uses `git` and alpine
+# does not have it.
+version: '3'
 services:
-  hugo:
-    image: flemay/hugo
+  vuepress:
+    image: node
     volumes:
       - .:/opt/app
-    env_file: .env
+    working_dir: /opt/app
     ports:
-      - "1313:1313"
-    command: ./scripts/server.sh
+      - "8080:8080"
+    command: ./scripts/dev.sh
+    env_file: .env
 
   netlify:
     image: flemay/netlify
     volumes:
-      - .:/opt/app
+      - ./netlify.toml:/opt/app/netlify.toml:ro
+      - ./docs/.vuepress/dist:/opt/app/docs/.vuepress/dist
+      - ./scripts/deploy.sh:/opt/app/scripts/deploy.sh:ro
+    working_dir: /opt/app
     env_file: .env

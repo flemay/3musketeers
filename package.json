@@ -1,24 +1,31 @@
 {
   "name": "3musketeers",
   "version": "1.0.0",
-  "description": "",
+  "description": "Test, build, and deploy your apps from anywhere, the same way.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    "vuepress": "^1.0.0-alpha.44"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.44",
+    "@vuepress/plugin-google-analytics": "^1.0.0-alpha.44"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/flemay/3musketeers.git"
+    "url": "git+https://github.com/flemay/3musketeers.git"
   },
-  "author": "",
+  "keywords": [
+    "docker",
+    "make",
+    "makefile",
+    "docker-compose",
+    "cicd",
+    "methodology"
+  ],
+  "author": "flemay",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/flemay/3musketeers/issues"
   },
-  "homepage": "https://github.com/flemay/3musketeers#README",
-  "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^1.1.0",
-    "autoprefixer": "^9.0.0",
-    "tailwindcss": "^0.6.6"
-  }
+  "homepage": "https://github.com/flemay/3musketeers#readme"
 }

@@ -1,9 +1,0 @@
-languageCode = "en-us"
-title = "3 Musketeers"
-pygmentsUseClasses = true
-pygmentsCodeFences = true
-enableRobotsTXT = true
-[params]
-  [params.urls]
-    threeMusketeersRepo="https://github.com/flemay/3musketeers"
-    medium="https://amaysim.engineering/the-3-musketeers-how-make-docker-and-compose-enable-us-to-release-many-times-a-day-e92ca816ef17"
