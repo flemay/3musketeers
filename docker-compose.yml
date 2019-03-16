@@ -1,6 +1,6 @@
 # node:alpine is not used because the plugin-last-updated uses `git` and alpine
 # does not have it.
-version: '3.7'
+version: '3'
 services:
   vuepress:
     image: node

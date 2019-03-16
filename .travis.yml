@@ -1,5 +1,5 @@
 sudo: required
-language: node_js
+language: generic
 branches:
   only:
     - master
