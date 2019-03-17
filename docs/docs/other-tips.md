@@ -1,9 +1,5 @@
 # Other tips
 
-## Accessing host's localhost from a container
-
-On Windows/Mac, accessing the host localhost is to use the url like `host.docker.internal`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `$ curl host.docker.internal:3000`.
-
 ## Access environment variables in command argument
 
 ```bash
@@ -52,33 +48,3 @@ do
   esac
 done
 ```
-
-## AWS environment variables and ~/.aws
-
-When using AWS, you can use environment variables. This is useful when you assume role as usually a tool like [assume-role][linkAssumeRole] would set your environment variables.
-
-```
-# .env.template
-AWS_REGION
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_SESSION_TOKEN
-AWS_PROFILE
-```
-
-or share your AWS folder like the following:
-
-```yaml
-# docker-compose.yml
-services:
-  serverless:
-    image: flemay/aws
-    env_file: .env
-    volumes:
-      - ~/.aws:/root/.aws:Z
-```
-
-Or both can be used. In this case, environment variables will take precedence over `~/.aws` when using AWS cli.
-
-
-[linkAssumeRole]: https://github.com/remind101/assume-role

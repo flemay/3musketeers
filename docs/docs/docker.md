@@ -2,6 +2,10 @@
 
 This section contains some tips related to Docker.
 
+## Accessing host's localhost from a container
+
+On Windows/Mac, accessing the host localhost is to use the url like `host.docker.internal`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `$ curl host.docker.internal:3000`.
+
 ## Useful Docker Images
 
 ### jwilder/dockerize

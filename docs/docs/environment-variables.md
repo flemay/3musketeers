@@ -219,9 +219,37 @@ $ make envfile target ENVFILE=.env.example
 $ make target ENVFILE=.env.example
 ```
 
+## AWS environment variables and ~/.aws
+
+When using AWS, you can use environment variables. This is useful when you assume role as usually a tool like [assume-role][linkAssumeRole] would set your environment variables.
+
+```
+# .env.template
+AWS_REGION
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_SESSION_TOKEN
+AWS_PROFILE
+```
+
+or share your AWS folder like the following:
+
+```yaml
+# docker-compose.yml
+services:
+  serverless:
+    image: flemay/aws
+    env_file: .env
+    volumes:
+      - ~/.aws:/root/.aws:Z
+```
+
+Or both can be used. In this case, environment variables will take precedence over `~/.aws` when using AWS cli.
+
 
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
 
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
 [linkDockerEnvfile]: https://docs.docker.com/compose/env-file/
+[linkAssumeRole]: https://github.com/remind101/assume-role
