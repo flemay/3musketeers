@@ -219,16 +219,9 @@ $ make envfile target ENVFILE=.env.example
 $ make target ENVFILE=.env.example
 ```
 
-## AWS environment variables vs ~/.aws
-
-In the [lambda example][linkMusketeersLambdaGoServerless], `envvars.yml` contains the following optional environment variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, and `AWS_PROFILE`. Also, the `docker-compose.yml` mounts the volume `~/.aws`.
-
-If you are using `~/.aws`, you do not need to set values as they won't be included in the Docker container. If there is a value for any of the environment variables, it will take precedence over `~/.aws` when using aws cli.
-
 
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
 
-[linkMusketeersLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
 [linkDockerEnvfile]: https://docs.docker.com/compose/env-file/
