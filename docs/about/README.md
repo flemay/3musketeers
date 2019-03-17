@@ -1,7 +1,7 @@
 # 3 Musketeers
 
 ::: warning LIVING DOCUMENTATION
-This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines and even [contribute][linkContributing].
+This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines, or even [contribute][linkContributing].
 :::
 
 <img src="/hero.jpg" alt="logo" width="300"/>

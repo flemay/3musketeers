@@ -9,7 +9,6 @@ travisTest:
 travisDeploy:
 	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
 
-# envfile creates or overwrites .env with $(ENVFILE)
 envfile:
 	cp -f $(ENVFILE) .env
 

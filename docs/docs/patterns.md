@@ -7,7 +7,7 @@ This section covers different patterns about executing tasks with the 3 Musketee
 Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed.
 
 ::: tip
-Solutions about what to do if your image does not contain Make can be found [here][linkDocker].
+There are [ways][linkDocker] to add Make to your Docker image if it does not have it.
 :::
 
 ```yaml
@@ -59,6 +59,10 @@ $ make echo
 ## Shell file
 
 Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkOtherTips].
+
+::: tip
+This pattern is used to build and deploy this very website. See the [code][link3MusketeersGitHub].
+:::
 
 ```bash
 # echo.sh
@@ -161,7 +165,7 @@ $ make echo
 
 ## Docker
 
-Make calls directly Docker instead of Compose. All example above can replace Compose with Docker but using Compose makes it more manageable. However, there are situations where calling straight Docker is required. For example, if you were to generate a `.env` file from a container, then using Compose would fail if one service in `docker-compose.yml` needs a `.env` file.
+Make calls directly Docker instead of Compose. Everything that is done with Compose can be done with Docker. Using Compose helps to keep the Makefile clean.
 
 ```makefile
 echo:
@@ -171,8 +175,14 @@ echo:
 ```bash
 $ make echo
 ```
----
 
+There are situations where calling Docker is required. For instance, if you generate a `.env` file from a container and that at least one of the Compose services uses `.env` file, then using the Compose command outputs an error like the following:
+
+```
+ERROR: Couldn't find env file: /github.com/flemay/3musketeers/.env
+```
 
 [linkDocker]: docker
 [linkOtherTips]: other-tips
+
+[link3MusketeersGitHub]: https://github.com/flemay/3musketeers
