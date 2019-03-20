@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /hero.jpg
+heroImage: /img/hero.jpg
 heroText: 3 Musketeers
 tagline: Test, build, and deploy your apps from anywhere, the same way.
 actionText: Get Started →

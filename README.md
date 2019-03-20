@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/.vuepress/public/hero.jpg" width="300"></p>
+<p align="center"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
 
 [![Build Status][linkTravisCIBadgePart1]][linkTravisCIBadgePart2]
 [![Netlify Status][linkNetlifyBadgePart1]][linkNetlifyBadgePart2]
