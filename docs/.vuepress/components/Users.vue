@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="users-container">
-      <div class="user-container" v-for="user in data.users">
-        <div class="img-container">
-          <img v-bind:src="user.image" v-bind:alt="user.name">
-        </div>
-        <a v-bind:href="user.url">{{ user.name }}</a>
+  <div class="users-container" v-if="data.users && data.users.length">
+    <a class="user-container" v-for="user in data.users" v-bind:href="user.url">
+      <div class="img-container">
+        <img v-bind:src="user.image" v-bind:alt="user.name">
       </div>
-    </div>
+      <span>{{ user.name }}</span>
+    </a>
   </div>
 </template>
 
@@ -22,9 +20,10 @@ export default {
 </script>
 
 <style lang="stylus">
-$user-container-height = 160px
-$user-container-width = 150px
-$img-container-height = 130px
+$user-container-height = 200px
+$user-container-width = 200px
+$img-container-height  = 150px
+$img-container-width = 150px
 
 .users-container
   display flex
@@ -36,7 +35,6 @@ $img-container-height = 130px
   .user-container
     display flex
     flex-direction column
-    margin 25px
     justify-content flex-end
     align-items center
     height $user-container-height
@@ -46,7 +44,8 @@ $img-container-height = 130px
       flex-direction column
       height $img-container-height
       justify-content center
+      padding 5px
       img
         max-height $img-container-height
-        max-width $user-container-width
+        max-width $img-container-height
 </style>
