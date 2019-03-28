@@ -1,6 +1,7 @@
 COMPOSE_RUN_VUEPRESS = docker-compose run --rm vuepress
 COMPOSE_UP_VUEPRESS = docker-compose up vuepress
 COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
+COMPOSE_RUN_SHELLCHECK = docker-compose run --rm shellcheck
 ENVFILE ?= .env.template
 
 travisTest:
@@ -24,6 +25,9 @@ shellNetlify:
 
 dev:
 	$(COMPOSE_UP_VUEPRESS)
+
+test:
+	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
 
 build:
 	$(COMPOSE_RUN_VUEPRESS) ./scripts/build.sh

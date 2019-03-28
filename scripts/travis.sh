@@ -11,5 +11,5 @@ elif [ "${TRAVIS_BRANCH}" = "master" ]; then
   echo Triggered on Commit/Merge to Master
   make travisDeploy
 else
-  echo Nothing to be done here!
+  echo "Nothing to be done here!"
 fi

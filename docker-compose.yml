@@ -12,6 +12,13 @@ services:
     command: ./scripts/dev.sh
     env_file: .env
 
+  shellcheck:
+    image: koalaman/shellcheck:latest
+    network_mode: "none"
+    volumes:
+      - ./scripts:/opt/app/scripts
+    working_dir: /opt/app
+
   netlify:
     image: flemay/netlify
     volumes:
