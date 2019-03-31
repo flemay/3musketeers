@@ -6,7 +6,7 @@
 Using any of the containers below is at your own risk.
 :::
 
-* [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, and Make. The cookiecutter image in the [examples][linkExamples] uses this image for Docker in Docker (DinD).
+* [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. The `flemay/cookiecutter` image in the [examples][linkExamples] uses this image to build and test the Docker image in GitLab Pipeline (Docker in Docker (DinD)).
 * [jwilder/dockerize][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
 
   ```makefile
