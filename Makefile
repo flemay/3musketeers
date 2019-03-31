@@ -4,11 +4,12 @@ COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
 COMPOSE_RUN_SHELLCHECK = docker-compose run --rm shellcheck
 ENVFILE ?= .env.template
 
-travisTest:
-	ENVFILE=.env.template $(MAKE) envfile deps build clean
+all:
+	ENVFILE=.env.example $(MAKE) envfile deps build clean
 
-travisDeploy:
-	ENVFILE=.env.template $(MAKE) envfile deps build deploy clean
+travisPullRequest: envfile deps build clean
+
+travisMasterChange: envfile deps build deploy clean
 
 envfile:
 	cp -f $(ENVFILE) .env
@@ -38,3 +39,4 @@ deploy:
 clean:
 	$(COMPOSE_RUN_VUEPRESS) ./scripts/clean.sh
 	docker-compose down --remove-orphans
+	rm -f .env
