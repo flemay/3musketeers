@@ -1,22 +1,26 @@
 # Docker
 
-This section contains some tips related to Docker.
+## Useful Docker images
+
+::: warning
+Using any of the containers below is at your own risk.
+:::
+
+* [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, and Make. The cookiecutter image in the [examples][linkExamples] uses this image for Docker in Docker (DinD).
+* [jwilder/dockerize][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
+
+  ```makefile
+  dbStart:
+    docker-compose up -d db
+    docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
+  ```
+
+* [dockerlint][linkDockerHubDockerlint] validates your Dockerfiles
+* [shellcheck][linkDockerHubShellcheck] lints your shell scripts
 
 ## Accessing host's localhost from a container
 
 On Windows/Mac, accessing the host localhost is to use the url like `host.docker.internal`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `$ curl host.docker.internal:3000`.
-
-## Useful Docker Images
-
-### jwilder/dockerize
-
-There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
-
-```makefile
-dbStart:
-	docker-compose up -d db
-	docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
-```
 
 ## Image without Make
 
@@ -78,7 +82,12 @@ This would work well on Windows/Mac but what about Linux? Either docker-sync is 
 
 
 [linkPatterns]: patterns
+[linkExamples]: ../examples
 
 [linkDockerSync]: http://docker-sync.io
 [linkGolang]: https://hub.docker.com/_/golang/
 [linkDockerMusketeersRepo]: https://github.com/flemay/docker-musketeers
+[linkDockerHubDockerize]: https://hub.docker.com/r/jwilder/dockerize
+[linkDockerHubDockerlint]: https://hub.docker.com/r/redcoolbeans/dockerlint
+[linkDockerHubShellcheck]: https://hub.docker.com/r/koalaman/shellcheck/
+[linkDockerHubMusketeers]: https://hub.docker.com/r/flemay/musketeers
