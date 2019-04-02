@@ -7,7 +7,7 @@ Here are some examples on how to apply the 3 Musketeers for different kinds of a
 * [Echo][linkEcho] is a Cookiecutter template for a basic example that echoes the value of an environment variable.
 * [Lambda Go Serverless][linkLambdaGoServerless] is a Cookiecutter template for a simple Lambda written in Go and deployed with Serverless Framework.
 * [Go command line application][linkGoCommandLineApplication] is a Cookiecutter template for a CLI go application.
-* [flemay/cookiecutter][linkFlemayCookiecutter] is a docker image that is built, tested, and deployed with GitLab to Docker Hub.
+* [flemay/cookiecutter][linkFlemayCookiecutter] is a docker image that is built, tested, and deployed to Docker Hub with GitLab CI/CD. The pipeline uses Docker in Docker (DinD) with the image `flemay/musketeers`.
 * [flemay/musketeers][linkFlemayMusketeers] is a docker image that is built, tested, and deployed with TravisCI to Docker Hub.
 
 [linkHelloWorld]: ../docs/get-started
