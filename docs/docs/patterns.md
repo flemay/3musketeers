@@ -1,6 +1,12 @@
 # Patterns
 
-This section covers different patterns about executing tasks with the 3 Musketeers. All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
+::: tip
+All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
+:::
+
+This section covers different patterns about executing tasks with the 3 Musketeers.
+
+[[toc]]
 
 ## Make
 
