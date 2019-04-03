@@ -10,7 +10,7 @@ Here are some examples on how to apply the 3 Musketeers for different kinds of a
 * [flemay/cookiecutter][linkFlemayCookiecutter] is a docker image that is built, tested, and deployed to Docker Hub with GitLab CI/CD. The pipeline uses Docker in Docker (DinD) with the image `flemay/musketeers`.
 * [flemay/musketeers][linkFlemayMusketeers] is a docker image that is built, tested, and deployed with TravisCI to Docker Hub.
 
-[linkHelloWorld]: ../docs/get-started
+[linkHelloWorld]: ../docs/#hello-world
 [linkEcho]: https://github.com/3musketeersio/cookiecutter-musketeers-echo
 [link3Musketeers]: https://github.com/flemay/3musketeers
 [linkLambdaGoServerless]: https://github.com/3musketeersio/cookiecutter-musketeers-lambda-go-serverless

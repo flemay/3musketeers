@@ -89,8 +89,9 @@ function getSidebar() {
     {
       title: 'Examples',
       collapsable: false,
-      path: '/examples/',
-      children: [],
+      children: [
+        '/examples/'
+      ],
     },
   ]
 }
