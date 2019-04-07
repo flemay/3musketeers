@@ -43,7 +43,7 @@ $ make start
 $ make test
 $ make clean
 
-# See targets `all`, `startTravisPullRequest`
+# See targets `all`, `travisPullRequest`
 ```
 
 ```bash
@@ -56,7 +56,7 @@ $ make build
 # deploy the website to Netlify
 $ make deploy
 
-# See target `startTravisMasterChange`
+# See target `travisMasterChange`
 ```
 
 [link3Musketeers]: https://3musketeers.io
