@@ -10,9 +10,9 @@ ENVFILE ?= .env.template
 all:
 	ENVFILE=.env.example $(MAKE) envfile deps lint startVuepress test build clean
 
-startVravisPullRequest: envfile deps lint startVuepress test build clean
+startTravisPullRequest: envfile deps lint startVuepress test build clean
 
-startVravisMasterChange: envfile deps lint startVuepress test build deploy clean
+startTravisMasterChange: envfile deps lint startVuepress test build deploy clean
 
 envfile:
 	cp -f $(ENVFILE) .env
