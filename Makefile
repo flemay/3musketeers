@@ -8,11 +8,11 @@ COMPOSE_RUN_TESTCAFE = docker-compose run --rm testcafe
 ENVFILE ?= .env.template
 
 all:
-	ENVFILE=.env.example $(MAKE) envfile deps lint startVuepress test build clean
+	ENVFILE=.env.example $(MAKE) envfile deps lint start test build clean
 
-startTravisPullRequest: envfile deps lint startVuepress test build clean
+travisPullRequest: envfile deps lint start test build clean
 
-startTravisMasterChange: envfile deps lint startVuepress test build deploy clean
+travisMasterChange: envfile deps lint start test build deploy clean
 
 envfile:
 	cp -f $(ENVFILE) .env
@@ -30,8 +30,12 @@ shellTestCafe:
 shellNetlify:
 	$(COMPOSE_RUN_NETLIFY)
 
-dev:
+startDev:
 	$(COMPOSE_UP_VUEPRESS_DEV)
+
+start:
+	$(COMPOSE_UP_VUEPRESS)
+	$(COMPOSE_RUN_DOCKERIZE) -wait tcp://vuepress:8080 -timeout 60s
 
 lint:
 	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
@@ -40,10 +44,6 @@ lint:
 test:
 	$(COMPOSE_RUN_TESTCAFE) scripts/test.sh
 .PHONY: test
-
-startVuepress:
-	$(COMPOSE_UP_VUEPRESS)
-	$(COMPOSE_RUN_DOCKERIZE) -wait tcp://vuepress:8080 -timeout 60s
 
 build:
 	$(COMPOSE_RUN_VUEPRESS) scripts/build.sh
