@@ -26,6 +26,7 @@ $ make envfile ENVFILE=.env.example
 $ make deps
 # start vuepress server in a container for local development
 $ make startDev
+# in a different shell session
 $ make lint
 $ make test
 $ make clean
