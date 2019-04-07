@@ -2,15 +2,38 @@
 # does not have it.
 version: '3'
 services:
-  vuepress:
+  # vuepress_dev is for running vuepress for development
+  vuepress_dev:
     image: node
     volumes:
       - .:/opt/app
     working_dir: /opt/app
     ports:
+      # this maps the port 8080 so that it can be accessible from a local browser.
+      # For CI/CD tool, mapping port should be avoided since it can create port conflict.
+      # This is the reason the service `vuepress` exists.
       - "8080:8080"
     command: ./scripts/dev.sh
     env_file: .env
+
+  vuepress:
+    image: node
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+    command: ./scripts/dev.sh
+    env_file: .env
+
+  testcafe:
+    image: testcafe/testcafe
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+    entrypoint: sh
+    env_file: .env
+
+  dockerize:
+    image: jwilder/dockerize
 
   shellcheck:
     image: koalaman/shellcheck:latest
