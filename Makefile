@@ -1,6 +1,6 @@
 COMPOSE_RUN_VUEPRESS = docker-compose run --rm vuepress
 COMPOSE_UP_VUEPRESS_DEV = docker-compose up vuepress_dev
-COMPOSE_UP_VUEPRESS = docker-compose up --detach vuepress
+COMPOSE_UP_VUEPRESS = docker-compose up -d vuepress
 COMPOSE_RUN_NETLIFY = docker-compose run --rm netlify
 COMPOSE_RUN_SHELLCHECK = docker-compose run --rm shellcheck
 COMPOSE_RUN_DOCKERIZE = docker-compose run --rm dockerize
@@ -8,11 +8,11 @@ COMPOSE_RUN_TESTCAFE = docker-compose run --rm testcafe
 ENVFILE ?= .env.template
 
 all:
-	ENVFILE=.env.example $(MAKE) envfile deps lint start test build clean
+	ENVFILE=.env.example $(MAKE) envfile cleanDocker deps lint start test build clean
 
-travisPullRequest: envfile deps lint start test build clean
+travisPullRequest: envfile cleanDocker deps lint start test build clean
 
-travisMasterChange: envfile deps lint start test build deploy clean
+travisMasterChange: envfile cleanDocker deps lint start test build deploy clean
 
 envfile:
 	cp -f $(ENVFILE) .env
