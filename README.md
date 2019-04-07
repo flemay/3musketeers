@@ -17,12 +17,37 @@ For more information, visit [3musketeers.io][link3Musketeers].
 This repository is the [3musketeers.io][link3Musketeers] website. This section explains the usage on how to develop and deploy it.
 
 ```bash
+# Development
+
 # create a .env file
 $ make envfile ENVFILE=.env.example
+# Update .env file to set VUEPRESS_HOST=vuepress_dev
 # install dependencies
 $ make deps
 # start vuepress server in a container for local development
-$ make dev
+$ make startDev
+# in a different shell session
+$ make lint
+$ make test
+$ make clean
+```
+
+```bash
+# Testing
+
+$ make envfile ENVFILE=.env.example
+$ make deps
+$ make lint
+# start vuepress in a container in the background
+$ make start
+$ make test
+$ make clean
+
+# See targets `all`, `travisPullRequest`
+```
+
+```bash
+# Building and Deployment
 
 # create a .env that sets environment variables for production. For instance
 $ make envfile ENVFILE=.env.production
@@ -30,6 +55,8 @@ $ make envfile ENVFILE=.env.production
 $ make build
 # deploy the website to Netlify
 $ make deploy
+
+# See target `travisMasterChange`
 ```
 
 [link3Musketeers]: https://3musketeers.io
