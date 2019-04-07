@@ -25,7 +25,7 @@ $ make envfile ENVFILE=.env.example
 # install dependencies
 $ make deps
 # start vuepress server in a container for local development
-$ make dev
+$ make startDev
 $ make lint
 $ make test
 $ make clean
@@ -38,7 +38,7 @@ $ make envfile ENVFILE=.env.example
 $ make deps
 $ make lint
 # start vuepress in a container in the background
-$ make startVuepress
+$ make start
 $ make test
 $ make clean
 
