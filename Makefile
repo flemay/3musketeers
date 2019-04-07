@@ -16,7 +16,7 @@ envfile:
 
 deps:
 	docker-compose pull vuepress netlify
-	$(COMPOSE_RUN_VUEPRESS) npm install
+	$(COMPOSE_RUN_VUEPRESS) yarn install
 
 shellVuepress:
 	$(COMPOSE_RUN_VUEPRESS) sh
@@ -29,6 +29,7 @@ dev:
 
 test:
 	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
+.PHONY: test
 
 build:
 	$(COMPOSE_RUN_VUEPRESS) ./scripts/build.sh
