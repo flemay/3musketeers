@@ -33,7 +33,7 @@ $ make clean
 ```
 
 ```bash
-# Testing (CI/CD)
+# Testing
 
 $ make envfile ENVFILE=.env.example
 $ make deps
@@ -47,7 +47,7 @@ $ make clean
 ```
 
 ```bash
-# Deployment
+# Building and Deployment
 
 # create a .env that sets environment variables for production. For instance
 $ make envfile ENVFILE=.env.production

@@ -18,7 +18,7 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	docker-compose pull vuepress netlify
+	docker-compose pull vuepress netlify testcafe dockerize shellcheck
 	$(COMPOSE_RUN_VUEPRESS) yarn install
 
 shellVuepress:
