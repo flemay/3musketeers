@@ -25,10 +25,10 @@ shellVuepress:
 	$(COMPOSE_RUN_VUEPRESS) sh
 
 shellTestCafe:
-	$(COMPOSE_RUN_TESTCAFE)
+	$(COMPOSE_RUN_TESTCAFE) sh
 
 shellNetlify:
-	$(COMPOSE_RUN_NETLIFY)
+	$(COMPOSE_RUN_NETLIFY) bash
 
 startDev:
 	$(COMPOSE_UP_VUEPRESS_DEV)

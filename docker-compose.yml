@@ -45,8 +45,6 @@ services:
   netlify:
     image: node
     volumes:
-      - ./netlify.toml:/opt/app/netlify.toml:ro
-      - ./docs/.vuepress/dist:/opt/app/docs/.vuepress/dist
-      - ./scripts/deploy.sh:/opt/app/scripts/deploy.sh:ro
+      - .:/opt/app
     working_dir: /opt/app
     env_file: .env
