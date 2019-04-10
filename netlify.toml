@@ -1,3 +1,0 @@
-[Build]
-  publish = "docs/.vuepress/dist"
-  Functions = ""

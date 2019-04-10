@@ -2,8 +2,8 @@
 # does not have it.
 version: '3'
 services:
-  # vuepress_dev is for running vuepress for development
-  vuepress_dev:
+  # node_dev is for running vuepress for development
+  node_dev:
     image: node
     volumes:
       - .:/opt/app
@@ -11,12 +11,12 @@ services:
     ports:
       # this maps the port 8080 so that it can be accessible from a local browser.
       # For CI/CD tool, mapping port should be avoided since it can create port conflict.
-      # This is the reason the service `vuepress` exists.
+      # This is the reason the service `node` exists.
       - "8080:8080"
     command: ./scripts/dev.sh
     env_file: .env
 
-  vuepress:
+  node:
     image: node
     volumes:
       - .:/opt/app
@@ -41,12 +41,3 @@ services:
     volumes:
       - ./scripts:/opt/app/scripts
     working_dir: /opt/app
-
-  netlify:
-    image: flemay/netlify
-    volumes:
-      - ./netlify.toml:/opt/app/netlify.toml:ro
-      - ./docs/.vuepress/dist:/opt/app/docs/.vuepress/dist
-      - ./scripts/deploy.sh:/opt/app/scripts/deploy.sh:ro
-    working_dir: /opt/app
-    env_file: .env

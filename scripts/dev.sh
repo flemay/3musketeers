@@ -2,4 +2,4 @@
 set -e
 set -u
 
-npx vuepress dev --debug --host 0.0.0.0 docs
+yarn vuepress dev --debug --host 0.0.0.0 docs

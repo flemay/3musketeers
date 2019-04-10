@@ -2,4 +2,4 @@
 set -e
 set -u
 
-netlifyctl --yes -A "${NETLIFY_TOKEN}" deploy --site-id "${NETLIFY_SITE_ID}"
+yarn netlify deploy --site="${NETLIFY_SITE_ID}" --dir=docs/.vuepress/dist --prod
