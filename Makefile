@@ -39,7 +39,7 @@ start:
 
 lint:
 	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
-	$(COMPOSE_RUN_VUEPRESS) npx eslint test/*.ts
+	$(COMPOSE_RUN_VUEPRESS) yarn eslint test/*.ts
 
 test:
 	$(COMPOSE_RUN_TESTCAFE) scripts/test.sh
