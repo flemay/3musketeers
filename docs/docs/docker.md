@@ -2,8 +2,8 @@
 
 ## Useful Docker images
 
-::: warning
-Using any of the containers below is at your own risk.
+::: warning SECURITY
+Docker images are like any other software. You should do your own research before using them and this list does not make an exception.
 :::
 
 * [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. The `flemay/cookiecutter` image in the [examples][linkExamples] uses this image to build and test the Docker image in GitLab Pipeline (Docker in Docker (DinD)).
