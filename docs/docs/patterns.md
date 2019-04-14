@@ -1,12 +1,16 @@
 # Patterns
 
+In a nutshell, a user calls a Make target which then delegates the Task to be executed in a Container to Docker or Compose.
+
+![pattern-overview](./assets/diagrams-pattern-overview.svg)
+
+This section covers the following patterns:
+
+[[toc]]
+
 ::: tip
 All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
 :::
-
-This section covers different patterns about executing tasks with the 3 Musketeers.
-
-[[toc]]
 
 ## Make
 
