@@ -14,3 +14,31 @@ features:
   details: Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
 footer: MIT Licensed | Copyright © 2018-present flemay
 ---
+
+### Hello World
+
+```yaml
+# docker-compose.yml
+version: '3'
+services:
+  alpine:
+    image: alpine
+```
+
+```makefile
+# Makefile
+
+# echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
+echo:
+	docker-compose run --rm alpine echo 'Hello, World!'
+```
+
+Then simply echo "Hello, World!" with the following command:
+
+```bash
+$ make echo
+```
+
+::: warning REQUIREMENTS
+This example requires Make, Docker, and Docker Compose.
+:::
