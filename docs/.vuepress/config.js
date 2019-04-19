@@ -71,7 +71,7 @@ function getSidebar() {
     {
       title: 'About',
       collapsable: false,
-      children: ['/about/', '/about/contributing'],
+      children: ['/about/', '/about/tools', '/about/contributing'],
     },
     {
       title: 'Docs',
