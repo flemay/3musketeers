@@ -33,9 +33,8 @@ echo:
 	docker-compose run --rm alpine echo 'Hello, World!'
 ```
 
-Then simply echo "Hello, World!" with the following command:
-
 ```bash
+# echo 'Hello, World' with the following command
 $ make echo
 ```
 
