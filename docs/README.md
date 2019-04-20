@@ -15,7 +15,7 @@ features:
 footer: MIT Licensed | Copyright © 2018-present flemay
 ---
 
-### Hello World
+### Hello, World!
 
 ```yaml
 # docker-compose.yml
