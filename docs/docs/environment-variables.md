@@ -1,4 +1,4 @@
-# Environment variables and .env file
+# Environment variables
 
 Development following [the twelve-factor app][link12factor] use the [environment variables to configure][link12factorConfig] their application.
 
@@ -6,7 +6,15 @@ Often there are many environment variables and having them in a `.env` file beco
 
 ## env.template and env.example
 
-`env.template` contains names of all environment variables the application and pipeline use. No values are set here. `env.template` is meant to serve as a template to `.env`.
+::: warning
+As `env.template` and `env.example` files are meant to be part of the source code thus committed, never include sensitive values like passwords.
+:::
+
+`env.template` and `env.example` files provide some help when managing environment variables in a project.
+
+### env.template
+
+`env.template` contains names of all environment variables the application and pipeline use. No values are set here. `# description` can be used to describe an environment variable. `env.template` is mainly used as a template to `.env` in a [CI/CD pipeline][linkCICDAndEnvFile].
 
 ```bash
 # env.template
@@ -14,7 +22,9 @@ ENV_VAR_A
 ENV_VAR_B
 ```
 
-`env.example` defines values so that it can be used straight away with Make like `$ make envfile test ENVFILE=env.example`. It also gives an example of values that are being used in the project.
+### env.example
+
+`env.example` defines values so that it can be used straight away with Make like `$ make envfile test ENVFILE=env.example`. It also gives an example of values that are being used in the project which is very useful for the developers.
 
 ```bash
 # env.example
@@ -22,13 +32,9 @@ ENV_VAR_A=a
 ENV_VAR_B=b
 ```
 
-::: warning
-As `env.template` and `env.example` files are meant to be part of the source code thus committed, never include sensitive values like passwords.
-:::
+## CI/CD and env.template
 
-## CI and env.template
-
-Usually, the `.env` file will be created from the `env.template` with `make envfile`. Given the environment variables have already been set in the CI tool, those will be passed to Docker and Compose.
+Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments. See this [tutorial][linkUnderstandingEnvFile] to better understand the use of `.env` file with Docker and Compose.
 
 ## Day-to-day development
 
@@ -260,6 +266,8 @@ Or both can be used. In this case, environment variables will take precedence ov
 
 
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
+[linkCICDAndEnvFile]: #ci-cd-and-env-template
+[linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose
 
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
