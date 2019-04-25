@@ -32,7 +32,7 @@ ENV_VAR_A=a
 ENV_VAR_B=b
 ```
 
-## CI/CD and env.template
+## CI/CD pipeline
 
 Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments. See this [tutorial][linkUnderstandingEnvFile] to better understand the use of `.env` file with Docker and Compose.
 
@@ -266,7 +266,7 @@ Or both can be used. In this case, environment variables will take precedence ov
 
 
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
-[linkCICDAndEnvFile]: #ci-cd-and-env-template
+[linkCICDAndEnvFile]: #ci-cd-pipeline
 [linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose
 
 [link12factor]: https://12factor.net
