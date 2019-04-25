@@ -3,5 +3,3 @@
 node_modules
 *.log
 .env*
-!.env.template
-!.env.example

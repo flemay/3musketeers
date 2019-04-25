@@ -4,10 +4,10 @@ COMPOSE_UP_NODE_DEV = docker-compose up node_dev
 COMPOSE_RUN_SHELLCHECK = docker-compose run --rm shellcheck
 COMPOSE_RUN_DOCKERIZE = docker-compose run --rm dockerize
 COMPOSE_RUN_TESTCAFE = docker-compose run --rm testcafe
-ENVFILE ?= .env.template
+ENVFILE ?= env.template
 
 all:
-	ENVFILE=.env.example $(MAKE) envfile cleanDocker deps lint start test build
+	ENVFILE=env.example $(MAKE) envfile cleanDocker deps lint start test build
 
 travisPullRequest: envfile cleanDocker deps lint start test build clean
 

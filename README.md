@@ -36,7 +36,7 @@ This repository is the [3musketeers.io][link3Musketeers] website. This section e
 # Development
 
 # create a .env file
-$ make envfile ENVFILE=.env.example
+$ make envfile ENVFILE=env.example
 # Update .env file to set VUEPRESS_HOST=vuepress_dev
 # install dependencies
 $ make deps
@@ -51,7 +51,7 @@ $ make clean
 ```bash
 # Testing
 
-$ make envfile ENVFILE=.env.example
+$ make envfile ENVFILE=env.example
 $ make deps
 $ make lint
 # start vuepress in a container in the background
