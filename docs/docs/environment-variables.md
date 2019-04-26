@@ -4,7 +4,7 @@ Development following [the twelve-factor app][link12factor] use the [environment
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][linkDockerEnvfile] to pass the variables to the containers.
 
-## env.template and env.example
+## Files env.template and env.example
 
 ::: warning
 As `env.template` and `env.example` files are meant to be part of the source code thus committed, never include sensitive values like passwords.
