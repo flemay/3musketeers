@@ -6,10 +6,6 @@ Often there are many environment variables and having them in a `.env` file beco
 
 ## Files env.template and env.example
 
-::: warning
-As `env.template` and `env.example` files are meant to be part of the source code thus committed, never include sensitive values like passwords.
-:::
-
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
 
 ### env.template
@@ -31,6 +27,10 @@ ENV_VAR_B
 ENV_VAR_A=a
 ENV_VAR_B=b
 ```
+
+::: warning
+As `env.template` and `env.example` files are meant to be part of the source code thus committed, never include sensitive values like passwords.
+:::
 
 ## CI/CD pipeline
 
