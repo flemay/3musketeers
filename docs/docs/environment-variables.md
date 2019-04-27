@@ -8,6 +8,10 @@ Often there are many environment variables and having them in a `.env` file beco
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
 
+::: warning
+As `env.template` and `env.example` files are meant to be part of the source code, never include sensitive values like passwords.
+:::
+
 ### env.template
 
 `env.template` contains names of all environment variables the application and pipeline use. No values are set here. `# description` can be used to describe an environment variable. `env.template` is mainly used as a template to `.env` in a [CI/CD pipeline][linkCICDAndEnvFile].
@@ -27,10 +31,6 @@ ENV_VAR_B
 ENV_VAR_A=a
 ENV_VAR_B=b
 ```
-
-::: warning
-As `env.template` and `env.example` files are meant to be part of the source code thus committed, never include sensitive values like passwords.
-:::
 
 ## CI/CD pipeline
 
