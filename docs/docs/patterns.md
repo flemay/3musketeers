@@ -9,7 +9,7 @@ This section covers the following patterns:
 [[toc]]
 
 ::: tip
-All examples in this section works out of the box as long as Docker, Compose, and Make are installed.
+A project does not need to follow only 1 pattern. For instance, a task A can use the pattern `Shell command` and task B, `Shell file`.
 :::
 
 ## Make
@@ -205,7 +205,35 @@ There are situations where calling Docker is required. For instance, if you gene
 ERROR: Couldn't find env file: /github.com/flemay/3musketeers/.env
 ```
 
+## Docker-in-Docker (DinD)
+
+::: warning READ FIRST
+Before using Docker-in-Docker, be sure to read through [Jérôme Petazzoni's excellent blog post on the subject][linkDinD], where he outlines some of the pros and cons of doing so (and some nasty gotchas you might run into).
+:::
+
+This pattern can be used if the host only provide Docker or run your pipeline in containers. If you want to use the 3 Musketeers in your pipeline, you can then use a Docker image that has Make, Docker, and Compose: [flemay/musketeers][linkMusketeersImage].
+
+![pattern-dind](./assets/diagrams-pattern-dind.svg)
+
+The project [docker-cookiecutter][linkCookiecutter] uses this pattern with the GitLab pipeline and the configuration looks like the following:
+
+```yaml
+image: flemay/musketeers:latest
+services:
+  - docker:dind
+variables:
+  DOCKER_HOST: "tcp://docker:2375"
+```
+
+::: tip
+An alternative to using DinD in GitLab is to define your pipeline with each stage running your commands in dedicated container. This could potentially be tested locally using [gitlab-runner][linkGitlabRunner].
+:::
+
 [linkDocker]: docker
 [linkOtherTips]: other-tips
 
+[linkCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
+[linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
 [link3MusketeersGitHub]: https://github.com/flemay/3musketeers
+[linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+[linkGitlabRunner]: https://gitlab.com/gitlab-org/gitlab-runner
