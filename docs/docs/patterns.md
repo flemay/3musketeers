@@ -211,18 +211,29 @@ ERROR: Couldn't find env file: /github.com/flemay/3musketeers/.env
 Before using Docker-in-Docker, be sure to read through [Jérôme Petazzoni's excellent blog post on the subject][linkDinD], where he outlines some of the pros and cons of doing so (and some nasty gotchas you might run into).
 :::
 
-This pattern can be used if the host only provide Docker or run your pipeline in containers. If you want to use the 3 Musketeers in your pipeline, you can then use a Docker image that has Make, Docker, and Compose: [flemay/musketeers][linkMusketeersImage].
+This pattern can be used if the host only provides Docker or runs your pipeline in containers. If you want to use the 3 Musketeers in your pipeline, you can then use a Docker image that has Make, Docker, and Compose: [flemay/musketeers][linkMusketeersImage].
 
 ![pattern-dind](./assets/diagrams-pattern-dind.svg)
 
 The project [docker-cookiecutter][linkCookiecutter] uses this pattern with the GitLab pipeline and the configuration looks like the following:
 
 ```yaml
+# .gitlab-ci.yml
 image: flemay/musketeers:latest
 services:
   - docker:dind
 variables:
   DOCKER_HOST: "tcp://docker:2375"
+
+stages:
+  - testAndPush
+
+testAndPush:
+  stage: testAndPush
+  environment:
+    name: testAndPush
+  script:
+    - ./scripts/gitlab.sh
 ```
 
 ::: tip
