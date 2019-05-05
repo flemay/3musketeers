@@ -1,14 +1,14 @@
 <p align="center"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
 
-[![Build Status][linkTravisCIBadgePart1]][linkTravisCIBadgePart2]
-[![Netlify Status][linkNetlifyBadgePart1]][linkNetlifyBadgePart2]
-[![License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
+[![Build Status][linkTravisCIProjectBadge]][linkTravisCIProject]
+[![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
+[![License](https://img.shields.io/dub/l/vibe-d.svg)][linkLicense]
 
 # 3 Musketeers
 
 The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
 
-![pattern-overview](./docs/about/assets/diagrams-overview.svg)
+![pattern-overview][linkPatternOverview]
 
 ## Why?
 
@@ -75,8 +75,12 @@ $ make deploy
 # See target `travisMasterChange`
 ```
 
+
+[linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
+[linkLicense]: LICENSE
+
 [link3Musketeers]: https://3musketeers.io
-[linkTravisCIBadgePart1]: https://travis-ci.org/flemay/3musketeers.svg?branch=master
-[linkTravisCIBadgePart2]: https://travis-ci.org/flemay/3musketeers
-[linkNetlifyBadgePart1]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
-[linkNetlifyBadgePart2]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
+[linkTravisCIProjectBadge]: https://travis-ci.org/flemay/3musketeers.svg?branch=master
+[linkTravisCIProject]: https://travis-ci.org/flemay/3musketeers
+[linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
+[linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
