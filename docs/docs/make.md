@@ -171,8 +171,8 @@ The symbol `-` allows the execution to continue even if the command failed.
 
 ```makefile
 TAG=v1.0.0
-# _tag create a new tag or re-tags the existing one
-_tag:
+# _overwriteTag creates a new tag or re-tags the existing one
+_overwriteTag:
 	-git tag -d $(TAG)
 	-git push origin :refs/tags/$(TAG)
 	git tag $(TAG)
