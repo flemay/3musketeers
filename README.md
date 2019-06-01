@@ -59,7 +59,7 @@ $ make start
 $ make test
 $ make clean
 
-# See targets `all`, `travisPullRequest`
+# See targets `all`, and `onPullRequest`
 ```
 
 ```bash
@@ -72,7 +72,7 @@ $ make build
 # deploy the website to Netlify
 $ make deploy
 
-# See target `travisMasterChange`
+# See target `onMasterChange`
 ```
 
 
