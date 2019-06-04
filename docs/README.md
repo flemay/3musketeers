@@ -34,7 +34,7 @@ echo:
 ```
 
 ```bash
-# echo 'Hello, World' with the following command
+# echo 'Hello, World!' with the following command
 $ make echo
 ```
 

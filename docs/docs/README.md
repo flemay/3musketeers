@@ -8,7 +8,7 @@ These are the prerequisites for a project that follows the 3 Musketeers:
 - [Compose][linkCompose]
 - Make
 
-## Hello World
+## Hello, World!
 
 Create the two following files in an empty directory:
 

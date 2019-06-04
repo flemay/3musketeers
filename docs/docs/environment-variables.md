@@ -116,7 +116,7 @@ $ cat .env
 $ env | grep ECHO_MESSAGE
 # What is the value of ECHO_MESSAGE?
 $ exit
-$ export ECHO_MESSAGE="Hello World"
+$ export ECHO_MESSAGE="Hello, World!"
 $ make shell
 # Any change to .env?
 $ cat .env
@@ -129,7 +129,7 @@ $ make shell
 # What happened to our .env file?
 $ cat .env
 $ env | grep ECHO_MESSAGE
-# What's the value of ECHO_MESSAGE? Why isn't it "Hello World"?
+# What's the value of ECHO_MESSAGE? Why isn't it "Hello, World!"?
 $ exit
 # Clean the work directory
 $ make clean

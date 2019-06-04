@@ -39,7 +39,7 @@ echo:
 	docker-compose run --rm alpine make _echo
 
 _echo:
-	echo 'Hello World!'
+	echo 'Hello, World!'
 ```
 
 ```bash
@@ -63,7 +63,7 @@ services:
 ```makefile
 # Makefile
 echo:
-	docker-compose run --rm alpine sh -c 'echo Hello World!'
+	docker-compose run --rm alpine sh -c 'echo Hello, World!'
 ```
 
 ```bash
@@ -83,7 +83,7 @@ This pattern is used to build and deploy this very website. See the [code][link3
 ```bash
 # echo.sh
 #!/usr/bin/env sh
-echo Hello World!
+echo Hello, World!
 ```
 
 ```bash
@@ -115,13 +115,13 @@ $ make echo
 ## Languages
 
 
-Languages like Python, JavaScript, Golang, Ruby, etc can be used as an alternative to shell/bash scripts. The following example uses JavaScript to echo hello world.
+Languages like Python, JavaScript, Golang, Ruby, etc can be used as an alternative to shell/bash scripts. The following example uses JavaScript to echo 'Hello, World!'.
 
 ![pattern-language](./assets/diagrams-pattern-language.svg)
 
 ```js
 // helloworld.js
-console.log('Hello World');
+console.log('Hello, World!');
 ```
 
 ```yaml
@@ -147,7 +147,7 @@ $ make echo
 
 ## Task management tool
 
-There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello World" by invoking npm.
+There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello, World!" by invoking npm.
 
 ![pattern-task-tool](./assets/diagrams-pattern-task-tool.svg)
 
@@ -156,9 +156,9 @@ There are many languages and tools out there to make task implementation easy su
 
 {
   "name": "helloworld",
-  "description": "echos Hello World!",
+  "description": "echos 'Hello, World!'",
   "scripts": {
-    "echo": "echo \"Hello World!\""
+    "echo": "echo 'Hello, World!'"
   },
 }
 ```
@@ -192,7 +192,7 @@ Make calls directly Docker instead of Compose. Everything that is done with Comp
 
 ```makefile
 echo:
-	docker run --rm alpine echo Hello World
+	docker run --rm alpine echo 'Hello, World!'
 ```
 
 ```bash
