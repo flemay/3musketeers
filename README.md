@@ -77,7 +77,7 @@ $ make deploy
 
 ## Credits
 
-- [Using ESLint and Prettier in a TypeScript Project][https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project]
+- [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
