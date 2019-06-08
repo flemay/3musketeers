@@ -75,6 +75,10 @@ $ make deploy
 # See target `onMasterChange`
 ```
 
+## Credits
+
+- [Using ESLint and Prettier in a TypeScript Project][https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project]
+
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
 [linkLicense]: LICENSE
