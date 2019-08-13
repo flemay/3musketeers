@@ -61,6 +61,7 @@ module.exports = {
       { text: 'About', link: '/about/' },
       { text: 'Docs', link: '/docs/' },
       { text: 'Examples', link: '/examples/' },
+      { text: 'Blog', link: '/blog/' },
     ],
     sidebar: getSidebar(),
   },
