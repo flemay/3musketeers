@@ -4,12 +4,12 @@
   "description": "Test, build, and deploy your apps from anywhere, the same way.",
   "main": "index.js",
   "dependencies": {
-    "vuepress": "^1.0.0-alpha.44"
+    "vuepress": "^1.0.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
-    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.44",
+    "@vuepress/plugin-back-to-top": "^1.0.3",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
