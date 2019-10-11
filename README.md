@@ -78,6 +78,9 @@ $ make deploy
 ## Credits
 
 - [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
+- https://www.draw.io/
+- https://vuepress.vuejs.org/
+- [Favicon Generator](https://realfavicongenerator.net/)
 
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
