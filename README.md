@@ -75,12 +75,18 @@ $ make deploy
 # See target `onMasterChange`
 ```
 
-## Credits
+## Credits and References
 
 - [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 - https://www.draw.io/
 - https://vuepress.vuejs.org/
 - [Favicon Generator](https://realfavicongenerator.net/)
+- [Netlify](https://www.netlify.com/)
+  - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
+  - [CLI deploy command](https://cli.netlify.com/commands/deploy)
+- [GitHub Actions](https://github.com/features/actions)
+  - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
+
 
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
