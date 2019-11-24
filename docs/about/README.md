@@ -16,7 +16,7 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
 
 ### Consistency
 
-Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like Travis CI, CircleCI, and GitLab CI.
+Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like GitHub Actions, Travis CI, CircleCI, and GitLab CI.
 
 ### Control
 

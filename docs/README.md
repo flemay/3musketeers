@@ -7,7 +7,7 @@ actionText: Get Started →
 actionLink: /docs/
 features:
 - title: Consistency
-  details: 'Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like Travis CI, CircleCI, and GitLab CI.'
+  details: 'Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like GitHub Actions, Travis CI, CircleCI, and GitLab CI.'
 - title: Control
   details: Take control of languages, versions, and tools you need, and version source control your pipelines with your preferred VCS like GitHub and GitLab.
 - title: Confidence

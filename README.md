@@ -1,6 +1,6 @@
 <p align="center"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
 
-[![Build Status][linkTravisCIProjectBadge]][linkTravisCIProject]
+[![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License](https://img.shields.io/dub/l/vibe-d.svg)][linkLicense]
 
@@ -14,7 +14,7 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
 
 ### Consistency
 
-Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like Travis CI, CircleCI, and GitLab CI.
+Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like GitHub Actions, Travis CI, CircleCI, and GitLab CI.
 
 ### Control
 
@@ -87,7 +87,7 @@ $ make deploy
 [linkLicense]: LICENSE
 
 [link3Musketeers]: https://3musketeers.io
-[linkTravisCIProjectBadge]: https://travis-ci.org/flemay/3musketeers.svg?branch=master
-[linkTravisCIProject]: https://travis-ci.org/flemay/3musketeers
+[linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
+[linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
 [linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
