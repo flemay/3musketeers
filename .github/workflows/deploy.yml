@@ -1,0 +1,15 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy
+      run: make ciTest
+      env:
+        TESTCAFE_BROWSER: firefox:headless
+        VUEPRESS_HOST: node

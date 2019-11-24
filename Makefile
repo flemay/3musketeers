@@ -9,9 +9,9 @@ ENVFILE ?= env.template
 all:
 	ENVFILE=env.example $(MAKE) envfile cleanDocker deps lint start test build clean
 
-onPullRequest: envfile cleanDocker deps lint start test build clean
+ciTest: envfile cleanDocker deps lint start test build clean
 
-onMasterChange: envfile cleanDocker deps lint start test build deploy clean
+ciDeploy: envfile cleanDocker deps lint start test build deploy clean
 
 envfile:
 	cp -f $(ENVFILE) .env
