@@ -4,6 +4,20 @@ sidebar: false
 
 # Blog
 
+## Generate Table of Contents with GitHub Actions
+
+<sub>_2019-11-27_</sub>
+
+I love taking notes in Markdown and lately, I've been using GitHub to write (and store) them.
+
+There are many advantages of using GitHub: accessible on different platforms, online, offline, Markdown support, editor agnostic, versioning, simple structure (files/folders), and free.
+
+However, one thing that is not supported out of the box is generating Table of Contents (TOC). With it, I can organize my notes differently and have many of them into a single Markdown file.
+
+Here is how I generate the Table of Contents for my notes using GitHub Actions.
+
+[Read More](https://dev.to/flemay/generate-table-of-contents-with-github-actions-3a0b)
+
 ## The 3 Musketeers: How Make, Docker and Compose enable us to release many times a day
 
 <sub>_2018-02-02_</sub>
