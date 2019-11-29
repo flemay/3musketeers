@@ -102,6 +102,10 @@ It is a good idea to make the target as focus as possible on a specific task. Th
 
 Targets can be composed as a [pipeline target][linkPipelineTargets] which ensures the right order of targets to call for executing a specific task.
 
+## Idempotency
+
+Ideally, a target should be idempotent so that the result of running it once is the same as running it multiple times.
+
 ## Targets .env and envfile
 
 The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][linkEnvironmentVariables] for more details.
