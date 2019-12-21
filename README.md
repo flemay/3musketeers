@@ -59,7 +59,7 @@ $ make start
 $ make test
 $ make clean
 
-# See targets `all`, and `onPullRequest`
+# See targets `all`, and `ciTest`
 ```
 
 ```bash
@@ -72,7 +72,7 @@ $ make build
 # deploy the website to Netlify
 $ make deploy
 
-# See target `onMasterChange`
+# See target `ciDeploy`
 ```
 
 ## Credits and References
