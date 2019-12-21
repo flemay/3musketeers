@@ -2,7 +2,7 @@
 
 ## Docker
 
-Docker is the most important musketeer of the three. Many tasks such as testing, building, running, and deploying can all be done inside a lightweight Docker container — which can be run on different operating system. This ensures you can execute the same tasks, the same way, on different environment like MacOS, Linux, Windows, and CI/CD tools.
+Docker is the most important musketeer of the three. Many tasks such as testing, building, running, and deploying can all be done inside a lightweight Docker container — which can be run on different operating system. The portability of Docker ensures you can execute the same tasks, the same way, on different environment like MacOS, Linux, Windows, and CI/CD tools.
 
 ## Make
 
