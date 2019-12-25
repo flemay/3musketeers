@@ -17,7 +17,7 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	docker-compose pull node testcafe dockerize shellcheck
+	docker-compose pull
 	$(COMPOSE_RUN_NODE) yarn install
 
 shellNode:
