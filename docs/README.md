@@ -12,7 +12,7 @@ features:
   details: Take control of languages, versions, and tools you need, and version source control your pipelines with your preferred VCS like GitHub and GitLab.
 - title: Confidence
   details: Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
-footer: MIT Licensed | Copyright © 2018-present flemay
+footer: MIT Licensed | Copyright © 2018-present Frederic Lemay
 ---
 
 ### Hello, World!
