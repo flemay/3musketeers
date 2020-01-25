@@ -88,6 +88,10 @@ $ make deploy
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
 
 
+## License
+
+This project uses the following license: [MIT][linkLicense]
+
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
 [linkLicense]: LICENSE
