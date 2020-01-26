@@ -28,13 +28,19 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 
 For more information, visit [3musketeers.io][link3Musketeers].
 
-## Usage
+## Getting Started
 
-This repository is the [3musketeers.io][link3Musketeers] website. This section explains the usage on how to develop and deploy it.
+This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it.
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/)
+- [Compose](https://docs.docker.com/compose/)
+- [Make](https://www.gnu.org/software/make/)
+
+### Development
 
 ```bash
-# Development
-
 # create a .env file
 $ make envfile ENVFILE=env.example
 # Update .env file to set VUEPRESS_HOST=vuepress_dev
@@ -48,9 +54,9 @@ $ make test
 $ make clean
 ```
 
-```bash
-# Testing
+### Testing
 
+```bash
 $ make envfile ENVFILE=env.example
 $ make deps
 $ make lint
@@ -62,9 +68,9 @@ $ make clean
 # See targets `all`, and `ciTest`
 ```
 
-```bash
-# Building and Deployment
+### Deployment
 
+```bash
 # create a .env that sets environment variables for production. For instance
 $ make envfile ENVFILE=.env.production
 # building the static website
@@ -75,26 +81,34 @@ $ make deploy
 # See target `ciDeploy`
 ```
 
-## Credits and References
+## Contributing
 
-- [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
-- https://www.draw.io/
-- https://vuepress.vuejs.org/
-- [Favicon Generator](https://realfavicongenerator.net/)
-- [Netlify](https://www.netlify.com/)
-  - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
-  - [CLI deploy command](https://cli.netlify.com/commands/deploy)
-- [GitHub Actions](https://github.com/features/actions)
-  - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
-
+Contributions are greatly appreciated. Please read [contributing.md][linkContributing] for details on how you can contribute to this project.
 
 ## License
 
 This project uses the following license: [MIT][linkLicense]
 
+## Credits
+
+- [Docker](https://www.docker.com/)
+- [Compose](https://docs.docker.com/compose/)
+- [Make](https://www.gnu.org/software/make/)
+- [VuePress](https://vuepress.vuejs.org/)
+- [Favicon Generator](https://realfavicongenerator.net/)
+- [draw.io](https://www.draw.io/)
+- [Netlify](https://www.netlify.com/)
+  - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
+  - [CLI deploy command](https://cli.netlify.com/commands/deploy)
+- [GitHub Actions](https://github.com/features/actions)
+  - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
+- [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
+
+
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
 [linkLicense]: LICENSE
+[linkContributing]: ./docs/about/contributing.md
 
 [link3Musketeers]: https://3musketeers.io
 [linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
