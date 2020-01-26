@@ -48,6 +48,7 @@ $ make envfile ENVFILE=env.example
 $ make deps
 # start vuepress server in a container for local development
 $ make startDev
+# access the website in your browser at http://localhost:8080/
 # in a different shell session
 $ make lint
 $ make test
