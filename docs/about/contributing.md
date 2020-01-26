@@ -18,6 +18,15 @@ Feedback is greatly appreciated. Is there anything from the documentation that i
 
 ## Contributing code
 
-The project follows the typical GitHub pull request model. Before starting any work, please either comment on an existing issue, or file a new one. Once a Pull Request has been made, the GitHub Actions Test pipeline will kick off and the result will be displayed in the Pull Request's Checks section on GitHub.
+The project follows the typical GitHub pull request model. Before starting any work, please either comment on an existing issue, or file a new one.
+
+1. Fork this repository.
+1. Create a branch: `git checkout -b <branch_name>`
+1. Make your changes
+1. [Test][linkReadmeTest]
+1. Commit your changes: `git commit -m '<commit_message>'`
+1. Push to the original branch: `git push origin <project_name>/<location>`
+1. Create the pull request.
 
 [link3musketeersrepo]: https://github.com/flemay/3musketeers
+[linkReadmeTest]: https://github.com/flemay/3musketeers#testing
