@@ -62,7 +62,7 @@ For more information, visit [3musketeers.io][link3Musketeers].
 
 ## Website
 
-This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it.
+This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it using the 3 Musketeers.
 
 ### Prerequisites
 
@@ -116,7 +116,7 @@ $ make deploy
 
 ## Contributing
 
-Contributions are greatly appreciated. Please read [contributing.md][linkContributing] for details on how you can contribute to this project.
+Contributions are greatly appreciated. Please read [contributing.md][linkContributing] for more details. Thank you for your help.
 
 ## License
 
