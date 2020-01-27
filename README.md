@@ -24,11 +24,43 @@ Take control of languages, versions, and tools you need, and version source cont
 
 Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
 
+## Prerequisites
+
+- [Docker](https://www.docker.com/)
+- [Compose](https://docs.docker.com/compose/)
+- [Make](https://www.gnu.org/software/make/)
+
+## Usage
+
+Create the two following files:
+
+```yaml
+# file: docker-compose.yml
+version: '3'
+services:
+  alpine:
+    image: alpine
+```
+
+```makefile
+# file: Makefile
+
+# echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
+echo:
+	docker-compose run --rm alpine echo 'Hello, World!'
+```
+
+Then simply echo "Hello, World!" with the following command:
+
+```bash
+$ make echo
+```
+
 <br>
 
 For more information, visit [3musketeers.io][link3Musketeers].
 
-## Getting Started
+## Development
 
 This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it.
 
