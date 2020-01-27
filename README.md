@@ -60,7 +60,7 @@ $ make echo
 
 For more information, visit [3musketeers.io][link3Musketeers].
 
-## Development
+## Website
 
 This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it.
 
@@ -75,7 +75,7 @@ This repository is the [3musketeers.io][link3Musketeers] website. This section e
 ```bash
 # create a .env file
 $ make envfile ENVFILE=env.example
-# Update .env file to set VUEPRESS_HOST=vuepress_dev
+# Update .env file to set VUEPRESS_HOST=node_dev
 # install dependencies
 $ make deps
 # start vuepress server in a container for local development
