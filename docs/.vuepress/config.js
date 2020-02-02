@@ -40,6 +40,25 @@ module.exports = {
         searchMaxSuggestions: 10,
       },
     ],
+    [
+      '@vuepress/blog',
+      {
+        directories: [
+          {
+            // Unique ID of current classification
+            id: 'post',
+            // Target directory
+            dirname: '_posts',
+            // Path of the `entry page` (or `list page`)
+            path: '/posts',
+            itemPermalink: '/posts/:year/:month/:day/:slug',
+          },
+        ],
+        sitemap: {
+          hostname: 'https://3musketeers.io'
+        },
+      },
+    ],
   ],
   themeConfig: {
     lastUpdated: true,
