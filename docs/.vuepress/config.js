@@ -50,7 +50,7 @@ module.exports = {
             // Target directory
             dirname: '_posts',
             // Path of the `entry page` (or `list page`)
-            path: '/posts',
+            path: '/posts/',
             itemPermalink: '/posts/:year/:month/:day/:slug',
           },
         ],
@@ -69,6 +69,7 @@ module.exports = {
     docsBranch: 'master',
     editLinks: true,
     editLinkText: 'Edit this page on GitHub',
+    sidebar: 'auto',
     nav: [
       { text: 'About', link: '/about/' },
       { text: 'Docs', link: '/docs/' },
