@@ -50,8 +50,8 @@ module.exports = {
             // Target directory
             dirname: '_posts',
             // Path of the `entry page` (or `list page`)
-            path: '/posts/',
-            itemPermalink: '/posts/:year/:month/:day/:slug',
+            path: '/blog/',
+            itemPermalink: '/blog/:year/:month/:day/:slug',
           },
         ],
         sitemap: {
