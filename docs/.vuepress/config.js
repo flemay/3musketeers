@@ -76,17 +76,26 @@ module.exports = {
       { text: 'Examples', link: '/examples/' },
       { text: 'Blog', link: '/blog/' },
     ],
-    sidebar: getSidebar(),
+    sidebar: 'auto',
+    sidebar: {
+      '/about/': getAboutSidebar(),
+      '/docs/': getDocsSidebar(),
+    },
   },
 }
 
-function getSidebar() {
+function getAboutSidebar() {
   return [
     {
       title: 'About',
       collapsable: false,
       children: ['/about/', '/about/tools', '/about/contributing'],
-    },
+    }
+  ]
+}
+
+function getDocsSidebar() {
+  return [
     {
       title: 'Docs',
       collapsable: false,
@@ -98,14 +107,7 @@ function getSidebar() {
         '/docs/compose',
         '/docs/environment-variables',
         '/docs/other-tips',
-      ],
-    },
-    {
-      title: 'Examples',
-      collapsable: false,
-      children: [
-        '/examples/'
-      ],
-    },
+      ]
+    }
   ]
 }
