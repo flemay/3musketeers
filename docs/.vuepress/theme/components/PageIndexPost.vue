@@ -1,10 +1,12 @@
 <template>
   <main class="page">
     <div class="theme-default-content">
-      <div v-for="page in pages" :key="page.key">
-        <div>
-          {{ page.title }}
-        </div>
+      <h1>Blog</h1>
+      <br>
+      <div v-for="page in pages">
+        <h3>{{ page.frontmatter.title }}</h3>
+        <p>{{ page.frontmatter.summary }}</p>
+        <a :href="page.path">Read more</a>
       </div>
     </div>
   </main>
