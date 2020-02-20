@@ -146,6 +146,10 @@ $ make clean
 
 The target `envfile` creates the file `.env` and there are different ways to implement it.
 
+::: tip
+Examples below use Alpine container to create file ([Docker pattern][linkPatternsDocker]). Most cases, using the host `cp` (and `rm`) is fine.
+:::
+
 ### Explicit
 
 This way requires to call envfile to create the file `.env`.
@@ -154,20 +158,20 @@ This way requires to call envfile to create the file `.env`.
 DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
 
-# envfile creates/overwrites .env with $(ENVFILE)
+# envfile overwrites .env with $(ENVFILE)
 envfile:
 	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
 
-# target requiring .env
+# target requires .env
 target: .env
 ```
 
 ```bash
-# fails if .env does not exist
+# fail if .env does not exist
 $ make target
-# create .env based on env.template
+# overwrite .env based on env.template
 $ make envfile
-# create .env with a specific file
+# overwrite .env with a specific file
 $ make envfile ENVFILE=env.example
 # execute a target with a specific .env file
 $ make envfile target ENVFILE=env.example
@@ -179,24 +183,32 @@ $ make envfile target ENVFILE=env.example
 DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
 
-# Create .env based on env.template if .env does not exist
+# .env creates .env based on $(ENVFILE) if .env does not exist
 .env:
-	$(DOCKER_RUN_ALPINE) cp env.template .env
+	$(MAKE) envfile
 
-# Create/Overwrite .env with $(ENVFILE)
+# envfile overwrites .env with $(ENVFILE)
 envfile:
 	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
 
-# target requiring .env
+# target requires .env
 target: .env
+
+# clean removes the .env
+clean:
+  $(DOCKER_RUN_ALPINE) rm .env
 ```
 
 ```bash
-# create .env based on env.template if it does not exist
+# create, if it does not exist, .env based on env.template
 $ make target
-# create .env based on env.template
+# create .env, if it does not exist, based on env.template
+$ make .env
+# create .env, if it does not exist, based on $(ENVFILE)
+$ make .env ENVFILE=env.example
+# overwrite .env based on env.template
 $ make envfile
-# create .env with a specific file
+# overwrite .env with a specific file
 $ make envfile ENVFILE=env.example
 # execute a target with a specific .env file
 $ make envfile target ENVFILE=env.example
@@ -206,15 +218,16 @@ $ make envfile target ENVFILE=env.example
 
 ```makefile
 DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
+ENVFILE ?= env.template
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
 else
 	ENVFILE_TARGET=.env
 endif
 
-# Create .env based on env.template if .env does not exist
+# Create .env based on $(ENVFILE) if .env does not exist
 .env:
-	$(DOCKER_RUN_ALPINE) cp env.template .env
+	$(MAKE) envfile
 
 # Create/Overwrite .env with $(ENVFILE)
 envfile:
@@ -222,14 +235,20 @@ envfile:
 
 # target requiring $(ENVFILE_TARGET)
 target: $(ENVFILE_TARGET)
+
+# clean removes the .env
+clean:
+  $(DOCKER_RUN_ALPINE) rm .env
 ```
 
 ```bash
-# create .env based on env.template if it does not exist
+# create .env, if it does not exist, based on env.template
 $ make target
-# create .env (if it does not exist) based on env.template
+# create .env, if it does not exist, based on env.template
 $ make .env
-# create/overwrite .env with a specific file
+# create .env, if it does not exist, a specific file
+$ make .env ENVFILE=env.example
+# overwrite .env with a specific file
 $ make envfile ENVFILE=env.example
 # execute a target with a specific .env file
 $ make envfile target ENVFILE=env.example
@@ -268,6 +287,7 @@ Or both can be used. In this case, environment variables will take precedence ov
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 [linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose
+[linkPatternsDocker]: patterns#docker
 
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
