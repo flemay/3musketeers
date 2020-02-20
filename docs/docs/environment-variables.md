@@ -155,7 +155,8 @@ Examples below use Alpine container to create file ([Docker pattern][linkPattern
 This way requires to call envfile to create the file `.env`.
 
 ```makefile
-DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
+MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
 
 # envfile overwrites .env with $(ENVFILE)
@@ -180,7 +181,8 @@ $ make envfile target ENVFILE=env.example
 ### Semi-Implicit
 
 ```makefile
-DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
+MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
 
 # .env creates .env based on $(ENVFILE) if .env does not exist
@@ -217,7 +219,8 @@ $ make envfile target ENVFILE=env.example
 ### Implicit
 
 ```makefile
-DOCKER_RUN_ALPINE = docker run --rm -v $(PWD):/opt/app -w /opt/app alpine
+MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
