@@ -147,7 +147,7 @@ $ make clean
 The target `envfile` creates the file `.env` and there are different ways to implement it.
 
 ::: tip
-Examples below use Alpine container to create file ([Docker pattern][linkPatternsDocker]). Most cases, using the host `cp` (and `rm`) is fine.
+Examples below use Alpine container ([Docker pattern][linkPatternsDocker]) to create `.env` file. However, in most cases, using the host `cp` (and `rm`) is fine.
 :::
 
 ### Explicit
@@ -290,7 +290,7 @@ Or both can be used. In this case, environment variables will take precedence ov
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 [linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose
-[linkPatternsDocker]: patterns#docker
+[linkPatternsDocker]: patterns.html#docker
 
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config

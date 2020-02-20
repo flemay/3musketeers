@@ -205,6 +205,8 @@ There are situations where calling Docker is required. For instance, if you gene
 ERROR: Couldn't find env file: /github.com/flemay/3musketeers/.env
 ```
 
+More details in [Environment variables][linkEnvironmentVariables] section.
+
 ## Docker-in-Docker (DinD)
 
 ::: warning READ FIRST
@@ -242,6 +244,7 @@ An alternative to using DinD in GitLab is to define your pipeline with each stag
 
 [linkDocker]: docker
 [linkOtherTips]: other-tips
+[linkEnvironmentVariables]: environment-variables.html#make-targets-envfile-and-env
 
 [linkCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
