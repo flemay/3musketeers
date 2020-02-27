@@ -221,16 +221,15 @@ $ make envfile target ENVFILE=env.example
 ```makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
-ENVFILE ?= env.template
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
 else
 	ENVFILE_TARGET=.env
 endif
 
-# Create .env based on $(ENVFILE) if .env does not exist
+# Create .env based on env.template if .env does not exist
 .env:
-	$(MAKE) envfile
+	$(MAKE) envfile ENVFILE=env.template
 
 # Create/Overwrite .env with $(ENVFILE)
 envfile:
