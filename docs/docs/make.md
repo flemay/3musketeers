@@ -140,11 +140,11 @@ _depsNode:
 
 _packNodeModules:
 	rm -f $(NODE_MODULES_ARTIFACT)
-	tar czf $(NODE_MODULES_ARTIFACT) $(NODE_MODULES_DIR)
+	tar -czf $(NODE_MODULES_ARTIFACT) $(NODE_MODULES_DIR)
 
 _unpackNodeModules: $(NODE_MODULES_ARTIFACT)
 	rm -fr $(NODE_MODULES_DIR)
-	tar -xzf $(NODE_MODULES_ARTIFACT)
+	tar -xhzf $(NODE_MODULES_ARTIFACT)
 ```
 
 ## Calling multiple targets in a single command
