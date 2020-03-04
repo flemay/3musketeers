@@ -144,7 +144,7 @@ _packNodeModules:
 
 _unpackNodeModules: $(NODE_MODULES_ARTIFACT)
 	rm -fr $(NODE_MODULES_DIR)
-	tar -xhzf $(NODE_MODULES_ARTIFACT)
+	tar -xzf $(NODE_MODULES_ARTIFACT)
 ```
 
 ## Calling multiple targets in a single command
