@@ -114,38 +114,40 @@ The target `envfile` creates the file `.env` which is very useful for a project 
 
 It is a good thing to have a target `deps` for installing all the dependencies required to test, build, and deploy an application.
 
-A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache and means subsequent CI/CD agents don’t need to re-install the dependencies again when testing and building. Moreover, it is faster to pass along a tar file than a folder with many files.
+A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache. Subsequent CI/CD stages will have the exact same dependencies. Moreover, it is faster to pass along a tar file than a folder with many files.
 
 ```makefile
-COMPOSE_RUN_NODE=docker-compose run --rm node
-NODE_MODULES_DIR=node_modules
-NODE_MODULES_ARTIFACT=$(NODE_MODULES_DIR).tar.gz
+COMPOSE_RUN_NODE = docker-compose run --rm node
+DEPS_DIRS = node_modules
+DEPS_ARTIFACT = $(DEPS_DIRS).tar.gz
 
-# deps will create the folder node_modules and the file node_modules.tar.gz
 deps:
-	$(COMPOSE_RUN_NODE) make _depsNode _packNodeModules
+	$(COMPOSE_RUN_NODE) make _depsNPMInstall
 
-# test requires the folder node_modules
-test: $(NODE_MODULES_DIR)
-	$(COMPOSE_RUN_NODE) make _test
-.PHONY: test
+depsPack:
+	$(COMPOSE_RUN_NODE) make _packDeps
 
-# if folder node_modules exist, do nothing
-# if folder node_modules does not exist, unpack file node_modules.tar.gz
-$(NODE_MODULES_DIR):
-	$(COMPOSE_RUN_NODE) make _unpackNodeModules
+depsUnpack:
+	$(COMPOSE_RUN_NODE) make _unpackDeps
 
-_depsNode:
+_depsNPMInstall:
 	npm install
 
-_packNodeModules:
-	rm -f $(NODE_MODULES_ARTIFACT)
-	tar -czf $(NODE_MODULES_ARTIFACT) $(NODE_MODULES_DIR)
+_depsPack:
+	rm -f $(DEPS_ARTIFACT)
+	tar -czf $(DEPS_ARTIFACT) $(DEPS_DIRS)
 
-_unpackNodeModules: $(NODE_MODULES_ARTIFACT)
-	rm -fr $(NODE_MODULES_DIR)
-	tar -xzf $(NODE_MODULES_ARTIFACT)
+_depsUnpack: $(DEPS_ARTIFACT)
+	rm -fr $(DEPS_DIRS)
+	tar -xzf $(DEPS_ARTIFACT)
 ```
+
+It is up to the CI/CD pipeline to call the targets **explicitly** in the right order, i.e: `make deps depsPack` and `make depsUnpack test`. Alternatively, the Makefile can have targets like `ciDeps: deps depsPack` and `ciTest: depsUnpack test`.
+
+::: tip DEPS_DIRS
+DEPS_DIRS is language agnostic and can include many directories:
+DEPS_DIRS = node_modules vendor packages/**/dist/*
+:::
 
 ## Calling multiple targets in a single command
 
