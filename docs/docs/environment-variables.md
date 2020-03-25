@@ -32,6 +32,33 @@ ENV_VAR_A=a
 ENV_VAR_B=b
 ```
 
+### Pros
+
+- Simple
+  - Understanding the concept is pretty straight forward
+  - Does not require any script
+- Application agnostic
+   - This pattern can be used for any environment variable of any kind of application
+- Descriptive and explicit
+  - `env.template` tells what environment variables are used by the project
+  - `env.example` shows what value those environment variables can have
+  - Environment variables needs to explicitly be added
+- Flexible
+  - The way the environment variables are set is up to you. They can be included in the `.env` file when developing locally or exported in a CD/CI host
+
+### Cons
+
+- Environment variable management is not centralized
+  - Adding, modifying, or deleting environment variables may impact multiple files such as
+    - env.template
+    - env.example
+    - Makefile
+    - docker-compose.yml
+    - application source code
+    - pipeline-as-code file
+- Error prone
+  - It is easy to forget to add a new environment variable to the `env.template/env.example` files
+
 ## CI/CD pipeline
 
 Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments. See this [tutorial][linkUnderstandingEnvFile] to better understand the use of `.env` file with Docker and Compose.
