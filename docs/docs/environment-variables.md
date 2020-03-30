@@ -170,7 +170,7 @@ $ make clean
 ```
 
 
-## Crate .env file with Make and Compose
+## Create .env file with Make and Compose
 
 This section shows some ways to create `.env` file with Make and Compose with the given `docker-compose.yml` file:
 
