@@ -189,7 +189,7 @@ services:
 
 ### Explicit
 
-Create `.env` file explicitly with `envfile` target otherwise targets requiring `.env` will fail.
+Targets requiring `.env` file will fail if the it does not exist. The `.env` file can be created with `envfile` target.
 
 ```Makefile
 # Makefile
@@ -220,7 +220,7 @@ $ make envfile target ENVFILE=env.example
 
 ### Semi-Implicit
 
-Create `.env` file automatically if it does not exist when targets require `.env` or can be overwritten by calling `envfile ENVFILE=.env.example`.
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by calling `make envfile ENVFILE=.env.example`.
 
 ```makefile
 # Makefile
@@ -261,7 +261,7 @@ $ make envfile target ENVFILE=env.example
 
 ### Implicit
 
-Create `.env` file implicitly and can be overwritten by setting `ENVFILE` environment variable.
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by setting `ENVFILE` environment variable.
 
 ```makefile
 # Makefile
@@ -314,7 +314,7 @@ Examples below use Alpine container ([Docker pattern][linkPatternsDocker]) to cr
 
 ### Explicit
 
-Create `.env` file explicitly with `envfile` target otherwise targets requiring `.env` will fail.
+Targets requiring `.env` file will fail if the it does not exist. The `.env` file can be created with `envfile` target.
 
 ```makefile
 # Makefile
@@ -348,7 +348,7 @@ $ make envfile target ENVFILE=env.example
 
 ### Semi-Implicit
 
-Create `.env` file automatically if it does not exist when targets require `.env` or can be overwritten by calling `envfile ENVFILE=.env.example`.
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by calling `make envfile ENVFILE=.env.example`.
 
 ```makefile
 # Makefile
@@ -390,7 +390,7 @@ $ make envfile target ENVFILE=env.example
 
 ### Implicit
 
-Create `.env` file implicitly and can be overwritten by setting `ENVFILE` environment variable.
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by setting `ENVFILE` environment variable.
 
 ```makefile
 # Makefile
