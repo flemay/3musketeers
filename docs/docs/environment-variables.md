@@ -169,7 +169,6 @@ $ exit
 $ make clean
 ```
 
-
 ## Create .env file with Make and Compose
 
 This section shows some ways to create `.env` file with Make and Compose with the given `docker-compose.yml` file:
@@ -193,6 +192,7 @@ services:
 Create `.env` file explicitly with `envfile` target otherwise targets requiring `.env` will fail.
 
 ```Makefile
+# Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ENVFILE ?= env.template
 
@@ -223,6 +223,7 @@ $ make envfile target ENVFILE=env.example
 Create `.env` file automatically if it does not exist when targets require `.env` or can be overwritten by calling `envfile ENVFILE=.env.example`.
 
 ```makefile
+# Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ENVFILE ?= env.template
 
@@ -263,6 +264,7 @@ $ make envfile target ENVFILE=env.example
 Create `.env` file implicitly and can be overwritten by setting `ENVFILE` environment variable.
 
 ```makefile
+# Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
@@ -315,6 +317,7 @@ Examples below use Alpine container ([Docker pattern][linkPatternsDocker]) to cr
 Create `.env` file explicitly with `envfile` target otherwise targets requiring `.env` will fail.
 
 ```makefile
+# Makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
@@ -348,6 +351,7 @@ $ make envfile target ENVFILE=env.example
 Create `.env` file automatically if it does not exist when targets require `.env` or can be overwritten by calling `envfile ENVFILE=.env.example`.
 
 ```makefile
+# Makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
 ENVFILE ?= env.template
@@ -389,6 +393,7 @@ $ make envfile target ENVFILE=env.example
 Create `.env` file implicitly and can be overwritten by setting `ENVFILE` environment variable.
 
 ```makefile
+# Makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 DOCKER_RUN_ALPINE = docker run --rm -v $(MAKEFILE_DIR):/opt/app -w /opt/app alpine
 ifdef ENVFILE
