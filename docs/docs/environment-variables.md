@@ -189,7 +189,7 @@ services:
 
 ### Explicit
 
-Targets requiring `.env` file will fail if the it does not exist. The `.env` file can be created with `envfile` target.
+Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
 ```Makefile
 # Makefile
@@ -314,7 +314,7 @@ Examples below use Alpine container ([Docker pattern][linkPatternsDocker]) to cr
 
 ### Explicit
 
-Targets requiring `.env` file will fail if the it does not exist. The `.env` file can be created with `envfile` target.
+Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
 ```makefile
 # Makefile
