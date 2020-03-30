@@ -190,7 +190,7 @@ services:
 
 ### Explicit
 
-This way requires to call envfile to create the file `.env`.
+Create `.env` file explicitly with `envfile` target otherwise targets requiring `.env` will fail.
 
 ```Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
@@ -204,7 +204,7 @@ target: .env
 
 # clean removes the .env
 clean: .env
-	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm .env
+	$(COMPOSE_RUN_ALPINE) rm .env
 ```
 
 ```bash
@@ -219,6 +219,8 @@ $ make envfile target ENVFILE=env.example
 ```
 
 ### Semi-Implicit
+
+Create `.env` file automatically if it does not exist when targets require `.env` or can be overwritten by calling `envfile ENVFILE=.env.example`.
 
 ```makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
@@ -238,7 +240,7 @@ target: .env
 
 # clean removes the .env
 clean: .env
-	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm .env
+	$(COMPOSE_RUN_ALPINE) rm .env
 ```
 
 ```bash
@@ -258,6 +260,8 @@ $ make envfile target ENVFILE=env.example
 
 ### Implicit
 
+Create `.env` file implicitly and can be overwritten by setting `ENVFILE` environment variable.
+
 ```makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ifdef ENVFILE
@@ -276,11 +280,11 @@ envfile:
 
 # target requiring $(ENVFILE_TARGET)
 target: $(ENVFILE_TARGET)
-	$(DOCKER_RUN_ALPINE) cat .env
+	$(COMPOSE_RUN_ALPINE) cat .env
 
 # clean removes the .env
 clean: $(ENVFILE_TARGET)
-  $(DOCKER_RUN_ALPINE) rm .env
+  $(COMPOSE_RUN_ALPINE) rm .env
 ```
 
 ```bash
@@ -308,7 +312,7 @@ Examples below use Alpine container ([Docker pattern][linkPatternsDocker]) to cr
 
 ### Explicit
 
-This way requires to call envfile to create the file `.env`.
+Create `.env` file explicitly with `envfile` target otherwise targets requiring `.env` will fail.
 
 ```makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
@@ -340,6 +344,8 @@ $ make envfile target ENVFILE=env.example
 ```
 
 ### Semi-Implicit
+
+Create `.env` file automatically if it does not exist when targets require `.env` or can be overwritten by calling `envfile ENVFILE=.env.example`.
 
 ```makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
@@ -379,6 +385,8 @@ $ make envfile target ENVFILE=env.example
 ```
 
 ### Implicit
+
+Create `.env` file implicitly and can be overwritten by setting `ENVFILE` environment variable.
 
 ```makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
