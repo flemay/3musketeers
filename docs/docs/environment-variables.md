@@ -187,6 +187,10 @@ services:
     working_dir: /opt/app
 ```
 
+::: tip
+Even though docker-compose.yml has the line `env_file: ${ENVFILE:-.env}`, which suggests the `ENVFILE` environment variable can be used instead of `.env`, the ways below always use `.env`. However, the line is required when creating the `.env` file, otherwise docker-compose fails if `.env` file is specified but does not exist.
+:::
+
 ### Explicit
 
 Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
