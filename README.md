@@ -1,4 +1,7 @@
 <p align="center"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
@@ -114,13 +117,24 @@ $ make deploy
 # See target `ciDeploy`
 ```
 
-## Contributing
+## Contributors ✨
 
-Contributions are greatly appreciated. Please read [contributing.md][linkContributing] for more details. Thank you for your help.
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-## License
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/flemay"><img src="https://avatars1.githubusercontent.com/u/461102?v=4" width="100px;" alt=""/><br /><sub><b>Frederic Lemay</b></sub></a><br /><a href="#blog-flemay" title="Blogposts">📝</a> <a href="https://github.com/flemay/3musketeers/commits?author=flemay" title="Code">💻</a> <a href="#content-flemay" title="Content">🖋</a> <a href="#design-flemay" title="Design">🎨</a> <a href="#example-flemay" title="Examples">💡</a> <a href="#infra-flemay" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-flemay" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
 
-This project uses the following license: [MIT][linkLicense]
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome! More information can be found in [contributing.md][linkContributing].
 
 ## Credits
 
@@ -137,7 +151,9 @@ This project uses the following license: [MIT][linkLicense]
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
 - [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 
+## License
 
+This project uses the following license: [MIT][linkLicense]
 
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
 [linkLicense]: LICENSE

@@ -1,0 +1,30 @@
+{
+  "projectName": "3musketeers",
+  "projectOwner": "flemay",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "flemay",
+      "name": "Frederic Lemay",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/461102?v=4",
+      "profile": "https://github.com/flemay",
+      "contributions": [
+        "blog",
+        "code",
+        "content",
+        "design",
+        "example",
+        "infra",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
