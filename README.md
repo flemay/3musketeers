@@ -3,9 +3,7 @@
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License](https://img.shields.io/dub/l/vibe-d.svg)][linkLicense]
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # 3 Musketeers
 
