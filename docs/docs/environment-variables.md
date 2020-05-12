@@ -188,7 +188,7 @@ services:
 ```
 
 ::: tip
-Even though docker-compose.yml has the line `env_file: ${ENVFILE:-.env}`, which suggests the `ENVFILE` environment variable can be used instead of `.env`, the ways below always use `.env`. However, the line is required when creating the `.env` file, otherwise docker-compose fails if `.env` file is specified but does not exist.
+Even though docker-compose.yml has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which suggests the `ENVFILE` environment variable can be used instead of `.env`, the ways below always use `.env`. However, the line is required when creating the `.env` file, otherwise docker-compose fails if `.env` file is specified but does not exist.
 :::
 
 ### Explicit
@@ -475,3 +475,4 @@ Or both can be used. In this case, environment variables will take precedence ov
 [link12factorConfig]: https://12factor.net/config
 [linkDockerEnvfile]: https://docs.docker.com/compose/env-file/
 [linkAssumeRole]: https://github.com/remind101/assume-role
+[linkDockerComposeVarialeSubstitution]: https://docs.docker.com/compose/compose-file/#variable-substitution
