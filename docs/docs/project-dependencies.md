@@ -11,7 +11,7 @@ It is not uncommon for a project to use a mix of the ways described in this sect
 This way relies on official Docker images to deal with dependencies. For instance, a NodeJS project may use the official NodeJS Docker image to install the node modules, run and test the application. Usually third party packages will be shared with the host and containers. The main benefit of this approach is that there is no need to maintain any Docker image.
 
 :::tip
-The [3 Musketeers website](https://github.com/flemay/3musketeers) is built by using this approach.
+The [3 Musketeers website](https://github.com/flemay/3musketeers) is built with this approach.
 :::
 
 ## Custom Docker images
@@ -28,7 +28,7 @@ This approach is used to build [fredericlemay.com](https://github.com/flemay/fre
 
 ## Share dependencies with host or not
 
-All the approaches discussed above can share third party dependencies with the host, usually by mounting a host directory to a Docker container and letting the container install the dependencies. An example would be like this website where a NodeJS container installs node modules and the `node_modules` folder is shared with the host. This is useful when developing as your IDE of choice can do autocomplete if the host supports the dependencies. Those dependencies can also be compressed and passed along the pipeline stages which is usually faster that re-installing them.
+All the approaches discussed above can share third party dependencies with the host, usually by mounting a host directory to a Docker container and letting the container install the dependencies. An example would be like this website where a NodeJS container installs the packages and the `node_modules` folder is shared with the host. This is useful when developing as your IDE of choice can do autocomplete if the host supports the dependencies. Those dependencies can also be compressed and passed along the pipeline stages which is usually faster that re-installing them.
 
 Of course, installing the dependencies when building a Docker image is another viable option especially if you do not need autocompletion, or your pipeline is basically one stage.
 

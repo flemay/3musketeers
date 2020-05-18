@@ -85,8 +85,8 @@ function getDocsSidebar() {
         '/docs/make',
         '/docs/docker',
         '/docs/compose',
-        '/docs/environment-variables',
         '/docs/project-dependencies',
+        '/docs/environment-variables',
         '/docs/other-tips',
       ]
     }
