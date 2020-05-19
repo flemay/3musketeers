@@ -10,21 +10,62 @@ It is not uncommon for a project to combine the approaches. For instance, a proj
 
 This way relies on official Docker images to deal with dependencies. For instance, a NodeJS project may use the official NodeJS Docker image to install the node modules, run and test the application. Usually third party packages will be shared with the host and containers. The main benefit of this approach is that there is no need to maintain any Docker image.
 
-:::tip
-The [3 Musketeers website](https://github.com/flemay/3musketeers) is built with this approach.
-:::
+Example from The [3 Musketeers repository](https://github.com/flemay/3musketeers):
+
+```yml
+# docker-compose.yml
+version: '3.7'
+services:
+  node:
+    image: node
+# ...
+  testcafe:
+    image: testcafe/testcafe
+# ...
+  dockerize:
+    image: jwilder/dockerize
+```
 
 ## Custom Docker images
 
-Relying on official images may not be always possible. For instance, you may have specific dependencies and custom code to deploy softwares in the cloud, that other projects rely on when deploying. In this case, you would be responsible to build, test and deploy your custom image to a Docker registry. This is very useful when many projects depends on but it requires you to maintain it.
+Official images may not always solve a project's dependency requirements and if other other projects share the same requirements then custom Docker images may be a good fit. The images are built by the organization, and deployed to a Docker registry. From a project perspective, it is the same as using official Docker images except, this time, the organization is responsible of maintaining them.
+
+```yml
+# docker-compose.yml
+version: '3.7'
+services:
+  theservice:
+    image: theorganisation/theimage
+```
 
 ## Local custom Docker images
 
-If a project has specific dependency requirements, then creating (and maintaining) a custom Docker image may be overkill. Instead, the project could have a Dockerfile that encapsulates the dependencies which would require the image to be built locally before use. This also works well if the project uses a CI tool where there is only one stage (such as GitHub Actions) because there is no need to share dependencies between stages.
+If a project has specific dependency requirements, then creating (and maintaining) custom Docker images may be overkill. Instead, the project could have a Dockerfile that encapsulates the dependencies. This approach requires the image to be built locally before use.
 
-:::tip
-This approach is used to build [fredericlemay.com](https://github.com/flemay/fredericlemay-com), a Hugo website, and deploy to Netlify.
-:::
+Example from [fredericlemay.com repository](https://github.com/flemay/fredericlemay-com):
+
+```Dockerfile
+FROM alpine:latest
+RUN apk --update add bash curl nodejs npm git \
+  && rm -rf /var/cache/apk/*
+# install Hugo
+# ...
+# install node modules
+RUN npm install -g \
+    postcss-cli \
+    autoprefixer \
+# ...
+```
+
+```yml
+# docker-compose.yml
+version: '3.7'
+services:
+  mycontainer:
+    build: .
+    image: flemay/fredericlemay-com:local
+# ...
+```
 
 ## Share dependencies with host or not
 
