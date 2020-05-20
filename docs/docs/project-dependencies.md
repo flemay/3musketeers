@@ -69,10 +69,12 @@ services:
 
 ## Share dependencies with host or not
 
-All the approaches discussed above can share third party dependencies with the host, usually by mounting a host directory to a Docker container and letting the container install the dependencies. An example would be like this website where a NodeJS container installs the packages and the `node_modules` folder is shared with the host. This is useful when developing as IDEs can provide autocompletion. The dependencies can also be compressed and passed along the pipeline stages which is usually faster that re-installing them.
+All the approaches discussed above can share third party dependencies with the host, usually by mounting a host directory to a Docker container and letting the container install the dependencies. An example would be like this website where a NodeJS container installs the packages and the `node_modules` folder is shared with the host. This is useful when developing as IDEs can provide autocompletion. The dependencies can also be bundled and passed along the pipeline stages which is usually faster that re-installing them.
 
 Installing the dependencies when building a Docker image is another viable option especially if autocompletion is not needed, or the pipeline is basically one stage.
 
 ## One or many Docker images
 
-Usually, using official images, which tend to follow the single responsibility principle, is preferable as those images' maintenance is already taken care of. However, as stated before, they do not solve all problems and using a single custom Docker image may make the project development simpler. It is not uncommon for a project to rely on both official and custom images.
+Usually, using official images, which tend to follow the single responsibility principle, is preferable as those images' maintenance is already taken care of.
+
+However, as stated before, they do not solve all problems and using a single custom Docker image may make the project development simpler. It is not uncommon for a project to rely on both official and custom images.
