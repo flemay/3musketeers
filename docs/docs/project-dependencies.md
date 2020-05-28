@@ -8,7 +8,7 @@ It is not uncommon for a project to combine the approaches. For instance, a proj
 
 ## Official Docker images
 
-This way relies on official Docker images to deal with dependencies. For instance, a NodeJS project may use the official NodeJS Docker image to install the node modules, run and test the application. Usually third party packages will be shared with the host and containers. The main benefit of this approach is that there is no need to maintain any Docker image.
+This approach relies on official Docker images to manage dependencies. For instance, a NodeJS project may use the official NodeJS Docker image to install the node modules, run and test the application. Usually third party packages will be shared with the host and containers. The main benefit of this approach is that there is no need to maintain any Docker image.
 
 Example from The [3 Musketeers repository](https://github.com/flemay/3musketeers):
 
@@ -28,7 +28,7 @@ services:
 
 ## Custom Docker images
 
-Official images may not always solve a project's dependency requirements and if other projects share the same requirements, then custom Docker images may be a good fit. The images are built by the organization, and deployed to a Docker registry. From a project perspective, it is the same as using official Docker images except, this time, the organization is responsible of maintaining them.
+Official images may not always solve project's dependency requirements and if other projects share the same requirements, then custom Docker images may be a good fit. The images are built by the organization, and deployed to a Docker registry. From a project perspective, it is the same as using official Docker images except, this time, the organization is responsible of maintaining them.
 
 ```yml
 # docker-compose.yml
@@ -69,12 +69,13 @@ services:
 
 ## Share dependencies with host or not
 
-All the approaches discussed above can share third party dependencies with the host, usually by mounting a host directory to a Docker container and letting the container install the dependencies. An example would be like this website where a NodeJS container installs the packages and the `node_modules` folder is shared with the host. This is useful when developing as IDEs can provide autocompletion. The dependencies can also be bundled and passed along the pipeline stages which is usually faster that re-installing them.
+All the approaches discussed above can share third party dependencies with the host, usually by mounting a host directory to a Docker container and letting the container install the dependencies. An example would be like the 3 Musketeers website where a NodeJS container installs the packages and the `node_modules` folder is shared with the host. This is useful when developing as IDEs can provide autocomplete. The dependencies can also be bundled and passed along the pipeline stages which is usually faster that re-installing them.
 
-Installing the dependencies when building a Docker image is another viable option especially if autocompletion is not needed, or the pipeline is basically one stage.
+Installing the dependencies when building a Docker image is another viable option especially if autocomplete is not needed, or if the pipeline is basically one stage.
 
 ## One or many Docker images
 
 Usually, using official images, which tend to follow the single responsibility principle, is preferable as those images' maintenance is already taken care of.
 
 However, as stated before, they do not solve all problems and using a single custom Docker image may make the project development simpler. It is not uncommon for a project to rely on both official and custom images.
+
