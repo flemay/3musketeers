@@ -87,6 +87,7 @@ function getDocsSidebar() {
         '/docs/compose',
         '/docs/project-dependencies',
         '/docs/environment-variables',
+        '/docs/host-user-in-container',
         '/docs/other-tips',
       ]
     }
