@@ -1,8 +1,6 @@
 # Compose
 
-## Composition over Inheritance
-
-With Docker, it is pretty easy to have all the tooling a project needs inside one image. However, if the project requires a new dependency, the image would need to be modified, tested, and rebuilt. In order to avoid this, use dedicated images that do specific things.
+Docker Compose, or simply Compose, manages Docker containers in a very neat way. It allows multiple Docker commands to be written as a single one, which allows our Makefile to be a lot cleaner and easier to maintain. Testing also often involves container dependencies, such as a database, which is an area where Compose really shines. No need to create the database container and link it to your application code container manually — Compose takes care of this for you.
 
 ## Multiple Docker Network
 

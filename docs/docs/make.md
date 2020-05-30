@@ -1,12 +1,18 @@
 # Make
 
-Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
+Make is a cross-platform build tool to test and build software and it is used as an interface between the CI/CD server and the application code. A single Makefile per application defines and encapsulates all the steps for testing, building, and deploying that application. Of course other tools like rake or ant can be used to achieve the same goal, but having Makefile pre-installed in many OS distributions makes it a convenient choice
+
+Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
 ::: tip SNIPPETS
-The snippets are there to help understanding the documentation but may be incomplete or missing context. If you wish to see complete code, go over the [examples][linkExamples] section.
+The snippets in this section bring support for the documentation but may be incomplete or missing context. If you wish to see complete code, go over the [examples][linkExamples] section.
 :::
 
 ## target vs _target
+
+::: tip
+This is mainly for the [Make pattern][linkPatternsMake].
+:::
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
@@ -53,6 +59,15 @@ deploy:
 	$(COMPOSE_RUN_SERVERLESS) make _deploy
 ```
 
+Or
+
+```makefile
+SERVERLESS_RUN = docker-compose run serverless
+
+deploy:
+	$(SERVERLESS_RUN) make _deploy
+```
+
 ## Target dependencies
 
 To make the Makefile easier to read, avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`. Even more, restrict `target` to file dependencies only. This allows one to call a specific target without worrying that other targets will be executed too.
@@ -70,7 +85,7 @@ deploy: package.zip
 
 Section [Target dependencies][linkTargetDependencies] suggests to limit target dependencies as mush as possible but there is one exception: pipeline targets.
 
-We call Pipeline targets the targets that have a list of dependencies, usually other targets. They are often used in CI to reduce the number of Make calls and keep the CI pipelines clean.
+We call Pipeline targets the targets that have a```list of dependencies, usually other targets. They are often used in CI to reduce the number of Make calls and keep the CI pipelines clean.
 
 It is best having them at the top of the Makefile as they give an understanding of the application pipelines when reading the Makefile.
 
@@ -111,6 +126,10 @@ Ideally, a target should be idempotent so that the result of running it once is 
 The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][linkEnvironmentVariables] for more details.
 
 ## Project dependencies
+
+::: tip
+Refer to [project dependencies][linkProjectDependencies] section for more information.
+:::
 
 It is a good thing to have a target `deps` for installing all the dependencies required to test, build, and deploy an application.
 
@@ -165,10 +184,11 @@ $ make envfile anotherTarget ENVFILE=your.envfile
 The symbol `@` prevents the command to be printed out prior its execution. Useful when there are secrets at stake.
 
 ```makefile
-# If '@ 'is omitted, `DOCKERHUB_TRIGGER_URL`, which has a token in the URL,
-# would be printed out in the logs
-_triggerDockerHubBuild:
-	@curl -H "Content-Type: application/json" --data '{"docker_tag": "latest"}' -X POST $(DOCKERHUB_TRIGGER_URL)
+# If '@ 'is omitted, `DOCKER_PASSWORD` would be revealed.
+push:
+	@echo "$(DOCKER_PASSWORD)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
+	docker push $(IMAGE)
+	docker logout
 ```
 
 ## Continue on error
@@ -306,7 +326,9 @@ target02: This message will show up too!!!
 [linkManagingContainersInTarget]: #managing-containers-in-target
 
 [linkPatterns]: patterns
+[linkPatternsMake]: patterns#make
 [linkEnvironmentVariables]: environment-variables
+[linkProjectDependencies]: project-dependencies
 [linkExamples]: ../examples/
 
 [linkPhony]: https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
