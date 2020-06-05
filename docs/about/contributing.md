@@ -18,6 +18,10 @@ Feedback is greatly appreciated. Is there anything from the documentation that i
 
 ## Contributing code
 
+::: warning IMPORTANT
+For any documentation update you would like to make, other than correcting spelling and grammar mistakes, please let use know by filling an issue.
+:::
+
 The project follows the typical GitHub pull request model. Before starting any work, please either comment on an existing issue, or file a new one.
 
 1. Fork this repository.
