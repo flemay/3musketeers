@@ -141,7 +141,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome! More information can be found in [contributing.md][linkContributing].
+The 3 Musketeers is an open source project and contributions are greatly appreciated.
+
+Please visit https://3musketeers.io/about/contributing.html for more information.
 
 ## Credits
 

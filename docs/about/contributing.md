@@ -18,7 +18,7 @@ Feedback is greatly appreciated. Is there anything from the documentation that i
 
 ## Contributing code
 
-::: warning IMPORTANT
+::: warning DOCUMENTATION RELATED CHANGES
 For any documentation update you would like to make, other than correcting spelling and grammar mistakes, please let use know by filling an issue.
 :::
 
