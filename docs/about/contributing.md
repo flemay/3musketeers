@@ -22,15 +22,19 @@ Feedback is greatly appreciated. Is there anything from the documentation that i
 For any documentation update you would like to make, other than correcting spelling and grammar mistakes, please let use know by filling an issue.
 :::
 
-The project follows the typical GitHub pull request model. Before starting any work, please either comment on an existing issue, or file a new one.
+The project follows the typical [GitHub pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) model. Before starting any work, please either comment on an existing issue, or file a new one.
 
-1. Fork this repository.
-1. Create a branch: `git checkout -b <branch_name>`
+1. [Fork][linkGitHubFork] this repository
+1. Clone the forked repository
+1. Create a new branch with a meaningful name (optional)
 1. Make your changes
 1. [Test][linkReadmeTest]
-1. Commit your changes: `git commit -m '<commit_message>'`
-1. Push to the original branch: `git push origin <project_name>/<location>`
-1. Create the pull request.
+    1. `$ make ciTest`
+    1. Test also the apigw example
+1. Commit and push your changes
+1. Create a [pull request from a fork][linkGitHubPRFork]
 
 [link3musketeersrepo]: https://github.com/flemay/3musketeers
 [linkReadmeTest]: https://github.com/flemay/3musketeers#testing
+[linkGitHubFork]: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
+[linkGitHubPRFork]: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork
