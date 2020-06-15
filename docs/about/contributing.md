@@ -29,8 +29,6 @@ The project follows the typical [GitHub pull request](https://help.github.com/en
 1. Create a new branch with a meaningful name (optional)
 1. Make your changes
 1. [Test][linkReadmeTest]
-    1. `$ make ciTest`
-    1. Test also the apigw example
 1. Commit and push your changes
 1. Create a [pull request from a fork][linkGitHubPRFork]
 
