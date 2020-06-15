@@ -24,7 +24,7 @@ For any documentation update you would like to make, other than correcting spell
 
 The project follows the typical [GitHub pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) model. Before starting any work, please either comment on an existing issue, or file a new one.
 
-1. [Fork][linkGitHubFork] this repository
+1. [Fork][linkGitHubFork] this [repository][link3musketeersrepo]
 1. Clone the forked repository
 1. Create a new branch with a meaningful name (optional)
 1. Make your changes
