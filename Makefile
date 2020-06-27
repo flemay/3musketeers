@@ -24,7 +24,7 @@ shellNode:
 	$(COMPOSE_RUN_NODE) bash
 
 shellTestCafe:
-	$(COMPOSE_RUN_TESTCAFE) sh
+	$(COMPOSE_RUN_TESTCAFE)
 
 startDev:
 	$(COMPOSE_UP_NODE_DEV)
