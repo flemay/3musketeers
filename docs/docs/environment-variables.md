@@ -438,6 +438,32 @@ $ make envfile target ENVFILE=env.example
 $ make target ENVFILE=env.example
 ```
 
+## Environment variables check for Make target
+
+Here is a way that could be used to check the presence of environment variables before executing a target.
+
+```Makefile
+echo: env-MESSAGE
+	@docker run --rm alpine echo "$(MESSAGE)"
+
+env-%:
+	@docker run --rm -e ENV_VAR=$($*) alpine echo "Check if $* is not empty"
+	@docker run --rm -e ENV_VAR=$($*) alpine sh -c '[ -z "$$ENV_VAR" ] && echo "Error: $* is empty" && exit 1 || exit 0'
+```
+
+```bash
+# Call echo without a MESSAGE
+$ make echo
+Check if MESSAGE is not empty
+Error: MESSAGE is empty
+make: *** [env-MESSAGE] Error 1
+
+# Call echo with a MESSAGE
+$ make echo MESSAGE=helloworld
+Check if MESSAGE is not empty
+helloworld
+```
+
 ## AWS environment variables and ~/.aws
 
 When using AWS, you can use environment variables. This is useful when you assume role as usually a tool like [assume-role][linkAssumeRole] would set your environment variables.
