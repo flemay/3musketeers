@@ -438,9 +438,9 @@ $ make envfile target ENVFILE=env.example
 $ make target ENVFILE=env.example
 ```
 
-## Environment variables check for Make target
+## Environment variable check for Make target
 
-Here is a way that could be used to check the presence of environment variables before executing a target.
+Here is a way of checking the presence of environment variables before executing a Make target.
 
 ```Makefile
 echo: env-MESSAGE
