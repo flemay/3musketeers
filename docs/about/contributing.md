@@ -26,7 +26,7 @@ The project follows the typical [GitHub pull request][linkGitHubPR] model. Befor
 
 1. [Fork][linkGitHubFork] this [repository][linkProjectRepo]
 1. Clone the forked repository
-1. Create a new branch with a meaningful name (optional)
+1. _Optionally_, create a new branch with a meaningful name
 1. Make your changes
 1. [Test][linkProjectReadmeTest]
 1. Commit and push your changes
