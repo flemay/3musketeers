@@ -2,7 +2,7 @@
 
 Make is a cross-platform build tool to test and build software and it is used as an interface between the CI/CD server and the application code. A single Makefile per application defines and encapsulates all the steps for testing, building, and deploying that application. Of course other tools like rake or ant can be used to achieve the same goal, but having Makefile pre-installed in many OS distributions makes it a convenient choice
 
-Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
+Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
 ::: tip SNIPPETS
 The snippets in this section bring support for the documentation but may be incomplete or missing context. If you wish to see complete code, go over the [examples][linkExamples] section.
@@ -110,6 +110,37 @@ all: deps test build clean
 ```sh
 $ make # will run the target all
 ```
+
+## Ordering targets
+
+Ordering targets in some ways may help maintaining the Makefile in the long run. Here are some suggestions:
+
+- Variables defined at the top
+- Targets [all][linkMakeAndTargetAll] and [pipeline target][linkPipelineTargets] at the top of the file (after the variables)
+- Ordering targets in a build pipeline flow
+
+	```Makefile
+	deps:
+		# ...
+	test:
+		# ...
+	build:
+		# ...
+	deploy:
+		# ...
+	```
+- Group [target and _target][linkTargetVSUnderscoreTarget] together
+
+	```Makefile
+	deps:
+		# ...
+	_deps:
+		# ...
+	test:
+		# ...
+	_test:
+		# ...
+	```
 
 ## Target and Single Responsibility
 
@@ -320,6 +351,7 @@ target02: This message will show up too!!!
 ```
 
 
+[linkMakeAndTargetAll]: #make-and-target-all
 [linkPipelineTargets]: #pipeline-targets
 [linkTargetVSUnderscoreTarget]: #target-vs-_target
 [linkTargetDependencies]: #target-dependencies
