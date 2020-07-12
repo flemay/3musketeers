@@ -143,7 +143,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 		# ...
 	```
 
-- Alternatively, [target and _target][linkTargetVSUnderscoreTarget] can be separated due to verbosity.
+- Alternatively, [target and _target][linkTargetVSUnderscoreTarget] can be separated if too verbose.
 
 	```Makefile
 	deps:
