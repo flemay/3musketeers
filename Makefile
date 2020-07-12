@@ -20,6 +20,9 @@ deps:
 	docker-compose pull
 	$(COMPOSE_RUN_NODE) yarn install
 
+upgradeDeps:
+	$(COMPOSE_RUN_NODE) yarn upgrade
+
 shellNode:
 	$(COMPOSE_RUN_NODE) bash
 
