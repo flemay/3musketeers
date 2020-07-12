@@ -143,6 +143,19 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 		# ...
 	```
 
+- Alternatively, [target and _target][linkTargetVSUnderscoreTarget] can be separated due to verbosity.
+
+		```Makefile
+	deps:
+		# ...
+	test:
+		# ...
+	_deps:
+		# ...
+	_test:
+		# ...
+	```
+
 - Utility targets defined at the bottom of the Makefile
 
 ## Target and Single Responsibility
