@@ -4,7 +4,6 @@
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License](https://img.shields.io/dub/l/vibe-d.svg)][linkLicense]
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 
 <p align="center"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
 
@@ -116,31 +115,9 @@ $ make deploy
 # See target `ciDeploy`
 ```
 
-## Contributors
+## Contributing
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/flemay"><img src="https://avatars1.githubusercontent.com/u/461102?v=4" width="100px;" alt=""/><br /><sub><b>Frederic Lemay</b></sub></a><br /><a href="#blog-flemay" title="Blogposts">📝</a> <a href="https://github.com/flemay/3musketeers/commits?author=flemay" title="Code">💻</a> <a href="https://github.com/flemay/3musketeers/commits?author=flemay" title="Documentation">📖</a> <a href="#design-flemay" title="Design">🎨</a> <a href="#example-flemay" title="Examples">💡</a> <a href="#infra-flemay" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-flemay" title="Maintenance">🚧</a> <a href="#business-flemay" title="Business development">💼</a></td>
-    <td align="center"><a href="https://github.com/yunspace"><img src="https://avatars2.githubusercontent.com/u/218128?v=4" width="100px;" alt=""/><br /><sub><b>Yun Zhi Lin</b></sub></a><br /><a href="#question-yunspace" title="Answering Questions">💬</a> <a href="#example-yunspace" title="Examples">💡</a> <a href="#talk-yunspace" title="Talks">📢</a> <a href="#business-yunspace" title="Business development">💼</a></td>
-    <td align="center"><a href="https://github.com/adenot"><img src="https://avatars2.githubusercontent.com/u/1277170?v=4" width="100px;" alt=""/><br /><sub><b>Allan Denot</b></sub></a><br /><a href="#question-adenot" title="Answering Questions">💬</a> <a href="#business-adenot" title="Business development">💼</a></td>
-    <td align="center"><a href="https://github.com/aarongorka"><img src="https://avatars1.githubusercontent.com/u/22756133?v=4" width="100px;" alt=""/><br /><sub><b>aarongorka</b></sub></a><br /><a href="https://github.com/flemay/3musketeers/commits?author=aarongorka" title="Code">💻</a> <a href="#example-aarongorka" title="Examples">💡</a> <a href="#talk-aarongorka" title="Talks">📢</a> <a href="#business-aarongorka" title="Business development">💼</a></td>
-    <td align="center"><a href="https://github.com/kaleworsley"><img src="https://avatars3.githubusercontent.com/u/164566?v=4" width="100px;" alt=""/><br /><sub><b>Kale Worsley</b></sub></a><br /><a href="https://github.com/flemay/3musketeers/commits?author=kaleworsley" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/LukePeterson"><img src="https://avatars3.githubusercontent.com/u/7110561?v=4" width="100px;" alt=""/><br /><sub><b>Luke Peterson</b></sub></a><br /><a href="https://github.com/flemay/3musketeers/commits?author=LukePeterson" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/fixl"><img src="https://avatars3.githubusercontent.com/u/480719?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Fuchs</b></sub></a><br /><a href="https://github.com/flemay/3musketeers/commits?author=fixl" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/robin-sim"><img src="https://avatars0.githubusercontent.com/u/50123709?v=4" width="100px;" alt=""/><br /><sub><b>robin-sim</b></sub></a><br /><a href="https://github.com/flemay/3musketeers/commits?author=robin-sim" title="Code">💻</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+Thanks goes to these wonderful [people][linkContributors].
 
 The 3 Musketeers is an open source project and contributions are greatly appreciated.
 
@@ -165,12 +142,13 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 
 This project uses the following license: [MIT][linkLicense]
 
-[linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
-[linkLicense]: LICENSE
 [linkContributing]: ./docs/about/contributing.md
+[linkContributors]: CONTRIBUTORS
+[linkLicense]: LICENSE
+[linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
 
 [link3Musketeers]: https://3musketeers.io
-[linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
 [linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
-[linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
+[linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
+[linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
