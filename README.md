@@ -140,7 +140,7 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 
 ## License
 
-This project uses the following license: [MIT][linkLicense]
+[MIT][linkLicense]
 
 [linkContributing]: ./docs/about/contributing.md
 [linkContributors]: CONTRIBUTORS
