@@ -3,7 +3,7 @@
 
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
-[![License](https://img.shields.io/dub/l/vibe-d.svg)][linkLicense]
+[![License][linkLicenseBadge]][linkLicense]
 
 <p align="center"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
 
@@ -144,6 +144,7 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 
 [linkContributing]: ./docs/about/contributing.md
 [linkContributors]: CONTRIBUTORS
+[linkLicenseBadge]: https://img.shields.io/dub/l/vibe-d.svg
 [linkLicense]: LICENSE
 [linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
 
