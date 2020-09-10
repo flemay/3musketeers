@@ -53,19 +53,19 @@ Sometimes you want the target to match the name of a file in which case `.PHONY`
 Docker and Compose commands can be assigned to variables.
 
 ```makefile
-COMPOSE_RUN_SERVERLESS = docker-compose run --rm serverless
+COMPOSE_RUN_NODE = docker-compose run --rm serverless
 
 deploy:
-	$(COMPOSE_RUN_SERVERLESS) make _deploy
+	$(COMPOSE_RUN_NODE) make _deploy
 ```
 
 Or
 
 ```makefile
-SERVERLESS_RUN = docker-compose run serverless
+NODE_RUN = docker-compose run --rm serverless
 
 deploy:
-	$(SERVERLESS_RUN) make _deploy
+	$(NODE_RUN) make _deploy
 ```
 
 ## Target dependencies
