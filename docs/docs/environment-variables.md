@@ -169,6 +169,13 @@ $ exit
 $ make clean
 ```
 
+## Overwriting .env or not
+
+Examples in this page use `.env` to pass environment variables to a container. The file `.env` can be overwritten when setting the environment variable `ENVFILE`. This has few advantages:
+
+- You know the file `.env` will always be used
+- Compose uses `.env` when doing [variable substitution][linkDockerComposeVarialeSubstitution]
+
 ## Create .env file with Make and Compose
 
 This section shows some ways to create `.env` file with Make and Compose with the given `docker-compose.yml` file:
@@ -187,9 +194,7 @@ services:
     working_dir: /opt/app
 ```
 
-::: tip
-Even though docker-compose.yml has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which suggests the `ENVFILE` environment variable can be used instead of `.env`, the ways below always use `.env`. However, the line is required when creating the `.env` file, otherwise docker-compose fails if `.env` file is specified but does not exist.
-:::
+The `docker-compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. Examples in this section will however use `.env` except when generating the file.
 
 ### Explicit
 
@@ -496,6 +501,7 @@ Or both can be used. In this case, environment variables will take precedence ov
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 [linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose
 [linkPatternsDocker]: patterns.html#docker
+[linkImplicitWithoutAlteringEnv]: ###implicit-without-altering-env
 
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
