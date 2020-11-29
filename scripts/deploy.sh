@@ -2,4 +2,4 @@
 set -e
 set -u
 
-npx netlify deploy --dir=docs/.vuepress/dist --prod
+yarn netlify deploy --dir=docs/.vuepress/dist --prod

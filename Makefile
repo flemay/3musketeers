@@ -17,11 +17,10 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	docker-compose pull
-	$(COMPOSE_RUN_NODE) npm install
+	$(COMPOSE_RUN_NODE) yarn install && yarn outdated
 
 upgradeDeps:
-	$(COMPOSE_RUN_NODE) npx ncu -u && npm install
+	$(COMPOSE_RUN_NODE) yarn upgrade
 
 shellNode:
 	$(COMPOSE_RUN_NODE) bash
@@ -34,17 +33,14 @@ startDev:
 
 start:
 	$(COMPOSE_UP_NODE)
-	$(COMPOSE_RUN_DOCKERIZE) -wait tcp://node:8080 -timeout 60s
+	$(COMPOSE_RUN_DOCKERIZE) -wait tcp://node:8080 -timeout 90s
 
 lint:
 	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
-	$(COMPOSE_RUN_NODE) npm eslint test/*.ts
+	$(COMPOSE_RUN_NODE) yarn eslint test/*.ts
 
 audit:
-	$(COMPOSE_RUN_NODE) npm audit
-
-auditFix:
-	$(COMPOSE_RUN_NODE) npm audit fix
+	$(COMPOSE_RUN_NODE) yarn audit
 
 test:
 	$(COMPOSE_RUN_TESTCAFE) scripts/test.sh
