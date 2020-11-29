@@ -7,7 +7,7 @@ COMPOSE_RUN_TESTCAFE = docker-compose run --rm testcafe
 ENVFILE ?= env.template
 
 all:
-	ENVFILE=env.example $(MAKE) envfile cleanDocker deps lint start test build clean
+	ENVFILE=env.example $(MAKE) envfile cleanDocker deps audit lint start test build clean
 
 ciTest: envfile cleanDocker deps lint start test build clean
 
@@ -18,10 +18,10 @@ envfile:
 
 deps:
 	docker-compose pull
-	$(COMPOSE_RUN_NODE) yarn install
+	$(COMPOSE_RUN_NODE) npm install
 
 upgradeDeps:
-	$(COMPOSE_RUN_NODE) yarn upgrade
+	$(COMPOSE_RUN_NODE) npx ncu -u && npm install
 
 shellNode:
 	$(COMPOSE_RUN_NODE) bash
@@ -38,7 +38,13 @@ start:
 
 lint:
 	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
-	$(COMPOSE_RUN_NODE) yarn eslint test/*.ts
+	$(COMPOSE_RUN_NODE) npm eslint test/*.ts
+
+audit:
+	$(COMPOSE_RUN_NODE) npm audit
+
+auditFix:
+	$(COMPOSE_RUN_NODE) npm audit fix
 
 test:
 	$(COMPOSE_RUN_TESTCAFE) scripts/test.sh

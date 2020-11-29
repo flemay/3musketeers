@@ -2,4 +2,4 @@
 set -e
 set -u
 
-yarn vuepress build docs
+npx vuepress build docs
