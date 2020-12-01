@@ -17,7 +17,8 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	$(COMPOSE_RUN_NODE) yarn install && yarn outdated
+	$(COMPOSE_RUN_NODE) yarn install
+	-$(COMPOSE_RUN_NODE) yarn outdated
 
 upgradeDeps:
 	$(COMPOSE_RUN_NODE) yarn upgrade
