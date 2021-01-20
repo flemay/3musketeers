@@ -89,7 +89,7 @@ This would work well on Windows/Mac but what about Linux? Either docker-sync is 
 
 [linkDockerSync]: http://docker-sync.io
 [linkGolang]: https://hub.docker.com/_/golang/
-[linkDockerMusketeersRepo]: https://github.com/flemay/docker-musketeers
+[linkDockerMusketeersRepo]: https://github.com/flemay/docker-images
 [linkDockerHubDockerize]: https://hub.docker.com/r/jwilder/dockerize
 [linkDockerHubDockerlint]: https://hub.docker.com/r/redcoolbeans/dockerlint
 [linkDockerHubShellcheck]: https://hub.docker.com/r/koalaman/shellcheck/

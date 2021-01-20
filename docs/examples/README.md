@@ -13,5 +13,5 @@ Here are some examples on how to apply the 3 Musketeers for different kinds of a
 [link3Musketeers]: https://github.com/flemay/3musketeers
 [linkEnvvars]: https://github.com/flemay/envvars
 [linkFlemayCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
-[linkFlemayMusketeers]: https://github.com/flemay/docker-musketeers
+[linkFlemayMusketeers]: https://github.com/flemay/docker-images
 [linkEcho]: https://github.com/3musketeersio/cookiecutter-musketeers-echo
