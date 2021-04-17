@@ -9,6 +9,7 @@ on:
       - 'Makefile'
       - 'package.json'
       - 'yarn.lock'
+      - '.github/workflows/deploy.yml'
   schedule:
     - cron: '0 6 1 * *'
 jobs:
