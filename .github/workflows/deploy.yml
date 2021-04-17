@@ -8,6 +8,7 @@ on:
       - 'docs/**'
       - 'Makefile'
       - 'package.json'
+      - 'yarn.lock'
   schedule:
     - cron: '0 6 1 * *'
 jobs:
