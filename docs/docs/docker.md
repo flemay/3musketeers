@@ -48,7 +48,13 @@ If you only want to call `make` with common shell commands, or want to use `git`
 Whenever a command runs another command it installs `make` and then execute `$ make _target`. Depending on how many times a command is run, this may be inefficient as it needs to download `make` every time.
 
 ```bash
-$ docker run --rm golang:alpine apk add --update make && make _target
+MAKEFILE_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+
+hello:
+	docker run --rm -v $(MAKEFILE_DIR)Makefile:/opt/app/Makefile -w /opt/app alpine sh -c "apk add --update make && make _hello"
+
+_hello:
+	echo "Hello World"
 ```
 
 ### Build your own image
