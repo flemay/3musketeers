@@ -47,7 +47,7 @@ module.exports = {
     repoLabel: 'GitHub',
     docsRepo: 'flemay/3musketeers',
     docsDir: 'docs',
-    docsBranch: 'master',
+    docsBranch: 'main',
     editLinks: true,
     editLinkText: 'Edit this page on GitHub',
     nav: [
