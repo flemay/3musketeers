@@ -138,9 +138,14 @@ Please visit https://3musketeers.io/about/contributing.html for more information
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
 - [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 
+## Stargazers over time
+
+[![Stargazers over time][linkProjectStargazersSVG]][linkProjectStargazers]
+
 ## License
 
 [MIT][linkLicense]
+
 
 [linkContributing]: ./docs/about/contributing.md
 [linkContributors]: CONTRIBUTORS
@@ -153,3 +158,5 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 [linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
 [linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
+[linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
+[linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
