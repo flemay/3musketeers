@@ -1,17 +1,11 @@
-header.navbar
-  background-color: $headerBgColor
-  border-bottom: none
-  .links
-    background-color: $headerBgColor
-  a
-  a:hover
-  a.router-link-active
-  .site-name
-  div.sidebar-button
-    color: $headerLinkColor
-  div.search-box
-    input
-      background-color: $searchBoxBgColor
-      border: none
-      &:focus
-        background-color: $searchBoxFocusBgColor
+// https://v2.vuepress.vuejs.org/reference/default-theme/styles.html#palette-file
+:root {
+    // brand colors
+    --c-brand: #236caa;
+    --c-brand-light: #3c86c3;
+}
+html.dark {
+    // brand color
+    --c-brand: #387ab2;
+    --c-brand-light: #4e89bb;
+}

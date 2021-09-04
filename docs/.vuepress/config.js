@@ -37,6 +37,11 @@ module.exports = {
       '@vuepress/plugin-search',
       {
         maxSuggestions: 10,
+        locales: {
+          '/': {
+            placeholder: 'Search',
+          },
+        },
       },
     ],
   ],
