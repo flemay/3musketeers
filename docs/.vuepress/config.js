@@ -33,30 +33,25 @@ module.exports = {
     ['meta', { name: 'twitter:url', value: url }],
   ],
   plugins: [
-    '@vuepress/back-to-top',
     [
-      '@vuepress/search',
+      '@vuepress/plugin-search',
       {
-        searchMaxSuggestions: 10,
+        maxSuggestions: 10,
       },
     ],
   ],
   themeConfig: {
-    lastUpdated: true,
-    repo: 'flemay/3musketeers',
+    repo: 'https://github.com/flemay/3musketeers',
     repoLabel: 'GitHub',
     docsRepo: 'flemay/3musketeers',
+    contributors: false,
     docsDir: 'docs',
-    docsBranch: 'main',
-    editLinks: true,
-    editLinkText: 'Edit this page on GitHub',
-    nav: [
+    navbar: [
       { text: 'About', link: '/about/' },
       { text: 'Docs', link: '/docs/' },
       { text: 'Examples', link: '/examples/' },
       { text: 'Blog', link: '/blog/' },
     ],
-    sidebar: 'auto',
     sidebar: {
       '/about/': getAboutSidebar(),
       '/docs/': getDocsSidebar(),
@@ -67,7 +62,7 @@ module.exports = {
 function getAboutSidebar() {
   return [
     {
-      title: 'About',
+      text: 'About',
       collapsable: false,
       children: ['/about/', '/about/tools', '/about/contributing'],
     }
@@ -77,7 +72,7 @@ function getAboutSidebar() {
 function getDocsSidebar() {
   return [
     {
-      title: 'Docs',
+      text: 'Docs',
       collapsable: false,
       children: [
         '/docs/',

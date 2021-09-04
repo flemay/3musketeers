@@ -6,14 +6,14 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
-    "@vuepress/plugin-back-to-top": "^1.7.1",
+    "@vuepress/plugin-search": "^2.0.0-beta.25",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "netlify-cli": "^2.69.0",
     "prettier": "^2.2.1",
     "testcafe": "^1.9.4",
-    "vuepress": "^1.7.1"
+    "vuepress": "vuepress@next"
   },
   "repository": {
     "type": "git",
