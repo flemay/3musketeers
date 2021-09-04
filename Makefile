@@ -38,7 +38,7 @@ _build:
 	yarn run vuepress build docs --clean-cache
 
 serve:
-	$(info serve will sleep 10 seconds to make sure the server is up)
+	$(info serve will sleep 5 seconds to make sure the server is up)
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
 	$(COMPOSE_RUN_NODE) sleep 5
 _serve:
