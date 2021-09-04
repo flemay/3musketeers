@@ -13,7 +13,8 @@
     "netlify-cli": "^2.69.0",
     "prettier": "^2.2.1",
     "testcafe": "^1.9.4",
-    "vuepress": "vuepress@next"
+    "vuepress": "vuepress@next",
+    "vuepress-vite": "^2.0.0-beta.25"
   },
   "repository": {
     "type": "git",

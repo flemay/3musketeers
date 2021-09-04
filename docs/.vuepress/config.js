@@ -45,6 +45,10 @@ module.exports = {
       },
     ],
   ],
+  bundler: '@vuepress/vite',
+  bundlerConfig: {
+
+  },
   themeConfig: {
     repo: 'https://github.com/flemay/3musketeers',
     repoLabel: 'GitHub',

@@ -48,7 +48,9 @@ test:
 .PHONY: test
 
 build:
-	$(COMPOSE_RUN_NODE) scripts/build.sh
+	$(COMPOSE_RUN_NODE) make _build
+_build:
+	yarn vuepress build docs --clean-cache
 
 deploy:
 	$(COMPOSE_RUN_NODE) scripts/deploy.sh

@@ -2201,6 +2201,11 @@
   resolved "https://registry.yarnpkg.com/@ungap/from-entries/-/from-entries-0.2.1.tgz#7e86196b8b2e99d73106a8f25c2a068326346354"
   integrity sha512-CAqefTFAfnUPwYqsWHXpOxHaq1Zo5UQ3m9Zm2p09LggGe57rqHoBn3c++xcoomzXKynAUuiBMDUCQvKMnXjUpA==
 
+"@vitejs/plugin-vue@^1.4.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.6.0.tgz#e5558e20c20e9098cd5bd65b9901fdcd2c354983"
+  integrity sha512-n3i8htn8pTg9M+kM3cnEfsPZx/6ngInlTroth6fA1LQTJq5aTVQ8ggaE5pPoAy9vCgHPtcaXMzwpldhqRAkebQ==
+
 "@vue/compiler-core@3.2.8":
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.8.tgz#13b2386bdb03455c9f6c6af2f3468561a5ae5b1d"
@@ -2304,6 +2309,27 @@
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.8.tgz#2f918e330aeb3f56ab1031ca60a5b30672512457"
   integrity sha512-E2DQQnG7Qr4GwTs3GlfPPlHliGVADoufTnhpwfoViw7JlyLMmYtjfnTwM6nXAwvSJWiF7D+7AxpnWBBT3VWo6Q==
+
+"@vuepress/bundler-vite@2.0.0-beta.25":
+  version "2.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/@vuepress/bundler-vite/-/bundler-vite-2.0.0-beta.25.tgz#2e61650b0e5b1751dac76b5c656cea4f9c52cb35"
+  integrity sha512-Rz24B+x0VjlZUUSEtkX/Y5X8dGKHZwN2ThtCO2BMKFVR+Kk0rIgrT2c+JQolFd60o0MlvALffrsSOtlfx2EMng==
+  dependencies:
+    "@vitejs/plugin-vue" "^1.4.0"
+    "@vue/compiler-sfc" "^3.2.3"
+    "@vue/server-renderer" "^3.2.3"
+    "@vuepress/client" "2.0.0-beta.25"
+    "@vuepress/core" "2.0.0-beta.25"
+    "@vuepress/shared" "2.0.0-beta.25"
+    "@vuepress/utils" "2.0.0-beta.25"
+    autoprefixer "^10.3.1"
+    connect-history-api-fallback "^1.6.0"
+    postcss "^8.3.6"
+    postcss-csso "^5.0.1"
+    rollup "^2.56.2"
+    vite "^2.5.0"
+    vue "^3.2.3"
+    vue-router "^4.0.10"
 
 "@vuepress/bundler-webpack@2.0.0-beta.25":
   version "2.0.0-beta.25"
@@ -4986,7 +5012,7 @@ esbuild@0.11.10:
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.11.10.tgz#f5d39e4d9cc130b78d751664fef1b663240f5545"
   integrity sha512-XvGbf+UreVFA24Tlk6sNOqNcvF2z49XAZt4E7A4H80+yqn944QOLTTxaU0lkdYNtZKFiITNea+VxmtrfjvnLPA==
 
-esbuild@^0.12.20, esbuild@^0.12.21:
+esbuild@^0.12.17, esbuild@^0.12.20, esbuild@^0.12.21:
   version "0.12.25"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.25.tgz#c2131cef022cf9fe94aaa5e00110b27fc976221a"
   integrity sha512-woie0PosbRSoN8gQytrdCzUbS2ByKgO8nD1xCZkEup3D9q92miCze4PqEI9TZDYAuwn6CruEnQpJxgTRWdooAg==
@@ -9720,7 +9746,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.10.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.19.0:
+resolve@^1.10.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.19.0, resolve@^1.20.0:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
@@ -9821,7 +9847,7 @@ rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.23.1:
+rollup@^2.23.1, rollup@^2.38.5, rollup@^2.56.2:
   version "2.56.3"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.56.3.tgz#b63edadd9851b0d618a6d0e6af8201955a77aeff"
   integrity sha512-Au92NuznFklgQCUcV96iXlxUbHuB1vQMaH76DHl5M11TotjOHwqk9CwcrT78+Tnv4FN9uTBxq6p4EJoYkpyekg==
@@ -11540,6 +11566,18 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
+vite@^2.5.0:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.5.3.tgz#88d40a9efb9bec66bd87a7676c5689f35ff63742"
+  integrity sha512-1wMDnjflvtTTkMov8O/Xb5+w1/VW/Gw8oCf8f6dqgHn8lMOEqq0SaPtFEQeikFcOKCfSbiU0nEi0LDIx6DNsaQ==
+  dependencies:
+    esbuild "^0.12.17"
+    postcss "^8.3.6"
+    resolve "^1.20.0"
+    rollup "^2.38.5"
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 vue-demi@*:
   version "0.11.3"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.3.tgz#dd7495b92b495ecfa35675bf024b1358a7add150"
@@ -11569,6 +11607,16 @@ vue@^3.2.3:
     "@vue/compiler-dom" "3.2.8"
     "@vue/runtime-dom" "3.2.8"
     "@vue/shared" "3.2.8"
+
+vuepress-vite@^2.0.0-beta.25:
+  version "2.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/vuepress-vite/-/vuepress-vite-2.0.0-beta.25.tgz#c50b89368e9f8ee397cc929bb9203e652760cb61"
+  integrity sha512-/LpkCV1D6mXf6sziPBV7gHVYU++T95XP48iPnQk/NHIoDsY3ZuKc+yOeuTU2LAOaTZnvgmitovHYM68wiH/mMw==
+  dependencies:
+    "@vuepress/bundler-vite" "2.0.0-beta.25"
+    "@vuepress/cli" "2.0.0-beta.25"
+    "@vuepress/core" "2.0.0-beta.25"
+    "@vuepress/theme-default" "2.0.0-beta.25"
 
 vuepress@vuepress@next:
   version "2.0.0-beta.25"
