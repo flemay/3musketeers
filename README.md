@@ -97,7 +97,7 @@ $ make serveDev
 # access the website in your browser at http://localhost:8080/
 # \<ctrl-c\> to stop
 
-# serve static site (headless)
+# serve static website (headless)
 $ make serve
 
 # test static website
