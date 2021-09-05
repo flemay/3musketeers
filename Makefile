@@ -50,12 +50,16 @@ serveDev:
 test:
 	$(COMPOSE_RUN_NODE) make _test SERVE_BASE_URL=$(SERVE_BASE_URL)
 _test:
+	echo "Test home page"
 	curl $(SERVE_BASE_URL) | grep "Get Started" > /dev/null
+	echo "Test docs page"
+	curl $(SERVE_BASE_URL)/docs/ | grep "Hello, World!" > /dev/null
 
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
 _deploy:
-	yarn netlify deploy --dir=docs/.vuepress/dist --prod
+	yarn run netlify --telemetry-disable
+	yarn run netlify deploy --dir=docs/.vuepress/dist --prod
 
 cleanDocker:
 	docker-compose down --remove-orphans
