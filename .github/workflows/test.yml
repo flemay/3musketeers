@@ -7,6 +7,3 @@ jobs:
     - uses: actions/checkout@v1
     - name: Test
       run: make ciTest
-      env:
-        TESTCAFE_BROWSER: firefox:headless
-        VUEPRESS_HOST: node
