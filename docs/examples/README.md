@@ -8,6 +8,7 @@ Here are some examples on how to apply the 3 Musketeers for different kinds of a
 - [flemay/musketeers][linkFlemayMusketeers] is a docker image that is built, tested, and deployed with GitHub Actions to Docker Hub.
 - [flemay/cookiecutter][linkFlemayCookiecutter] is a docker image that is built, tested, and deployed to Docker Hub with GitLab CI/CD. The pipeline uses Docker in Docker (DinD) with the image `flemay/musketeers`.
 - [Echo][linkEcho] is a Cookiecutter template for a basic example that echoes the value of an environment variable.
+- [terraform101][linkTerraform101] is an example that allows you to deploy you infrastructure on AWS using terraform and GitHub Actions.
 
 [linkHelloWorld]: ../docs/#hello-world
 [link3Musketeers]: https://github.com/flemay/3musketeers
@@ -15,3 +16,4 @@ Here are some examples on how to apply the 3 Musketeers for different kinds of a
 [linkFlemayCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
 [linkFlemayMusketeers]: https://github.com/flemay/docker-images
 [linkEcho]: https://github.com/3musketeersio/cookiecutter-musketeers-echo
+[linkTerraform101]: https://github.com/yifanfu/terraform101
