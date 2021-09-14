@@ -1,0 +1,11 @@
+// https://v2.vuepress.vuejs.org/reference/default-theme/styles.html#palette-file
+:root {
+    // brand colors
+    --c-brand: #236caa;
+    --c-brand-light: #3c86c3;
+}
+html.dark {
+    // brand color
+    --c-brand: #387ab2;
+    --c-brand-light: #4e89bb;
+}

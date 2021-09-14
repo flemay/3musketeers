@@ -19,11 +19,6 @@ services:
   node:
     image: node
 # ...
-  testcafe:
-    image: testcafe/testcafe
-# ...
-  dockerize:
-    image: jwilder/dockerize
 ```
 
 ## Custom Docker images

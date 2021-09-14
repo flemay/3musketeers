@@ -1,62 +1,70 @@
 COMPOSE_RUN_NODE = docker-compose run --rm node
 COMPOSE_UP_NODE = docker-compose up -d node
 COMPOSE_UP_NODE_DEV = docker-compose up node_dev
-COMPOSE_RUN_SHELLCHECK = docker-compose run --rm shellcheck
-COMPOSE_RUN_DOCKERIZE = docker-compose run --rm dockerize
-COMPOSE_RUN_TESTCAFE = docker-compose run --rm testcafe
 ENVFILE ?= env.template
+SERVE_BASE_URL ?= http://node:8080
 
 all:
-	ENVFILE=env.example $(MAKE) envfile cleanDocker deps audit lint start test build clean
+	ENVFILE=env.example $(MAKE) ciTest
 
-ciTest: envfile cleanDocker deps lint start test build clean
+ciTest: envfile cleanDocker deps build serve test clean
 
-ciDeploy: envfile cleanDocker deps lint start test build deploy clean
+ciDeploy: envfile cleanDocker deps build serve test deploy clean
 
 envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
 	$(COMPOSE_RUN_NODE) yarn install
-	-$(COMPOSE_RUN_NODE) yarn outdated
 
 upgradeDeps:
 	$(COMPOSE_RUN_NODE) yarn upgrade
 
-shellNode:
-	$(COMPOSE_RUN_NODE) bash
-
-shellTestCafe:
-	$(COMPOSE_RUN_TESTCAFE)
-
-startDev:
-	$(COMPOSE_UP_NODE_DEV)
-
-start:
-	$(COMPOSE_UP_NODE)
-	$(COMPOSE_RUN_DOCKERIZE) -wait tcp://node:8080 -timeout 90s
-
-lint:
-	$(COMPOSE_RUN_SHELLCHECK) scripts/*.sh
-	$(COMPOSE_RUN_NODE) yarn eslint test/*.ts
-
 audit:
+	-$(COMPOSE_RUN_NODE) yarn outdated
 	$(COMPOSE_RUN_NODE) yarn audit
 
-test:
-	$(COMPOSE_RUN_TESTCAFE) scripts/test.sh
-.PHONY: test
+shell:
+	$(COMPOSE_RUN_NODE) bash
+
+dev:
+	COMPOSE_COMMAND="make _dev" $(COMPOSE_UP_NODE_DEV)
+_dev:
+	yarn run vuepress dev --debug --host 0.0.0.0 docs
 
 build:
-	$(COMPOSE_RUN_NODE) scripts/build.sh
+	$(COMPOSE_RUN_NODE) make _build
+_build:
+	yarn run vuepress build docs --clean-cache
+
+serve:
+	$(info serve will sleep 5 seconds to make sure the server is up)
+	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
+	$(COMPOSE_RUN_NODE) sleep 5
+_serve:
+	yarn run serve -l 8080 ./docs/.vuepress/dist
+
+serveDev:
+	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
+
+test:
+	$(COMPOSE_RUN_NODE) make _test SERVE_BASE_URL=$(SERVE_BASE_URL)
+_test:
+	echo "Test home page"
+	curl $(SERVE_BASE_URL) | grep "Get Started" > /dev/null
+	echo "Test docs page"
+	curl $(SERVE_BASE_URL)/docs/ | grep "Hello, World!" > /dev/null
 
 deploy:
-	$(COMPOSE_RUN_NODE) scripts/deploy.sh
+	$(COMPOSE_RUN_NODE) make _deploy
+_deploy:
+	yarn run netlify --telemetry-disable
+	yarn run netlify deploy --dir=docs/.vuepress/dist --prod
 
 cleanDocker:
 	docker-compose down --remove-orphans
 
 clean:
-	$(COMPOSE_RUN_NODE) scripts/clean.sh
+	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules ./docs/.vuepress/dist"
 	$(MAKE) cleanDocker
 	rm -f .env
