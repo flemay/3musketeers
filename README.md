@@ -81,43 +81,36 @@ This repository is the [3musketeers.io][link3Musketeers] website. This section e
 ```bash
 # create a .env file
 $ make envfile ENVFILE=env.example
-# Update .env file to set VUEPRESS_HOST=node_dev
 # install dependencies
 $ make deps
-# start vuepress server in a container for local development
-$ make startDev
+
+# start vuepress server for local development
+$ make dev
 # access the website in your browser at http://localhost:8080/
-# in a different shell session
-$ make lint
-$ make test
-$ make clean
-```
+# \<ctrl-c\> to stop
 
-### Testing
-
-```bash
-$ make envfile ENVFILE=env.example
-$ make deps
-$ make lint
-# start vuepress in a container in the background
-$ make start
-$ make test
-$ make clean
-
-# See targets `all`, and `ciTest`
-```
-
-### Deployment
-
-```bash
-# create a .env that sets environment variables for production. For instance
-$ make envfile ENVFILE=.env.production
-# building the static website
+# build static site
 $ make build
-# deploy the website to Netlify
+
+# serve static site for local development
+$ make serveDev
+# access the website in your browser at http://localhost:8080/
+# \<ctrl-c\> to stop
+
+# serve static website (headless)
+$ make serve
+
+# test static website
+$ make test
+
+# deploy to netlify (do not forget to set the environment variables)
 $ make deploy
 
-# See target `ciDeploy`
+# clean
+$ make clean
+
+# contributing? make sure the following command runs successfully
+$ make all
 ```
 
 ## Contributing
@@ -141,7 +134,6 @@ Please visit https://3musketeers.io/about/contributing.html for more information
   - [CLI deploy command](https://cli.netlify.com/commands/deploy)
 - [GitHub Actions](https://github.com/features/actions)
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
-- [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 
 ## Stargazers over time
 

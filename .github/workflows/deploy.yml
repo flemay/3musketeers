@@ -20,7 +20,5 @@ jobs:
     - name: Deploy
       run: make ciDeploy
       env:
-        TESTCAFE_BROWSER: firefox:headless
-        VUEPRESS_HOST: node
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

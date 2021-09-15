@@ -15,7 +15,7 @@ services:
       # For CI/CD tool, mapping port should be avoided since it can create port conflict.
       # This is the reason the service `node` exists.
       - "127.0.0.1:8080:8080"
-    command: ./scripts/dev.sh
+    command: ${COMPOSE_COMMAND}
     env_file: .env
 
   node:
@@ -25,27 +25,6 @@ services:
         source: .
         target: /opt/app
     working_dir: /opt/app
-    command: ./scripts/dev.sh
+    command: ${COMPOSE_COMMAND}
     env_file: .env
 
-  testcafe:
-    image: testcafe/testcafe
-    volumes:
-      - type: bind
-        source: .
-        target: /opt/app
-    working_dir: /opt/app
-    entrypoint: sh
-    env_file: .env
-
-  dockerize:
-    image: jwilder/dockerize
-
-  shellcheck:
-    image: koalaman/shellcheck:latest
-    network_mode: none
-    volumes:
-      - type: bind
-        source: ./scripts
-        target: /opt/app/scripts
-    working_dir: /opt/app
