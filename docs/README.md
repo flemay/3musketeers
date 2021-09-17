@@ -22,6 +22,10 @@ footer: MIT Licensed | Copyright © 2018 Frederic Lemay
 
 ### Hello, World!
 
+::: tip REQUIREMENTS
+This example requires Make, Docker, and Compose.
+:::
+
 ```yaml
 # docker-compose.yml
 version: '3'
@@ -42,7 +46,3 @@ echo:
 # echo 'Hello, World!' with the following command
 $ make echo
 ```
-
-::: warning REQUIREMENTS
-This example requires Make, Docker, and Docker Compose.
-:::

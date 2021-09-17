@@ -1,6 +1,6 @@
-COMPOSE_RUN_NODE = docker compose run --rm node
-COMPOSE_UP_NODE = docker compose up -d node
-COMPOSE_UP_NODE_DEV = docker compose up node_dev
+COMPOSE_RUN_NODE = docker-compose run --rm node
+COMPOSE_UP_NODE = docker-compose up -d node
+COMPOSE_UP_NODE_DEV = docker-compose up node_dev
 ENVFILE ?= env.template
 SERVE_BASE_URL ?= http://node:8080
 
@@ -35,7 +35,7 @@ _dev:
 build:
 	$(COMPOSE_RUN_NODE) make _build
 _build:
-	yarn run vuepress build docs --clean-cache
+	yarn run vuepress build docs
 
 serve:
 	$(info serve will sleep 5 seconds to make sure the server is up)
