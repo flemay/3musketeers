@@ -15,7 +15,7 @@ services:
       # For CI/CD tool, mapping port should be avoided since it can create port conflict.
       # This is the reason the service `node` exists.
       - "127.0.0.1:8080:8080"
-    command: ${COMPOSE_COMMAND}
+    command: ${COMPOSE_COMMAND:-make _serve}
     env_file: .env
 
   node:
@@ -25,6 +25,6 @@ services:
         source: .
         target: /opt/app
     working_dir: /opt/app
-    command: ${COMPOSE_COMMAND}
+    command: ${COMPOSE_COMMAND:-make _serve}
     env_file: .env
 
