@@ -227,7 +227,7 @@ clean: .env
 # fail if .env does not exist
 $ make targetA
 # fail if .env does not exist even if targetB does not require .env because Compose does in our case
-# make targetB
+$ make targetB
 # overwrite .env based on env.template
 $ make envfile
 # overwrite .env with a specific file
