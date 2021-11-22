@@ -200,7 +200,11 @@ The `docker-compose.yml` above has the [variable substitution][linkDockerCompose
 
 Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
-```Makefile
+::: tip
+Explicit is the method I personally prefer.
+:::
+
+```makefile
 # Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ENVFILE ?= env.template
@@ -208,8 +212,11 @@ ENVFILE ?= env.template
 envfile:
 	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
 
-target: .env
+targetA: .env
 	$(COMPOSE_RUN_ALPINE) cat .env
+
+targetB:
+    $(COMPOSE_RUN_ALPINE) echo "Hello, World!"
 
 # clean removes the .env
 clean: .env
@@ -218,7 +225,9 @@ clean: .env
 
 ```bash
 # fail if .env does not exist
-$ make target
+$ make targetA
+# fail if .env does not exist even if targetB does not require .env because Compose does in our case
+# make targetB
 # overwrite .env based on env.template
 $ make envfile
 # overwrite .env with a specific file
