@@ -86,6 +86,7 @@ $ make deps
 
 # start vuepress server for local development
 $ make dev
+# wait till the message 'vite v2.5.3 dev server running at' appears
 # access the website in your browser at http://localhost:8080/
 # \<ctrl-c\> to stop
 

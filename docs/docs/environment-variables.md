@@ -4,6 +4,50 @@ Development following [the twelve-factor app][link12factor] use the [environment
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][linkDockerEnvfile] to pass the variables to the containers.
 
+## .env file and expectations
+
+With the following `.env` file:
+
+```
+# make sure these env vars are not set in the system
+ENV_A
+ENV_B=
+ENV_C=env_c
+```
+
+And the `docker-compose.yml` file:
+
+```yml
+services:
+  alpine:
+    image: alpine
+    env_file: .env
+```
+
+The expected results are:
+
+```bash
+$ docker run --rm --env-file=.env alpine env
+ENV_B=
+ENV_C=env_c
+# ENV_A is not set and ENV_B is set to empty
+
+$ docker-compose run --rm alpine env
+ENV_B=
+ENV_C=env_c
+# Same as Docker
+```
+
+::: warning
+The command `compose` of Docker has a very different result than Docker and Docker-Compose.
+
+```bash
+$ docker compose run --rm alpine env
+ENV_C=env_c
+ENV_A=ENV_B=
+```
+:::
+
 ## Files env.template and env.example
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
@@ -14,7 +58,7 @@ As `env.template` and `env.example` files are meant to be part of the source cod
 
 ### env.template
 
-`env.template` contains names of all environment variables the application and pipeline use. No values are set here. `# description` can be used to describe an environment variable. `env.template` is mainly used as a template to `.env` in a [CI/CD pipeline][linkCICDAndEnvFile].
+`env.template` contains names (key-only) of all environment variables the application and pipeline use. No values are set here. `# description` can be used to describe an environment variable. `env.template` is mainly used as a template to `.env` in a [CI/CD pipeline][linkCICDAndEnvFile].
 
 ```bash
 # env.template
@@ -200,7 +244,11 @@ The `docker-compose.yml` above has the [variable substitution][linkDockerCompose
 
 Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
-```Makefile
+::: tip
+Explicit is the method I personally prefer.
+:::
+
+```makefile
 # Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ENVFILE ?= env.template
@@ -208,8 +256,11 @@ ENVFILE ?= env.template
 envfile:
 	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
 
-target: .env
+targetA: .env
 	$(COMPOSE_RUN_ALPINE) cat .env
+
+targetB:
+    $(COMPOSE_RUN_ALPINE) echo "Hello, World!"
 
 # clean removes the .env
 clean: .env
@@ -218,7 +269,9 @@ clean: .env
 
 ```bash
 # fail if .env does not exist
-$ make target
+$ make targetA
+# fail if .env does not exist even if targetB does not require .env because Compose does in our case
+$ make targetB
 # overwrite .env based on env.template
 $ make envfile
 # overwrite .env with a specific file
