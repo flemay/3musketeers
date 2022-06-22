@@ -209,15 +209,15 @@ More details in [Environment variables][linkEnvironmentVariables] section.
 
 ## Docker-in-Docker (DinD)
 
-::: warning READ FIRST
-Before using Docker-in-Docker, be sure to read through [Jérôme Petazzoni's excellent blog post on the subject][linkDinD], where he outlines some of the pros and cons of doing so (and some nasty gotchas you might run into).
+::: TIP DinD explained
+Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker outlines some of the pros and cons of doing so (and some nasty gotchas you might run into). This 3 Musketeers pattern is about "The socket solution" described in his post.
 :::
 
-This pattern can be used if the host only provides Docker or runs your pipeline in containers. If you want to use the 3 Musketeers in your pipeline, you can then use a Docker image that has Make, Docker, and Compose: [flemay/musketeers][linkMusketeersImage].
+So far, the patterns were for host (environment) that provided access to Make, Docker (and daemon), and Compose. However, there are times when the environment that is provided is Docker containers with no access to Make, Docker, or Compose. The 3 Musketeers can still be applied when using a Docker image that provides Make, Docker (client), and Compose, such as [flemay/musketeers][linkMusketeersImage], given it has access to the Docker socket which allows Docker (client) to connect to the Docker engine.
 
 ![pattern-dind](./assets/diagrams-pattern-dind.svg)
 
-The project [docker-cookiecutter][linkCookiecutter] uses this pattern with the GitLab pipeline and the configuration looks like the following:
+An example is with GitLab CI. [It allows you to access Docker within a Docker container][linkGitLabDinD]. A pipeline configuration would look like the following:
 
 ```yaml
 # .gitlab-ci.yml
@@ -228,14 +228,12 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
 
 stages:
-  - testAndPush
+  - test
 
-testAndPush:
-  stage: testAndPush
-  environment:
-    name: testAndPush
+test:
+  stage: test
   script:
-    - ./scripts/gitlab.sh
+    - make test
 ```
 
 ::: tip
@@ -250,4 +248,5 @@ An alternative to using DinD in GitLab is to define your pipeline with each stag
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
 [link3MusketeersGitHub]: https://github.com/flemay/3musketeers
 [linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+[linkGitLabDinD]: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 [linkGitlabRunner]: https://gitlab.com/gitlab-org/gitlab-runner
