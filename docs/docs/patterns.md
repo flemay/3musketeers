@@ -209,7 +209,7 @@ More details in [Environment variables][linkEnvironmentVariables] section.
 
 ## Docker-in-Docker (DinD)
 
-::: TIP DinD explained
+::: tip DinD explained
 Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker outlines some of the pros and cons of doing so (and some nasty gotchas you might run into). This 3 Musketeers pattern is about "The socket solution" described in his post.
 :::
 
