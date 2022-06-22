@@ -213,7 +213,7 @@ More details in [Environment variables][linkEnvironmentVariables] section.
 Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker outlines some of the pros and cons of doing so (and some nasty gotchas you might run into). This 3 Musketeers pattern is about "The socket solution" described in his post.
 :::
 
-So far, the patterns were for host (environment) that provided access to Make, Docker (and daemon), and Compose. However, there are times when the environment that is provided is Docker containers with no access to Make, Docker, or Compose. The 3 Musketeers can still be applied when using a Docker image that provides Make, Docker (client), and Compose, such as [flemay/musketeers][linkMusketeersImage], given it has access to the Docker socket which allows Docker (client) to connect to the Docker engine.
+So far, the patterns are for hosts (environments) that provide access to Make, Docker (and daemon), and Compose. However, there are times when the environment provided is Docker containers with no access to Make, Docker, or Compose. The 3 Musketeers can be applied by using a Docker image that provides Make, Docker (client), and Compose, such as [flemay/musketeers][linkMusketeersImage], given it has access to the Docker socket which allows Docker (client) to connect to the Docker engine.
 
 ![pattern-dind](./assets/diagrams-pattern-dind.svg)
 
