@@ -4,6 +4,9 @@ const desc = 'Test, build, and deploy your apps from anywhere, the same way!'
 const logoRel = '/img/logo.png'
 const title = '3 Musketeers'
 
+const { searchPlugin } = require('@vuepress/plugin-search')
+const { defaultTheme } = require('@vuepress/theme-default')
+
 module.exports = {
   title: '3 Musketeers',
   description: desc,
@@ -33,23 +36,16 @@ module.exports = {
     ['meta', { name: 'twitter:url', value: url }],
   ],
   plugins: [
-    [
-      '@vuepress/plugin-search',
-      {
-        maxSuggestions: 10,
-        locales: {
-          '/': {
-            placeholder: 'Search',
-          },
+    searchPlugin({
+      maxSuggestions: 10,
+      locales: {
+        '/': {
+          placeholder: 'Search',
         },
       },
-    ],
+    }),
   ],
-  bundler: '@vuepress/vite',
-  bundlerConfig: {
-
-  },
-  themeConfig: {
+  theme: defaultTheme({
     repo: 'https://github.com/flemay/3musketeers',
     repoLabel: 'GitHub',
     docsRepo: 'flemay/3musketeers',
@@ -65,7 +61,7 @@ module.exports = {
       '/about/': getAboutSidebar(),
       '/docs/': getDocsSidebar(),
     },
-  },
+  }),
 }
 
 function getAboutSidebar() {
