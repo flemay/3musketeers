@@ -4,6 +4,9 @@ hero:
   heroImage: /img/hero.jpg
   name: 3 Musketeers
   text: Test, build, and deploy your apps from anywhere, the same way.
+  image:
+    src: /img/hero.jpg
+    alt: logo
   actions:
     - text: Get Started
       link: /docs/
