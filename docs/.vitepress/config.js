@@ -1,15 +1,15 @@
 const domain = '3musketeers.io'
 const url = `https://${domain}`
-const desc = 'Test, build, and deploy your apps from anywhere, the same way!'
+const desc = 'Test, build, and deploy your apps from anywhere, the same way.'
 const logoRel = '/img/logo.png'
 const title = '3 Musketeers'
+const github = 'https://github.com/flemay/3musketeers'
 
-const { searchPlugin } = require('@vuepress/plugin-search')
-const { defaultTheme } = require('@vuepress/theme-default')
-
-module.exports = {
-  title: '3 Musketeers',
+export default {
+  title: title,
   description: desc,
+  lastUpdated: true,
+
   head: [
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' }],
@@ -35,23 +35,14 @@ module.exports = {
     ['meta', { name: 'twitter:image', content: logoRel }],
     ['meta', { name: 'twitter:url', value: url }],
   ],
-  plugins: [
-    searchPlugin({
-      maxSuggestions: 10,
-      locales: {
-        '/': {
-          placeholder: 'Search',
-        },
-      },
-    }),
-  ],
-  theme: defaultTheme({
-    repo: 'https://github.com/flemay/3musketeers',
-    repoLabel: 'GitHub',
-    docsRepo: 'flemay/3musketeers',
-    contributors: false,
-    docsDir: 'docs',
-    navbar: [
+
+  themeConfig: {
+    siteTitle: title,
+    editLink: {
+      pattern: `${github}/edit/main/docs/:path`,
+      text: 'Edit this page on GitHub'
+    },
+    nav: [
       { text: 'About', link: '/about/' },
       { text: 'Docs', link: '/docs/' },
       { text: 'Examples', link: '/examples/' },
@@ -59,17 +50,27 @@ module.exports = {
     ],
     sidebar: {
       '/about/': getAboutSidebar(),
-      '/docs/': getDocsSidebar(),
+      '/docs/': getDocsSidebar()
     },
-  }),
+    socialLinks: [
+      { icon: 'github', link: github },
+    ],
+    footer: {
+      message: 'MIT Licensed',
+      copyright: 'Copyright © 2018 Frederic Lemay'
+    }
+  }
 }
 
 function getAboutSidebar() {
   return [
     {
       text: 'About',
-      collapsable: false,
-      children: ['/about/', '/about/tools', '/about/contributing'],
+      items: [
+        { text: 'About', link: '/about/' },
+        { text: 'Tools', link: '/about/tools' },
+        { text: 'Contributing', link: '/about/contributing' }
+      ]
     }
   ]
 }
@@ -78,16 +79,15 @@ function getDocsSidebar() {
   return [
     {
       text: 'Docs',
-      collapsable: false,
-      children: [
-        '/docs/',
-        '/docs/patterns',
-        '/docs/make',
-        '/docs/docker',
-        '/docs/compose',
-        '/docs/project-dependencies',
-        '/docs/environment-variables',
-        '/docs/other-tips',
+      items: [
+        { text: 'Get Started', link: '/docs/' },
+        { text: 'Patterns', link: '/docs/patterns' },
+        { text: 'Make', link: '/docs/make' },
+        { text: 'Docker', link: '/docs/docker' },
+        { text: 'Compose', link: '/docs/compose' },
+        { text: 'Project dependencies', link: '/docs/project-dependencies' },
+        { text: 'Environment variables', link: '/docs/environment-variables' },
+        { text: 'Other tips', link: '/docs/other-tips' },
       ]
     }
   ]

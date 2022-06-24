@@ -12,7 +12,7 @@ This approach relies on official Docker images to manage dependencies. For insta
 
 Example from The [3 Musketeers repository](https://github.com/flemay/3musketeers):
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.7'
 services:
@@ -25,7 +25,7 @@ services:
 
 Official images may not always solve project's dependency requirements and if other projects share the same requirements, then custom Docker images may be a good fit. The images are built by the organization, and deployed to a Docker registry. From a project perspective, it is the same as using official Docker images except, this time, the organization is responsible of maintaining them.
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.7'
 services:
@@ -39,7 +39,7 @@ If a project has specific dependency requirements, then creating (and maintainin
 
 Example from [fredericlemay.com repository](https://github.com/flemay/fredericlemay-com):
 
-```Dockerfile
+```docker
 FROM alpine:latest
 RUN apk --update add bash curl nodejs npm git \
   && rm -rf /var/cache/apk/*
@@ -52,7 +52,7 @@ RUN npm install -g \
 # ...
 ```
 
-```yml
+```yaml
 # docker-compose.yml
 version: '3.7'
 services:

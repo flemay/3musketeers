@@ -17,7 +17,7 @@ ENV_C=env_c
 
 And the `docker-compose.yml` file:
 
-```yml
+```yaml
 services:
   alpine:
     image: alpine
@@ -96,7 +96,7 @@ ENV_VAR_B=b
   - Adding, modifying, or deleting environment variables may impact multiple files such as
     - env.template
     - env.example
-    - Makefile
+    - makefile
     - docker-compose.yml
     - application source code
     - pipeline-as-code file
@@ -146,7 +146,7 @@ services:
 ```
 
 ```makefile
-# file: Makefile
+# file: makefile
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 
 # ENVFILE is env.template by default but can be overwritten
@@ -224,7 +224,7 @@ Examples in this page use `.env` to pass environment variables to a container. T
 
 This section shows some ways to create `.env` file with Make and Compose with the given `docker-compose.yml` file:
 
-```yml
+```yaml
 # docker-compose.yml
 version: "3.7"
 services:
@@ -500,7 +500,7 @@ $ make target ENVFILE=env.example
 
 Here is a way of checking the presence of environment variables before executing a Make target.
 
-```Makefile
+```makefile
 echo: env-MESSAGE
 	@docker run --rm alpine echo "$(MESSAGE)"
 

@@ -30,19 +30,19 @@ shell:
 dev:
 	COMPOSE_COMMAND="make _dev" $(COMPOSE_UP_NODE_DEV)
 _dev:
-	yarn run vuepress dev --debug --host 0.0.0.0 docs
+	yarn run vitepress dev --debug --host 0.0.0.0 docs
 
 build:
 	$(COMPOSE_RUN_NODE) make _build
 _build:
-	yarn run vuepress build docs
+	yarn run vitepress build docs
 
 serve:
 	$(info serve will sleep 5 seconds to make sure the server is up)
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
 	$(COMPOSE_RUN_NODE) sleep 5
 _serve:
-	yarn run serve -l 8080 ./docs/.vuepress/dist
+	yarn run vitepress serve docs
 
 serveDev:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
@@ -65,6 +65,6 @@ cleanDocker:
 	docker-compose down --remove-orphans
 
 clean:
-	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules ./docs/.vuepress/dist"
+	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules"
 	$(MAKE) cleanDocker
 	rm -f .env

@@ -4,13 +4,13 @@ Make is a cross-platform build tool to test and build software and it is used as
 
 Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
-::: tip SNIPPETS
+::: info SNIPPETS
 The snippets in this section bring support for the documentation but may be incomplete or missing context. If you wish to see complete code, go over the [examples][linkExamples] section.
 :::
 
 ## target vs _target
 
-::: tip
+::: info
 This is mainly for the [Make pattern][linkPatternsMake].
 :::
 
@@ -72,7 +72,7 @@ deploy:
 
 To make the Makefile easier to read, avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`. Even more, restrict `target` to file dependencies only. This allows one to call a specific target without worrying that other targets will be executed too.
 
-::: tip
+::: info
 Use [Pipeline targets][linkPipelineTargets] as a way to describe the list of dependencies.
 :::
 
@@ -119,7 +119,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 - Targets [all][linkMakeAndTargetAll] and [pipeline target][linkPipelineTargets] at the top of the file (after the variables)
 - Ordering targets in a build pipeline flow
 
-	```Makefile
+	```makefile
 	deps:
 		# ...
 	test:
@@ -132,7 +132,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 
 - Group [target and _target][linkTargetVSUnderscoreTarget] together
 
-	```Makefile
+	```makefile
 	deps:
 		# ...
 	_deps:
@@ -145,7 +145,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 
 - Alternatively, [target and _target][linkTargetVSUnderscoreTarget] can be separated if too verbose.
 
-	```Makefile
+	```makefile
 	deps:
 		# ...
 	test:
@@ -174,7 +174,7 @@ The target `envfile` creates the file `.env` which is very useful for a project 
 
 ## Project dependencies
 
-::: tip
+::: info
 Refer to [project dependencies][linkProjectDependencies] section for more information.
 :::
 
@@ -210,7 +210,7 @@ _depsUnpack: $(DEPS_ARTIFACT)
 
 It is up to the CI/CD pipeline to call the targets **explicitly** in the right order, i.e: `make deps depsPack` and `make depsUnpack test`. Alternatively, the Makefile can have targets like `ciDeps: deps depsPack` and `ciTest: depsUnpack test`.
 
-::: tip DEPS_DIRS
+::: info DEPS_DIRS
 DEPS_DIRS is language agnostic and can include many directories:
 DEPS_DIRS = node_modules vendor packages/**/dist/*
 :::

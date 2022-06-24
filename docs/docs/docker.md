@@ -61,7 +61,7 @@ _hello:
 
 You may want to build and maintain your own image based on the the image you wanted to use.
 
-```dockerfile
+```docker
 FROM node:alpine
 RUN apk add --update make
 ...
