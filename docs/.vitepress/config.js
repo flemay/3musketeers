@@ -43,10 +43,10 @@ export default {
       text: 'Edit this page on GitHub'
     },
     nav: [
-      { text: 'About', link: '/about/' },
-      { text: 'Docs', link: '/docs/' },
-      { text: 'Examples', link: '/examples/' },
-      { text: 'Blog', link: '/blog/' },
+      { text: 'About', link: '/about/', activeMatch: '/about/' },
+      { text: 'Docs', link: '/docs/', activeMatch: '/docs/' },
+      { text: 'Examples', link: '/examples/', activeMatch: '/examples/' },
+      { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
     ],
     sidebar: {
       '/about/': getAboutSidebar(),
