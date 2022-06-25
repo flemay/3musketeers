@@ -6,7 +6,7 @@
 [![License][linkLicenseBadge]][linkLicense]
 
 <br>
-<p align="left"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
+<p align="left"><img src="docs/public/img/hero.jpg" width="300"></p>
 
 Test, build, and deploy your apps from anywhere, the same way!
 

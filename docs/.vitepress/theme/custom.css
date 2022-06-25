@@ -1,0 +1,18 @@
+/* https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
+:root {
+  /*
+  Default green
+  --vp-c-green: #42b883; hsla(153, 47%, 25%, 1)
+  --vp-c-green-light: #42d392; hsla(153, 62%, 54%, 1)
+  --vp-c-green-lighter: #35eb9a; hsla(153, 82%, 56%, 1)
+  --vp-c-green-dark: #33a06f; hsla(153, 52%, 41%, 1)
+  --vp-c-green-darker: #155f3e; hsla(153, 64%, 23%, 1)
+  */
+
+  /* Rebrand with the same (s)aturation, (l)ightness, and (a)lpha as original theme but with different (h)ue*/
+  --vp-c-brand: hsla(213, 47%, 49%, 1);
+  --vp-c-brand-light: hsla(213, 62%, 54%, 1);
+  --vp-c-brand-lighter: hsla(213, 82%, 56%, 1);
+  --vp-c-brand-dark: hsla(213, 52%, 41%, 1);
+  --vp-c-brand-darker: hsla(213, 64%, 23%, 1);
+}

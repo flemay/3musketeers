@@ -65,6 +65,6 @@ cleanDocker:
 	docker-compose down --remove-orphans
 
 clean:
-	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules docs/.vitepress"
+	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules"
 	$(MAKE) cleanDocker
 	rm -f .env
