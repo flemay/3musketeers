@@ -8,7 +8,7 @@ Docker is the most important musketeer of the three. Many tasks such as testing,
 Docker images are like any other software. You should do your own research before using them and this list does not make an exception.
 :::
 
-* [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. The `flemay/cookiecutter` image in the [examples][linkExamples] uses this image to build and test the Docker image in GitLab Pipeline. See pattern [Docker-in-Docker (DinD)][linkPatternDinD]
+* [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. It also allows to do [Docker-in-Docker (DinD)][linkPatternDinD].
 * [jwilder/dockerize][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
 
   ```makefile
@@ -90,7 +90,6 @@ This would work well on Windows/Mac but what about Linux? Either docker-sync is 
 
 
 [linkPatterns]: patterns
-[linkExamples]: ../examples
 [linkPatternDinD]: patterns#docker-in-docker-dind
 
 [linkDockerSync]: http://docker-sync.io
