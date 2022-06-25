@@ -30,7 +30,7 @@ shell:
 dev:
 	COMPOSE_COMMAND="make _dev" $(COMPOSE_UP_NODE_DEV)
 _dev:
-	yarn run vitepress dev --debug --host 0.0.0.0 docs
+	yarn run vitepress dev --host 0.0.0.0 docs
 
 build:
 	$(COMPOSE_RUN_NODE) make _build
@@ -42,7 +42,7 @@ serve:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
 	$(COMPOSE_RUN_NODE) sleep 5
 _serve:
-	yarn run vitepress serve docs
+	yarn run vitepress serve docs --port 8080
 
 serveDev:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
@@ -59,7 +59,7 @@ deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
 _deploy:
 	yarn run netlify --telemetry-disable
-	yarn run netlify deploy --dir=docs/.vuepress/dist --prod
+	yarn run netlify deploy --dir=docs/.vitepress/dist --prod
 
 cleanDocker:
 	docker-compose down --remove-orphans

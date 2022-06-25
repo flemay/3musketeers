@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Test, build, and deploy your apps from anywhere, the same way.",
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.25",
     "netlify-cli": "^10.5.1",
     "vitepress": "^1.0.0-alpha.4",
     "vue": "^3.2.37"

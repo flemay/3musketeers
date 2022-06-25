@@ -84,7 +84,7 @@ $ make envfile ENVFILE=env.example
 # install dependencies
 $ make deps
 
-# start vuepress server for local development
+# start vitepress server for local development
 $ make dev
 # wait till the message 'vite v2.5.3 dev server running at' appears
 # access the website in your browser at http://localhost:8080/
@@ -127,7 +127,7 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
-- [VuePress](https://vuepress.vuejs.org/)
+- [VitePress](https://vitepress.vuejs.org/)
 - [Favicon Generator](https://realfavicongenerator.net/)
 - [draw.io](https://www.draw.io/)
 - [Netlify](https://www.netlify.com/)
