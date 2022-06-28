@@ -14,6 +14,10 @@ A project does not need to follow only 1 pattern. For instance, a task A can use
 
 ## Make
 
+::: info
+This pattern is used to build and deploy this very website. See the [code][link3MusketeersGitHub].
+:::
+
 Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed.
 
 ![pattern-make](./assets/diagrams-pattern-make.svg)
@@ -75,10 +79,6 @@ $ make echo
 Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkOtherTips].
 
 ![pattern-shell-file](./assets/diagrams-pattern-shell-file.svg)
-
-::: tip
-This pattern is used to build and deploy this very website. See the [code][link3MusketeersGitHub].
-:::
 
 ```bash
 # echo.sh
@@ -209,7 +209,7 @@ More details in [Environment variables][linkEnvironmentVariables] section.
 
 ## Docker-in-Docker (DinD)
 
-::: tip DinD explained
+::: info DIND EXPLAINED
 Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker outlines some of the pros and cons of doing so (and some nasty gotchas you might run into). This 3 Musketeers pattern is about "The socket solution" described in his post.
 :::
 
@@ -236,10 +236,6 @@ test:
     - make test
 ```
 
-::: tip
-An alternative to using DinD in GitLab is to define your pipeline with each stage running your commands in dedicated container. This could potentially be tested locally using [gitlab-runner][linkGitlabRunner].
-:::
-
 [linkDocker]: docker
 [linkOtherTips]: other-tips
 [linkEnvironmentVariables]: environment-variables.html#make-targets-envfile-and-env
@@ -249,4 +245,3 @@ An alternative to using DinD in GitLab is to define your pipeline with each stag
 [link3MusketeersGitHub]: https://github.com/flemay/3musketeers
 [linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
 [linkGitLabDinD]: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
-[linkGitlabRunner]: https://gitlab.com/gitlab-org/gitlab-runner

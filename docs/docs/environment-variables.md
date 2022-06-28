@@ -38,22 +38,12 @@ ENV_C=env_c
 # Same as Docker
 ```
 
-::: warning
-The command `compose` of Docker has a very different result than Docker and Docker-Compose.
-
-```bash
-$ docker compose run --rm alpine env
-ENV_C=env_c
-ENV_A=ENV_B=
-```
-:::
-
-## Files env.template and env.example
+## env.template and env.example
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
 
-::: warning
-As `env.template` and `env.example` files are meant to be part of the source code, never include sensitive values like passwords.
+::: danger ENV FILES AND SOURCE CONTROL
+As `env.template` and `env.example` files are meant to be part of the source code, never include sensitive values like passwords. Additionally, include `.env*` in your `.gitignore`.
 :::
 
 ### env.template
@@ -244,7 +234,7 @@ The `docker-compose.yml` above has the [variable substitution][linkDockerCompose
 
 Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
-::: tip
+::: info
 Explicit is the method I personally prefer.
 :::
 
@@ -370,7 +360,7 @@ $ make target ENVFILE=env.example
 
 This section shows some ways to create `.env` file with Make and Docker.
 
-::: tip
+::: info
 Examples below use Alpine container ([Docker pattern][linkPatternsDocker]) to create `.env` file. However, in most cases, using the host `cp` (and `rm`) is fine.
 :::
 

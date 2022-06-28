@@ -19,7 +19,7 @@ Feedback is greatly appreciated. Is there anything from the project that is not 
 ## Contributing code :computer:
 
 ::: warning DOCUMENTATION RELATED CHANGES
-For any documentation update you would like to make, other than correcting spelling and grammar mistakes, please let use know by filling an issue.
+For any documentation update you would like to make, other than correcting spelling and grammar mistakes, please let us know by filling an issue.
 :::
 
 The project follows the typical [GitHub pull request][linkGitHubPR] model. Before starting any work, please either comment on an existing [issue][linkProjectIssue], or file a new one.
