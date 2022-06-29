@@ -43,14 +43,11 @@ export default {
       text: 'Edit this page on GitHub'
     },
     nav: [
-      { text: 'About', link: '/about/', activeMatch: '/about/' },
-      { text: 'Docs', link: '/docs/', activeMatch: '/docs/' },
-      { text: 'Examples', link: '/examples/', activeMatch: '/examples/' },
+      { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
     ],
     sidebar: {
-      '/about/': getAboutSidebar(),
-      '/docs/': getDocsSidebar()
+      '/guide/': getGuideSidebar()
     },
     socialLinks: [
       { icon: 'github', link: github },
@@ -62,32 +59,30 @@ export default {
   }
 }
 
-function getAboutSidebar() {
+function getGuideSidebar() {
   return [
     {
       text: 'About',
+      collapsible: true,
       items: [
-        { text: 'About', link: '/about/' },
-        { text: 'Tools', link: '/about/tools' },
-        { text: 'Contributing', link: '/about/contributing' }
+        { text: 'What is 3 Musketeers?', link: '/guide/' },
+        { text: 'Tools', link: '/guide/tools' },
+        { text: 'Contributing', link: '/guide/contributing' }
       ]
-    }
-  ]
-}
-
-function getDocsSidebar() {
-  return [
+    },
     {
-      text: 'Docs',
+      text: 'Guide',
+      collapsible: true,
       items: [
-        { text: 'Get Started', link: '/docs/' },
-        { text: 'Patterns', link: '/docs/patterns' },
-        { text: 'Make', link: '/docs/make' },
-        { text: 'Docker', link: '/docs/docker' },
-        { text: 'Compose', link: '/docs/compose' },
-        { text: 'Project dependencies', link: '/docs/project-dependencies' },
-        { text: 'Environment variables', link: '/docs/environment-variables' },
-        { text: 'Other tips', link: '/docs/other-tips' },
+        { text: 'Get Started', link: '/guide/get-started' },
+        { text: 'Patterns', link: '/guide/patterns' },
+        { text: 'Make', link: '/guide/make' },
+        { text: 'Docker', link: '/guide/docker' },
+        { text: 'Compose', link: '/guide/compose' },
+        { text: 'Project dependencies', link: '/guide/project-dependencies' },
+        { text: 'Environment variables', link: '/guide/environment-variables' },
+        { text: 'Other tips', link: '/guide/other-tips' },
+        { text: 'Examples', link: '/guide/examples' },
       ]
     }
   ]

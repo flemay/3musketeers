@@ -9,10 +9,10 @@ hero:
     alt: logo
   actions:
     - text: Get Started
-      link: /docs/
+      link: /guide/get-started
       theme: brand
     - text: About
-      link: /about/
+      link: /guide/
       theme: alt
 features:
   - title: Consistency

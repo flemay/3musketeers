@@ -1,8 +1,6 @@
 # 3 Musketeers
 
-::: warning LIVING DOCUMENTATION
-This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines, or even [contribute][linkContributing].
-:::
+<br/>
 
 <img src="/img/hero.jpg" alt="logo" width="300"/>
 
@@ -26,8 +24,14 @@ Take control of languages, versions, and tools you need, and version source cont
 
 Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
 
-<br/>
+---
 
-<sub>_The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo has been inspired by existing drawings on the Internet._</sub>
+::: info
+The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo has been inspired by existing drawings on the Internet.
+:::
+
+::: warning OPINIONATED
+This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines, or even [contribute][linkContributing].
+:::
 
 [linkContributing]: contributing
