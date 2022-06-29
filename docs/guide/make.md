@@ -377,7 +377,7 @@ target02: This message will show up too!!!
 [linkPatternsMake]: patterns#make
 [linkEnvironmentVariables]: environment-variables
 [linkProjectDependencies]: project-dependencies
-[linkExamples]: ../examples/
+[linkExamples]: examples
 
 [linkPhony]: https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
 [linkSelfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133

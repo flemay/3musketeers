@@ -9,7 +9,7 @@ Here are some examples on how to apply the 3 Musketeers for different kinds of a
 - [flemay/cookiecutter][linkFlemayCookiecutter] is a docker image that is built, tested, and deployed to Docker Hub with GitLab CI/CD. The pipeline uses Docker in Docker (DinD) with the image `flemay/musketeers`.
 - [Echo][linkEcho] is a Cookiecutter template for a basic example that echoes the value of an environment variable.
 
-[linkHelloWorld]: ../docs/#hello-world
+[linkHelloWorld]: get-started
 [link3Musketeers]: https://github.com/flemay/3musketeers
 [linkEnvvars]: https://github.com/flemay/envvars
 [linkFlemayCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
