@@ -2,7 +2,7 @@
 
 <br/>
 
-<img src="/img/hero.jpg" alt="logo" width="300"/>
+<img src="/img/hero-v2.svg" alt="logo" width="300"/>
 
 ## What
 

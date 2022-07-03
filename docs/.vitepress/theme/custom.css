@@ -17,3 +17,21 @@
   --vp-c-brand-dark: hsla(var(--brand-hue), 52%, 41%, 1);
   --vp-c-brand-darker: hsla(var(--brand-hue), 64%, 23%, 1);
 }
+
+@media (max-width: 639.98px) {
+  .image-src {
+    min-width: 230px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959.98px) {
+  .image-src {
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 960px) {
+  .image-src {
+    min-width: 400px;
+  }
+}
