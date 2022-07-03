@@ -1,5 +1,6 @@
 ---
 layout: home
+titleTemplate: Build your apps the same way.
 hero:
   name: 3 Musketeers
   text: Test, build, and deploy your apps from anywhere, the same way.
