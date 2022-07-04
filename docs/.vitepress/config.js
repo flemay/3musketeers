@@ -1,7 +1,7 @@
 const domain = '3musketeers.io'
 const url = `https://${domain}`
 const desc = 'Test, build, and deploy your apps from anywhere, the same way.'
-const logoRel = '/img/logo.png'
+const socialImage = '/img/social-image.jpg'
 const title = '3 Musketeers'
 const github = 'https://github.com/flemay/3musketeers'
 
@@ -11,28 +11,20 @@ export default {
   lastUpdated: true,
 
   head: [
-    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png' }],
-    ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }],
-    ['link', { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg', color: '#000000' }],
-    ['link', { rel: 'shortcut icon', href: '/favicon/favicon.ico' }],
-    ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
-    ['meta', { name: 'msapplication-config', content: '/favicon/browserconfig.xml' }],
-    ['meta', { name: 'theme-color', content: '#000000' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon_io/apple-touch-icon.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon_io/favicon-32x32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon_io/favicon-16x16.png' }],
+    ['link', { rel: 'manifest', href: 'favicon_io/site.webmanifest' }],
 
-    // facebook open graph tags
+    // Open graph protocol
     ['meta', { property: 'og:url', content: url }],
     ['meta', { property: 'og:title', content: title }],
     ['meta', { property: 'og:description', content: desc }],
+    ['meta', { property: 'og:image', content: socialImage }],
     ['meta', { property: 'og:site_name', content: domain }],
-    ['meta', { property: 'og:image', content: logoRel }],
 
     //twitter card tags additive with the og: tags
     ['meta', { name: 'twitter:domain', value: domain }],
-    ['meta', { name: 'twitter:title', value: title }],
-    ['meta', { name: 'twitter:description', value: desc }],
-    ['meta', { name: 'twitter:image', content: logoRel }],
     ['meta', { name: 'twitter:url', value: url }],
   ],
 

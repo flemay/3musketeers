@@ -122,13 +122,14 @@ The 3 Musketeers is an open source project and contributions are greatly appreci
 
 Please visit https://3musketeers.io/about/contributing.html for more information.
 
-## Credits
+## Special thanks and credits
 
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
 - [VitePress](https://vitepress.vuejs.org/)
-- [Favicon Generator](https://realfavicongenerator.net/)
+- [Vectornator](https://www.vectornator.io/)
+- [favicon.io](https://favicon.io)
 - [draw.io](https://www.draw.io/)
 - [Netlify](https://www.netlify.com/)
   - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
