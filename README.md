@@ -128,14 +128,15 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
 - [VitePress](https://vitepress.vuejs.org/)
-- [Vectornator](https://www.vectornator.io/)
-- [favicon.io](https://favicon.io)
-- [draw.io](https://www.draw.io/)
 - [Netlify](https://www.netlify.com/)
   - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
   - [CLI deploy command](https://cli.netlify.com/commands/deploy)
 - [GitHub Actions](https://github.com/features/actions)
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
+- [Vectornator](https://www.vectornator.io/)
+- [favicon.io](https://favicon.io)
+- [draw.io](https://www.draw.io/)
+- [Preparing a perfect image for the og:image tag](https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/)
 
 ## Stargazers over time
 
