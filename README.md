@@ -114,6 +114,30 @@ $ make clean
 $ make all
 ```
 
+### Logo, favicon, and social media preview
+
+- 3 Musketeers logo
+    - Created by Frederic Lemay using Procreate and Vectornator
+    - 2048px by 2048px SVG image
+    - Images are in folder `docs/public/img`
+- Favicon
+    - Source image is an exported png format of the logo
+    - Use the website [favicon.io][linkFaviconio]
+    - The generated content is in `docs/public/favicon_io`
+    - File docs/public/favicon.io is a copy of the file in `docs/public/favicon_io`
+        - By default, browsers searches for /favicon.io
+    - HTML `link` has been set in file `/docs/.vitepress/config.js`
+- Social media preview
+    - This is for displaying preview of the website on Twitter, Facebook, GitHub, etc
+    - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
+    - Created a new vector image 1280x640px with the scale down logo at the center
+        - The size is suggested by GitHub in General settings
+    - According to [artegence article][linkArtegenceArticle], the image template
+        - Is 1200x630px
+        - Has the logo (630x630) centered
+        - Use png format (very high quality and transparency)
+        - Use jpg format (high quality and very good size compression)
+
 ## Contributing
 
 Thanks goes to these wonderful [people][linkContributors].
@@ -122,7 +146,7 @@ The 3 Musketeers is an open source project and contributions are greatly appreci
 
 Please visit https://3musketeers.io/about/contributing.html for more information.
 
-## Special thanks and credits
+## References
 
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
@@ -134,9 +158,9 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 - [GitHub Actions](https://github.com/features/actions)
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
 - [Vectornator](https://www.vectornator.io/)
-- [favicon.io](https://favicon.io)
+- [favicon.io][linkFaviconio]
 - [draw.io](https://www.draw.io/)
-- [Preparing a perfect image for the og:image tag](https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/)
+- [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
 
 ## Stargazers over time
 
@@ -160,3 +184,6 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 [linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
 [linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
+
+[linkFaviconio]: https://favicon.io
+[linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
