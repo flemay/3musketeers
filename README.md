@@ -89,7 +89,7 @@ For more information, visit [3musketeers.io][link3Musketeers].
 
 ## Website
 
-This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it using the 3 Musketeers.
+This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
 ### Prerequisites
 
@@ -139,6 +139,7 @@ $ make all
 
 - 3 Musketeers logo
     - Created by Frederic Lemay with Procreate and Vectornator
+        - Neat features used are [offset path][linkVectornatorOffsetPath] and [mask objects][linkVectornatorMaskObjects]
     - 2048px by 2048px SVG image
     - Images are in folder `docs/public/img`
 - Favicon
@@ -153,7 +154,7 @@ $ make all
     - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
     - Created a new vector image 1280x640px with the scale down logo at the center
         - The size is suggested by GitHub in General settings
-    - According to [artegence article][linkArtegenceArticle], the ideal image that works on different social platform
+    - According to [artegence article][linkArtegenceArticle], the ideal image that works on different social platforms
         - Is 1200x630px
         - Has the logo (630x630) centered
         - Use png format (very high quality and transparency)
@@ -212,3 +213,5 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [linkFaviconio]: https://favicon.io
 [linkDrawIO]: https://www.draw.io/
 [linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
+[linkVectornatorOffsetPath]: https://www.vectornator.io/learn/paths#how-to-create-an-offset-path
+[linkVectornatorMaskObjects]: https://www.vectornator.io/learn/options#how-to-mask-objects
