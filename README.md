@@ -114,10 +114,10 @@ $ make clean
 $ make all
 ```
 
-### Logo, favicon, and social media preview
+### Visual elements
 
 - 3 Musketeers logo
-    - Created by Frederic Lemay using Procreate and Vectornator
+    - Created by Frederic Lemay with Procreate and Vectornator
     - 2048px by 2048px SVG image
     - Images are in folder `docs/public/img`
 - Favicon
@@ -126,17 +126,20 @@ $ make all
     - The generated content is in `docs/public/favicon_io`
     - File docs/public/favicon.io is a copy of the file in `docs/public/favicon_io`
         - By default, browsers searches for /favicon.io
-    - HTML `link` has been set in file `/docs/.vitepress/config.js`
+    - HTML `link` tags have been set in file `/docs/.vitepress/config.js`
 - Social media preview
     - This is for displaying preview of the website on Twitter, Facebook, GitHub, etc
     - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
     - Created a new vector image 1280x640px with the scale down logo at the center
         - The size is suggested by GitHub in General settings
-    - According to [artegence article][linkArtegenceArticle], the image template
+    - According to [artegence article][linkArtegenceArticle], the ideal image that works on different social platform
         - Is 1200x630px
         - Has the logo (630x630) centered
         - Use png format (very high quality and transparency)
         - Use jpg format (high quality and very good size compression)
+- Diagrams
+    - [draw.io][linkDrawIO] is used to generate diagrams
+    - All diagrams are in the file `diagrams.drawio`
 
 ## Contributing
 
@@ -159,7 +162,7 @@ Please visit https://3musketeers.io/about/contributing.html for more information
   - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
 - [Vectornator](https://www.vectornator.io/)
 - [favicon.io][linkFaviconio]
-- [draw.io](https://www.draw.io/)
+- [draw.io][linkDrawIO]
 - [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
 
 ## Stargazers over time
@@ -186,4 +189,5 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
 
 [linkFaviconio]: https://favicon.io
+[linkDrawIO]: https://www.draw.io/
 [linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
