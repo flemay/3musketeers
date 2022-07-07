@@ -10,11 +10,16 @@
 
 Test, build, and deploy your apps from anywhere, the same way!
 
+## Overview
+
+The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
+
+![pattern-overview][linkPatternOverview]
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
-- [Overview](#overview)
 - [Why?](#why)
   - [Consistency](#consistency)
   - [Control](#control)
@@ -31,12 +36,6 @@ Test, build, and deploy your apps from anywhere, the same way!
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Overview
-
-The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
-
-![pattern-overview][linkPatternOverview]
 
 ## Why?
 
@@ -196,7 +195,7 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [MIT][linkLicense]
 
 
-[linkContributing]: ./docs/about/contributing.md
+[linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/dub/l/vibe-d.svg
 [linkLicense]: LICENSE
