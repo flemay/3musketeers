@@ -10,6 +10,28 @@
 
 Test, build, and deploy your apps from anywhere, the same way!
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Overview](#overview)
+- [Why?](#why)
+  - [Consistency](#consistency)
+  - [Control](#control)
+  - [Confidence](#confidence)
+- [Prerequisites](#prerequisites)
+- [Usage](#usage)
+- [Website](#website)
+  - [Prerequisites](#prerequisites-1)
+  - [Development](#development)
+  - [Visual elements](#visual-elements)
+- [Contributing](#contributing)
+- [References](#references)
+- [Stargazers over time](#stargazers-over-time)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Overview
 
 The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
@@ -147,7 +169,7 @@ Thanks goes to these wonderful [people][linkContributors].
 
 The 3 Musketeers is an open source project and contributions are greatly appreciated.
 
-Please visit https://3musketeers.io/about/contributing.html for more information.
+Please visit https://3musketeers.io/guide/contributing.html for more information.
 
 ## References
 
@@ -178,7 +200,7 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/dub/l/vibe-d.svg
 [linkLicense]: LICENSE
-[linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
+[linkPatternOverview]: ./docs/guide/assets/diagrams-overview.svg
 
 [link3Musketeers]: https://3musketeers.io
 [linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
