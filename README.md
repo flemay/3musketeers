@@ -26,7 +26,7 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
   - [Confidence](#confidence)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
-- [Website](#website)
+- [Website development](#website-development)
   - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
