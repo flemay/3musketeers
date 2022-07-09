@@ -142,7 +142,7 @@ $ make all
 
 ### Deployment
 
-3 Musketeers is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI](https://cli.netlify.com/commands/). This is handy when previewing new changes.
+The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI](https://cli.netlify.com/commands/). This is handy when previewing new changes.
 
 #### Prerequisites
 
@@ -151,12 +151,9 @@ $ make all
 
 #### Create a new site
 
+This section creates a blank Netlify site. Ensure the `.env` file contains the access token.
+
 ```bash
-# Build the website
-$ make build
-
-# Add the personal access token to .env file or set it to environment variable `NETLIFY_AUTH_TOKEN`
-
 # All the following commands will be run inside a container
 $ make shell
 
