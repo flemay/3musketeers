@@ -92,7 +92,7 @@ $ make echo
 
 For more information, visit [3musketeers.io][link3Musketeers].
 
-## Website
+## Website development
 
 This repository is the [3musketeers.io][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
