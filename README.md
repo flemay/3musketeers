@@ -30,7 +30,6 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
   - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
-    - [Prerequisites](#prerequisites-2)
     - [Create a new site](#create-a-new-site)
     - [Deploy](#deploy)
     - [Delete](#delete)
@@ -101,6 +100,8 @@ This repository is the [3musketeers.io][link3Musketeers] website built with [Vit
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
+- [Netlify](https://netlify.com) account
+- [Netlify personal access token](https://app.netlify.com/user/applications)
 
 ### Development
 
@@ -141,11 +142,6 @@ $ make all
 
 The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI](https://cli.netlify.com/commands/). This is handy when previewing new changes.
 
-#### Prerequisites
-
-- A [Netlify](https://netlify.com) account
-- A [personal access token](https://app.netlify.com/user/applications)
-
 #### Create a new site
 
 This section creates a blank Netlify site. Ensure the `.env` file contains the access token.
@@ -178,7 +174,7 @@ $ exit
 
 #### Deploy
 
-This section deploys the website to an existing netlify site. Ensure the `.env` file is contains the right site ID and access token.
+This section deploys the website to an existing netlify site. Ensure the `.env` file contains the right site ID and access token.
 
 ```bash
 # Build the website
@@ -193,7 +189,7 @@ $ curl https://site-name.netlify.app
 
 #### Delete
 
-This section deletes the netlify site. Ensure the `.env` file is contains the right site ID and access token.
+This section deletes the netlify site. Ensure the `.env` file contains the right site ID and access token.
 
 ```bash
 # All the following commands will be run inside a container
