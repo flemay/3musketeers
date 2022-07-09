@@ -89,7 +89,7 @@ For more information, visit [3musketeers.io][link3Musketeers].
 
 ## Website
 
-This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy using the 3 Musketeers.
+This repository is the [3musketeers.io][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
 ### Prerequisites
 
@@ -135,11 +135,83 @@ $ make clean
 $ make all
 ```
 
+### Deployment
+
+3 Musketeers is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI](https://cli.netlify.com/commands/). This is handy when previewing new changes.
+
+#### Prerequisites
+
+- A [Netlify](https://netlify.com) account
+- A [personal access token](https://app.netlify.com/user/applications)
+
+#### Create a new site
+
+```bash
+# Build the website
+$ make build
+
+# Add the personal access token to .env file or set it to environment variable `NETLIFY_AUTH_TOKEN`
+
+# All the following commands will be run inside a container
+$ make shell
+
+# Disable telemetry (optional)
+$ yarn run netlify --telemetry-disable
+
+# Create new Netlify blank site
+$ yarn run netlify sites:create --disable-linking
+# Answer the questions regarding the team and site name
+# Site name can be something like 3musketeers-preview-{random 5 digit numbers)
+Site Created
+
+Admin URL: https://app.netlify.com/sites/site-name
+URL:       https://site-name.netlify.app
+Site ID:   site-id
+
+# You can always get back that information
+$ yarn run netlify sites:list
+
+# Copy the ID to .env
+```
+
+#### Deploy
+
+This section deploys the website to an existing netlify site. Ensure the `.env` file is contains the right site ID and access token.
+
+```bash
+# Build the website
+$ make build
+
+# Deploy to netlify
+$ make deploy
+
+# Test the website
+$ curl https://site-name.netlify.app
+```
+
+#### Delete
+
+This section deletes the netlify site. Ensure the `.env` file is contains the right site ID and access token.
+
+```bash
+# All the following commands will be run inside a container
+$ make shell
+
+# Disable telemetry (optional)
+$ yarn run netlify --telemetry-disable
+
+# Delete the site (optional)
+$ yarn run netlify sites:delete
+
+# Exit the container
+$ exit
+```
+
 ### Visual elements
 
 - 3 Musketeers logo
     - Created by Frederic Lemay with Procreate and Vectornator
-        - Neat features used are [offset path][linkVectornatorOffsetPath] and [mask objects][linkVectornatorMaskObjects]
+        - Neat tools used are [offset path][linkVectornatorOffsetPath] and [mask objects][linkVectornatorMaskObjects]
     - 2048px by 2048px SVG image
     - Images are in folder `docs/public/img`
 - Favicon
@@ -176,7 +248,7 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
-- [VitePress](https://vitepress.vuejs.org/)
+- [VitePress][linkVitePress]
 - [Netlify](https://www.netlify.com/)
   - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
   - [CLI deploy command](https://cli.netlify.com/commands/deploy)
@@ -210,6 +282,7 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
 
+[linkVitePress]: https://vitepress.vuejs.org/
 [linkFaviconio]: https://favicon.io
 [linkDrawIO]: https://www.draw.io/
 [linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
