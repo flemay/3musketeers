@@ -130,9 +130,6 @@ $ make serve
 # test static website
 $ make test
 
-# deploy to netlify (do not forget to set the environment variables)
-$ make deploy
-
 # clean
 $ make clean
 
@@ -163,7 +160,7 @@ $ yarn run netlify --telemetry-disable
 # Create new Netlify blank site
 $ yarn run netlify sites:create --disable-linking
 # Answer the questions regarding the team and site name
-# Site name can be something like 3musketeers-preview-{random 5 digit numbers)
+# Site name can be something like 3musketeers-preview-{random 5 digit numbers}
 Site Created
 
 Admin URL: https://app.netlify.com/sites/site-name
@@ -174,6 +171,9 @@ Site ID:   site-id
 $ yarn run netlify sites:list
 
 # Copy the ID to .env
+
+# Exit the container
+$ exit
 ```
 
 #### Deploy
