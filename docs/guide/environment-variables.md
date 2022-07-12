@@ -512,34 +512,6 @@ Check if MESSAGE is not empty
 helloworld
 ```
 
-## AWS environment variables and ~/.aws
-
-When using AWS, you can use environment variables. This is useful when you assume role as usually a tool like [assume-role][linkAssumeRole] would set your environment variables.
-
-```
-# env.template
-AWS_REGION
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_SESSION_TOKEN
-AWS_PROFILE
-```
-
-or share your AWS folder like the following:
-
-```yaml
-# docker-compose.yml
-services:
-  serverless:
-    image: flemay/aws
-    env_file: .env
-    volumes:
-      - ~/.aws:/root/.aws:Z
-```
-
-Or both can be used. In this case, environment variables will take precedence over `~/.aws` when using AWS cli.
-
-
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 [linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose

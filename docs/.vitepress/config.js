@@ -74,8 +74,8 @@ function getGuideSidebar() {
         { text: 'Compose', link: '/guide/compose' },
         { text: 'Project dependencies', link: '/guide/project-dependencies' },
         { text: 'Environment variables', link: '/guide/environment-variables' },
-        { text: 'Other tips', link: '/guide/other-tips' },
         { text: 'Examples', link: '/guide/examples' },
+        { text: 'Misc', link: '/guide/misc' },
       ]
     }
   ]

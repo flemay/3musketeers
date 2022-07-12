@@ -1,4 +1,4 @@
-# Other tips
+# Misc
 
 ## Access environment variables in command argument
 
