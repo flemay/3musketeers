@@ -186,6 +186,9 @@ $ make deploy
 
 # Test the website
 $ curl https://site-name.netlify.app
+
+# Clean up directory
+$ make clean
 ```
 
 #### Delete
