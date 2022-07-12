@@ -145,7 +145,7 @@ The 3 Musketeers website is deployed to Netlify. This section shows how to creat
 
 #### Create a new site
 
-This section creates a blank Netlify site. Ensure the `.env` file contains the access token.
+This section creates a new empty Netlify site. Ensure the `.env` file contains the access token.
 
 ```bash
 # All the following commands will be run inside a container
@@ -190,7 +190,7 @@ $ curl https://site-name.netlify.app
 
 #### Delete
 
-This section deletes the netlify site. Ensure the `.env` file contains the right site ID and access token.
+This section deletes a netlify site. Ensure the `.env` file contains the right site ID and access token.
 
 ```bash
 # All the following commands will be run inside a container
@@ -208,11 +208,11 @@ $ exit
 
 ### CI/CD
 
-GitHub Actions is used to test PRs and deploy changes to `main` branch to Netlify.
+[GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Netlify.
 
 - A dedicated Netlify personal access token has been created for Github Actions
-- Environment variables required for deploying to Netlify are set as [Secrets for GitHub Actions][linkGitHubActionsSecrets]
-- The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good example
+- Environment variables required for deploying to Netlify are set as [secrets for GitHub Actions][linkGitHubActionsSecrets]
+- The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good real life example
 
 ### Visual elements
 
@@ -243,8 +243,8 @@ GitHub Actions is used to test PRs and deploy changes to `main` branch to Netlif
     - [draw.io][linkDrawIO] is used to generate diagrams
     - All diagrams are in the file `diagrams.drawio`
 - README badges
-    - [Netlify deployment badge][linkNetlifyDeploymentBadge]
     - [GitHub Actions status badge][linkGitHubActionsAddingStatusBadge]
+    - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
 ## Contributing
 
