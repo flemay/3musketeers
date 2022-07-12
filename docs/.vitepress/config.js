@@ -29,6 +29,7 @@ export default {
   ],
 
   themeConfig: {
+    logo: '/img/hero-v2.svg',
     siteTitle: title,
     editLink: {
       pattern: `${github}/edit/main/docs/:path`,

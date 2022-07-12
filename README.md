@@ -33,6 +33,7 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
     - [Create a new site](#create-a-new-site)
     - [Deploy](#deploy)
     - [Delete](#delete)
+  - [CI/CD](#cicd)
   - [Visual elements](#visual-elements)
 - [Contributing](#contributing)
 - [References](#references)
@@ -140,7 +141,7 @@ $ make all
 
 ### Deployment
 
-The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI](https://cli.netlify.com/commands/). This is handy when previewing new changes.
+The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI][linkNetlifyCLI]. This is handy for previewing new changes.
 
 #### Create a new site
 
@@ -205,10 +206,18 @@ $ yarn run netlify sites:delete
 $ exit
 ```
 
+### CI/CD
+
+GitHub Actions is used to test PRs and deploy changes to `main` branch to Netlify.
+
+- A dedicated Netlify personal access token has been created for Github Actions
+- Environment variables required for deploying to Netlify are set as [Secrets for GitHub Actions][linkGitHubActionsSecrets]
+- The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good example
+
 ### Visual elements
 
 - 3 Musketeers logo
-    - Created by Frederic Lemay with Procreate and Vectornator
+    - Created by me with [Procreate][linkProcreate] and [Vectornator][linkVectornator]
         - Neat tools used are [offset path][linkVectornatorOffsetPath] and [mask objects][linkVectornatorMaskObjects]
     - 2048px by 2048px SVG image
     - Images are in folder `docs/public/img`
@@ -221,7 +230,6 @@ $ exit
     - HTML `link` tags have been set in file `/docs/.vitepress/config.js`
 - Social media preview
     - This is for displaying preview of the website on Twitter, Facebook, GitHub, etc
-    - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
     - Created a new vector image 1280x640px with the scale down logo at the center
         - The size is suggested by GitHub in General settings
     - According to [artegence article][linkArtegenceArticle], the ideal image that works on different social platforms
@@ -229,9 +237,14 @@ $ exit
         - Has the logo (630x630) centered
         - Use png format (very high quality and transparency)
         - Use jpg format (high quality and very good size compression)
+    - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
+    - The social image is also set in the general settings of the repository
 - Diagrams
     - [draw.io][linkDrawIO] is used to generate diagrams
     - All diagrams are in the file `diagrams.drawio`
+- README badges
+    - [Netlify deployment badge][linkNetlifyDeploymentBadge]
+    - [GitHub Actions status badge][linkGitHubActionsAddingStatusBadge]
 
 ## Contributing
 
@@ -243,16 +256,14 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 
 ## References
 
-- [Docker](https://www.docker.com/)
-- [Compose](https://docs.docker.com/compose/)
-- [Make](https://www.gnu.org/software/make/)
+- [Docker][linkDocker]
+- [Compose][linkCompose]
+- [Make][linkMake]
 - [VitePress][linkVitePress]
-- [Netlify](https://www.netlify.com/)
-  - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
-  - [CLI deploy command](https://cli.netlify.com/commands/deploy)
-- [GitHub Actions](https://github.com/features/actions)
-  - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
-- [Vectornator](https://www.vectornator.io/)
+- [Netlify][linkNetlifyProjectBadge]
+- [GitHub Actions][linkGitHubActions]
+- [Vectornator][linkVectornator]
+- [Procreate][linkProcreate]
 - [favicon.io][linkFaviconio]
 - [draw.io][linkDrawIO]
 - [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
@@ -266,17 +277,29 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [MIT][linkLicense]
 
 
+[link3Musketeers]: https://3musketeers.io
 [linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/dub/l/vibe-d.svg
 [linkLicense]: LICENSE
 [linkPatternOverview]: ./docs/guide/assets/diagrams-overview.svg
 
-[link3Musketeers]: https://3musketeers.io
+[linkDocker]: https://www.docker.com
+[linkCompose]: https://docs.docker.com/compose
+[linkMake]: https://www.gnu.org/software/make
+
 [linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
 [linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
+[linkGitHubActions]: https://github.com/features/actions
+[linkGitHubActionsSecrets]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+[linkGitHubActionsAddingStatusBadge]: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository
+
+[linkNetlify]: https://netlify.com
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
 [linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
+[linkNetlifyCLI]: https://cli.netlify.com/commands/
+[linkNetlifyDeploymentBadge]: https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/
+
 [linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
 
@@ -284,5 +307,10 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [linkFaviconio]: https://favicon.io
 [linkDrawIO]: https://www.draw.io/
 [linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
+[linkProcreate]: https://procreate.art/
+
+[linkVectornator]: https://www.vectornator.io
 [linkVectornatorOffsetPath]: https://www.vectornator.io/learn/paths#how-to-create-an-offset-path
 [linkVectornatorMaskObjects]: https://www.vectornator.io/learn/options#how-to-mask-objects
+
+
