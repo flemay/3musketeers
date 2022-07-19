@@ -53,7 +53,7 @@ _test:
 	echo "Test home page"
 	curl $(SERVE_BASE_URL) | grep "Get Started" > /dev/null
 	echo "Test docs page"
-	curl $(SERVE_BASE_URL)/docs/ | grep "Hello, World!" > /dev/null
+	curl $(SERVE_BASE_URL)/guide/get-started.html | grep "Hello, World!" > /dev/null
 
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
