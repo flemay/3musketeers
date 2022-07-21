@@ -270,6 +270,7 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 - [favicon.io][linkFaviconio]
 - [draw.io][linkDrawIO]
 - [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
+- [The Go Blog][linkGoBlog] layout
 
 ## Stargazers over time
 
@@ -316,4 +317,4 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [linkVectornatorOffsetPath]: https://www.vectornator.io/learn/paths#how-to-create-an-offset-path
 [linkVectornatorMaskObjects]: https://www.vectornator.io/learn/options#how-to-mask-objects
 
-
+[linkGoBlog]: https://go.dev/blog/
