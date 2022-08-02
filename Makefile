@@ -7,9 +7,9 @@ SERVE_BASE_URL ?= http://node:8080
 all:
 	ENVFILE=env.example $(MAKE) ciTest
 
-ciTest: envfile cleanDocker deps build serve test clean
+ciTest: envfile pruneDocker deps build serve test prune
 
-ciDeploy: envfile cleanDocker deps build serve test deploy clean
+ciDeploy: envfile pruneDocker deps build serve test deploy prune
 
 envfile:
 	cp -f $(ENVFILE) .env
@@ -61,12 +61,12 @@ _deploy:
 	yarn run netlify --telemetry-disable
 	yarn run netlify deploy --dir=docs/.vitepress/dist --prod
 
-cleanDocker:
+pruneDocker:
 	docker-compose down --remove-orphans
 
-clean:
+prune:
 	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules docs/.vitepress/dist docs/.vitepress/.cache"
-	$(MAKE) cleanDocker
+	$(MAKE) pruneDocker
 	rm -f .env
 
 toc:

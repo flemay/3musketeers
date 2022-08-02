@@ -46,8 +46,8 @@ export default {
       { icon: 'github', link: github },
     ],
     footer: {
-      message: 'MIT Licensed',
-      copyright: 'Copyright © 2018 Frederic Lemay'
+      message: 'Released under the MIT license.',
+      copyright: 'Copyright © 2018 - present Frederic Lemay'
     }
   }
 }
