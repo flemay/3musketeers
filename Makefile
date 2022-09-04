@@ -42,7 +42,7 @@ serve:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
 	$(COMPOSE_RUN_NODE) sleep 5
 _serve:
-	yarn run vitepress serve docs --port 8080
+	yarn run vitepress serve docs --port 5173
 
 serveDev:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
