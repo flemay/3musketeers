@@ -38,6 +38,27 @@ ENV_C=env_c
 # Same as Docker
 ```
 
+## Structuring .env file
+
+Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .env file structured.
+
+```
+# All
+ENV
+
+# Deploy
+AWS_VPC
+
+# Test
+CODECOV_URL
+
+# Build and deploy
+BUILD_DIR
+
+# Test and run
+DB_HOST
+```
+
 ## env.template and env.example
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
