@@ -4,7 +4,7 @@ Development following [the twelve-factor app][link12factor] use the [environment
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][linkDockerEnvfile] to pass the variables to the containers.
 
-## .env file and expectations
+## Env file and expectations
 
 With the following `.env` file:
 
@@ -38,7 +38,7 @@ ENV_C=env_c
 # Same as Docker
 ```
 
-## Structuring .env file
+## Structure env file
 
 Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .env file structured.
 
@@ -59,7 +59,7 @@ BUILD_DIR
 DB_HOST
 ```
 
-## env.template and env.example
+## Template and example env files
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
 
@@ -126,7 +126,7 @@ There are few ways to copy the contents of your file to `.env`:
 - manually
 - [make envfile ENVFILE=_yourfile_][linkMakeTargetsEnvfileAndDotEnv]
 
-## Understanding .env file with Docker and Compose
+## Understand env file with Docker and Compose
 
 This tutorial shows how `.env` file works with Docker and Docker Compose.
 

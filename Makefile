@@ -2,7 +2,7 @@ COMPOSE_RUN_NODE = docker-compose run --rm node
 COMPOSE_UP_NODE = docker-compose up -d node
 COMPOSE_UP_NODE_DEV = docker-compose up node_dev
 ENVFILE ?= env.template
-SERVE_BASE_URL ?= http://node:8080
+SERVE_BASE_URL ?= http://node:5173
 
 all:
 	ENVFILE=env.example $(MAKE) ciTest
