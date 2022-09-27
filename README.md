@@ -6,9 +6,42 @@
 [![License][linkLicenseBadge]][linkLicense]
 
 <br>
-<p align="left"><img src="docs/.vuepress/public/img/hero.jpg" width="300"></p>
+<p align="left"><img src="docs/public/img/hero-v2.svg" width="300"></p>
 
 Test, build, and deploy your apps from anywhere, the same way!
+
+<br/>
+
+<details>
+    <summary><b>Table of Contents</b></summary>
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Overview](#overview)
+- [Why?](#why)
+  - [Consistency](#consistency)
+  - [Control](#control)
+  - [Confidence](#confidence)
+- [Prerequisites](#prerequisites)
+- [Usage](#usage)
+- [Website development](#website-development)
+  - [Prerequisites](#prerequisites-1)
+  - [Development](#development)
+  - [Deployment](#deployment)
+    - [Create a new site](#create-a-new-site)
+    - [Deploy](#deploy)
+    - [Delete](#delete)
+  - [CI/CD](#cicd)
+  - [Visual elements](#visual-elements)
+- [Contributing](#contributing)
+- [References](#references)
+- [Stargazers over time](#stargazers-over-time)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+</details>
 
 ## Overview
 
@@ -66,15 +99,17 @@ $ make echo
 
 For more information, visit [3musketeers.io][link3Musketeers].
 
-## Website
+## Website development
 
-This repository is the [3musketeers.io][link3Musketeers] website. This section explains how to develop, test, and deploy it using the 3 Musketeers.
+This repository is the [3musketeers.io][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
 ### Prerequisites
 
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
+- [Netlify](https://netlify.com) account
+- [Netlify personal access token](https://app.netlify.com/user/applications)
 
 ### Development
 
@@ -84,7 +119,7 @@ $ make envfile ENVFILE=env.example
 # install dependencies
 $ make deps
 
-# start vuepress server for local development
+# start vitepress server for local development
 $ make dev
 # wait till the message 'vite v2.5.3 dev server running at' appears
 # access the website in your browser at http://localhost:8080/
@@ -104,15 +139,122 @@ $ make serve
 # test static website
 $ make test
 
-# deploy to netlify (do not forget to set the environment variables)
-$ make deploy
-
-# clean
-$ make clean
+# prune
+$ make prune
 
 # contributing? make sure the following command runs successfully
 $ make all
 ```
+
+### Deployment
+
+The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI][linkNetlifyCLI]. This is handy for previewing new changes.
+
+#### Create a new site
+
+This section creates a new empty Netlify site. Ensure the `.env` file contains the access token.
+
+```bash
+# All the following commands will be run inside a container
+$ make shell
+
+# Disable telemetry (optional)
+$ yarn run netlify --telemetry-disable
+
+# Create new Netlify blank site
+$ yarn run netlify sites:create --disable-linking
+# Answer the questions regarding the team and site name
+# Site name can be something like 3musketeers-preview-{random 5 digit numbers}
+Site Created
+
+Admin URL: https://app.netlify.com/sites/site-name
+URL:       https://site-name.netlify.app
+Site ID:   site-id
+
+# You can always get back that information
+$ yarn run netlify sites:list
+
+# Copy the ID to .env
+
+# Exit the container
+$ exit
+```
+
+#### Deploy
+
+This section deploys the website to an existing netlify site. Ensure the `.env` file contains the right site ID and access token.
+
+```bash
+# Build the website
+$ make build
+
+# Deploy to netlify
+$ make deploy
+
+# Test the website
+$ curl https://site-name.netlify.app
+
+# Clean up directory
+$ make prune
+```
+
+#### Delete
+
+This section deletes a netlify site. Ensure the `.env` file contains the right site ID and access token.
+
+```bash
+# All the following commands will be run inside a container
+$ make shell
+
+# Disable telemetry (optional)
+$ yarn run netlify --telemetry-disable
+
+# Delete the site (optional)
+$ yarn run netlify sites:delete
+
+# Exit the container
+$ exit
+```
+
+### CI/CD
+
+[GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Netlify.
+
+- A dedicated Netlify personal access token has been created for Github Actions
+- Environment variables required for deploying to Netlify are set as [secrets for GitHub Actions][linkGitHubActionsSecrets]
+- The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good real life example
+
+### Visual elements
+
+- 3 Musketeers logo
+    - Created by me with [Procreate][linkProcreate] and [Vectornator][linkVectornator]
+        - Neat tools used are [offset path][linkVectornatorOffsetPath] and [mask objects][linkVectornatorMaskObjects]
+    - 2048px by 2048px SVG image
+    - Images are in folder `docs/public/img`
+- Favicon
+    - Source image is an exported png format of the logo
+    - Use the website [favicon.io][linkFaviconio]
+    - The generated content is in `docs/public/favicon_io`
+    - File docs/public/favicon.io is a copy of the file in `docs/public/favicon_io`
+        - By default, browsers searches for /favicon.io
+    - HTML `link` tags have been set in file `/docs/.vitepress/config.js`
+- Social media preview
+    - This is for displaying preview of the website on Twitter, Facebook, GitHub, etc
+    - Created a new vector image 1280x640px with the scale down logo at the center
+        - The size is suggested by GitHub in General settings
+    - According to [artegence article][linkArtegenceArticle], the ideal image that works on different social platforms
+        - Is 1200x630px
+        - Has the logo (630x630) centered
+        - Use png format (very high quality and transparency)
+        - Use jpg format (high quality and very good size compression)
+    - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
+    - The social image is also set in the general settings of the repository
+- Diagrams
+    - [draw.io][linkDrawIO] is used to generate diagrams
+    - All diagrams are in the file `diagrams.drawio`
+- README badges
+    - [GitHub Actions status badge][linkGitHubActionsAddingStatusBadge]
+    - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
 ## Contributing
 
@@ -120,21 +262,21 @@ Thanks goes to these wonderful [people][linkContributors].
 
 The 3 Musketeers is an open source project and contributions are greatly appreciated.
 
-Please visit https://3musketeers.io/about/contributing.html for more information.
+Please visit https://3musketeers.io/guide/contributing.html for more information.
 
-## Credits
+## References
 
-- [Docker](https://www.docker.com/)
-- [Compose](https://docs.docker.com/compose/)
-- [Make](https://www.gnu.org/software/make/)
-- [VuePress](https://vuepress.vuejs.org/)
-- [Favicon Generator](https://realfavicongenerator.net/)
-- [draw.io](https://www.draw.io/)
-- [Netlify](https://www.netlify.com/)
-  - [Deployment badges](https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/)
-  - [CLI deploy command](https://cli.netlify.com/commands/deploy)
-- [GitHub Actions](https://github.com/features/actions)
-  - [Adding a workflow status badge](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository)
+- [Docker][linkDocker]
+- [Compose][linkCompose]
+- [Make][linkMake]
+- [VitePress][linkVitePress]
+- [Netlify][linkNetlifyProjectBadge]
+- [GitHub Actions][linkGitHubActions]
+- [Vectornator][linkVectornator]
+- [Procreate][linkProcreate]
+- [favicon.io][linkFaviconio]
+- [draw.io][linkDrawIO]
+- [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
 
 ## Stargazers over time
 
@@ -145,16 +287,38 @@ Please visit https://3musketeers.io/about/contributing.html for more information
 [MIT][linkLicense]
 
 
-[linkContributing]: ./docs/about/contributing.md
+[link3Musketeers]: https://3musketeers.io
+[linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/dub/l/vibe-d.svg
 [linkLicense]: LICENSE
-[linkPatternOverview]: ./docs/about/assets/diagrams-overview.svg
+[linkPatternOverview]: ./docs/guide/assets/diagrams-overview.svg
 
-[link3Musketeers]: https://3musketeers.io
+[linkDocker]: https://www.docker.com
+[linkCompose]: https://docs.docker.com/compose
+[linkMake]: https://www.gnu.org/software/make
+
 [linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
 [linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
+[linkGitHubActions]: https://github.com/features/actions
+[linkGitHubActionsSecrets]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+[linkGitHubActionsAddingStatusBadge]: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository
+
+[linkNetlify]: https://netlify.com
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
 [linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
+[linkNetlifyCLI]: https://cli.netlify.com/commands/
+[linkNetlifyDeploymentBadge]: https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/
+
 [linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
+
+[linkVitePress]: https://vitepress.vuejs.org/
+[linkFaviconio]: https://favicon.io
+[linkDrawIO]: https://www.draw.io/
+[linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
+[linkProcreate]: https://procreate.art/
+
+[linkVectornator]: https://www.vectornator.io
+[linkVectornatorOffsetPath]: https://www.vectornator.io/learn/paths#how-to-create-an-offset-path
+[linkVectornatorMaskObjects]: https://www.vectornator.io/learn/options#how-to-mask-objects

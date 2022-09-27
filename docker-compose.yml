@@ -2,7 +2,7 @@
 # does not have it.
 version: '3.7'
 services:
-  # node_dev is for running vuepress for development
+  # node_dev is for running vitepress for development
   node_dev:
     image: node
     volumes:
@@ -14,7 +14,7 @@ services:
       # this maps the port 8080 so that it can be accessible from a local browser.
       # For CI/CD tool, mapping port should be avoided since it can create port conflict.
       # This is the reason the service `node` exists.
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:5173:5173"
     command: ${COMPOSE_COMMAND:-bash}
     env_file: .env
 

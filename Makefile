@@ -2,14 +2,14 @@ COMPOSE_RUN_NODE = docker-compose run --rm node
 COMPOSE_UP_NODE = docker-compose up -d node
 COMPOSE_UP_NODE_DEV = docker-compose up node_dev
 ENVFILE ?= env.template
-SERVE_BASE_URL ?= http://node:8080
+SERVE_BASE_URL ?= http://node:5173
 
 all:
 	ENVFILE=env.example $(MAKE) ciTest
 
-ciTest: envfile cleanDocker deps build serve test clean
+ciTest: envfile pruneDocker deps build serve test prune
 
-ciDeploy: envfile cleanDocker deps build serve test deploy clean
+ciDeploy: envfile pruneDocker deps build serve test deploy prune
 
 envfile:
 	cp -f $(ENVFILE) .env
@@ -30,19 +30,19 @@ shell:
 dev:
 	COMPOSE_COMMAND="make _dev" $(COMPOSE_UP_NODE_DEV)
 _dev:
-	yarn run vuepress dev --debug --host 0.0.0.0 docs
+	yarn run vitepress dev --host 0.0.0.0 docs
 
 build:
 	$(COMPOSE_RUN_NODE) make _build
 _build:
-	yarn run vuepress build docs
+	yarn run vitepress build docs
 
 serve:
 	$(info serve will sleep 5 seconds to make sure the server is up)
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
 	$(COMPOSE_RUN_NODE) sleep 5
 _serve:
-	yarn run serve -l 8080 ./docs/.vuepress/dist
+	yarn run vitepress serve docs --port 5173
 
 serveDev:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
@@ -53,18 +53,21 @@ _test:
 	echo "Test home page"
 	curl $(SERVE_BASE_URL) | grep "Get Started" > /dev/null
 	echo "Test docs page"
-	curl $(SERVE_BASE_URL)/docs/ | grep "Hello, World!" > /dev/null
+	curl $(SERVE_BASE_URL)/guide/get-started.html | grep "Hello, World!" > /dev/null
 
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
 _deploy:
 	yarn run netlify --telemetry-disable
-	yarn run netlify deploy --dir=docs/.vuepress/dist --prod
+	yarn run netlify deploy --dir=docs/.vitepress/dist --prod
 
-cleanDocker:
+pruneDocker:
 	docker-compose down --remove-orphans
 
-clean:
-	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules ./docs/.vuepress/dist"
-	$(MAKE) cleanDocker
+prune:
+	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules docs/.vitepress/dist docs/.vitepress/.cache"
+	$(MAKE) pruneDocker
 	rm -f .env
+
+toc:
+	$(COMPOSE_RUN_NODE) bash -c "yarn run doctoc README.md --notitle"

@@ -1,7 +1,15 @@
 .vscode
 .DS_Store
+*.swp
 node_modules
 *.log
 .env*
 # Local Netlify folder
 .netlify
+
+# vitepress subfolder
+docs/.vitepress/**/*/
+!docs/.vitepress/components
+!docs/.vitepress/config.js
+!docs/.vitepress/public
+!docs/.vitepress/theme

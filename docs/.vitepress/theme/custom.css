@@ -1,0 +1,37 @@
+/* https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
+:root {
+  /*
+  Default green
+  --vp-c-green: #42b883; hsla(153, 47%, 25%, 1)
+  --vp-c-green-light: #42d392; hsla(153, 62%, 54%, 1)
+  --vp-c-green-lighter: #35eb9a; hsla(153, 82%, 56%, 1)
+  --vp-c-green-dark: #33a06f; hsla(153, 52%, 41%, 1)
+  --vp-c-green-darker: #155f3e; hsla(153, 64%, 23%, 1)
+  */
+
+  /* Rebrand with the same (s)aturation, (l)ightness, and (a)lpha as original theme but with different (h)ue*/
+  --brand-hue: 213;
+  --vp-c-brand: hsla(var(--brand-hue), 47%, 49%, 1);
+  --vp-c-brand-light: hsla(var(--brand-hue), 62%, 54%, 1);
+  --vp-c-brand-lighter: hsla(var(--brand-hue), 82%, 56%, 1);
+  --vp-c-brand-dark: hsla(var(--brand-hue), 52%, 41%, 1);
+  --vp-c-brand-darker: hsla(var(--brand-hue), 64%, 23%, 1);
+}
+
+@media (max-width: 639.98px) {
+  .image-src {
+    min-width: 230px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959.98px) {
+  .image-src {
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 960px) {
+  .image-src {
+    min-width: 400px;
+  }
+}
