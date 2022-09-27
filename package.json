@@ -5,7 +5,7 @@
   "devDependencies": {
     "doctoc": "^2.2.0",
     "netlify-cli": "^10.5.1",
-    "vitepress": "^1.0.0-alpha.13",
+    "vitepress": "^1.0.0-alpha.17",
     "vue": "^3.2.37"
   },
   "repository": {
