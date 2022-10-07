@@ -1,19 +1,19 @@
 
 # 3 Musketeers
 
+<div align="center">
+
+<img src="docs/public/img/hero-v2.svg" width="300">
+
+**Test, build, and deploy your apps from anywhere, the same way!**
+
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License][linkLicenseBadge]][linkLicense]
 
-<br>
-<p align="left"><img src="docs/public/img/hero-v2.svg" width="300"></p>
+</div>
 
-Test, build, and deploy your apps from anywhere, the same way!
-
-<br/>
-
-<details>
-    <summary><b>Table of Contents</b></summary>
+## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -40,8 +40,6 @@ Test, build, and deploy your apps from anywhere, the same way!
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-</details>
 
 ## Overview
 
