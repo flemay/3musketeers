@@ -4,19 +4,19 @@ The 3 Musketeers is an open source project and contributions are greatly appreci
 
 There are different ways to contribute to this project.
 
-## Star it :star:
+## :star: Star it
 
 If you like the project, go on [GitHub][linkProjectRepo] and star it!
 
-## Share it :mega:
+## :mega: Share it
 
 If you think the 3 Musketeers would be valuable to your friends, teammates, and company, share it!
 
-## Feedback :thought_balloon:
+## :thought_balloon: Feedback
 
 Feedback is greatly appreciated. Is there anything from the project that is not clear or missing? Let us know by filing an [issue][linkProjectIssue].
 
-## Contributing code :computer:
+## :computer: Contributing code
 
 The project follows the typical [GitHub pull request][linkGitHubPR] model. Before starting any work, please either comment on an existing [issue][linkProjectIssue], or file a new one.
 
