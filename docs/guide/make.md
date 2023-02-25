@@ -331,7 +331,7 @@ In some situGations, targets become very complex due to the syntax and limitatio
 
 ## Self-documented Makefile
 
-[This][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
+[This&#8599;][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
 ```makefile
 # Add the following 'help' target to your Makefile

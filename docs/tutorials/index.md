@@ -6,7 +6,7 @@ title: Tutorials
 
 The following tutorials requires the following
 
-* [Docker][linkDocker] and [Compose][linkCompose]
+* [Docker&#8599;][linkDocker] and [Compose&#8599;][linkCompose]
 * Make
 * Terminal
 
@@ -16,8 +16,8 @@ Tutorial | Description
 ---|---
 [Getting started][linkTutorialGettingStarted] | Say "Hello, World!" with 3 Musketeers
 [Environment variables][linkTutorialEnvVars] | Learn everything about environment variables and containers.
+[Cookiecutter example&#8599;][linkCookiecutterExample] | Example how to use Docker to generate cookiecutter project
 [One shell script file][linkTutorialOneShellScript] | One shell script file
-[Cookiecutter example][linkCookiecutterExample] | Example how to use Docker to generate cookiecutter project
 
 
 [linkDocker]: https://docs.docker.com/engine/installation/

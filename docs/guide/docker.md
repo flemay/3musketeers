@@ -8,8 +8,8 @@ Docker is the most important musketeer of the three. Many tasks such as testing,
 Docker images are like any other software. You should do your own research before using them and this list does not make an exception.
 :::
 
-* [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. It also allows to do [Docker-in-Docker (DinD)][linkPatternDinD].
-* [jwilder/dockerize][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
+* [flemay/musketeers&#8599;][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. It also allows to do [Docker-in-Docker (DinD)&#8599;][linkPatternDinD].
+* [jwilder/dockerize&#8599;][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
 
   ```makefile
   dbStart:
@@ -17,8 +17,8 @@ Docker images are like any other software. You should do your own research befor
     docker-compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
   ```
 
-* [dockerlint][linkDockerHubDockerlint] validates your Dockerfiles
-* [shellcheck][linkDockerHubShellcheck] lints your shell scripts
+* [dockerlint&#8599;][linkDockerHubDockerlint] validates your Dockerfiles
+* [shellcheck&#8599;][linkDockerHubShellcheck] lints your shell scripts
 
 ## Accessing host's localhost from a container
 
@@ -30,7 +30,7 @@ One of the [patterns][linkPatterns] is to call Make from Compose. If you want to
 
 ### Use a different image
 
-Often image publishers offer different versions of the application/product. For instance [golang][linkGolang] has an image based on `alpine` which does not have `make`. It also has an image based on `stretch` which does.
+Often image publishers offer different versions of the application/product. For instance [golang&#8599;][linkGolang] has an image based on `alpine` which does not have `make`. It also has an image based on `stretch` which does.
 
 ```bash
 $ docker run --rm golang:alpine make
@@ -41,7 +41,7 @@ $ docker run --rm golang:stretch make
 
 ### Use Musketeers Docker image
 
-If you only want to call `make` with common shell commands, or want to use `git` and `zip`, then the lightweight [Musketeers Docker][linkDockerMusketeersRepo] image is for you.
+If you only want to call `make` with common shell commands, or want to use `git` and `zip`, then the lightweight [Musketeers Docker&#8599;][linkDockerMusketeersRepo] image is for you.
 
 ### Install Make on the fly
 
@@ -69,7 +69,7 @@ RUN apk add --update make
 
 ## Docker development is slow
 
-Mounting volumes with Docker on Mac or Windows can be slow. For instance, developing a rails application. A handy tool which can help solve this problem is [docker-sync][linkDockerSync]
+Mounting volumes with Docker on Mac or Windows can be slow. For instance, developing a rails application. A handy tool which can help solve this problem is [docker-sync&#8599;][linkDockerSync]
 
 On Mac, using the `native_osx` strategy can also help. The Docker Compose file would look like the following:
 

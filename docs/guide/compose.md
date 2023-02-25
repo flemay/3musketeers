@@ -4,6 +4,6 @@ Docker Compose, or simply Compose, manages Docker containers in a very neat way.
 
 ## Multiple Docker networks
 
-By default, Compose creates a Docker network based on the project's name. All services can talk to each other within the same network. The network's name can be configured by setting the environment variable [COMPOSE_PROJECT_NAME][linkComposeProjectName]. This variable can be set in a `.env` file. This is useful when wanting to have different environments locally. For instance, the network's name could be based on an environment such as `my_project_dev`.
+By default, Compose creates a Docker network based on the project's name. All services can talk to each other within the same network. The network's name can be configured by setting the environment variable [COMPOSE_PROJECT_NAME&#8599;][linkComposeProjectName]. This variable can be set in a `.env` file. This is useful when wanting to have different environments locally. For instance, the network's name could be based on an environment such as `my_project_dev`.
 
 [linkComposeProjectName]: https://docs.docker.com/compose/reference/envvars/
