@@ -8,8 +8,8 @@ hero:
     src: /img/hero-v2.svg
     alt: logo
   actions:
-    - text: Get Started
-      link: /guide/get-started
+    - text: Get started
+      link: /guide/getting-started
       theme: brand
     - text: About
       link: /guide/

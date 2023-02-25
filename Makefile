@@ -51,9 +51,9 @@ test:
 	$(COMPOSE_RUN_NODE) make _test SERVE_BASE_URL=$(SERVE_BASE_URL)
 _test:
 	echo "Test home page"
-	curl $(SERVE_BASE_URL) | grep "Get Started" > /dev/null
+	curl $(SERVE_BASE_URL) | grep "Get started" > /dev/null
 	echo "Test docs page"
-	curl $(SERVE_BASE_URL)/guide/get-started.html | grep "Hello, World!" > /dev/null
+	curl $(SERVE_BASE_URL)/guide/getting-started.html | grep "Hello, World!" > /dev/null
 
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy

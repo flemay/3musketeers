@@ -1,14 +1,4 @@
-# Get Started
-
-## Prerequisites
-
-These are the prerequisites for a project that follows the 3 Musketeers:
-
-- [Docker][linkDocker]
-- [Compose][linkCompose]
-- Make
-
-## Hello, World!
+# Tutorial: Getting started
 
 Create the two following files in an empty directory:
 
@@ -33,6 +23,3 @@ Then simply echo "Hello, World!" with the following command:
 ```bash
 $ make echo
 ```
-
-[linkDocker]: https://docs.docker.com/engine/installation/
-[linkCompose]: https://docs.docker.com/compose/install/

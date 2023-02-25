@@ -37,10 +37,11 @@ export default {
     },
     nav: [
       { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
+      { text: 'Tutorials', link: '/tutorials/', activeMatch: '/tutorials/' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
     ],
     sidebar: {
-      '/guide/': getGuideSidebar()
+      '/guide/': getSidebarGuide()
     },
     socialLinks: [
       { icon: 'github', link: github },
@@ -52,7 +53,7 @@ export default {
   }
 }
 
-function getGuideSidebar() {
+function getSidebarGuide() {
   return [
     {
       text: 'About',
@@ -60,22 +61,20 @@ function getGuideSidebar() {
       items: [
         { text: 'What is 3 Musketeers?', link: '/guide/' },
         { text: 'Tools', link: '/guide/tools' },
-        { text: 'Contributing', link: '/guide/contributing' }
+        { text: 'Contributing', link: '/guide/contributing' },
+        { text: 'Real-world projects', link: '/guide/projects' }
       ]
     },
     {
       text: 'Guide',
       collapsible: true,
       items: [
-        { text: 'Get Started', link: '/guide/get-started' },
+        { text: 'Getting started', link: '/guide/getting-started' },
         { text: 'Patterns', link: '/guide/patterns' },
         { text: 'Make', link: '/guide/make' },
         { text: 'Docker', link: '/guide/docker' },
         { text: 'Compose', link: '/guide/compose' },
-        { text: 'Project dependencies', link: '/guide/project-dependencies' },
-        { text: 'Environment variables', link: '/guide/environment-variables' },
-        { text: 'Examples', link: '/guide/examples' },
-        { text: 'Misc', link: '/guide/misc' },
+        { text: 'Project dependencies', link: '/guide/project-dependencies' }
       ]
     }
   ]

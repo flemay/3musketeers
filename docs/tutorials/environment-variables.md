@@ -13,7 +13,7 @@ With the following `.env` file:
 ENV_A
 ENV_B=
 ENV_C=env_c
-```
+``G`
 
 And the `docker-compose.yml` file:
 
@@ -533,10 +533,27 @@ Check if MESSAGE is not empty
 helloworld
 ```
 
+## Access environment variables in command argument
+
+```bash
+# writing something like the following
+$ docker run --rm -e ECHO=musketeers alpine sh -c "echo $ECHO"
+# will simply echo nothing even if ECHO is being passed.
+
+# To access ECHO, either use '\'
+$ docker run --rm -e ECHO=musketeers alpine sh -c "echo \$ECHO"
+
+# or use single quote
+$ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
+
+# Same applies to Compose.
+```
+
+
 [linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 [linkUnderstandingEnvFile]: #understanding-env-file-with-docker-and-compose
-[linkPatternsDocker]: patterns.html#docker
+[linkPatternsDocker]: ../guide/patterns.html#docker
 [linkImplicitWithoutAlteringEnv]: ###implicit-without-altering-env
 
 [link12factor]: https://12factor.net
