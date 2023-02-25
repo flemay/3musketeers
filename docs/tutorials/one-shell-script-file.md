@@ -1,22 +1,4 @@
-# Misc
-
-## Access environment variables in command argument
-
-```bash
-# writing something like the following
-$ docker run --rm -e ECHO=musketeers alpine sh -c "echo $ECHO"
-# will simply echo nothing even if ECHO is being passed.
-
-# To access ECHO, either use '\'
-$ docker run --rm -e ECHO=musketeers alpine sh -c "echo \$ECHO"
-
-# or use single quote
-$ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
-
-# Same applies to Compose.
-```
-
-## One shell script file
+# Tutorial: One shell script file
 
 It may happen that you want to use a singular shell script file that contains the _targets. With the following, you can call the _targets like this `scripts/make.sh _test _clean`
 
@@ -48,3 +30,4 @@ do
   esac
 done
 ```
+

@@ -5,7 +5,7 @@ Make is a cross-platform build tool to test and build software and it is used as
 Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
 ::: info SNIPPETS
-The snippets in this section bring support for the documentation but may be incomplete or missing context. If you wish to see complete code, go over the [examples][linkExamples] section.
+The snippets in this section bring support for the documentation but may be incomplete or missing context. If you wish to see complete code, go to [tutorials][linkTutorials] and [real-world projects][linkRealWorldProjects].
 :::
 
 ## target vs _target
@@ -158,7 +158,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 
 - Utility targets defined at the bottom of the Makefile
 
-## Target and Single Responsibility
+## Target and single responsibility
 
 It is a good idea to make the target as focus as possible on a specific task. This leaves the flexibility to anyone to manually test/call each target individually for a single purpose.
 
@@ -307,7 +307,7 @@ cleanDocker:
 	docker-compose down --remove-orphans
 ```
 
-## Multiple Makefiles
+## Multiple makefiles
 
 The Makefile can be split into smaller files.
 
@@ -327,9 +327,9 @@ include makefiles/*.mk
 
 ## Complex targets
 
-In some situations, targets become very complex due to the syntax and limitations of Make or you may simply prefer to write the task in Bash or other languages. Refer to the [patterns][linkPatterns] section for other Make alternatives.
+In some situGations, targets become very complex due to the syntax and limitations of Make or you may simply prefer to write the task in Bash or other languages. Refer to the [patterns][linkPatterns] section for other Make alternatives.
 
-## Self-Documented Makefile
+## Self-documented Makefile
 
 [This][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
@@ -375,9 +375,10 @@ target02: This message will show up too!!!
 
 [linkPatterns]: patterns
 [linkPatternsMake]: patterns#make
-[linkEnvironmentVariables]: environment-variables
+[linkEnvironmentVariables]: ../tutorials/environment-variables
 [linkProjectDependencies]: project-dependencies
-[linkExamples]: examples
+[linkRealWorldProjects]: projects
+[linkTutorials]: ../tutorials/index
 
 [linkPhony]: https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
 [linkSelfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133

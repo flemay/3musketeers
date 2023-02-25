@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Test, build, and deploy your apps from anywhere, the same way.",
   "devDependencies": {
-    "doctoc": "^2.2.0",
-    "netlify-cli": "^10.5.1",
-    "vitepress": "^1.0.0-alpha.17",
-    "vue": "^3.2.37"
+    "doctoc": "^2.2.1",
+    "netlify-cli": "^13.0.0",
+    "vitepress": "^1.0.0-alpha.47",
+    "vue": "^3.2.47"
   },
   "repository": {
     "type": "git",

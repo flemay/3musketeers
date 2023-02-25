@@ -76,7 +76,7 @@ $ make echo
 
 ## Shell file
 
-Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkMisc].
+Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkTutorialOneShellScript].
 
 ![pattern-shell-file](./assets/diagrams-pattern-shell-file.svg)
 
@@ -237,8 +237,8 @@ test:
 ```
 
 [linkDocker]: docker
-[linkMisc]: misc
-[linkEnvironmentVariables]: environment-variables.html#make-targets-envfile-and-env
+[linkTutorialOneShellScript]: ../tutorials/one-shell-script-file
+[linkEnvironmentVariables]: ../tutorials/environment-variables.html#make-targets-envfile-and-env
 
 [linkCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
