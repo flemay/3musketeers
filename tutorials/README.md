@@ -1,12 +1,12 @@
----
-title: Tutorials
----
-
 # Tutorials
+
+> Note: Work in progress
+
+Welcome to the Tutorials section. Some of them will have working code already.
 
 The tutorials in this section require the following
 
-* [Docker&#8599;][linkDocker] and [Compose&#8599;][linkCompose]
+* [Docker][linkDocker] and [Compose][linkCompose]
 * Make
 * Terminal
 
@@ -14,15 +14,15 @@ The tutorials in this section require the following
 
 Tutorial | Description
 ---|---
-[Getting started][linkTutorialGettingStarted] | Say "Hello, World!" with 3 Musketeers
+[Getting started][linkTutorialGettingStarted] | Say "Hello, World!" with the 3 Musketeers
 [Environment variables][linkTutorialEnvVars] | Learn everything about environment variables and containers.
-[Cookiecutter example&#8599;][linkCookiecutterExample] | Example how to use Docker to generate cookiecutter project
+[Cookiecutter example][linkCookiecutterExample] | Example how to use Docker to generate cookiecutter project
 [One shell script file][linkTutorialOneShellScript] | One shell script file
 
 
 [linkDocker]: https://docs.docker.com/engine/installation/
 [linkCompose]: https://docs.docker.com/compose/install/
-[linkTutorialGettingStarted]: getting-started
-[linkTutorialEnvVars]: environment-variables
-[linkTutorialOneShellScript]: one-shell-script-file
+[linkTutorialGettingStarted]: ./hello_world/
+[linkTutorialEnvVars]: ./environment_variables/
+[linkTutorialOneShellScript]: ./one_script_file/
 [linkCookiecutterExample]: https://github.com/3musketeersio/cookiecutter-musketeers-echo
