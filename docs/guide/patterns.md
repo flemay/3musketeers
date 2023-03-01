@@ -217,7 +217,7 @@ So far, the patterns are for hosts (environments) that provide access to Make, D
 
 ![pattern-dind](./assets/diagrams-pattern-dind.svg)
 
-An example is with GitLab CI. [It allows you to access Docker within a Docker container&#8599;][linkGitLabDinD]. A pipeline configuration would look like the following:
+An example is with GitLab CI. [It allows you to access Docker within a Docker container][linkGitLabDinD]. A pipeline configuration would look like the following:
 
 ```yaml
 # .gitlab-ci.yml
@@ -237,8 +237,8 @@ test:
 ```
 
 [linkDocker]: docker
-[linkTutorialOneShellScript]: ../tutorials/one-shell-script-file
-[linkEnvironmentVariables]: ../tutorials/environment-variables.html#make-targets-envfile-and-env
+[linkTutorialOneShellScript]: https://github.com/flemay/3musketeers/tree/main/tutorials/one_script_file
+[linkEnvironmentVariables]: https://github.com/flemay/3musketeers/tree/main/tutorials/environment_variables#create-env-file-with-make-and-compose
 
 [linkCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers

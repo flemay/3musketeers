@@ -10,7 +10,7 @@ It is not uncommon for a project to combine the approaches. For instance, a proj
 
 This approach relies on official Docker images to manage dependencies. For instance, a NodeJS project may use the official NodeJS Docker image to install the node modules, run and test the application. Usually third party packages will be shared with the host and containers. The main benefit of this approach is that there is no need to maintain any Docker image.
 
-Example from The [3 Musketeers repository&#8599;](https://github.com/flemay/3musketeers):
+Example from The [3 Musketeers repository](https://github.com/flemay/3musketeers):
 
 ```yaml
 # docker-compose.yml

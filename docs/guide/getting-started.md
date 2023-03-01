@@ -4,8 +4,8 @@
 
 These are the prerequisites for a project that follows the 3 Musketeers:
 
-- [Docker&#8599;][linkDocker]
-- [Compose&#8599;][linkCompose]
+- [Docker][linkDocker]
+- [Compose][linkCompose]
 - Make
 
 ## Hello, World!

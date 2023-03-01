@@ -16,7 +16,7 @@ Docker Compose, or simply Compose, manages Docker containers in a very neat way.
 
 The 3 Musketeers pattern helps software development by being repeatable and consistent across different environments. Running tasks such as testing should not be any different locally than on a CI/CD tool. The combination of Make, Docker, and Compose achieve that.
 
-Other tools can definitely be used to meet the same goal depending on your own context. You or your organisation may not need to support Windows for instance, and a tool like [zeus&#8599;][linkZeus] can replace Make. You may also just want to rely on shell scripts and Docker, or use only Make and Docker. See [patterns][linkPatterns] for other suggestions.
+Other tools can definitely be used to meet the same goal depending on your own context. You or your organisation may not need to support Windows for instance, and a tool like [zeus][linkZeus] can replace Make. You may also just want to rely on shell scripts and Docker, or use only Make and Docker. See [patterns][linkPatterns] for other suggestions.
 
 
 [linkPatterns]: patterns

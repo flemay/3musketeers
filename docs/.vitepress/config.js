@@ -37,7 +37,7 @@ export default {
     },
     nav: [
       { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
-      { text: 'Tutorials', link: '/tutorials/', activeMatch: '/tutorials/' },
+      { text: 'Tutorials', link: 'https://github.com/flemay/3musketeers/tree/main/tutorials' },
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
     ],
     sidebar: {

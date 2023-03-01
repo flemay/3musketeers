@@ -331,7 +331,7 @@ In some situGations, targets become very complex due to the syntax and limitatio
 
 ## Self-documented Makefile
 
-[This&#8599;][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
+[This][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
 ```makefile
 # Add the following 'help' target to your Makefile
@@ -375,10 +375,10 @@ target02: This message will show up too!!!
 
 [linkPatterns]: patterns
 [linkPatternsMake]: patterns#make
-[linkEnvironmentVariables]: ../tutorials/environment-variables
+[linkEnvironmentVariables]: https://github.com/flemay/3musketeers/tree/main/tutorials/environment_variables
 [linkProjectDependencies]: project-dependencies
 [linkRealWorldProjects]: projects
-[linkTutorials]: ../tutorials/index
+[linkTutorials]: https://github.com/flemay/3musketeers/tree/main/tutorials
 
 [linkPhony]: https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
 [linkSelfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133
