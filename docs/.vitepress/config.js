@@ -74,6 +74,7 @@ function getSidebarGuide() {
         { text: 'Make', link: '/guide/make' },
         { text: 'Docker', link: '/guide/docker' },
         { text: 'Compose', link: '/guide/compose' },
+        { text: 'Environment variables', link: '/guide/environment-variables' },
         { text: 'Project dependencies', link: '/guide/project-dependencies' }
       ]
     }

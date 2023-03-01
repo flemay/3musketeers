@@ -12,7 +12,7 @@ The tutorials in this section require the following
 * Make
 * Terminal
 
----
+<br>
 
 Tutorial | Description
 ---|---
