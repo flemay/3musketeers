@@ -7,11 +7,11 @@
     - [Files](#files)
     - [Steps](#steps)
   - [Overwriting .env or not](#overwriting-env-or-not)
-  - [Create .env file with Make and Compose](#create-env-file-with-make-and-compose)
+  - [Create envfile with Make and Compose](#create-envfile-with-make-and-compose)
     - [Explicit](#explicit)
     - [Semi-Implicit](#semi-implicit)
     - [Implicit](#implicit)
-  - [Create .env file with Make and Docker](#create-env-file-with-make-and-docker)
+  - [Create envfile with Make and Docker](#create-envfile-with-make-and-docker)
     - [Explicit](#explicit-1)
     - [Semi-Implicit](#semi-implicit-1)
     - [Implicit](#implicit-1)
@@ -56,7 +56,7 @@ services:
     working_dir: /opt/app
 ```
 
-```makefile
+```make
 # file: makefile
 COMPOSE_RUN_MUSKETEERS = docker-compose run --rm musketeers
 
@@ -131,7 +131,7 @@ Examples in this page use `.env` to pass environment variables to a container. T
 - You know the file `.env` will always be used
 - Compose uses `.env` when doing [variable substitution][linkDockerComposeVarialeSubstitution]
 
-## Create .env file with Make and Compose
+## Create envfile with Make and Compose
 
 This section shows some ways to create `.env` file with Make and Compose with the given `docker-compose.yml` file:
 
@@ -195,7 +195,7 @@ $ make envfile target ENVFILE=env.example
 
 Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by calling `make envfile ENVFILE=.env.example`.
 
-```makefile
+```make
 # Makefile
 COMPOSE_RUN_ALPINE = docker-compose run alpine
 ENVFILE ?= env.template
@@ -277,7 +277,7 @@ $ make envfile target ENVFILE=env.example
 $ make target ENVFILE=env.example
 ```
 
-## Create .env file with Make and Docker
+## Create envfile with Make and Docker
 
 This section shows some ways to create `.env` file with Make and Docker.
 

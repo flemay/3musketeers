@@ -4,7 +4,7 @@ Development following [the twelve-factor app][link12factor] use the [environment
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][linkDockerEnvfile] to pass the variables to the containers.
 
-## Env file and expectations
+## Envfile and expectations
 
 With the following `.env` file:
 
@@ -38,9 +38,9 @@ ENV_C=env_c
 # Same as Docker
 ```
 
-## Structure env file
+## Structure envfile
 
-Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .env file structured.
+Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .envfile structured.
 
 ```
 # All
@@ -59,11 +59,11 @@ BUILD_DIR
 DB_HOST
 ```
 
-## Template and example env files
+## Template and example envfiles
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
 
-::: danger ENV FILES AND SOURCE CONTROL
+::: danger ENVFILES AND SOURCE CONTROL
 As `env.template` and `env.example` files are meant to be part of the source code, never include sensitive values like passwords. Additionally, include `.env*` in your `.gitignore`.
 :::
 
@@ -116,7 +116,7 @@ ENV_VAR_B=b
 
 ## CI/CD pipeline
 
-Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments.
+Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments. This is demonstrated in this [tutorial][linkTutorial].
 
 ## Day-to-day development
 
