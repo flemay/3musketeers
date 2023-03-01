@@ -24,6 +24,10 @@
 
 This tutorial shows how `.env` file works with Docker and Docker Compose.
 
+> **INFO**
+>
+> More context about environment variables and 3 Musketeers can be found [here][linkEnvVarsContext].
+
 ## Envfile with Docker and Compose
 
 ### Files
@@ -448,3 +452,4 @@ $ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
 [linkPatternsDocker]: https://3musketeers.io/guide/patterns.html#docker
 
 [linkDockerComposeVarialeSubstitution]: https://docs.docker.com/compose/compose-file/#variable-substitution
+[linkEnvVarsContext]: https://3musketeers.io/guide/environment-variables.html
