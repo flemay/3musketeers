@@ -70,4 +70,7 @@ prune:
 	rm -f .env
 
 toc:
-	$(COMPOSE_RUN_NODE) bash -c "yarn run doctoc README.md --notitle"
+	$(COMPOSE_RUN_NODE) make _toc
+_toc:
+	yarn run doctoc README.md --notitle
+	yarn run doctoc tutorials
