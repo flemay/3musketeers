@@ -251,7 +251,6 @@ $ exit
     - [draw.io][linkDrawIO] is used to generate diagrams
     - All diagrams are in the file `diagrams.drawio`
 - README badges
-    - [GitHub Actions status badge][linkGitHubActionsAddingStatusBadge]
     - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
 ## Contributing
@@ -288,7 +287,7 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [link3Musketeers]: https://3musketeers.io
 [linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
-[linkLicenseBadge]: https://img.shields.io/dub/l/vibe-d.svg
+[linkLicenseBadge]: https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge
 [linkLicense]: LICENSE
 [linkPatternOverview]: ./docs/guide/assets/diagrams-overview.svg
 
@@ -297,14 +296,13 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [linkMake]: https://www.gnu.org/software/make
 
 [linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
-[linkGitHubActionsProjectBadge]: https://github.com/flemay/3musketeers/workflows/Deploy/badge.svg
+[linkGitHubActionsProjectBadge]: https://img.shields.io/github/actions/workflow/status/flemay/3musketeers/deploy.yml?style=for-the-badge&logo=github
 [linkGitHubActions]: https://github.com/features/actions
 [linkGitHubActionsSecrets]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
-[linkGitHubActionsAddingStatusBadge]: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository
 
 [linkNetlify]: https://netlify.com
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
-[linkNetlifyProjectBadge]: https://api.netlify.com/api/v1/badges/f1862de7-2548-42c8-84e2-fb7dfae6bff8/deploy-status
+[linkNetlifyProjectBadge]: https://img.shields.io/netlify/f1862de7-2548-42c8-84e2-fb7dfae6bff8?label=Deploy&logo=netlify&style=for-the-badge
 [linkNetlifyCLI]: https://cli.netlify.com/commands/
 [linkNetlifyDeploymentBadge]: https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/
 
