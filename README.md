@@ -25,7 +25,7 @@
   - [Confidence](#confidence)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
-- [Website development](#website-development)
+- [3musketeers website development](#3musketeers-website-development)
   - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
