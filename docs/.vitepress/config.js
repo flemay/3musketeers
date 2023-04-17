@@ -49,6 +49,9 @@ export default {
     footer: {
       message: 'Released under the MIT license.',
       copyright: 'Copyright © 2018 - present Frederic Lemay'
+    },
+    search: {
+      provider: 'local'
     }
   }
 }

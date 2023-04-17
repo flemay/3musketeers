@@ -62,10 +62,10 @@ _deploy:
 	yarn run netlify deploy --dir=docs/.vitepress/dist --prod
 
 pruneDocker:
-	docker-compose down --remove-orphans
+	docker-compose down --remove-orphans --volumes
 
 prune:
-	$(COMPOSE_RUN_NODE) bash -c "rm -fr node_modules docs/.vitepress/dist docs/.vitepress/.cache"
+	$(COMPOSE_RUN_NODE) bash -c "rm -fr docs/.vitepress/dist docs/.vitepress/.cache"
 	$(MAKE) pruneDocker
 	rm -f .env
 
