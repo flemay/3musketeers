@@ -73,7 +73,7 @@ pruneDocker:
 prune:
 	$(COMPOSE_RUN_NODE) bash -c "rm -fr docs/.vitepress/dist docs/.vitepress/.cache"
 	$(MAKE) pruneDocker
-	rm -f .env node_modules
+	rm -fr .env node_modules
 
 toc:
 	$(COMPOSE_RUN_NODE) make _toc
