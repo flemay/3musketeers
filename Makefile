@@ -17,12 +17,18 @@ envfile:
 deps:
 	$(COMPOSE_RUN_NODE) yarn install
 
-upgradeDeps:
+depsUpgrade:
 	$(COMPOSE_RUN_NODE) yarn upgrade
 
-audit:
+depsAudit:
 	-$(COMPOSE_RUN_NODE) yarn outdated
 	$(COMPOSE_RUN_NODE) yarn audit
+
+depsCopy:
+	rm -fr node_modules
+	docker compose create deps
+	docker compose cp deps:/opt/deps/node_modules .
+	docker compose rm -f deps
 
 shell:
 	$(COMPOSE_RUN_NODE) bash
@@ -67,7 +73,7 @@ pruneDocker:
 prune:
 	$(COMPOSE_RUN_NODE) bash -c "rm -fr docs/.vitepress/dist docs/.vitepress/.cache"
 	$(MAKE) pruneDocker
-	rm -f .env
+	rm -fr .env node_modules
 
 toc:
 	$(COMPOSE_RUN_NODE) make _toc

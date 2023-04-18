@@ -21,5 +21,12 @@ services:
     ports:
       - "127.0.0.1:5173:5173"
 
+  deps:
+    image: node
+    volumes:
+      - type: volume
+        source: node_modules
+        target: /opt/deps/node_modules
+
 volumes:
   node_modules:
