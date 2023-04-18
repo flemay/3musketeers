@@ -27,7 +27,6 @@ services:
       - type: volume
         source: node_modules
         target: /opt/deps/node_modules
-    working_dir: /opt/deps
 
 volumes:
   node_modules:

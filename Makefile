@@ -25,8 +25,9 @@ depsAudit:
 	$(COMPOSE_RUN_NODE) yarn audit
 
 depsCopy:
+	rm -fr node_modules
 	docker compose create deps
-	docker compose cp deps:node_modules .
+	docker compose cp deps:/opt/deps/node_modules .
 	docker compose rm -f deps
 
 shell:
@@ -72,7 +73,7 @@ pruneDocker:
 prune:
 	$(COMPOSE_RUN_NODE) bash -c "rm -fr docs/.vitepress/dist docs/.vitepress/.cache"
 	$(MAKE) pruneDocker
-	rm -f .env
+	rm -f .env node_modules
 
 toc:
 	$(COMPOSE_RUN_NODE) make _toc
