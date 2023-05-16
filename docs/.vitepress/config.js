@@ -72,7 +72,7 @@ function getSidebarGuide() {
       text: 'Guide',
       collapsible: true,
       items: [
-        { text: 'Getting started', link: '/guide/getting-started' },
+        { text: 'Getting started', link: '/guide/get-started' },
         { text: 'Patterns', link: '/guide/patterns' },
         { text: 'Make', link: '/guide/make' },
         { text: 'Docker', link: '/guide/docker' },
