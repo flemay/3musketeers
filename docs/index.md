@@ -9,7 +9,7 @@ hero:
     alt: logo
   actions:
     - text: Get started
-      link: /guide/get-started
+      link: /guide/getting-started
       theme: brand
     - text: About
       link: /guide/
