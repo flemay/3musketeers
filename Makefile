@@ -1,3 +1,4 @@
+COMPOSE_PULL = docker-compose pull
 COMPOSE_RUN_NODE = docker-compose run --rm node
 COMPOSE_UP_NODE = docker-compose up -d node
 COMPOSE_UP_NODE_DEV = docker-compose up node_dev
@@ -15,14 +16,16 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	$(COMPOSE_RUN_NODE) yarn install
+	$(COMPOSE_PULL)
+	$(COMPOSE_RUN_NODE) npm install
 
 depsUpgrade:
-	$(COMPOSE_RUN_NODE) yarn upgrade
+	$(COMPOSE_PULL)
+	$(COMPOSE_RUN_NODE) npm upgrade
 
 depsAudit:
-	-$(COMPOSE_RUN_NODE) yarn outdated
-	$(COMPOSE_RUN_NODE) yarn audit
+	-$(COMPOSE_RUN_NODE) npm outdated
+	$(COMPOSE_RUN_NODE) npm audit
 
 depsCopy:
 	rm -fr node_modules
@@ -36,19 +39,19 @@ shell:
 dev:
 	COMPOSE_COMMAND="make _dev" $(COMPOSE_UP_NODE_DEV)
 _dev:
-	yarn run vitepress dev --host 0.0.0.0 docs
+	npx vitepress dev --host 0.0.0.0 docs
 
 build:
 	$(COMPOSE_RUN_NODE) make _build
 _build:
-	yarn run vitepress build docs
+	npx vitepress build docs
 
 serve:
 	$(info serve will sleep 5 seconds to make sure the server is up)
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
 	$(COMPOSE_RUN_NODE) sleep 5
 _serve:
-	yarn run vitepress serve docs --port 5173
+	npx vitepress serve docs --port 5173
 
 serveDev:
 	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
@@ -64,8 +67,8 @@ _test:
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
 _deploy:
-	yarn run netlify --telemetry-disable
-	yarn run netlify deploy --dir=docs/.vitepress/dist --prod
+	npx netlify --telemetry-disable
+	npx netlify deploy --dir=docs/.vitepress/dist --prod
 
 pruneDocker:
 	docker-compose down --remove-orphans --volumes
@@ -78,5 +81,5 @@ prune:
 toc:
 	$(COMPOSE_RUN_NODE) make _toc
 _toc:
-	yarn run doctoc README.md --notitle
-	yarn run doctoc tutorials
+	npx doctoc README.md --notitle
+	npx doctoc tutorials
