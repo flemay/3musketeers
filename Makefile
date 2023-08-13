@@ -1,3 +1,4 @@
+COMPOSE_PULL = docker-compose pull
 COMPOSE_RUN_NODE = docker-compose run --rm node
 COMPOSE_UP_NODE = docker-compose up -d node
 COMPOSE_UP_NODE_DEV = docker-compose up node_dev
@@ -15,9 +16,11 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
+	$(COMPOSE_PULL)
 	$(COMPOSE_RUN_NODE) yarn install
 
 depsUpgrade:
+	$(COMPOSE_PULL)
 	$(COMPOSE_RUN_NODE) yarn upgrade
 
 depsAudit:
