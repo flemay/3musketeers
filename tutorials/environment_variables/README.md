@@ -449,7 +449,7 @@ $ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
 # Same applies to Compose.
 ```
 
-[linkPatternsDocker]: https://3musketeers.io/guide/patterns.html#docker
+[linkPatternsDocker]: https://3musketeersdev.netlify.app/guide/patterns.html#docker
 
 [linkDockerComposeVarialeSubstitution]: https://docs.docker.com/compose/compose-file/#variable-substitution
-[linkEnvVarsContext]: https://3musketeers.io/guide/environment-variables.html
+[linkEnvVarsContext]: https://3musketeersdev.netlify.app/guide/environment-variables.html
