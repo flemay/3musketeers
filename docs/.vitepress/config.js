@@ -1,4 +1,4 @@
-const domain = '3musketeers.io'
+const domain = '3musketeersdev.netlify.app'
 const url = `https://${domain}`
 const desc = 'Test, build, and deploy your apps from anywhere, the same way.'
 const socialImage = '/img/social-image.jpg'

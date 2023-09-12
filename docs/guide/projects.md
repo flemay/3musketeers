@@ -4,7 +4,7 @@ Here are some real-world projects that use the 3 Musketeers.
 
 Project | Description
 ---|---
-[3musketeers.io][link3Musketeers] | Build VuePress website and deploy to Netlify with GitHub Actions.
+[3 Musketeers website][link3Musketeers] | Build VitePress website and deploy to Netlify with GitHub Actions.
 [envvars][linkEnvvars] | Small Go application that uses GitHub Actions to build, test, and create a Docker image.
 [flemay/musketeers][linkFlemayMusketeers] | Docker image that is built, tested, and deployed with GitHub Actions to Docker Hub.
 

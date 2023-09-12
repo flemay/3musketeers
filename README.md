@@ -95,11 +95,11 @@ $ make echo
 
 <br>
 
-For more information, visit [3musketeers.io][link3Musketeers].
+For more information, visit [3 Musketeers website][link3Musketeers].
 
-## 3musketeers website development
+## 3 Musketeers website development
 
-This repository is the [3musketeers.io][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
+This repository is the [3 Musketeers website][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
 ### Prerequisites
 
@@ -259,7 +259,7 @@ Thanks goes to these wonderful [people][linkContributors].
 
 The 3 Musketeers is an open source project and contributions are greatly appreciated.
 
-Please visit https://3musketeers.io/guide/contributing.html for more information.
+Please visit https://3musketeersdev.netlify.app/guide/contributing.html for more information.
 
 ## References
 
@@ -284,7 +284,7 @@ Please visit https://3musketeers.io/guide/contributing.html for more information
 [MIT][linkLicense]
 
 
-[link3Musketeers]: https://3musketeers.io
+[link3Musketeers]: https://3musketeersdev.netlify.app
 [linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge
