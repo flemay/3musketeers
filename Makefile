@@ -2,8 +2,6 @@ COMPOSE_PULL = docker-compose pull
 COMPOSE_RUN_NODE = docker-compose run --rm node
 COMPOSE_UP_NODE = docker-compose up -d node
 COMPOSE_UP_NODE_DEV = docker-compose up node_dev
-COMPOSE_BUILD_VHS = docker-compose build vhs
-COMPOSE_RUN_VHS = docker-compose run --rm vhs
 ENVFILE ?= env.template
 SERVE_BASE_URL ?= http://node:5173
 
@@ -85,10 +83,3 @@ toc:
 _toc:
 	npx doctoc README.md --notitle
 	npx doctoc tutorials
-
-vhsDeps:
-	$(COMPOSE_BUILD_VHS)
-
-vhsShell:
-	$(COMPOSE_RUN_VHS)
-

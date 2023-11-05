@@ -31,5 +31,3 @@ make --version
 docker --version
 docker compose version
 EOF
-
-ENTRYPOINT bash

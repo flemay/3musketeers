@@ -1,4 +1,4 @@
-Output vhs.gif
+Output "3musketeers.gif"
 
 Require make
 Require vim
