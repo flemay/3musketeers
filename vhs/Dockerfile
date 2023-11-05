@@ -31,3 +31,5 @@ make --version
 docker --version
 docker compose version
 EOF
+
+COPY nvim-init.lua /root/.config/nvim/init.lua
