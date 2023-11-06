@@ -1,9 +1,14 @@
 Output "3musketeers.gif"
 
+
 Require nvim
 Require make
 Require docker
 
+
+Set Theme "TokyoNight"
+Set Margin 30
+Set MarginFill "#73ABFE"
 Set FontSize 30
 Set Width 1200
 Set Height 600
