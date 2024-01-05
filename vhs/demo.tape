@@ -10,7 +10,7 @@ Set MarginFill "#73ABFE"
 Set FontSize 20
 Set Width 1200
 Set Height 600
-Set TypingSpeed 50ms
+Set TypingSpeed 40ms
 
 Hide
 Type "cd src"
@@ -18,6 +18,6 @@ Enter
 Ctrl+L
 Show
 
-#Source intro.tape
-Source sources.tape
-#Source make.tape
+Source intro.tape
+Source body.tape
+Source conclusion.tape

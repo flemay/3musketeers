@@ -8,7 +8,7 @@ Enter
 Sleep 4s
 Type ":wq"
 Enter
-Type "# Now run it with Go!"
+Type "# Now try and run it"
 Sleep 2s
 Ctrl+C
 Type "go run main.go"
@@ -30,7 +30,7 @@ Enter
 Sleep 4s
 Type ":wq"
 Enter
-Type "# Now run it with Compose!"
+Type "# Now try and run it with Compose"
 Sleep 2s
 Ctrl+C
 Type "docker compose run --rm golang go run main.go"
@@ -40,7 +40,7 @@ Sleep 5s
 Ctrl+L
 
 # Makefile
-Type "# Typing `docker compose run --rm golang go run main.go` may be hard to remember."
+Type "# Typing commands like `docker compose run --rm golang go run main.go` can be tedius to remember."
 Sleep 2s
 Space
 Type "Let's encapsulate it with a Makefile!"
@@ -52,7 +52,7 @@ Enter
 Sleep 4s
 Type ":wq"
 Enter
-Type "# Now run it with Make!"
+Type "# Now try and run it with Make"
 Sleep 2s
 Ctrl+C
 Type "make run"
