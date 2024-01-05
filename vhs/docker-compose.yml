@@ -6,9 +6,11 @@ services:
     volumes:
       - type: bind
         source: "."
-        target: /mnt/src
+        target: /opt/src
       # The docker client in this image needs to communicate to the host Docker daemon. docker.sock is used.
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
-    working_dir: /mnt/src
+    working_dir: /opt/src
+    environment:
+      - ENV_HOST_SRC_DIR=${ENV_HOST_SRC_DIR}

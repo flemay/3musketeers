@@ -32,20 +32,6 @@ services:
         source: node_modules
         target: /opt/deps/node_modules
 
-  vhs:
-    build:
-      dockerfile: Dockerfile.vhs
-    image: flemay/3musketeers-vhs:local
-    volumes:
-      - type: bind
-        source: "."
-        target: /mnt/src
-      # The docker client in this image needs to communicate to the host Docker daemon. docker.sock is used.
-      - type: bind
-        source: /var/run/docker.sock
-        target: /var/run/docker.sock
-    working_dir: /mnt/src
-
 volumes:
   # docker volume node_modules is for node dependencies
   # this speeds up development with docker
