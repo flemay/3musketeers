@@ -16,4 +16,5 @@ shell:
 	$(COMPOSE_RUN_VHS_BASH)
 
 prune:
+	$(COMPOSE_RUN_VHS_BASH) rm -fr output
 	docker compose down --remove-orphans --volumes
