@@ -19,6 +19,10 @@ make record
 make prune
 ```
 
+## Overview
+
+![demo-overview](./demo-overview.svg)
+
 ## References
 
 - [VHS](https://github.com/charmbracelet/vhs)
