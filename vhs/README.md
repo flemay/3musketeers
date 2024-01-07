@@ -25,19 +25,20 @@ make prune
 
 ```mermaid
 graph TB
-    make:record[make record]-->host-docker-client[Docker client]
-    host-docker-client-->docker-daemon[Docker daemon]
-    subgraph vhs:local-container
-    make:run[make run]-->docker-client[Docker client]
+    make:record[make record]--1-->host-docker-client[Docker client]
+    host-docker-client--2-->docker-daemon((Docker daemon))
+    subgraph vhs-local-container [3musketeers-vhs:local container]
+    make:run[make run]--4-->docker-client[Docker client]
     end
-    docker-client-->docker-daemon
-    docker-daemon-->vhs:local-container
-    vhs:local-container-.volume:bind.->dir:vhs{{dir:vhs\n- Makefile\n- docker-compose.yml}}
-    docker-daemon-->golang:alpine-container
-    subgraph golang:alpine-container
-        go:run
+    docker-daemon--3-->vhs-local-container
+    docker-client--5-->docker-daemon
+    vhs-local-container-.volume:bind.->dir-vhs{{dir:vhs\n- Makefile\n- docker-compose.yml}}
+    docker-daemon--6-->golang-alpine-container
+    subgraph golang-alpine-container [golang:alpine container]
+        go-run[go run]
     end
-    golang:alpine-container-.volume:bind.->dir:vhs/src{{dir:vhs/src\n- Makefile\n- main.go}}
+    golang-alpine-container-.volume:bind.->dir-vhs-src{{dir:vhs/src\n- Makefile\n- main.go}}
+    go-run--7-->hello-world('Hello, World!')
 ```
 
 ## References
