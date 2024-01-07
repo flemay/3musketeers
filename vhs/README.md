@@ -23,6 +23,23 @@ make prune
 
 ![demo-overview](./demo-overview.svg)
 
+```mermaid
+graph TB
+    make:record[make record]-->host-docker-client[Docker client]
+    host-docker-client-->docker-daemon[Docker daemon]
+    subgraph vhs:local-container
+    make:run[make run]-->docker-client[Docker client]
+    end
+    docker-client-->docker-daemon
+    docker-daemon-->vhs:local-container
+    vhs:local-container-.volume:bind.->dir:vhs{{dir:vhs\n- Makefile\n- docker-compose.yml}}
+    docker-daemon-->golang:alpine-container
+    subgraph golang:alpine-container
+        go:run
+    end
+    golang:alpine-container-.volume:bind.->dir:vhs/src{{dir:vhs/src\n- Makefile\n- main.go}}
+```
+
 ## References
 
 - [VHS](https://github.com/charmbracelet/vhs)
