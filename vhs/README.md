@@ -21,8 +21,6 @@ make prune
 
 ## Overview
 
-![demo-overview](./demo-overview.svg)
-
 ```mermaid
 graph TB
     make:record[make record]--1-->host-docker-client[Docker client]
