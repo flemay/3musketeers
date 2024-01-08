@@ -31,21 +31,21 @@ graph TB
     end
     docker-daemon-->|3|vhs-local-container
     docker-client-->|6|docker-daemon
-    dir-vhs{{"`**Directory: vhs**
+    dir-vhs{{"**Directory: vhs**
     Dockerfile
     Makefile
     demo.tape
     docker-compose.yml
-    src/`"}}
+    src/"}}
     vhs-local-container-..->|volume:bind|dir-vhs
     docker-daemon-->|7|golang-alpine-container
     subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run]
     end
-    dir-vhs-src{{"`**Directory: vhs/src**
+    dir-vhs-src{{"**Directory: vhs/src**
     Makefile
     docker-compose.yml
-    main.go`"}}
+    main.go"}}
     golang-alpine-container-.->|volume:bind|dir-vhs-src
     go-run-->|8|hello-world('Hello, World!')
     vhs-->|9\nouput/demo.mp4|dir-vhs
