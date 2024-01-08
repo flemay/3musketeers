@@ -19,24 +19,36 @@ make record
 make prune
 ```
 
-## Overview
+## Implementation
 
 ```mermaid
 graph TB
-    make:record[make record]--1-->host-docker-client[Docker client]
-    host-docker-client--2-->docker-daemon((Docker daemon))
-    subgraph vhs-local-container [3musketeers-vhs:local container]
-    make:run[make run]--4-->docker-client[Docker client]
+    make-record[make record]-->|1|host-docker-client[Docker client]
+    host-docker-client-->|2|docker-daemon((Docker daemon))
+    subgraph vhs-local-container [Container: 3musketeers-vhs:local]
+    vhs-->|4|make-run[make run]
+    make-run-->|5|docker-client[Docker client]
     end
-    docker-daemon--3-->vhs-local-container
-    docker-client--5-->docker-daemon
-    vhs-local-container-.volume:bind.->dir-vhs{{dir:vhs\n- Makefile\n- docker-compose.yml}}
-    docker-daemon--6-->golang-alpine-container
-    subgraph golang-alpine-container [golang:alpine container]
+    docker-daemon-->|3|vhs-local-container
+    docker-client-->|6|docker-daemon
+    dir-vhs{{"`**Directory: vhs**
+    Dockerfile
+    Makefile
+    demo.tape
+    docker-compose.yml
+    src/`"}}
+    vhs-local-container-..->|volume:bind|dir-vhs
+    docker-daemon-->|7|golang-alpine-container
+    subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run]
     end
-    golang-alpine-container-.volume:bind.->dir-vhs-src{{dir:vhs/src\n- Makefile\n- main.go}}
-    go-run--7-->hello-world('Hello, World!')
+    dir-vhs-src{{"`**Directory: vhs/src**
+    Makefile
+    docker-compose.yml
+    main.go`"}}
+    golang-alpine-container-.->|volume:bind|dir-vhs-src
+    go-run-->|8|hello-world('Hello, World!')
+    vhs-->|9\nouput/demo.mp4|dir-vhs
 ```
 
 ## References
