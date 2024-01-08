@@ -57,6 +57,7 @@ Flow:
 2. The Docker client sends the command to the Docker daemon on the host
 3. The Docker daemon creates a new service based on Docker image `flemay/3musketeers-vhs:local`
 	1. The details of the service is defined in `docker-compose.yml`
+	1. A volume is created which maps the host directory `src` to container directory `/opt/src`
 4.
 5.
 6.
