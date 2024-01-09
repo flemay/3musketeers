@@ -26,7 +26,8 @@ graph TB
     make-record[make record]-->|1|host-docker-client[Docker client]
     host-docker-client-->|2|docker-daemon((Docker daemon))
     subgraph vhs-local-container [Container: 3musketeers-vhs:local]
-    vhs[vhs demo.tape]-->|4|make-run[cd src]
+    vhs[vhs demo.tape]-->|4|make-run[cd src
+    make run]
     make-run-->|5|docker-client[Docker client]
     end
     docker-daemon-->|3|vhs-local-container
