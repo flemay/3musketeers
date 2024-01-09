@@ -32,14 +32,6 @@ graph TB
     end
     docker-daemon-->|3|vhs-local-container
     docker-client-->|6|docker-daemon
-    dir-vhs{{"**Directory: vhs**
-    Dockerfile
-    Makefile
-    demo.tape
-    docker-compose.yml
-    src/Makefile
-    src/docker-compose.yml
-    ..."}}
 ```
 
 Flow:
