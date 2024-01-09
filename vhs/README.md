@@ -24,33 +24,6 @@ make prune
 ```mermaid
 graph TB
     make-record[make record]-->|1|host-docker-client[Docker client]
-    host-docker-client-->|2|docker-daemon((Docker daemon))
-    subgraph vhs-local-container [Container: 3musketeers-vhs:local]
-    vhs[vhs demo.tape]-->|4|make-run[cd src/
-    make run]
-    make-run-->|5|docker-client[Docker client]
-    end
-    docker-daemon-->|3|vhs-local-container
-    docker-client-->|6|docker-daemon
-    dir-vhs{{"**Directory: vhs**
-    Dockerfile
-    Makefile
-    demo.tape
-    docker-compose.yml
-    src/Makefile
-    src/docker-compose.yml
-    ..."}}
-    vhs-local-container-..->|volume:bind|dir-vhs
-    docker-daemon-->|7|golang-alpine-container
-    subgraph golang-alpine-container [Container: golang:alpine]
-        go-run[go run main.go]
-    end
-    dir-vhs-src{{"**Directory: vhs/src**
-    main.go
-    ..."}}
-    golang-alpine-container-.->|volume:bind|dir-vhs-src
-    go-run-->|8|hello-world('Hello, World!')
-    vhs-->|9\nouput/demo.mp4|dir-vhs
 ```
 
 Flow:
