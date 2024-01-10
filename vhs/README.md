@@ -32,7 +32,7 @@ graph TB
     end
     docker-daemon-->|3|vhs-local-container
     docker-client-->|6|docker-daemon
-    dir-vhs{{"**Host directory: vhs**
+    dir-vhs{{"**Host directory: vhs/**
     Dockerfile
     Makefile
     demo.tape
@@ -45,10 +45,10 @@ graph TB
     subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run main.go]
     end
-    dir-vhs-src{{"**Host directory: vhs/src**
+    dir-vhs-src{{"**Host directory: vhs/src/**
     main.go
     ..."}}
-    golang-alpine-container-.->|volume:bind\nvhs/src <-> /opt/app|dir-vhs-src
+    golang-alpine-container-.->|volume:bind\nvhs/src/ <-> /opt/app/|dir-vhs-src
     go-run-->|8|hello-world[/'Hello, World!'/]
     vhs-->|9\nouput/demo.mp4|dir-vhs
 ```
