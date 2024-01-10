@@ -40,7 +40,7 @@ graph TB
     src/Makefile
     src/docker-compose.yml
     ..."}}
-    vhs-local-container-..->|volume:bind|dir-vhs
+    vhs-local-container-...->|volume:bind\nvhs/ <-> /opt/src/|dir-vhs
     docker-daemon-->|7|golang-alpine-container
     subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run main.go]
@@ -48,7 +48,7 @@ graph TB
     dir-vhs-src{{"**Host directory: vhs/src**
     main.go
     ..."}}
-    golang-alpine-container-.->|volume:bind|dir-vhs-src
+    golang-alpine-container-.->|volume:bind\nvhs/src <-> /opt/app|dir-vhs-src
     go-run-->|8|hello-world[/'Hello, World!'/]
     vhs-->|9\nouput/demo.mp4|dir-vhs
 ```
@@ -68,10 +68,10 @@ Flow:
 	- This is possible because the service `vhs` (defined in `docker-compose.yml`) mounts the host `/var/run/docker.sock`
 7. The Docker daemon creates a service `golang` based on the official Go Docker image
 	- The details of the service is in `src/docker-compose.yml`
-	- The service `golang` defines a volume that maps the host directory `vhs/src` to the container. That directory contains the source file `main.go`.
+	- The service `golang` defines a volume that maps the host directory `vhs/src` to the container directory `/opt/app`. That directory contains the source file `main.go`.
 	- `go run main.go` is executed inside the container
 8. `Hello, World!` is printed out
-9. Once `vhs` is done, it saves the record `demo.mp4` in directory `output`
+9. `vhs` saves the record `demo.mp4` in directory `/opt/src/output` which is also accessible from the host directory `vhs/output`
 
 ## References
 

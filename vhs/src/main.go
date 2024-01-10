@@ -1,4 +1,3 @@
-// Prints out "Hello, World!"
 package main
 
 import "fmt"
