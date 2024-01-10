@@ -22,6 +22,7 @@ make prune
 ## Implementation
 
 ```mermaid
+
 graph TB
     make-record[make record]-->|1\ndocker compose run vhs demo.tape|host-docker-client[Docker client]
     host-docker-client-->|2|docker-daemon((Docker daemon))
@@ -32,7 +33,7 @@ graph TB
     end
     docker-daemon-->|3|vhs-local-container
     docker-client-->|6|docker-daemon
-    dir-vhs{{"**Directory: vhs**
+    dir-vhs{{"**Host directory: vhs**
     Dockerfile
     Makefile
     demo.tape
@@ -45,33 +46,33 @@ graph TB
     subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run main.go]
     end
-    dir-vhs-src{{"**Directory: vhs/src**
+    dir-vhs-src{{"**Host directory: vhs/src**
     main.go
     ..."}}
     golang-alpine-container-.->|volume:bind|dir-vhs-src
-    go-run-->|8|hello-world('Hello, World!')
+    go-run-->|8|hello-world[/'Hello, World!'/]
     vhs-->|9\nouput/demo.mp4|dir-vhs
 ```
 
 Flow:
 
-1. `make record` calls the command `docker compose` with the Docker client
-2. The Docker client sends the command to the Docker daemon on the host
-3. The Docker daemon creates a new service based on Docker image `flemay/3musketeers-vhs:local`
-	1. The details of the service is defined in `docker-compose.yml`
-	1. The image `flemay/3musketeers-vhs:local` definition comes from `Dockerfile`. It is based on `ghcr.io/charmbracelet/vhs` and adds required tools for the demo such as: `nvim`, `make`, `docker`, and `compose`.
-	1. A volume is created which maps the host directory `src` to container directory `/opt/src`. This makes the file `demo.tape` accessible to `vhs` inside the container.
-	1. `vhs demo.tape` is then executed
+1. `make record` sends the command `docker compose run vhs demo.tape` with the Docker client
+2. The Docker client sends it to the Docker daemon
+3. The Docker daemon creates a service `vhs` based on Docker image `flemay/3musketeers-vhs:local`
+	- The details of the service is defined in `docker-compose.yml`
+	- The image `flemay/3musketeers-vhs:local` definition comes from `Dockerfile`. It is based on `ghcr.io/charmbracelet/vhs` and adds required tools for the demo such as: `nvim`, `make`, `docker`, and `compose`.
+	- A volume is created which maps the host directory `src` to container directory `/opt/src`. This makes the file `demo.tape` accessible to `vhs` inside the container.
+	- `vhs demo.tape` is then executed
 4. `vhs demo.tape` calls the commands `cd src/` and `make run`
 5. `make run` executes the command `docker compose golang go run main.go` with the Docker client (inside the container)
 6. The Docker client (inside the container) passes the command to Docker daemon (on the host)
-	1. This is possible because the service `vhs` (defined in `docker-compose.yml`) mounts the host `/var/run/docker.sock`
-7. The Docker daemon creates a new service (container) `golang` based on the official Go Docker image
-	1. The details of the service is in `src/docker-compose.yml`
-	1. The service `golang` defines a volume that maps the host directory `vhs/src` to the container. That directory contains the source file `main.go`.
-	1. It is important to note that creating a volumes that is
-8.
-9.
+	- This is possible because the service `vhs` (defined in `docker-compose.yml`) mounts the host `/var/run/docker.sock`
+7. The Docker daemon creates a service `golang` based on the official Go Docker image
+	- The details of the service is in `src/docker-compose.yml`
+	- The service `golang` defines a volume that maps the host directory `vhs/src` to the container. That directory contains the source file `main.go`.
+	- `go run main.go` is executed inside the container
+8. `Hello, World!` is printed out
+9. Once `vhs` is done, it saves the record `demo.mp4` in directory `output`
 
 ## References
 
