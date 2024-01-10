@@ -22,7 +22,6 @@ make prune
 ## Implementation
 
 ```mermaid
-
 graph TB
     make-record[make record]-->|1\ndocker compose run vhs demo.tape|host-docker-client[Docker client]
     host-docker-client-->|2|docker-daemon((Docker daemon))
