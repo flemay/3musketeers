@@ -1,21 +1,27 @@
 # Intro
 Type "# Let's print out 'Hello, World!' in Go!"
 Sleep 2s
-Space
-Type "But first, let's make sure we have Make, Docker, Compose, and not Go"
+Ctrl+U
+Type "# But first, let's make sure the host has Make, Docker, Compose, and not Go"
 Sleep 2s
-Ctrl+C
-Enter
+Ctrl+U
 Type "make --version"
-Enter 2
-Sleep 2s
-Type "docker --version"
-Enter 2
-Sleep 2s
-Type "docker compose version"
-Enter 2
-Sleep 2s
-Type "go version"
+Sleep 1s
 Enter
-Sleep 3s
+Sleep 2s
+Ctrl+L
+Type "docker --version"
+Sleep 1s
+Enter
+Sleep 2s
+Ctrl+L
+Type "docker compose version"
+Sleep 1s
+Enter
+Sleep 2s
+Ctrl+L
+Type "go version"
+Sleep 1s
+Enter
+Sleep 2s
 Ctrl+L

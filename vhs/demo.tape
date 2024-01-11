@@ -4,13 +4,13 @@ Require nvim
 Require make
 Require docker
 
-Set Theme "Solarized Darcula"
+Set Theme "OneHalfDark"
 Set Margin 30
 Set MarginFill "#73ABFE"
-Set FontSize 20
+Set FontSize 22
 Set Width 1200
 Set Height 600
-Set TypingSpeed 40ms
+Set TypingSpeed 60ms
 
 Hide
 Type "cd src"
