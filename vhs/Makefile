@@ -15,6 +15,9 @@ record:
 shell:
 	$(COMPOSE_RUN_VHS_BASH)
 
+_publish:
+	git status
+
 prune:
 	$(COMPOSE_RUN_VHS_BASH) rm -fr output
 	docker compose down --remove-orphans --volumes
