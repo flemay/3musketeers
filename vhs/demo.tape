@@ -28,17 +28,17 @@ Ctrl+U
 Type "make --version"
 Sleep 500ms
 Enter
-Sleep 2s
+Sleep 1s
 Ctrl+L
 Type "docker --version"
 Sleep 500ms
 Enter
-Sleep 2s
+Sleep 1s
 Ctrl+L
 Type "docker compose version"
 Sleep 500ms
 Enter
-Sleep 2s
+Sleep 1s
 Ctrl+L
 
 # main.go
