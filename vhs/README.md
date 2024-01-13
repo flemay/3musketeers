@@ -9,6 +9,12 @@ This is self-content code to generate the 3 Musketeers demo with [charmbracelet/
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
+- [GitHub account](https://github.com/)
+- [GitHub fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)
+	- Token access
+		- Only select repositories
+		- Contents: Read and Write
+		- Metadata: Read-only
 
 ## Usage
 
@@ -91,4 +97,8 @@ Flow:
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
+- [ShellCheck](https://www.shellcheck.net/)
 - [VHS Themes](https://github.com/flemay/vhs-themes)
+- [GitHub](https://github.com/)
+- [Storing Images and Demos in your Repo](https://gist.github.com/joncardasis/e6494afd538a400722545163eb2e1fa5)
+
