@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  vhs:
+    build: .
+    image: flemay/3musketeers-vhs:local
+    volumes:
+      - type: bind
+        source: "."
+        target: /opt/demo
+      # The docker client in this image needs to communicate to the host Docker daemon. docker.sock is used.
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    working_dir: /opt/demo
+    env_file: "${ENVFILE:-.env}"
+    environment:
+      - ENV_HOST_SRC_DIR=${ENV_HOST_SRC_DIR}
+      - TERM=xterm-256color
