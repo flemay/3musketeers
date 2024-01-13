@@ -1,4 +1,4 @@
-Output "output/demo.mp4"
+Output "output/demo.gif"
 
 Require nvim
 Require make

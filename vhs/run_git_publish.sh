@@ -56,7 +56,8 @@ cloneAndSetPublishBranch() {
     # create a new .gitignore specifically for publish branch
     printf "*\n" > .gitignore
     {
-        printf "!*.mp4\n"
+        printf "!.gitignore\n"
+        printf "!*.gif\n"
     } >> .gitignore
 
     cp -r "${ENV_PUBLISH_DIR:?}"/* .
