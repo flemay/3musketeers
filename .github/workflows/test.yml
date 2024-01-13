@@ -2,7 +2,7 @@ name: Test
 on:
   pull_request:
     paths-ignore:
-      - vhs/**
+      - demo/**
       - tutorials/**
       - '*.drawio'
       - '*.md'
