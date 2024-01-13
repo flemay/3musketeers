@@ -1,4 +1,4 @@
-Output "output/assets/demo.mp4"
+Output "output/demo.gif"
 
 Require nvim
 Require make
@@ -17,10 +17,10 @@ Ctrl+L
 Show
 
 # Prerequisites
-Type "# Let's create 'Hello, World!' app in Go using 3 Musketeers!"
+Type "# [1/10] Let's create 'Hello, World!' app in Go using 3 Musketeers!"
 Sleep 1s
 Ctrl+U
-Type "# But first, verify the host has Make, Docker, and Compose"
+Type "# [2/10] But first, verify the host has Make, Docker, and Compose"
 Sleep 1s
 Ctrl+U
 Type "make --version"
@@ -40,7 +40,7 @@ Sleep 1s
 Ctrl+L
 
 # main.go
-Type "# Time to define our Go application"
+Type "# [3/10] Time to define our Go application"
 Sleep 1s
 Ctrl+U
 Type "vim main.go"
@@ -52,7 +52,7 @@ Type ":wq"
 Enter
 Ctrl+L
 Show
-Type "# Run it with Go"
+Type "# [4/10] Run it with Go"
 Sleep 1s
 Ctrl+U
 Type "go run main.go"
@@ -60,12 +60,12 @@ Sleep 500ms
 Enter
 Sleep 2s
 Ctrl+L
-Type "# It failed because the host does not have Go installed"
+Type "# [5/10] It failed because the host does not have Go installed"
 Sleep 1s
 Ctrl+U
 
 # docker-compose.yml
-Type "# Define our Go environment using an official Go Docker image where our application will be executed"
+Type "# [6/10] Define our Go environment using an official Go Docker image where our application will be executed"
 Sleep 1s
 Ctrl+U
 Type "vim docker-compose.yml"
@@ -77,7 +77,7 @@ Type ":wq"
 Enter
 Ctrl+L
 Show
-Type "# Run it with Compose"
+Type "# [7/10] Run it with Compose"
 Sleep 1s
 Ctrl+U
 Type "docker compose run --rm golang go run main.go"
@@ -87,10 +87,10 @@ Sleep 4s
 Ctrl+L
 
 # Makefile
-Type "# Typing `docker compose run --rm golang go run main.go` is long and hard to remember"
+Type "# [8/10] Typing `docker compose run --rm golang go run main.go` is long and hard to remember"
 Sleep 1s
 Ctrl+U
-Type "# Makefile to the rescue"
+Type "# [9/10] Makefile to the rescue"
 Sleep 1s
 Ctrl+U
 Type "vim Makefile"
@@ -102,7 +102,7 @@ Type ":wq"
 Enter
 Ctrl+L
 Show
-Type "# Run it with Make"
+Type "# [10/10] Run it with Make"
 Sleep 1s
 Ctrl+U
 Type "make run"
