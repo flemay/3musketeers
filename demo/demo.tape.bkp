@@ -16,23 +16,23 @@ Enter
 Ctrl+L
 Show
 
-Type "# Let's create 'Hello, World!' app in Go using 3 Musketeers!"
-Sleep 1s
-Ctrl+C
-Ctrl+L
-
 # Prerequisites
-Type "# [1/4] Prerequisites: first, verify the host has Make, Docker, and Compose"
+Type "# [1/10] Let's create 'Hello, World!' app in Go using 3 Musketeers!"
 Sleep 1s
-Ctrl+C
+Ctrl+U
+Type "# [2/10] But first, verify the host has Make, Docker, and Compose"
+Sleep 1s
+Ctrl+U
 Type "make --version"
 Sleep 500ms
 Enter
 Sleep 1s
+Ctrl+L
 Type "docker --version"
 Sleep 500ms
 Enter
 Sleep 1s
+Ctrl+L
 Type "docker compose version"
 Sleep 500ms
 Enter
@@ -40,9 +40,9 @@ Sleep 1s
 Ctrl+L
 
 # main.go
-Type "# [2/4] Time to define our Go application"
+Type "# [3/10] Time to define our Go application"
 Sleep 1s
-Ctrl+C
+Ctrl+U
 Type "vim main.go"
 Sleep 1s
 Enter
@@ -50,24 +50,24 @@ Sleep 2s
 Hide
 Type ":wq"
 Enter
-#Ctrl+L
+Ctrl+L
 Show
-Type "# Run it with Go"
+Type "# [4/10] Run it with Go"
 Sleep 1s
-Ctrl+C
+Ctrl+U
 Type "go run main.go"
 Sleep 500ms
 Enter
 Sleep 2s
-Type "# It failed because the host does not have Go installed"
-Sleep 1s
-Ctrl+C
 Ctrl+L
+Type "# [5/10] It failed because the host does not have Go installed"
+Sleep 1s
+Ctrl+U
 
 # docker-compose.yml
-Type "# [3/4] Compose: define our Go environment using an official Go Docker image where our application will be executed"
+Type "# [6/10] Define our Go environment using an official Go Docker image where our application will be executed"
 Sleep 1s
-Ctrl+C
+Ctrl+U
 Type "vim docker-compose.yml"
 Sleep 1s
 Enter
@@ -75,10 +75,11 @@ Sleep 2s
 Hide
 Type ":wq"
 Enter
+Ctrl+L
 Show
-Type "# Run it with Compose"
+Type "# [7/10] Run it with Compose"
 Sleep 1s
-Ctrl+C
+Ctrl+U
 Type "docker compose run --rm golang go run main.go"
 Sleep 500ms
 Enter
@@ -86,9 +87,12 @@ Sleep 4s
 Ctrl+L
 
 # Makefile
-Type "# [4/4] Makefile: typing `docker compose run --rm golang go run main.go` is long and hard to remember. Makefile to the rescue"
+Type "# [8/10] Typing `docker compose run --rm golang go run main.go` is long and hard to remember"
 Sleep 1s
-Ctrl+C
+Ctrl+U
+Type "# [9/10] Makefile to the rescue"
+Sleep 1s
+Ctrl+U
 Type "vim Makefile"
 Sleep 1s
 Enter
@@ -96,10 +100,11 @@ Sleep 2s
 Hide
 Type ":wq"
 Enter
+Ctrl+L
 Show
-Type "# Run it with Make"
+Type "# [10/10] Run it with Make"
 Sleep 1s
-Ctrl+C
+Ctrl+U
 Type "make run"
 Sleep 500ms
 Enter
