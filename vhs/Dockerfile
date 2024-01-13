@@ -3,6 +3,7 @@ RUN <<EOF
 # Install vim, make, and docker. Ref: https://docs.docker.com/engine/install/debian/
 apt-get update
 apt-get install -y --no-install-recommends \
+  git \
   neovim \
   make \
   ca-certificates \
@@ -26,6 +27,7 @@ apt-get install -y --no-install-recommends \
 rm -rf /var/lib/apt/lists/*
 
 # Test tools are installed
+git --version
 nvim --version
 make --version
 docker --version

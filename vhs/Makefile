@@ -3,8 +3,12 @@ HOST_SRC_DIR = $(MAKEFILE_DIR)src
 COMPOSE_BUILD_VHS = docker compose build vhs
 COMPOSE_RUN_VHS = ENV_HOST_SRC_DIR=$(HOST_SRC_DIR) docker compose run --rm vhs
 COMPOSE_RUN_VHS_BASH = ENV_HOST_SRC_DIR=$(HOST_SRC_DIR) docker compose run --rm --entrypoint bash vhs
+ENVFILE ?= env.template
 
-all: deps record prune
+all: envfile deps record prune
+
+envfile:
+	cp -f $(ENVFILE) .env
 
 deps:
 	$(COMPOSE_BUILD_VHS)
@@ -15,8 +19,8 @@ record:
 shell:
 	$(COMPOSE_RUN_VHS_BASH)
 
-_publish:
-	git status
+publish:
+	$(COMPOSE_RUN_VHS_BASH) ./run_git_publish.sh
 
 prune:
 	$(COMPOSE_RUN_VHS_BASH) rm -fr output
