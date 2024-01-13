@@ -5,8 +5,6 @@ Require make
 Require docker
 
 Set Theme "OneHalfDark"
-#Set Margin 30
-#Set MarginFill "#73ABFE"
 Set FontSize 22
 Set Width 1200
 Set Height 600
