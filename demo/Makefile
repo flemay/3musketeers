@@ -19,6 +19,7 @@ _test:
 	shellcheck --enable all *.sh
 
 record:
+	$(COMPOSE_RUN_VHS_BASH) -c "rm -fr output"
 	$(COMPOSE_RUN_VHS) demo.tape
 
 shell:
