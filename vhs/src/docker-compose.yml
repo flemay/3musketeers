@@ -1,6 +1,0 @@
-services:
-  golang:
-    image: golang:alpine
-    volumes:
-      - ${ENV_HOST_SRC_DIR:-.}:/opt/app:ro
-    working_dir: /opt/app

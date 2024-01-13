@@ -47,7 +47,7 @@ graph TB
     end
     docker-daemon-->|3|vhs-local-container
     docker-client-->|6|docker-daemon
-    dir-demo{{"**Host directory: demo/**
+    dir-demo{{"**Host directory: ./**
     Dockerfile
     Makefile
     demo.tape
@@ -55,15 +55,15 @@ graph TB
     src/Makefile
     src/docker-compose.yml
     ..."}}
-    vhs-local-container-...->|volume:bind\ndemo/ <-> /opt/demo/|dir-demo
+    vhs-local-container-...->|volume:bind\n./ <-> /opt/demo/|dir-demo
     docker-daemon-->|7|golang-alpine-container
     subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run main.go]
     end
-    dir-demo-src{{"**Host directory: demo/src/**
+    dir-demo-src{{"**Host directory: ./src/**
     main.go
     ..."}}
-    golang-alpine-container-.->|volume:bind\ndemo/src/ <-> /opt/app/|dir-demo-src
+    golang-alpine-container-.->|volume:bind\n./src/ <-> /opt/app/|dir-demo-src
     go-run-->|8|hello-world[/'Hello, World!'/]
     vhs-->|9\nouput/demo.gif|dir-demo
 ```
