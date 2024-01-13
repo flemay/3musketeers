@@ -11,7 +11,7 @@ IFS=$'\n\t'
 # Ex: https://github.com/flemay/3musketeers.git -> 3musketeers
 getRepoName() {
     declare -n _retRepoName="${1}"
-    _retRepoName="${ENV_GIT_REPO_URL##*/}"
+    _retRepoName="${ENV_GIT_REPO_URL:?##*/}"
     _retRepoName="${_retRepoName%.git}"
 }
 

@@ -4,6 +4,7 @@ RUN <<EOF
 apt-get update
 apt-get install -y --no-install-recommends \
   git \
+  shellcheck \
   neovim \
   make \
   ca-certificates \
@@ -28,6 +29,7 @@ rm -rf /var/lib/apt/lists/*
 
 # Test tools are installed
 git --version
+shellcheck --version
 nvim --version
 make --version
 docker --version
