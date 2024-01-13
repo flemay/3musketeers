@@ -13,10 +13,17 @@ This is self-content code to generate the 3 Musketeers demo with [charmbracelet/
 ## Usage
 
 ```bash
+# Create a .env file and modify it with the correct values
+# All variables are required but does not mean they are all used at once
+make envfile
 # Build dependencies such as the Docker image
 make deps
+# Test the code
+make test
 # Record the demo
 make record
+# Publish the demo to its own orphan branch
+make publish
 # Clean up
 make prune
 ```
@@ -52,7 +59,7 @@ graph TB
     ..."}}
     golang-alpine-container-.->|volume:bind\nvhs/src/ <-> /opt/app/|dir-vhs-src
     go-run-->|8|hello-world[/'Hello, World!'/]
-    vhs-->|9\nouput/demo.mp4|dir-vhs
+    vhs-->|9\nouput/demo.gif|dir-vhs
 ```
 
 Flow:
@@ -76,7 +83,7 @@ Flow:
 		- It is important to note that the full path to the host directory `vhs/src/` is passed to the service (using environment variable `ENV_HOST_SRC_DIR`) and not the container path `/opt/src/src/` even if the command originated from the container `vhs`. This is because the Docker daemon (being outside of the container) would not know the location of `/opt/src/src/`
 	- `go run main.go` is executed inside the container
 8. `Hello, World!` is printed out
-9. `vhs` saves the record `demo.mp4` into directory `/opt/src/output/` which is also accessible from the host directory `vhs/output/`
+9. `vhs` saves the record `demo.gif` into directory `/opt/src/output/` which is also accessible from the host directory `vhs/output/`
 
 ## References
 
