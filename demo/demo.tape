@@ -7,8 +7,8 @@ Require docker
 Set Theme "OneHalfDark"
 Set Padding 35
 Set FontSize 22
-Set Width 1200
-Set Height 600
+Set Width 1300
+Set Height 650
 Set TypingSpeed 60ms
 
 Hide
