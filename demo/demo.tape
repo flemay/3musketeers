@@ -5,7 +5,7 @@ Require make
 Require docker
 
 Set Theme "OneHalfDark"
-Set FontSize 20
+Set FontSize 18
 Set Width 900
 Set Height 600
 Set TypingSpeed 60ms
@@ -16,13 +16,17 @@ Enter
 Ctrl+L
 Show
 
-Type "# Let's create 'Hello, World!' app in Go using 3 Musketeers!"
+Type "# Let's create 'Hello, World!' application in Go using \"
+Enter
+Type "the 3 Musketeers!"
 Sleep 1s
 Ctrl+C
 Ctrl+L
 
 # Prerequisites
-Type "# [1/4] Prerequisites: first, verify the host has Make, Docker, and Compose"
+Type "# [1/4] Prerequisites: first, verify the host has \"
+Enter
+Type "Make, Docker, and Compose"
 Sleep 1s
 Ctrl+C
 Type "make --version"
@@ -65,7 +69,9 @@ Ctrl+C
 Ctrl+L
 
 # docker-compose.yml
-Type "# [3/4] Compose: define our Go environment using an official Go Docker image where our application will be executed"
+Type "# [3/4] Compose: define our Go environment using an \"
+Enter
+Type "offical Go Docker image where our application will be executed"
 Sleep 1s
 Ctrl+C
 Type "vim docker-compose.yml"
@@ -86,7 +92,11 @@ Sleep 4s
 Ctrl+L
 
 # Makefile
-Type "# [4/4] Makefile: typing `docker compose run --rm golang go run main.go` is long and hard to remember. Makefile to the rescue"
+Type "# [4/4] Makefile: typing \"
+Enter
+Type "`docker compose run --rm golang go run main.go` \"
+Enter
+Type "is long and hard to remember. Makefile to the rescue"
 Sleep 1s
 Ctrl+C
 Type "vim Makefile"
