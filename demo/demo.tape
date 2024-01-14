@@ -6,9 +6,9 @@ Require docker
 
 Set Theme "OneHalfDark"
 Set Padding 35
-Set FontSize 16
-Set Width 900
-Set Height 400
+Set FontSize 22
+Set Width 1200
+Set Height 600
 Set TypingSpeed 60ms
 
 Hide
@@ -119,4 +119,4 @@ Ctrl+C
 Type "make run"
 Sleep 500ms
 Enter
-Sleep 4s
+Sleep 5s

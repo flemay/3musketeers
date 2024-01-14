@@ -4,6 +4,8 @@ This is self-content code to generate the 3 Musketeers demo with [charmbracelet/
 
 ![demo.gif](../../vhs-demo/demo.gif)
 
+<img alt="Animated demo" src="../../vhs-demo/demo.gif" width="800" />
+
 ## Prerequisites
 
 - [Docker](https://www.docker.com/)
