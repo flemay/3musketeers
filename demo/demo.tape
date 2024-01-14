@@ -5,8 +5,8 @@ Require make
 Require docker
 
 Set Theme "OneHalfDark"
-Set FontSize 22
-Set Width 1200
+Set FontSize 20
+Set Width 900
 Set Height 600
 Set TypingSpeed 60ms
 
@@ -46,7 +46,7 @@ Ctrl+C
 Type "vim main.go"
 Sleep 1s
 Enter
-Sleep 2s
+Sleep 3s
 Hide
 Type ":wq"
 Enter
@@ -58,7 +58,7 @@ Ctrl+C
 Type "go run main.go"
 Sleep 500ms
 Enter
-Sleep 2s
+Sleep 3s
 Type "# It failed because the host does not have Go installed"
 Sleep 1s
 Ctrl+C
@@ -71,7 +71,7 @@ Ctrl+C
 Type "vim docker-compose.yml"
 Sleep 1s
 Enter
-Sleep 2s
+Sleep 3s
 Hide
 Type ":wq"
 Enter
@@ -92,7 +92,7 @@ Ctrl+C
 Type "vim Makefile"
 Sleep 1s
 Enter
-Sleep 2s
+Sleep 3s
 Hide
 Type ":wq"
 Enter
