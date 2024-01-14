@@ -5,7 +5,7 @@ Require make
 Require docker
 
 Set Theme "OneHalfDark"
-Set Padding 25
+Set Padding 40
 Set FontFamily "JetBrains Mono"
 Set FontSize 22
 Set Width 1300
