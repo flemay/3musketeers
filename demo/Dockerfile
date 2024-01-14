@@ -1,3 +1,8 @@
+# Using a build stage allows flexibility to install any version of vhs without
+# the need to wait for a new version of the VHS docker version
+FROM golang:alpine as build
+RUN go install github.com/charmbracelet/vhs@latest
+
 FROM ghcr.io/charmbracelet/vhs
 RUN <<EOF
 # Install vim, make, and docker. Ref: https://docs.docker.com/engine/install/debian/
@@ -36,4 +41,6 @@ docker --version
 docker compose version
 EOF
 
+COPY --from=build /go/bin/vhs /usr/bin/vhs
+RUN vhs --version
 COPY nvim-init.lua /root/.config/nvim/init.lua

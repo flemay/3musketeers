@@ -2,7 +2,7 @@
 
 This is self-content code to generate the 3 Musketeers demo with [charmbracelet/vhs](https://github.com/charmbracelet/vhs).
 
-<img alt="Animated demo" src="../../vhs-demo/demo.gif" width="800" />
+<img alt="Animated demo" src="../../vhs-demo/demo.gif">
 
 ## Prerequisites
 
