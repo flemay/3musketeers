@@ -4,14 +4,15 @@ Require nvim
 Require make
 Require docker
 
+# [Set GIF quality](https://github.com/charmbracelet/vhs/issues/69)
 Set Theme "OneHalfDark"
 Set Padding 40
 Set FontFamily "JetBrains Mono"
 Set FontSize 22
 Set Width 1300
 Set Height 650
-Set TypingSpeed 70ms
-Set Framerate 60
+Set TypingSpeed 45ms
+#Set PlaybackSpeed 0.5
 
 Hide
 Type "cd src"
