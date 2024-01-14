@@ -2,7 +2,7 @@
 
 This is self-content code to generate the 3 Musketeers demo with [charmbracelet/vhs](https://github.com/charmbracelet/vhs).
 
-<img alt="Animated demo" src="../../vhs-demo/demo.gif">
+<img alt="Animated demo" src="../../vhs-demo/demo.gif" width="800px">
 
 ## Prerequisites
 
@@ -98,6 +98,7 @@ Flow:
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
 - [ShellCheck](https://www.shellcheck.net/)
+- [Mermaid](https://mermaid.js.org/)
 - [VHS Themes](https://github.com/flemay/vhs-themes)
 - [GitHub](https://github.com/)
 - [Storing Images and Demos in your Repo](https://gist.github.com/joncardasis/e6494afd538a400722545163eb2e1fa5)

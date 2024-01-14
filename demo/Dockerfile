@@ -6,7 +6,7 @@ RUN go install github.com/charmbracelet/vhs@latest
 FROM ghcr.io/charmbracelet/vhs
 RUN <<EOF
 # Install vim, make, and docker. Ref: https://docs.docker.com/engine/install/debian/
-apt-get update
+apt-get -y update && apt-get -y upgrade
 apt-get install -y --no-install-recommends \
   git \
   shellcheck \
@@ -31,6 +31,7 @@ apt-get install -y --no-install-recommends \
   docker-compose-plugin
 
 rm -rf /var/lib/apt/lists/*
+apt-get clean
 
 # Test tools are installed
 git --version
@@ -41,6 +42,7 @@ docker --version
 docker compose version
 EOF
 
+# Install specific version of VHS
 COPY --from=build /go/bin/vhs /usr/bin/vhs
 RUN vhs --version
 COPY nvim-init.lua /root/.config/nvim/init.lua

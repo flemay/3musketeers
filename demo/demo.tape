@@ -6,10 +6,12 @@ Require docker
 
 Set Theme "OneHalfDark"
 Set Padding 25
-Set FontSize 16
-Set Width 800
-Set Height 400
-Set TypingSpeed 60ms
+Set FontFamily "JetBrains Mono"
+Set FontSize 22
+Set Width 1300
+Set Height 650
+Set TypingSpeed 70ms
+Set Framerate 60
 
 Hide
 Type "cd src"
