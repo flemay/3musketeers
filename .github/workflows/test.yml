@@ -1,5 +1,11 @@
 name: Test
-on: pull_request
+on:
+  pull_request:
+    paths-ignore:
+      - demo/**
+      - tutorials/**
+      - '*.drawio'
+      - '*.md'
 jobs:
   test:
     runs-on: ubuntu-latest

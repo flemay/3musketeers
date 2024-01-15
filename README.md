@@ -24,9 +24,11 @@
   - [Consistency](#consistency)
   - [Control](#control)
   - [Confidence](#confidence)
-- [Prerequisites](#prerequisites)
-- [Usage](#usage)
-- [3musketeers website development](#3musketeers-website-development)
+- [Demo](#demo)
+- [Getting started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
+- [3 Musketeers website development](#3-musketeers-website-development)
   - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
@@ -64,13 +66,21 @@ Take control of languages, versions, and tools you need, and version source cont
 
 Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
 
-## Prerequisites
+## Demo
+
+<img alt="Animated demo" src="../vhs-demo/demo.gif" width="800px"/>
+
+_The demo was generated with VHS using the 3 Musketeers ([source](demo))_
+
+## Getting started
+
+### Prerequisites
 
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
 
-## Usage
+### Steps
 
 Create the two following files:
 

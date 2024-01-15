@@ -16,7 +16,7 @@ envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	$(COMPOSE_PULL)
+	$(COMPOSE_PULL) node
 	$(COMPOSE_RUN_NODE) npm install
 
 depsUpgrade:
