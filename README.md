@@ -24,9 +24,11 @@
   - [Consistency](#consistency)
   - [Control](#control)
   - [Confidence](#confidence)
-- [Prerequisites](#prerequisites)
-- [Usage](#usage)
-- [3musketeers website development](#3musketeers-website-development)
+- [Demo](#demo)
+- [Getting started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
+- [3 Musketeers website development](#3-musketeers-website-development)
   - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
@@ -69,8 +71,6 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 <img alt="Animated demo" src="../vhs-demo/demo.gif" width="800px"/>
 
 <small>The demo was generated with VHS using the 3 Musketeers ([source](demo))</small>
-
-<sub><sup>The demo was generated with VHS using the 3 Musketeers</sup></sub>
 
 ## Getting started
 
