@@ -55,10 +55,11 @@ cloneAndSetPublishBranch() {
 
     # create a new .gitignore specifically for publish branch
     printf "*\n" > .gitignore
-    {
-        printf "!.gitignore\n"
-        printf "!*.gif\n"
-    } >> .gitignore
+    printf "!.gitignore\n" >> .gitignore
+    IFS=',' read -ra _includePatterns <<< "${ENV_PUBLISH_INCLUDE_PATTERNS:?}"
+    for pattern in "${_includePatterns[@]}"; do
+        printf "!%s\n" "${pattern}" >> .gitignore
+    done
 
     cp -r "${ENV_PUBLISH_DIR:?}"/* .
 }

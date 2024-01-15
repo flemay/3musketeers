@@ -15,7 +15,3 @@ services:
     env_file: "${ENVFILE:-.env}"
     environment:
       - ENV_HOST_SRC_DIR=${ENV_HOST_SRC_DIR}
-      - ENV_PUBLISH_DIR=/opt/demo/output
-      - ENV_TMP_DIR=/tmp
-      - TERM=xterm-256color
-      - ENV_TZ=UTC
