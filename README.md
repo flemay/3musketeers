@@ -70,7 +70,7 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 
 <img alt="Animated demo" src="../vhs-demo/demo.gif" width="800px"/>
 
-<small>The demo was generated with VHS using the 3 Musketeers ([source](demo))</small>
+_The demo was generated with VHS using the 3 Musketeers ([source](demo))_
 
 ## Getting started
 
