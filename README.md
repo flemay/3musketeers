@@ -52,19 +52,18 @@ The 3 Musketeers is a pattern for developing software in a repeatable and consis
 
 ```mermaid
 graph LR
-    host[**Host**
+    host["**Host**
     Linux
     MacOS
     Windows
     CI/CD
-    ...]
-    make[**Make**
+    ..."]
+    make["**Make**
     test
     build
     run
     deploy
-    ...
-    ]
+    ..."]
     host-->make
     make-->docker[Docker
     Compose]
@@ -72,8 +71,7 @@ graph LR
         Go
         Python
         PostgreSQL
-        ...
-    "))
+        ..."))
     docker-->container
 ```
 
