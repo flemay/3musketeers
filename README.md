@@ -65,8 +65,8 @@ graph LR
     deploy
     ..."]
     host-->make
-    make-->docker[Docker
-    Compose]
+    make-->docker["Docker
+    Compose"]
     container(("&nbsp;&nbsp;&nbsp;&nbsp;**Container(s)**&nbsp;&nbsp;&nbsp;&nbsp;
         Go
         Python
