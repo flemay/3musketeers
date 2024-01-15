@@ -70,7 +70,7 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 
 <small>The demo was generated with VHS using the 3 Musketeers ([source](demo))</small>
 
-<p><small>The demo was generated with VHS using the 3 Musketeers</small></p>
+<sub><sup>The demo was generated with VHS using the 3 Musketeers</sup></sub>
 
 ## Getting started
 
