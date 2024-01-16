@@ -8,4 +8,5 @@ find *.mmd -type f \
         /home/mermaidcli/node_modules/.bin/mmdc \
             -p /puppeteer-config.json \
             -t dark \
+            -b transparent \
             -i {}'
