@@ -75,6 +75,8 @@ graph LR
     docker-->container
 ```
 
+![overview](./docs/guide/assets/mermaid-overview.svg)
+
 ## Why?
 
 ### Consistency
