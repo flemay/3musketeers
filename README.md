@@ -75,7 +75,7 @@ graph LR
     docker-->container
 ```
 
-![overview](./docs/guide/assets/mermaid-overview.svg)
+![overview](./mermaid/overview.mmd.svg)
 
 ## Why?
 
