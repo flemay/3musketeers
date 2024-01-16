@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  mermaid:
+    image: ghcr.io/mermaid-js/mermaid-cli/mermaid-cli
+    volumes:
+      - type: bind
+        source: .
+        target: /data
