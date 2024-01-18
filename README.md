@@ -284,8 +284,8 @@ $ exit
     - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
     - The social image is also set in the general settings of the repository
 - Diagrams
-    - [draw.io][linkDrawIO] is used to generate diagrams
-    - All diagrams are in the file `diagrams.drawio`
+    - [Mermaid][linkMermaid] is used to generate diagrams
+    - All diagrams are in the directory `diagrams`
 - README badges
     - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
@@ -308,7 +308,7 @@ Please visit https://3musketeersdev.netlify.app/guide/contributing.html for more
 - [Vectornator][linkVectornator]
 - [Procreate][linkProcreate]
 - [favicon.io][linkFaviconio]
-- [draw.io][linkDrawIO]
+- [Mermaid][linkMermaid]
 - [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
 
 ## Stargazers over time
@@ -347,7 +347,7 @@ Please visit https://3musketeersdev.netlify.app/guide/contributing.html for more
 
 [linkVitePress]: https://vitepress.vuejs.org/
 [linkFaviconio]: https://favicon.io
-[linkDrawIO]: https://www.draw.io/
+[linkMermaid]: https://mermaid.js.org/
 [linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
 [linkProcreate]: https://procreate.art/
 
