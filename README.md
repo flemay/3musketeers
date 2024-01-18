@@ -103,12 +103,12 @@ _The demo was generated with VHS using the 3 Musketeers ([source](demo))_
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
 
-### Steps
+### Hello, World!
 
-Create the two following files:
+Create the following two files:
 
 ```yaml
-# file: docker-compose.yml
+# docker-compose.yml
 version: '3'
 services:
   alpine:
@@ -116,11 +116,10 @@ services:
 ```
 
 ```makefile
-# file: Makefile
+# Makefile
 
-# echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
 echo:
-	docker-compose run --rm alpine echo 'Hello, World!'
+	docker compose run --rm alpine echo 'Hello, World!'
 ```
 
 Then simply echo "Hello, World!" with the following command:

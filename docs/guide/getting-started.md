@@ -10,10 +10,10 @@ These are the prerequisites for a project that follows the 3 Musketeers:
 
 ## Hello, World!
 
-Create the two following files in an empty directory:
+Create the following two files:
 
 ```yaml
-# file: docker-compose.yml
+# docker-compose.yml
 version: '3'
 services:
   alpine:
@@ -21,9 +21,8 @@ services:
 ```
 
 ```makefile
-# file: Makefile
+# Makefile
 
-# echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
 echo:
 	docker compose run --rm alpine echo 'Hello, World!'
 ```
