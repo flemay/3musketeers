@@ -1,26 +1,31 @@
+---
+outline: 'deep'
+---
+
 # Patterns
 
 In a nutshell, a user calls a Make target which then delegates the Task to be executed in a Container to Docker or Compose.
 
-![pattern-overview](./assets/diagrams-pattern-overview.svg)
-
-This section covers the following patterns:
-
-[[toc]]
+![pattern-overview](./assets/pattern.mmd.svg)
 
 ::: tip
 A project does not need to follow only 1 pattern. For instance, a task A can use the pattern `Shell command` and task B, `Shell file`.
 :::
+## Compose
 
-## Make
+![pattern-compose](./assets/pattern-compose.mmd.svg)
+
+### Examples
+
+Here are some examples illustrating Compose with different commands.
+
+#### Make
 
 ::: info
 This pattern is used to build and deploy this very website. See the [code][link3MusketeersGitHub].
 :::
 
 Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed.
-
-![pattern-make](./assets/diagrams-pattern-make.svg)
 
 ::: tip
 There are [ways][linkDocker] to add Make to your Docker image if it does not have it.
@@ -50,11 +55,9 @@ _echo:
 $ make echo
 ```
 
-## Shell command
+#### Shell
 
 Make calls Compose which executes a shell/bash command inside a Docker container.
-
-![pattern-shell](./assets/diagrams-pattern-shell.svg)
 
 ```yaml
 # docker-compose.yml
@@ -74,11 +77,9 @@ echo:
 $ make echo
 ```
 
-## Shell file
+#### Shell file
 
 Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkTutorialOneShellScript].
-
-![pattern-shell-file](./assets/diagrams-pattern-shell-file.svg)
 
 ```bash
 # echo.sh
@@ -112,12 +113,9 @@ echo:
 $ make echo
 ```
 
-## Languages
-
+#### NodeJS
 
 Languages like Python, JavaScript, Golang, Ruby, etc can be used as an alternative to shell/bash scripts. The following example uses JavaScript to echo 'Hello, World!'.
-
-![pattern-language](./assets/diagrams-pattern-language.svg)
 
 ```js
 // helloworld.js
@@ -145,11 +143,9 @@ echo:
 $ make echo
 ```
 
-## Task management tool
+#### Npm
 
 There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello, World!" by invoking npm.
-
-![pattern-task-tool](./assets/diagrams-pattern-task-tool.svg)
 
 ```json
 // package.json
@@ -188,7 +184,7 @@ $ make echo
 
 Make calls directly Docker instead of Compose. Everything that is done with Compose can be done with Docker. Using Compose helps to keep the Makefile clean.
 
-![pattern-docker](./assets/diagrams-pattern-docker.svg)
+![pattern-docker](./assets/pattern-docker.mmd.svg)
 
 ```makefile
 echo:
@@ -215,7 +211,7 @@ Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker o
 
 So far, the patterns are for hosts (environments) that provide access to Make, Docker (and daemon), and Compose. However, there are times when the environment provided is Docker containers with no access to Make, Docker, or Compose. The 3 Musketeers can be applied by using a Docker image that provides Make, Docker (client), and Compose, such as [flemay/musketeers][linkMusketeersImage], given it has access to the Docker socket which allows Docker (client) to connect to the Docker engine.
 
-![pattern-dind](./assets/diagrams-pattern-dind.svg)
+![pattern-dind](./assets/pattern-dind.mmd.svg)
 
 An example is with GitLab CI. [It allows you to access Docker within a Docker container][linkGitLabDinD]. A pipeline configuration would look like the following:
 

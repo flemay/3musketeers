@@ -7,6 +7,5 @@ find *.mmd -type f \
         'printf "File: %s\n" {}; \
         /home/mermaidcli/node_modules/.bin/mmdc \
             -p /puppeteer-config.json \
-            -t dark \
             -b transparent \
             -i {}'
