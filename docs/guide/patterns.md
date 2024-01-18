@@ -4,14 +4,20 @@ outline: 'deep'
 
 # Patterns
 
-In a nutshell, a user calls a Make target which then delegates the Task to be executed in a Container to Docker or Compose.
+In a nutshell, Make calls either Docker or Compose which then runs a Command inside a container. A project does not need to follow only 1 pattern. For instance, `make targetA` can call Compose and `make targetB`, Docker.
 
 ![pattern-overview](./assets/pattern.mmd.svg)
 
 ::: tip
-A project does not need to follow only 1 pattern. For instance, a task A can use the pattern `Shell command` and task B, `Shell file`.
+The [3 Musketeers repository][link3MusketeersGitHub] does implement the patterns
+
+- Compose: Most of the [Makefile](https://github.com/flemay/3musketeers/blob/main/Makefile) targets
+- Docker-in-Docker: [Generate the demo with VHS](https://github.com/flemay/3musketeers/tree/main/demo)
 :::
+
 ## Compose
+
+In this pattern, Make calls Compose which then runs the Command inside a container.
 
 ![pattern-compose](./assets/pattern-compose.mmd.svg)
 
@@ -21,11 +27,7 @@ Here are some examples illustrating Compose with different commands.
 
 #### Make
 
-::: info
-This pattern is used to build and deploy this very website. See the [code][link3MusketeersGitHub].
-:::
-
-Make calls Compose which then calls another Make target inside a Docker container. This pattern requires the Docker image to have Make installed.
+Make calls Compose which then calls another Make target inside a Docker container. This requires the Docker image (that runs the command) to have Make installed.
 
 ::: tip
 There are [ways][linkDocker] to add Make to your Docker image if it does not have it.
@@ -36,7 +38,7 @@ There are [ways][linkDocker] to add Make to your Docker image if it does not hav
 version: '3'
 services:
   alpine:
-    image: golang
+    image: alpine
     volumes:
       - .:/opt/app
     working_dir: /opt/app
@@ -45,7 +47,7 @@ services:
 ```makefile
 # Makefile
 echo:
-	docker-compose run --rm alpine make _echo
+	docker compose run --rm alpine make _echo
 
 _echo:
 	echo 'Hello, World!'
@@ -70,7 +72,7 @@ services:
 ```makefile
 # Makefile
 echo:
-	docker-compose run --rm alpine sh -c 'echo Hello, World!'
+	docker compose run --rm alpine sh -c 'echo Hello, World!'
 ```
 
 ```bash
@@ -79,7 +81,7 @@ $ make echo
 
 #### Shell file
 
-Make calls Compose which executes a shell/bash command inside a Docker container. Also, an example of a shell file that mimics Make can be found [here][linkTutorialOneShellScript].
+Make calls Compose which executes a shell/bash command inside a Docker container. An example of a shell file that mimics Make can be found [here][linkTutorialOneShellScript].
 
 ```bash
 # echo.sh
@@ -106,28 +108,34 @@ services:
 ```makefile
 # Makefile
 echo:
-	docker-compose run --rm alpine sh echo.sh
+	docker compose run --rm alpine sh echo.sh
 ```
 
 ```bash
 $ make echo
 ```
 
-#### NodeJS
+#### Go
 
-Languages like Python, JavaScript, Golang, Ruby, etc can be used as an alternative to shell/bash scripts. The following example uses JavaScript to echo 'Hello, World!'.
+Languages like Go, Python, JavaScript, Ruby, etc can be used as an alternative to shell/bash scripts. The following example uses Go to echo 'Hello, World!'.
 
-```js
-// helloworld.js
-console.log('Hello, World!');
+```go
+// main.go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, World!")
+}
 ```
 
 ```yaml
 # docker-compose.yml
 version: '3'
 services:
-  node:
-    image: node:alpine
+  golang:
+    image: golang:alpine
     volumes:
       - .:/opt/app
     working_dir: /opt/app
@@ -136,26 +144,25 @@ services:
 ```makefile
 # Makefile
 echo:
-	docker-compose run --rm node node helloworld.js
+	docker compose run --rm golang go run main.go
 ```
 
 ```bash
 $ make echo
 ```
 
-#### Npm
+#### npm
 
 There are many languages and tools out there to make task implementation easy such as Gulp and Rake. Those tools can easily be integrated to the 3 Musketeers. The following is simply a NodeJS example which echos "Hello, World!" by invoking npm.
 
 ```json
 // package.json
-
 {
   "name": "helloworld",
   "description": "echos 'Hello, World!'",
   "scripts": {
     "echo": "echo 'Hello, World!'"
-  },
+  }
 }
 ```
 
@@ -195,14 +202,6 @@ echo:
 $ make echo
 ```
 
-There are situations where calling Docker is required. For instance, if you generate a `.env` file from a container and that at least one of the Compose services uses `.env` file, then using the Compose command outputs an error like the following:
-
-```
-ERROR: Couldn't find env file: /github.com/flemay/3musketeers/.env
-```
-
-More details in [Environment variables][linkEnvironmentVariables] section.
-
 ## Docker-in-Docker (DinD)
 
 ::: info DIND EXPLAINED
@@ -234,9 +233,6 @@ test:
 
 [linkDocker]: docker
 [linkTutorialOneShellScript]: https://github.com/flemay/3musketeers/tree/main/tutorials/one_script_file
-[linkEnvironmentVariables]: https://github.com/flemay/3musketeers/tree/main/tutorials/environment_variables#create-env-file-with-make-and-compose
-
-[linkCookiecutter]: https://gitlab.com/flemay/docker-cookiecutter
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
 [link3MusketeersGitHub]: https://github.com/flemay/3musketeers
 [linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
