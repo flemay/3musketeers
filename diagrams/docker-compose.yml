@@ -1,3 +1,4 @@
+# Reference https://github.com/mermaid-js/mermaid-cli?tab=readme-ov-file#use-dockerpodman
 version: '3.8'
 services:
   mermaid:
@@ -6,3 +7,6 @@ services:
       - type: bind
         source: .
         target: /data
+      - type: bind
+        source: ../docs/guide/assets
+        target: /opt/docs/guide/assets

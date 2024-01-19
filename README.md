@@ -48,8 +48,11 @@
 
 ## Overview
 
+<!-- Copy of docs/guide/index.md -->
+
 The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
 
+<!-- Copy of diagrams/overview.mmd -->
 ```mermaid
 graph LR
     host["**Host**
@@ -91,11 +94,26 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 
 ## Demo
 
+<!-- Copy of docs/guide/index.md-->
+
 <img alt="Animated demo" src="../vhs-demo/demo.gif" width="800px"/>
 
 _The demo was generated with VHS using the 3 Musketeers ([source](demo))_
 
 ## Getting started
+
+<!-- Copy of docs/guide/getting-started.md -->
+
+Let's print out `Hello, World!` in the console using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
+
+<!-- Copy of diagrams/getting-started.mmd -->
+```mermaid
+graph LR
+    host[Host]-->make[make echo]
+    make-->docker["Docker"]
+    docker-->container(("echo 'Hello, World!'
+    (container)"))
+```
 
 ### Prerequisites
 
@@ -105,7 +123,7 @@ _The demo was generated with VHS using the 3 Musketeers ([source](demo))_
 
 ### Hello, World!
 
-Create the following two files:
+Create the following two files
 
 ```yaml
 # docker-compose.yml
@@ -219,13 +237,10 @@ This section deploys the website to an existing netlify site. Ensure the `.env` 
 ```bash
 # Build the website
 $ make build
-
 # Deploy to netlify
 $ make deploy
-
 # Test the website
 $ curl https://site-name.netlify.app
-
 # Clean up directory
 $ make prune
 ```
@@ -237,13 +252,10 @@ This section deletes a netlify site. Ensure the `.env` file contains the right s
 ```bash
 # All the following commands will be run inside a container
 $ make shell
-
 # Disable telemetry (optional)
 $ yarn run netlify --telemetry-disable
-
 # Delete the site (optional)
 $ yarn run netlify sites:delete
-
 # Exit the container
 $ exit
 ```
@@ -283,17 +295,15 @@ $ exit
     - The social image is also set in the general settings of the repository
 - Diagrams
     - [Mermaid][linkMermaid] is used to generate diagrams
-    - All diagrams are in the directory `diagrams`
+    - All diagrams are in the directory [diagrams](diagrams)
 - README badges
     - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
 ## Contributing
 
-Thanks goes to these wonderful [people][linkContributors].
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
-The 3 Musketeers is an open source project and contributions are greatly appreciated.
-
-Please visit https://3musketeersdev.netlify.app/guide/contributing.html for more information.
+Thanks goes to [contributors][linkContributors].
 
 ## References
 

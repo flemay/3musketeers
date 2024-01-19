@@ -1,16 +1,20 @@
 # Getting started
 
-## Prerequisites
+<!-- Copy of README.md#getting-started -->
 
-These are the prerequisites for a project that follows the 3 Musketeers:
+Let's print out `Hello, World!` in the console using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
+
+![getting-started](./assets/getting-started.mmd.svg)
+
+## Prerequisites
 
 - [Docker][linkDocker]
 - [Compose][linkCompose]
-- Make
+- [Make](https://www.gnu.org/software/make/)
 
 ## Hello, World!
 
-Create the following two files:
+Create the following two files
 
 ```yaml
 # docker-compose.yml

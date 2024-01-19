@@ -6,8 +6,8 @@ all: deps mermaid prune
 deps:
 	$(COMPOSE_PULL) mermaid
 
-mermaid:
-	$(COMPOSE_RUN_MERMAID_SH) run_mermaid.sh
+generate:
+	$(COMPOSE_RUN_MERMAID_SH) generate.sh
 
 shell:
 	$(COMPOSE_RUN_MERMAID_SH)

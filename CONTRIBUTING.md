@@ -1,6 +1,6 @@
 # Contributing
 
-<!-- Copy of CONTRIBUTING.md -->
+<!-- Copy of docs/guide/contributing.md -->
 
 Contributions are greatly appreciated and here are different ways
 
