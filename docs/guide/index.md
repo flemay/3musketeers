@@ -28,10 +28,18 @@ Take control of languages, versions, and tools you need, and version source cont
 
 Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
 
+## Demo
+
+<div align="center">
+	<img alt="Animated demo" src="https://raw.githubusercontent.com/flemay/3musketeers/vhs-demo/demo.gif" width="800px"/>
+</div>
+
+_The demo was generated with VHS using the 3 Musketeers ([source](https://github.com/flemay/3musketeers/tree/main/demo))_
+
 ---
 
 ::: info
-The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo has been inspired by existing drawings on the Internet.
+The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo was inspired by existing drawings on the Internet.
 :::
 
 ::: warning OPINIONATED
