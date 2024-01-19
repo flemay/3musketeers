@@ -32,7 +32,7 @@ ENV_B=
 ENV_C=env_c
 # ENV_A is not set and ENV_B is set to empty
 
-$ docker-compose run --rm alpine env
+$ docker compose run --rm alpine env
 ENV_B=
 ENV_C=env_c
 # Same as Docker

@@ -50,7 +50,30 @@
 
 The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
 
-![pattern-overview][linkPatternOverview]
+```mermaid
+graph LR
+    host["**Host**
+    Linux
+    MacOS
+    Windows
+    CI/CD
+    ..."]
+    make["**Make**
+    test
+    build
+    run
+    deploy
+    ..."]
+    host-->make
+    make-->docker["Docker
+    Compose"]
+    container(("&nbsp;&nbsp;&nbsp;&nbsp;**Container(s)**&nbsp;&nbsp;&nbsp;&nbsp;
+        Go
+        Python
+        PostgreSQL
+        ..."))
+    docker-->container
+```
 
 ## Why?
 
@@ -80,12 +103,12 @@ _The demo was generated with VHS using the 3 Musketeers ([source](demo))_
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
 
-### Steps
+### Hello, World!
 
-Create the two following files:
+Create the following two files:
 
 ```yaml
-# file: docker-compose.yml
+# docker-compose.yml
 version: '3'
 services:
   alpine:
@@ -93,11 +116,9 @@ services:
 ```
 
 ```makefile
-# file: Makefile
-
-# echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
+# Makefile
 echo:
-	docker-compose run --rm alpine echo 'Hello, World!'
+	docker compose run --rm alpine echo 'Hello, World!'
 ```
 
 Then simply echo "Hello, World!" with the following command:
@@ -261,8 +282,8 @@ $ exit
     - HTML `meta` tags have been set in file `/docs/.vitepress/config.js`
     - The social image is also set in the general settings of the repository
 - Diagrams
-    - [draw.io][linkDrawIO] is used to generate diagrams
-    - All diagrams are in the file `diagrams.drawio`
+    - [Mermaid][linkMermaid] is used to generate diagrams
+    - All diagrams are in the directory `diagrams`
 - README badges
     - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
@@ -285,7 +306,7 @@ Please visit https://3musketeersdev.netlify.app/guide/contributing.html for more
 - [Vectornator][linkVectornator]
 - [Procreate][linkProcreate]
 - [favicon.io][linkFaviconio]
-- [draw.io][linkDrawIO]
+- [Mermaid][linkMermaid]
 - [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
 
 ## Stargazers over time
@@ -324,7 +345,7 @@ Please visit https://3musketeersdev.netlify.app/guide/contributing.html for more
 
 [linkVitePress]: https://vitepress.vuejs.org/
 [linkFaviconio]: https://favicon.io
-[linkDrawIO]: https://www.draw.io/
+[linkMermaid]: https://mermaid.js.org/
 [linkArtegenceArticle]: https://artegence.com/blog/social-media-tags-guide-part-2-preparing-a-perfect-image-for-the-ogimage-tag/
 [linkProcreate]: https://procreate.art/
 

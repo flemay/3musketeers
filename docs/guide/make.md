@@ -11,7 +11,7 @@ The snippets in this section bring support for the documentation but may be inco
 ## target vs _target
 
 ::: info
-This is mainly for the [Make pattern][linkPatternsMake].
+This is mainly when using [Make in a pattern][linkPatternsMake].
 :::
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
@@ -19,7 +19,7 @@ Using `target` and `_target` is a naming convention to distinguish targets that 
 ```makefile
 # buid target uses Compose which is available on Windows, Unix, and MacOS
 deploy:
-	docker-compose run --rm serverless make _deploy
+	docker compose run --rm serverless make _deploy
 
 # This _deploy target depends on a NodeJS environment and Serverless Framework which may not be available on the hosts.
 # It is executed in a Docker container that provides the right environment for its execution.
@@ -39,7 +39,7 @@ By default `.PHONY` can be left out unless the target collides with the name of 
 .PHONY: test targetA targetB
 
 test:
-	docker-compose run --rm node make _test
+	docker compose run --rm node make _test
 .PHONY: test # can be put here for the target test
 
 _test:
@@ -53,7 +53,7 @@ Sometimes you want the target to match the name of a file in which case `.PHONY`
 Docker and Compose commands can be assigned to variables.
 
 ```makefile
-COMPOSE_RUN_NODE = docker-compose run --rm serverless
+COMPOSE_RUN_NODE = docker compose run --rm serverless
 
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
@@ -62,7 +62,7 @@ deploy:
 Or
 
 ```makefile
-NODE_RUN = docker-compose run --rm serverless
+NODE_RUN = docker compose run --rm serverless
 
 deploy:
 	$(NODE_RUN) make _deploy
@@ -170,7 +170,7 @@ Ideally, a target should be idempotent so that the result of running it once is 
 
 ## Targets .env and envfile
 
-The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. See [Environment Variables & envfile][linkEnvironmentVariables] for more details.
+The target `envfile` creates the file `.env` which is very useful for a project that follows the 3 Musketeers pattern. Refer to section [Environment Variables][linkEnvironmentVariables] for more details.
 
 ## Project dependencies
 
@@ -183,7 +183,7 @@ It is a good thing to have a target `deps` for installing all the dependencies r
 A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache. Subsequent CI/CD stages will have the exact same dependencies. Moreover, it is faster to pass along a tar file than a folder with many files.
 
 ```makefile
-COMPOSE_RUN_NODE = docker-compose run --rm node
+COMPOSE_RUN_NODE = docker compose run --rm node
 DEPS_DIRS = node_modules
 DEPS_ARTIFACT = $(DEPS_DIRS).tar.gz
 
@@ -275,7 +275,7 @@ This happens because the creation of those files was done with a different user 
 
 ```makefile
 cleanDocker:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 
 clean:
 	$(COMPOSE_RUN_GOLANG) make _clean
@@ -300,11 +300,11 @@ test: cleanDocker startPostgres
 .PHONY: test
 
 postgresStart:
-	docker-compose up -d postgres
+	docker compose up -d postgres
 	sleep 10
 
 cleanDocker:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 ```
 
 ## Multiple makefiles
@@ -314,7 +314,7 @@ The Makefile can be split into smaller files.
 ```makefile
 # makefiles/deploy.mk
 deploy:
-	docker-compose run --rm serverless make _deploy
+	docker compose run --rm serverless make _deploy
 
 _deploy:
 	serverless deploy
@@ -327,7 +327,7 @@ include makefiles/*.mk
 
 ## Complex targets
 
-In some situGations, targets become very complex due to the syntax and limitations of Make or you may simply prefer to write the task in Bash or other languages. Refer to the [patterns][linkPatterns] section for other Make alternatives.
+In some situations, targets become very complex due to the syntax and limitations of Make or you may simply prefer to write the task in Bash or other languages. Refer to section [patterns][linkPatterns] for other Make alternatives.
 
 ## Self-documented Makefile
 
@@ -375,7 +375,7 @@ target02: This message will show up too!!!
 
 [linkPatterns]: patterns
 [linkPatternsMake]: patterns#make
-[linkEnvironmentVariables]: https://github.com/flemay/3musketeers/tree/main/tutorials/environment_variables
+[linkEnvironmentVariables]: environment-variables
 [linkProjectDependencies]: project-dependencies
 [linkRealWorldProjects]: projects
 [linkTutorials]: https://github.com/flemay/3musketeers/tree/main/tutorials
