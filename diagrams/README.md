@@ -15,7 +15,7 @@ This is self-content code to generate [Mermaid][linkMermaid] diagrams used by th
 make deps
 # Generate the diagrams and copy them where needed by the website
 make generate
-# Go inside the mermaid container
+# Go inside a mermaid container
 make shell
 # Clean up
 make prune
