@@ -82,4 +82,3 @@ toc:
 	$(COMPOSE_RUN_NODE) make _toc
 _toc:
 	npx doctoc README.md --notitle
-	npx doctoc tutorials
