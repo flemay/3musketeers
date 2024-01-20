@@ -10,7 +10,7 @@ Often there are many environment variables and having them in a `.env` file beco
 
 ## Envfile and expectations
 
-With the following `.env` file:
+Given the file `.env`:
 
 ```bash
 # .env
@@ -20,7 +20,7 @@ ENV_B=
 ENV_C=env_c
 ```
 
-And the `docker-compose.yml` file:
+And the file `docker-compose.yml`:
 
 ```yaml
 # docker-compose.yml
@@ -45,12 +45,12 @@ docker compose run --rm alpine env
 ```
 
 ::: tip
-Refer to section [Tutorial][linkTutorial] for in-depth demonstration.
+Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
 :::
 
 ## Structure envfile
 
-Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .envfile structured.
+Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep envfile structured.
 
 ```bash
 # .env
@@ -130,7 +130,7 @@ ENV_VAR_B=b
 Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments.
 
 ::: tip
-This is demonstrated in section [Tutorial][linkTutorial]
+This is demonstrated in section [Tutorial][linkSectionTutorial]
 :::
 
 ## Day-to-day development
@@ -139,7 +139,7 @@ In a day-to-day development process, you could create a file named `.env.dev` wi
 There are few ways to copy the contents of your file to `.env`:
 
 - manually
-- [make envfile ENVFILE=_yourfile_][linkMakeTargetsEnvfileAndDotEnv]
+- `make envfile ENVFILE=env.example` (refer to section [Create envfile][linkSectionCreateEnvfile])
 
 ## Create envfile
 
@@ -186,7 +186,7 @@ The `docker-compose.yml` above has the [variable substitution][linkDockerCompose
 Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
 ::: tip
-Explicit is the method I personally prefer.
+Explicit is the method I prefer the most.
 :::
 
 ```make
@@ -300,7 +300,7 @@ make target ENVFILE=env.example
 
 ### With Make and Docker
 
-Everything covered in section `With Make and Compose` can be applied here except Docker won't use `docker-compose.yml`. Here's an example with the explicit method:
+Everything covered in section [With Make and Compose][linkSectionWithMakeAndCompose] can be applied here except Docker won't use `docker-compose.yml`. Here's an example with the explicit method:
 
 ```makefile
 # Makefile
@@ -309,7 +309,7 @@ DOCKER_RUN_ALPINE = docker run --rm \
 	-v $(MAKEFILE_DIR):/opt/app \
 	-w /opt/app \
 	alpine
-DOCKER_RUN_ALPINE_WITH_ENV = docker run --rm \
+DOCKER_RUN_ALPINE_WITH_ENVFILE = docker run --rm \
 	-v $(MAKEFILE_DIR):/opt/app \
 	-w /opt/app \
 	--env-file .env \
@@ -320,10 +320,10 @@ envfile:
 	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
 
 targetA:
-	$(DOCKER_RUN_ALPINE_WITH_ENV) cat .env
+	$(DOCKER_RUN_ALPINE_WITH_ENVFILE) cat .env
 
 targetB: .env
-	$(COMPOSE_RUN_ALPINE_WITH_ENV) cat .env
+	$(DOCKER_RUN_ALPINE_WITH_ENVFILE) cat .env
 
 prune:
 	$(DOCKER_RUN_ALPINE) rm .env
@@ -349,9 +349,9 @@ Examples in this section use `.env` to pass environment variables to a container
 - You know the file `.env` will always be used
 - Compose uses `.env` when doing [variable substitution][linkDockerComposeVarialeSubstitution]
 
-Another option is to change the Makefile in a way to use the specified file and not overwrite the .env file with it.
+Another option is to change the Makefile in a way to use the specified file and not overwrite the `.env` file with it.
 
-## Check env vars in Make
+## Check env vars in Makefile
 
 Here is a way for checking the presence of environment variables before executing a Make target.
 
@@ -435,10 +435,10 @@ showMessage:
 
 prune:
 	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm -f .env
-	docker compose down --remove-orphans
+	ENVFILE=$(ENVFILE) docker compose down --remove-orphans
 ```
 
-Then run the commands (and keep you 2 eyes open):
+Then run the commands:
 
 ```bash
 unset ENV_MESSAGE
@@ -477,16 +477,16 @@ unset ENV_MESSAGE
 
 Questions:
 
-1. Why does command `make showMessage` fails if file `.env` is not present?
+1. Why does command `make showMessage` fail if file `.env` is not present?
 1. Why don't commands `make prune` and `make envfile` fail when file `.env` is not present?
+1. What would be the main reason to use `ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE)` in targets `envfile` and `prune` but not in target `showMessage`? _Hint: Do they need to have values from file `.env` for their task?_
 1. Why is `ENV_MESSAGE` in the last `make showMessage` set to `Hello, World!` while it was set to `Hello!` before?
 
-_Hint: Do they need to have values from file .env for their task?_
 
 
-
-[linkTutorial]: #tutorial
-[linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
+[linkSectionTutorial]: #tutorial
+[linkSectionWithMakeAndCompose]: #with-make-and-compose
+[linkSectionCreateEnvfile]: #create-envfile
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 
 [link12factor]: https://12factor.net

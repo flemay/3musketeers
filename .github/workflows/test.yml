@@ -4,7 +4,6 @@ on:
     paths-ignore:
       - demo/**
       - diagrams/**
-      - tutorials/**
       - '*.drawio'
       - '*.md'
 jobs:

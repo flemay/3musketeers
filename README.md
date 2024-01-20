@@ -123,11 +123,11 @@ graph LR
 
 ### Hello, World!
 
-Create the following two files:
+Create the following 2 files:
 
 ```yaml
 # docker-compose.yml
-version: '3'
+version: '3.8'
 services:
   alpine:
     image: alpine

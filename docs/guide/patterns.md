@@ -82,22 +82,44 @@ make echo
 
 #### Shell file
 
-Make calls Compose which executes a shell/bash command inside a Docker container. An example of a shell file that mimics Make can be found [here][linkTutorialOneShellScript].
+Make calls Compose which executes a shell/bash command inside a Docker container. The following example uses a shell file that mimics Make:
 
 ```bash
-# echo.sh
+# make.sh
 #!/usr/bin/env sh
-echo Hello, World!
+deps(){
+  printf "deps\n"
+}
+
+test(){
+  printf "test\n"
+}
+
+for target in "$@"
+do
+  case "$target" in
+    (deps)
+      deps
+      ;;
+    (test)
+      test
+      ;;
+    (*)
+      printf "Usage: $0 {deps|test}\n"
+      exit 2
+      ;;
+  esac
+done
 ```
 
 ```bash
 # set executable permission
-chmod +x echo.sh
+chmod +x make.sh
 ```
 
 ```yaml
 # docker-compose.yml
-version: '3'
+version: '3.8'
 services:
   alpine:
     image: alpine
@@ -108,12 +130,12 @@ services:
 
 ```makefile
 # Makefile
-echo:
-	docker compose run --rm alpine sh echo.sh
+test:
+	docker compose run --rm alpine make.sh deps test
 ```
 
 ```bash
-make echo
+make test
 ```
 
 #### Go
@@ -234,7 +256,6 @@ test:
 ```
 
 [linkDocker]: docker
-[linkTutorialOneShellScript]: https://github.com/flemay/3musketeers/tree/main/tutorials/one_script_file
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
 [link3MusketeersGitHub]: https://github.com/flemay/3musketeers
 [linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/

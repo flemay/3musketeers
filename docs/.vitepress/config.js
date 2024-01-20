@@ -37,7 +37,7 @@ export default {
         },
         nav: [
             { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
-            { text: 'Tutorials', link: 'https://github.com/flemay/3musketeers/tree/main/tutorials' },
+            { text: 'Examples', link: '/examples/', activeMatch: '/examples' },
             { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
         ],
         sidebar: {
@@ -70,8 +70,7 @@ function getSidebarGuide() {
             items: [
                 { text: 'What is 3 Musketeers?', link: '/guide/' },
                 { text: 'Tools', link: '/guide/tools' },
-                { text: 'Contributing', link: '/guide/contributing' },
-                { text: 'Real-world projects', link: '/guide/projects' }
+                { text: 'Contributing', link: '/guide/contributing' }
             ]
         },
         {

@@ -14,11 +14,11 @@ Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The comm
 
 ## Hello, World!
 
-Create the following two files:
+Create the following 2 files:
 
 ```yaml
 # docker-compose.yml
-version: '3'
+version: '3.8'
 services:
   alpine:
     image: alpine
