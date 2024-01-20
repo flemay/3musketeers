@@ -123,11 +123,11 @@ graph LR
 
 ### Hello, World!
 
-Create the following two files:
+Create the following 2 files:
 
 ```yaml
 # docker-compose.yml
-version: '3'
+version: '3.8'
 services:
   alpine:
     image: alpine
@@ -164,35 +164,35 @@ This repository is the [3 Musketeers website][link3Musketeers] website built wit
 ### Development
 
 ```bash
-# create a .env file
+# Create a .env file
 make envfile ENVFILE=env.example
-# install dependencies
+# Install dependencies
 make deps
 
-# start vitepress server for local development
+# Start vitepress server for local development
 make dev
-# wait till the message 'vite v2.5.3 dev server running at' appears
-# access the website in your browser at http://localhost:8080/
+# Wait till the message 'vite v2.5.3 dev server running at' appears
+# Access the website in your browser at http://localhost:8080/
 # \<ctrl-c\> to stop
 
-# build static site
+# Build static site
 make build
 
-# serve static site for local development
+# Serve static site for local development
 make serveDev
-# access the website in your browser at http://localhost:8080/
+# Access the website in your browser at http://localhost:8080/
 # \<ctrl-c\> to stop
 
-# serve static website (headless)
+# Serve static website (headless)
 make serve
 
-# test static website
+# Test static website
 make test
 
-# prune
+# Prune
 make prune
 
-# contributing? make sure the following command runs successfully
+# Contributing? Make sure the following command runs successfully
 make all
 ```
 

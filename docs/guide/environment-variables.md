@@ -1,22 +1,30 @@
+---
+outline: 'deep'
+---
+
 # Environment variables
 
 Development following [the twelve-factor app][link12factor] use the [environment variables to configure][link12factorConfig] their application.
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][linkDockerEnvfile] to pass the variables to the containers.
 
+::: info
+The code in this section is expected to be fully functional.
+:::
+
 ## Envfile and expectations
 
-With the following `.env` file:
+Given the file `.env`:
 
 ```bash
 # .env
-# make sure these env vars are not set in the system
+# Make sure these env vars are not set in the system
 ENV_A
 ENV_B=
 ENV_C=env_c
 ```
 
-And the `docker-compose.yml` file:
+And the file `docker-compose.yml`:
 
 ```yaml
 # docker-compose.yml
@@ -40,9 +48,13 @@ docker compose run --rm alpine env
 # Same as Docker
 ```
 
+::: tip
+Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
+:::
+
 ## Structure envfile
 
-Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .envfile structured.
+Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep envfile structured.
 
 ```bash
 # .env
@@ -119,7 +131,11 @@ ENV_VAR_B=b
 
 ## CI/CD pipeline
 
-Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments. This is demonstrated in this [tutorial][linkTutorial].
+Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments.
+
+::: tip
+This is demonstrated in section [Tutorial][linkSectionTutorial]
+:::
 
 ## Day-to-day development
 
@@ -127,17 +143,357 @@ In a day-to-day development process, you could create a file named `.env.dev` wi
 There are few ways to copy the contents of your file to `.env`:
 
 - manually
-- [make envfile ENVFILE=_yourfile_][linkMakeTargetsEnvfileAndDotEnv]
+- `make envfile ENVFILE=env.example` (refer to section [Create envfile][linkSectionCreateEnvfile])
+
+## Create envfile
+
+This section shows some ways to create `.env` file with Make and Docker/Compose.
+
+### With Make and Compose
+
+Given the file `env.template`:
+
+```bash
+# env.template
+ENV_MY_VAR
+```
+
+And the file `env.example`:
+
+```bash
+# env.example
+ENV_MY_VAR=MY_VALUE
+```
+
+And the file `docker-compose.yml`:
+
+```yaml
+# docker-compose.yml
+version: "3.8"
+services:
+  alpine:
+    image: alpine
+    env_file: ${ENVFILE:-.env}
+    volumes:
+      - type: bind
+        source: "."
+        target: /opt/app
+    working_dir: /opt/app
+```
+
+::: info
+The `docker-compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. This was required for using Compose otherwise Compose would simply fail. Examples in this section will use `.env` except when generating the file.
+:::
+
+#### Explicit
+
+Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
+
+::: tip
+Explicit is the method I prefer the most.
+:::
+
+```make
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ENVFILE ?= env.template
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+targetA:
+	$(COMPOSE_RUN_ALPINE) cat .env
+
+targetB: .env
+    $(COMPOSE_RUN_ALPINE) cat .env
+
+prune:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm -f .env
+```
+
+```bash
+# Compose will return an error if .env does not exist because of `env_file: ${ENVFILE:-.env}`
+make targetA
+# Make will return an error if .env does not exist
+make targetB
+# Overwrite .env based on env.template. The reason why `make envfile` it call Compose with `ENVFILE=$(ENVFILE)`
+make envfile
+# Overwrite .env with env.example
+make envfile ENVFILE=env.example
+# Overwrite .env with env.example before running targetA
+make envfile targetA ENVFILE=env.example
+```
+
+#### Semi-Implicit
+
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by calling `make envfile ENVFILE=.env.example`.
+
+```make
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ENVFILE ?= env.template
+
+.env:
+	$(MAKE) envfile
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+target: .env
+	$(COMPOSE_RUN_ALPINE) cat .env
+
+prune: .env
+	$(COMPOSE_RUN_ALPINE) rm .env
+```
+
+```bash
+# Create .env based on env.template if .env does not exist
+make target
+# Create .env based on env.template if .env does not exist
+make .env
+# Create .env based on $(ENVFILE) if .env does not exist
+make .env ENVFILE=env.example
+# Overwrite .env based on env.template
+make envfile
+# Overwrite .env with a specific file
+make envfile ENVFILE=env.example
+# Execute a target with a specific .env file
+make envfile target ENVFILE=env.example
+```
+
+#### Implicit
+
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by setting `ENVFILE` environment variable.
+
+```makefile
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ifdef ENVFILE
+	ENVFILE_TARGET=envfile
+else
+	ENVFILE_TARGET=.env
+endif
+
+.env:
+	$(MAKE) envfile ENVFILE=env.template
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+target: $(ENVFILE_TARGET)
+	$(COMPOSE_RUN_ALPINE) cat .env
+
+prune: $(ENVFILE_TARGET)
+  $(COMPOSE_RUN_ALPINE) rm .env
+```
+
+```bash
+# Create .env based on env.template if .env does not exist
+make target
+# Create .env based on env.template if .env does not exist
+make .env
+# Create .env based on env.example if .env does not exist
+make .env ENVFILE=env.example
+# Overwrite .env with env.example
+make envfile ENVFILE=env.example
+# Execute a target with env.example
+make envfile target ENVFILE=env.example
+# Or (no need to specify envfile)
+make target ENVFILE=env.example
+```
+
+### With Make and Docker
+
+Everything covered in section [With Make and Compose][linkSectionWithMakeAndCompose] can be applied here except Docker won't use `docker-compose.yml`. Here's an example with the explicit method:
+
+```makefile
+# Makefile
+MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+DOCKER_RUN_ALPINE = docker run --rm \
+	-v $(MAKEFILE_DIR):/opt/app \
+	-w /opt/app \
+	alpine
+DOCKER_RUN_ALPINE_WITH_ENVFILE = docker run --rm \
+	-v $(MAKEFILE_DIR):/opt/app \
+	-w /opt/app \
+	--env-file .env \
+	alpine
+ENVFILE ?= env.template
+
+envfile:
+	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
+
+targetA:
+	$(DOCKER_RUN_ALPINE_WITH_ENVFILE) cat .env
+
+targetB: .env
+	$(DOCKER_RUN_ALPINE_WITH_ENVFILE) cat .env
+
+prune:
+	$(DOCKER_RUN_ALPINE) rm .env
+```
+
+```bash
+# Docker will return an error if .env does not exist
+make targetA
+# Make will return an error if .env does not exist
+make targetB
+# Overwrite .env based on env.template. The reason why it does not fail is because it uses `DOCKER_RUN_ALPINE`
+make envfile
+# Overwrite .env with env.example
+make envfile ENVFILE=env.example
+# Overwrite .env with env.example before running targetA
+make envfile targetA ENVFILE=env.example
+```
+
+### Overwriting .env or not
+
+Examples in this section use `.env` to pass environment variables to a container. The file `.env` can be overwritten when setting the environment variable `ENVFILE`. This has few advantages:
+
+- You know the file `.env` will always be used
+- Compose uses `.env` when doing [variable substitution][linkDockerComposeVarialeSubstitution]
+
+Another option is to change the Makefile in a way to use the specified file and not overwrite the `.env` file with it.
+
+## Check env vars in Makefile
+
+Here is a way for checking the presence of environment variables before executing a Make target.
+
+```makefile
+# Makefile
+echo: env-ENV_MESSAGE
+	@docker run --rm alpine echo "$(ENV_MESSAGE)"
+
+env-%:
+	@docker run --rm -e ENV_VAR=$($*) alpine echo "Check if $* is not empty"
+	@docker run --rm -e ENV_VAR=$($*) alpine sh -c '[ -z "$$ENV_VAR" ] && echo "Error: $* is empty" && exit 1 || exit 0'
+```
+
+```bash
+make echo
+#Check if ENV_MESSAGE is not empty
+#Error: ENV_MESSAGE is empty
+#make: *** [env-ENV_MESSAGE] Error 1
+make echo ENV_MESSAGE=helloworld
+#Check if ENV_MESSAGE is not empty
+#helloworld
+```
+
+## Access env vars in command argument
+
+```bash
+# Executing the following will simply echo nothing even if ECHO is being passed.
+docker run --rm -e ECHO=musketeers alpine sh -c "echo $ECHO"
+# To access ECHO, either use '\'
+docker run --rm -e ECHO=musketeers alpine sh -c "echo \$ECHO"
+# Or use single quote
+docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
+
+# Info: Same applies with Compose.
+```
 
 ## Tutorial
 
-Go to this [tutorial][linkTutorial] to learn more about environment variables with Docker and Compose.
+This simple tutorial shows how environment variables and envfiles play together.
+
+Create the following 4 files:
+
+```bash
+# env.template
+ENV_MESSAGE
+```
+
+```bash
+# env.example
+ENV_MESSAGE="Hello, World!"
+```
+
+```yml
+# docker-compose.yml
+version: '3.8'
+services:
+  alpine:
+    image: alpine
+    env_file: ${ENVFILE:-.env}
+    volumes:
+      - type: bind
+        source: "."
+        target: /opt/app
+    working_dir: /opt/app
+```
+
+```makefile
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ENVFILE ?= env.template
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+showMessage:
+	$(COMPOSE_RUN_ALPINE) sh -c '\
+		echo "# cat .env"; \
+		cat .env; \
+		echo "# env | grep ENV_MESSAGE"; \
+		env | grep ENV_MESSAGE || true'
+
+prune:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm -f .env
+	ENVFILE=$(ENVFILE) docker compose down --remove-orphans
+```
+
+Then run the commands:
+
+```bash
+unset ENV_MESSAGE
+make prune
+
+make showMessage
+#Failed to load .env: no such file or directory
+
+# Create .env based on env.templates
+make envfile
+make showMessage
+## cat .env
+#ENV_MESSAGE
+# env | grep ENV_MESSAGE
+#
+
+export ENV_MESSAGE="Hello!"
+make showMessage
+## cat .env
+#ENV_MESSAGE
+## env | grep ENV_MESSAGE
+#ENV_MESSAGE=Hello!
+
+# Create .env file based on env.example.
+# Keep in mind ENV_MESSAGE is still set to "Hello!"
+make envfile ENVFILE=env.example
+make showMessage
+## cat .env
+#ENV_MESSAGE="Hello, World!"
+## env | grep ENV_MESSAGE
+#ENV_MESSAGE=Hello, World!
+
+make prune
+unset ENV_MESSAGE
+```
+
+Questions:
+
+1. Why does command `make showMessage` fail if file `.env` is not present?
+1. Why don't commands `make prune` and `make envfile` fail when file `.env` is not present?
+1. What would be the main reason to use `ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE)` in targets `envfile` and `prune` but not in target `showMessage`? _Hint: Do they need to have values from file `.env` for their task?_
+1. Why is `ENV_MESSAGE` in the last `make showMessage` set to `Hello, World!` while it was set to `Hello!` before?
 
 
-[linkTutorial]: https://github.com/flemay/3musketeers/tree/main/tutorials/environment_variables
-[linkMakeTargetsEnvfileAndDotEnv]: #make-targets-envfile-and-env
+
+[linkSectionTutorial]: #tutorial
+[linkSectionWithMakeAndCompose]: #with-make-and-compose
+[linkSectionCreateEnvfile]: #create-envfile
 [linkCICDAndEnvFile]: #ci-cd-pipeline
 
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
 [linkDockerEnvfile]: https://docs.docker.com/compose/env-file/
+[linkDockerComposeVarialeSubstitution]: https://docs.docker.com/compose/compose-file/#variable-substitution
