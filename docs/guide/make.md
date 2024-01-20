@@ -5,7 +5,7 @@ Make is a cross-platform build tool to test and build software and it is used as
 Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
 ::: info SNIPPETS
-The snippets in this section bring support for the documentation but may be incomplete or missing context. If you wish to see complete code, go to [tutorials][linkTutorials] and [real-world projects][linkRealWorldProjects].
+The snippets in this section bring support for the documentation and expected to be incomplete or missing context.
 :::
 
 ## target vs _target
@@ -398,8 +398,6 @@ target02: This message will show up too!!!
 [linkPatternsMake]: patterns#make
 [linkEnvironmentVariables]: environment-variables
 [linkProjectDependencies]: project-dependencies
-[linkRealWorldProjects]: projects
-[linkTutorials]: https://github.com/flemay/3musketeers/tree/main/tutorials
 
 [linkPhony]: https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
 [linkSelfDocumentedMakefileGist]: https://gist.github.com/prwhite/8168133
