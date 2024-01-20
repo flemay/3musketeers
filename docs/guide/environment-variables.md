@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Environment variables
 
 Development following [the twelve-factor app][link12factor] use the [environment variables to configure][link12factorConfig] their application.
@@ -10,7 +14,7 @@ With the following `.env` file:
 
 ```bash
 # .env
-# make sure these env vars are not set in the system
+# Make sure these env vars are not set in the system
 ENV_A
 ENV_B=
 ENV_C=env_c
@@ -129,6 +133,208 @@ There are few ways to copy the contents of your file to `.env`:
 - manually
 - [make envfile ENVFILE=_yourfile_][linkMakeTargetsEnvfileAndDotEnv]
 
+## Create envfile
+
+This section shows some ways to create `.env` file with Make and Docker/Compose.
+
+### With Make and Compose
+
+Given the file `env.template`:
+
+```bash
+# env.template
+ENV_MY_VAR
+```
+
+And the file `env.example`:
+
+```bash
+# env.example
+ENV_MY_VAR=MY_VALUE
+```
+
+And the file `docker-compose.yml`:
+
+```yaml
+# docker-compose.yml
+version: "3.8"
+services:
+  alpine:
+    image: alpine
+    env_file: ${ENVFILE:-.env}
+    volumes:
+      - type: bind
+        source: "."
+        target: /opt/app
+    working_dir: /opt/app
+```
+
+
+::: info
+The `docker-compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. This was required for using Compose otherwise Compose would simply fail. Examples in this section will use `.env` except when generating the file.
+:::
+
+#### Explicit
+
+Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
+
+::: tip
+Explicit is the method I personally prefer.
+:::
+
+```make
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ENVFILE ?= env.template
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+targetA:
+	$(COMPOSE_RUN_ALPINE) cat .env
+
+targetB: .env
+    $(COMPOSE_RUN_ALPINE) cat .env
+
+prune:
+	$(COMPOSE_RUN_ALPINE) rm .env
+```
+
+```bash
+# Compose will return an error if .env does not exist because of `env_file: ${ENVFILE:-.env}`
+make targetA
+# Make will return an error if .env does not exist
+make targetB
+# Overwrite .env based on env.template. The reason why `make envfile` it call Compose with `ENVFILE=$(ENVFILE)`
+make envfile
+# Overwrite .env with env.example
+make envfile ENVFILE=env.example
+# Overwrite .env with env.example before running targetA
+make envfile targetA ENVFILE=env.example
+```
+
+#### Semi-Implicit
+
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by calling `make envfile ENVFILE=.env.example`.
+
+```make
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ENVFILE ?= env.template
+
+.env:
+	$(MAKE) envfile
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+target: .env
+	$(COMPOSE_RUN_ALPINE) cat .env
+
+prune: .env
+	$(COMPOSE_RUN_ALPINE) rm .env
+```
+
+```bash
+# Create .env based on env.template if .env does not exist
+make target
+# Create .env based on env.template if .env does not exist
+make .env
+# Create .env based on $(ENVFILE) if .env does not exist
+make .env ENVFILE=env.example
+# Overwrite .env based on env.template
+make envfile
+# Overwrite .env with a specific file
+make envfile ENVFILE=env.example
+# Execute a target with a specific .env file
+make envfile target ENVFILE=env.example
+```
+
+#### Implicit
+
+Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by setting `ENVFILE` environment variable.
+
+```makefile
+# Makefile
+COMPOSE_RUN_ALPINE = docker-compose run alpine
+ifdef ENVFILE
+	ENVFILE_TARGET=envfile
+else
+	ENVFILE_TARGET=.env
+endif
+
+.env:
+	$(MAKE) envfile ENVFILE=env.template
+
+envfile:
+	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+
+target: $(ENVFILE_TARGET)
+	$(COMPOSE_RUN_ALPINE) cat .env
+
+prune: $(ENVFILE_TARGET)
+  $(COMPOSE_RUN_ALPINE) rm .env
+```
+
+```bash
+# Create .env based on env.template if .env does not exist
+make target
+# Create .env based on env.template if .env does not exist
+make .env
+# Create .env based on env.example if .env does not exist
+make .env ENVFILE=env.example
+# Overwrite .env with env.example
+make envfile ENVFILE=env.example
+# Execute a target with env.example
+make envfile target ENVFILE=env.example
+# Or (no need to specify envfile)
+make target ENVFILE=env.example
+```
+
+### With Make and Docker
+
+Everything covered in section `With Make and Compose` can be applied here except Docker won't use `docker-compose.yml`. Here's an example with the explicit method:
+
+```makefile
+# Makefile
+MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+DOCKER_RUN_ALPINE = docker run --rm \
+	-v $(MAKEFILE_DIR):/opt/app \
+	-w /opt/app \
+	alpine
+DOCKER_RUN_ALPINE_WITH_ENV = docker run --rm \
+	-v $(MAKEFILE_DIR):/opt/app \
+	-w /opt/app \
+	--env-file .env \
+	alpine
+ENVFILE ?= env.template
+
+envfile:
+	$(DOCKER_RUN_ALPINE) cp $(ENVFILE) .env
+
+targetA:
+	$(DOCKER_RUN_ALPINE_WITH_ENV) cat .env
+
+targetB: .env
+	$(COMPOSE_RUN_ALPINE_WITH_ENV) cat .env
+
+prune:
+	$(DOCKER_RUN_ALPINE) rm .env
+```
+
+```bash
+# Docker will return an error if .env does not exist
+make targetA
+# Make will return an error if .env does not exist
+make targetB
+# Overwrite .env based on env.template. The reason why it does not fail is because it uses `DOCKER_RUN_ALPINE`
+make envfile
+# Overwrite .env with env.example
+make envfile ENVFILE=env.example
+# Overwrite .env with env.example before running targetA
+make envfile targetA ENVFILE=env.example
+```
+
 ## Tutorial
 
 Go to this [tutorial][linkTutorial] to learn more about environment variables with Docker and Compose.
@@ -141,3 +347,4 @@ Go to this [tutorial][linkTutorial] to learn more about environment variables wi
 [link12factor]: https://12factor.net
 [link12factorConfig]: https://12factor.net/config
 [linkDockerEnvfile]: https://docs.docker.com/compose/env-file/
+[linkDockerComposeVarialeSubstitution]: https://docs.docker.com/compose/compose-file/#variable-substitution
