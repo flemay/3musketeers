@@ -8,6 +8,10 @@ In a nutshell, Make calls either Docker or Compose which then runs a Command ins
 
 ![pattern-overview](./assets/pattern.mmd.svg)
 
+::: info
+The code in this section is expected to be fully functional.
+:::
+
 ::: tip
 The [3 Musketeers repository][link3MusketeersGitHub] applies the patterns:
 
