@@ -17,13 +17,14 @@ This is mainly when using [Make in a pattern][linkPatternsMake].
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
 ```makefile
+# Makefile
 # buid target uses Compose which is available on Windows, Unix, and MacOS
 deploy:
 	docker compose run --rm serverless make _deploy
 
 # This _deploy target depends on a NodeJS environment and Serverless Framework which may not be available on the hosts.
 # It is executed in a Docker container that provides the right environment for its execution.
-# If the host has NodeJS and Serverless Framework installed, `$ make _build` can be called.
+# If the host has NodeJS and Serverless Framework installed, `make _build` can be called.
 _deploy:
 	serverless deploy
 ```
@@ -35,6 +36,7 @@ _deploy:
 By default `.PHONY` can be left out unless the target collides with the name of file/folder. One case is a target `test` which often conflicts with a folder named `test`.
 
 ```makefile
+# Makefile
 # can be written into a single line with other targets that need .PHONY
 .PHONY: test targetA targetB
 
@@ -53,6 +55,7 @@ Sometimes you want the target to match the name of a file in which case `.PHONY`
 Docker and Compose commands can be assigned to variables.
 
 ```makefile
+# Makefile
 COMPOSE_RUN_NODE = docker compose run --rm serverless
 
 deploy:
@@ -62,6 +65,7 @@ deploy:
 Or
 
 ```makefile
+# Makefile
 NODE_RUN = docker compose run --rm serverless
 
 deploy:
@@ -77,6 +81,7 @@ Use [Pipeline targets][linkPipelineTargets] as a way to describe the list of dep
 :::
 
 ```makefile
+# Makefile
 deploy: package.zip
 	$(COMPOSE_RUN_NODE) make _deploy
 ```
@@ -90,6 +95,7 @@ We call Pipeline targets the targets that have a```list of dependencies, usually
 It is best having them at the top of the Makefile as they give an understanding of the application pipelines when reading the Makefile.
 
 ```makefile
+# Makefile
 # pipeline targets first
 stageTest: build test clean
 
@@ -98,9 +104,10 @@ stageTest: build test clean
 
 ## make and target all
 
-Running only `$ make` will trigger the first target from the Makefile. A convention among developer is to have a target `all` as the first target. In the 3 Musketeers context, `all` is a perfect [pipeline target][linkPipelineTargets] to document and test locally the sequence of targets to test, build, run, etc.
+Running only `make` will trigger the first target from the Makefile. A convention among developer is to have a target `all` as the first target. In the 3 Musketeers context, `all` is a perfect [pipeline target][linkPipelineTargets] to document and test locally the sequence of targets to test, build, run, etc.
 
 ```makefile
+# Makefile
 # first target
 all: deps test build clean
 
@@ -108,7 +115,10 @@ all: deps test build clean
 ```
 
 ```sh
-$ make # will run the target all
+# Run target `all`
+make all
+# Or
+make
 ```
 
 ## Ordering targets
@@ -120,6 +130,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 - Ordering targets in a build pipeline flow
 
 	```makefile
+	# Makefile
 	deps:
 		# ...
 	test:
@@ -133,6 +144,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 - Group [target and _target][linkTargetVSUnderscoreTarget] together
 
 	```makefile
+	# Makefile
 	deps:
 		# ...
 	_deps:
@@ -146,6 +158,7 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 - Alternatively, [target and _target][linkTargetVSUnderscoreTarget] can be separated if too verbose.
 
 	```makefile
+	# Makefile
 	deps:
 		# ...
 	test:
@@ -183,6 +196,7 @@ It is a good thing to have a target `deps` for installing all the dependencies r
 A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache. Subsequent CI/CD stages will have the exact same dependencies. Moreover, it is faster to pass along a tar file than a folder with many files.
 
 ```makefile
+# Makefile
 COMPOSE_RUN_NODE = docker compose run --rm node
 DEPS_DIRS = node_modules
 DEPS_ARTIFACT = $(DEPS_DIRS).tar.gz
@@ -217,13 +231,13 @@ DEPS_DIRS = node_modules vendor packages/**/dist/*
 
 ## Calling multiple targets in a single command
 
-Make allows you to call multiple targets in a single command like this `$ make targetA targetB targetC`. This is useful if you want to use a different `.env` file and call another target
+Make allows you to call multiple targets in a single command like this `make targetA targetB targetC`. This is useful if you want to use a different `.env` file and call another target
 
 ```bash
 # create .env with the default
-$ make envfile anotherTarget
+make envfile anotherTarget
 # create .env from another file
-$ make envfile anotherTarget ENVFILE=your.envfile
+make envfile anotherTarget ENVFILE=your.envfile
 ```
 
 ## Prevent echoing the command
@@ -231,6 +245,7 @@ $ make envfile anotherTarget ENVFILE=your.envfile
 The symbol `@` prevents the command to be printed out prior its execution. Useful when there are secrets at stake.
 
 ```makefile
+# Makefile
 # If '@ 'is omitted, `DOCKER_PASSWORD` would be revealed.
 push:
 	@echo "$(DOCKER_PASSWORD)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
@@ -243,6 +258,7 @@ push:
 The symbol `-` allows the execution to continue even if the command failed.
 
 ```makefile
+# Makefile
 TAG=v1.0.0
 
 # _tag creates a new tag and fails if the tag already exists
@@ -260,7 +276,7 @@ _overwriteTag:
 
 ## Clean Docker and files
 
-Using Compose creates a network that you may want to remove after your stage or pipeline is completed. You may also want to remove existing stopped and running containers. Moreover, files and folders that have been created can also be cleaned up after. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `$ make test clean`.
+Using Compose creates a network that you may want to remove after your stage or pipeline is completed. You may also want to remove existing stopped and running containers. Moreover, files and folders that have been created can also be cleaned up after. A pipeline would maybe contain a stage clean or call clean after `test` for instance: `make test clean`.
 
 `clean` could also have the command to clean Docker. However having the target `cleanDocker` may be very useful for targets that want to only clean the containers. See section [Managing containers in target][linkManagingContainersInTarget].
 
@@ -274,6 +290,7 @@ rm: cannot remove ‘vendor/gopkg.in/yaml.v2/README.md’: Permission denied
 This happens because the creation of those files was done with a different user (in a container as root) and the current user does not have permission to delete them. One way to mitigate this is to call the command in the docker container.
 
 ```makefile
+# Makefile
 cleanDocker:
 	docker compose down --remove-orphans
 
@@ -292,6 +309,7 @@ Sometimes a target needs to run a container in order to execute its task.
 For instance, a target `test` may need a database to run prior executing the tests.
 
 ```makefile
+# Makefile
 # target test calls cleanDocker before starting a postgres container
 test: cleanDocker startPostgres
 	$(DOCKER_RUN_NODE) make _test
@@ -312,6 +330,7 @@ cleanDocker:
 The Makefile can be split into smaller files.
 
 ```makefile
+# Makefile
 # makefiles/deploy.mk
 deploy:
 	docker compose run --rm serverless make _deploy
@@ -321,6 +340,7 @@ _deploy:
 ```
 
 ```makefile
+# Makefile
 # Makefile
 include makefiles/*.mk
 ```
@@ -334,6 +354,7 @@ In some situations, targets become very complex due to the syntax and limitation
 [This][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
 ```makefile
+# Makefile
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'
 DOCKER_RUN_MUSKETEERS = docker run --rm -v $(PWD):/opt/app -w /opt/app flemay/musketeers

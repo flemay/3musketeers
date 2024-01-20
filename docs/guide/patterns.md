@@ -9,10 +9,11 @@ In a nutshell, Make calls either Docker or Compose which then runs a Command ins
 ![pattern-overview](./assets/pattern.mmd.svg)
 
 ::: tip
-The [3 Musketeers repository][link3MusketeersGitHub] does implement the patterns
+The [3 Musketeers repository][link3MusketeersGitHub] applies the patterns:
 
-- Compose: Most of the [Makefile](https://github.com/flemay/3musketeers/blob/main/Makefile) targets
-- Docker-in-Docker: [Generate the demo with VHS](https://github.com/flemay/3musketeers/tree/main/demo)
+- Compose: [this website development](https://github.com/flemay/3musketeers?tab=readme-ov-file#3-musketeers-website-development)
+- Docker: section [Getting started](https://github.com/flemay/3musketeers?tab=readme-ov-file#getting-started)
+- Docker-in-Docker: [demo generated with VHS](https://github.com/flemay/3musketeers/tree/main/demo)
 :::
 
 ## Compose
@@ -54,7 +55,7 @@ _echo:
 ```
 
 ```bash
-$ make echo
+make echo
 ```
 
 #### Shell
@@ -76,7 +77,7 @@ echo:
 ```
 
 ```bash
-$ make echo
+make echo
 ```
 
 #### Shell file
@@ -91,7 +92,7 @@ echo Hello, World!
 
 ```bash
 # set executable permission
-$ chmod +x echo.sh
+chmod +x echo.sh
 ```
 
 ```yaml
@@ -112,7 +113,7 @@ echo:
 ```
 
 ```bash
-$ make echo
+make echo
 ```
 
 #### Go
@@ -148,7 +149,7 @@ echo:
 ```
 
 ```bash
-$ make echo
+make echo
 ```
 
 #### npm
@@ -184,7 +185,7 @@ echo:
 ```
 
 ```bash
-$ make echo
+make echo
 ```
 
 ## Docker
@@ -194,12 +195,13 @@ Make calls directly Docker instead of Compose. Everything that is done with Comp
 ![pattern-docker](./assets/pattern-docker.mmd.svg)
 
 ```makefile
+# Makefile
 echo:
 	docker run --rm alpine echo 'Hello, World!'
 ```
 
 ```bash
-$ make echo
+make echo
 ```
 
 ## Docker-in-Docker (DinD)

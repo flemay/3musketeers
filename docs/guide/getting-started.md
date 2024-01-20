@@ -2,7 +2,7 @@
 
 <!-- Copy of README.md#getting-started -->
 
-Let's print out `Hello, World!` in the console using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
+Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
 
 ![getting-started](./assets/getting-started.mmd.svg)
 
@@ -14,7 +14,7 @@ Let's print out `Hello, World!` in the console using the 3 Musketeers. The comma
 
 ## Hello, World!
 
-Create the following two files
+Create the following two files:
 
 ```yaml
 # docker-compose.yml
@@ -30,10 +30,10 @@ echo:
 	docker compose run --rm alpine echo 'Hello, World!'
 ```
 
-Then simply echo "Hello, World!" with the following command:
+Then simply run:
 
 ```bash
-$ make echo
+make echo
 ```
 
 [linkDocker]: https://docs.docker.com/engine/installation/

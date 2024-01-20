@@ -8,7 +8,8 @@ Often there are many environment variables and having them in a `.env` file beco
 
 With the following `.env` file:
 
-```
+```bash
+# .env
 # make sure these env vars are not set in the system
 ENV_A
 ENV_B=
@@ -18,6 +19,7 @@ ENV_C=env_c
 And the `docker-compose.yml` file:
 
 ```yaml
+# docker-compose.yml
 services:
   alpine:
     image: alpine
@@ -27,14 +29,14 @@ services:
 The expected results are:
 
 ```bash
-$ docker run --rm --env-file=.env alpine env
-ENV_B=
-ENV_C=env_c
+docker run --rm --env-file=.env alpine env
+#ENV_B=
+#ENV_C=env_c
 # ENV_A is not set and ENV_B is set to empty
 
-$ docker compose run --rm alpine env
-ENV_B=
-ENV_C=env_c
+docker compose run --rm alpine env
+#ENV_B=
+#ENV_C=env_c
 # Same as Docker
 ```
 
@@ -42,7 +44,8 @@ ENV_C=env_c
 
 Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep .envfile structured.
 
-```
+```bash
+# .env
 # All
 ENV
 

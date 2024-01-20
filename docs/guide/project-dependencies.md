@@ -37,7 +37,8 @@ services:
 
 If a project has specific dependency requirements, then creating (and maintaining) custom Docker images may be overkill. Instead, the project could have a Dockerfile that encapsulates the dependencies. This approach requires the image to be built locally before use.
 
-```docker
+```dockerfile
+# Dockerfile
 FROM alpine:latest
 RUN apk --update add bash curl nodejs npm git \
   && rm -rf /var/cache/apk/*

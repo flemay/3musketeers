@@ -98,13 +98,13 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 
 <img alt="Animated demo" src="../vhs-demo/demo.gif" width="800px"/>
 
-_The demo was generated with VHS using the 3 Musketeers ([source](demo))_
+_The demo was generated with VHS using the 3 Musketeers ([source](demo))._
 
 ## Getting started
 
 <!-- Copy of docs/guide/getting-started.md -->
 
-Let's print out `Hello, World!` in the console using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
+Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
 
 <!-- Copy of diagrams/getting-started.mmd -->
 ```mermaid
@@ -123,7 +123,7 @@ graph LR
 
 ### Hello, World!
 
-Create the following two files
+Create the following two files:
 
 ```yaml
 # docker-compose.yml
@@ -139,10 +139,10 @@ echo:
 	docker compose run --rm alpine echo 'Hello, World!'
 ```
 
-Then simply echo "Hello, World!" with the following command:
+Then simply run:
 
 ```bash
-$ make echo
+make echo
 ```
 
 <br>
@@ -165,35 +165,35 @@ This repository is the [3 Musketeers website][link3Musketeers] website built wit
 
 ```bash
 # create a .env file
-$ make envfile ENVFILE=env.example
+make envfile ENVFILE=env.example
 # install dependencies
-$ make deps
+make deps
 
 # start vitepress server for local development
-$ make dev
+make dev
 # wait till the message 'vite v2.5.3 dev server running at' appears
 # access the website in your browser at http://localhost:8080/
 # \<ctrl-c\> to stop
 
 # build static site
-$ make build
+make build
 
 # serve static site for local development
-$ make serveDev
+make serveDev
 # access the website in your browser at http://localhost:8080/
 # \<ctrl-c\> to stop
 
 # serve static website (headless)
-$ make serve
+make serve
 
 # test static website
-$ make test
+make test
 
 # prune
-$ make prune
+make prune
 
 # contributing? make sure the following command runs successfully
-$ make all
+make all
 ```
 
 ### Deployment
@@ -206,13 +206,13 @@ This section creates a new empty Netlify site. Ensure the `.env` file contains t
 
 ```bash
 # All the following commands will be run inside a container
-$ make shell
+make shell
 
 # Disable telemetry (optional)
-$ yarn run netlify --telemetry-disable
+yarn run netlify --telemetry-disable
 
 # Create new Netlify blank site
-$ yarn run netlify sites:create --disable-linking
+yarn run netlify sites:create --disable-linking
 # Answer the questions regarding the team and site name
 # Site name can be something like 3musketeers-preview-{random 5 digit numbers}
 Site Created
@@ -222,12 +222,12 @@ URL:       https://site-name.netlify.app
 Site ID:   site-id
 
 # You can always get back that information
-$ yarn run netlify sites:list
+yarn run netlify sites:list
 
 # Copy the ID to .env
 
 # Exit the container
-$ exit
+exit
 ```
 
 #### Deploy
@@ -236,13 +236,13 @@ This section deploys the website to an existing netlify site. Ensure the `.env` 
 
 ```bash
 # Build the website
-$ make build
+make build
 # Deploy to netlify
-$ make deploy
+make deploy
 # Test the website
-$ curl https://site-name.netlify.app
+curl https://site-name.netlify.app
 # Clean up directory
-$ make prune
+make prune
 ```
 
 #### Delete
@@ -251,13 +251,13 @@ This section deletes a netlify site. Ensure the `.env` file contains the right s
 
 ```bash
 # All the following commands will be run inside a container
-$ make shell
+make shell
 # Disable telemetry (optional)
-$ yarn run netlify --telemetry-disable
+yarn run netlify --telemetry-disable
 # Delete the site (optional)
-$ yarn run netlify sites:delete
+yarn run netlify sites:delete
 # Exit the container
-$ exit
+exit
 ```
 
 ### CI/CD

@@ -16,6 +16,7 @@ Docker images are like any other software. You should do your own research befor
 * [jwilder/dockerize][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
 
   ```makefile
+  # Makefile
   dbStart:
     docker compose up -d db
     docker compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
@@ -26,7 +27,7 @@ Docker images are like any other software. You should do your own research befor
 
 ## Accessing host's localhost from a container
 
-On Windows/Mac, accessing the host localhost is to use the url like `host.docker.internal`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `$ curl host.docker.internal:3000`.
+On Windows/Mac, accessing the host localhost is to use the url like `host.docker.internal`. This is handy because if you have an application running on `localhost:3000` locally (through container or not), then you can access it `curl host.docker.internal:3000`.
 
 ## Image without Make
 
@@ -37,9 +38,9 @@ One of the examples in section [Patterns][linkPatterns] is to call Make from Com
 Often image publishers offer different versions of the application/product. For instance [golang][linkGolang] has an image based on `alpine` which does not have `make`. It also has an image based on `stretch` which does.
 
 ```bash
-$ docker run --rm golang:alpine make
+docker run --rm golang:alpine make
 # "exec: \"make\": executable file not found
-$ docker run --rm golang:stretch make
+docker run --rm golang:stretch make
 # make: *** No targets specified and no makefile found
 ```
 
@@ -49,17 +50,16 @@ If you only want to call `make` with common shell commands, or want to use `git`
 
 ### Install Make on the fly
 
-Whenever a command runs another command it installs `make` and then executes `$ make _target`. Depending on how many times a command is run, this may be inefficient as it needs to download `make` every time.
+Whenever a command runs another command it installs `make` and then executes `make _target`. Depending on how many times a command is run, this may be inefficient as it needs to download `make` every time.
 
-```bash
+```makefile
+# Makefile
 MAKEFILE_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-
 hello:
 	docker run --rm \
 		-v $(MAKEFILE_DIR)Makefile:/opt/app/Makefile \
 		-w /opt/app \
 		alpine sh -c "apk add --update make && make _hello"
-
 _hello:
 	echo "Hello World"
 ```
@@ -68,10 +68,11 @@ _hello:
 
 You may want to build and maintain your own image based on the the image you wanted to use.
 
-```docker
+```dockerfile
+# Dockerfile
 FROM node:alpine
 RUN apk add --update make
-...
+# ...
 ```
 
 ::: tip
@@ -85,11 +86,12 @@ Mounting volumes with Docker on Mac or Windows can be slow. For instance, develo
 On Mac, using the `native_osx` strategy can also help. The Docker Compose file would look like the following:
 
 ```yaml
+# docker-compose.yml
  yourservice:
     image: animage
     volumes:
       - app-sync:/opt/app:nocopy
-...
+# ...
 
 volumes:
   # this volume is created by docker-sync. See docker-sync.yml for the config

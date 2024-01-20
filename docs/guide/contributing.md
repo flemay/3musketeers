@@ -2,7 +2,7 @@
 
 <!-- Copy of CONTRIBUTING.md -->
 
-Contributions are greatly appreciated and here are different ways
+Contributions are greatly appreciated and here are different ways:
 
 1. :star: [Star it][linkProjectRepo]!
 1. :mega: Share with your friends!

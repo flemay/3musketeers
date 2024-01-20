@@ -36,7 +36,7 @@ Test your code and pipelines locally before your CI/CD tool runs it. Feel confid
 	<img alt="Animated demo" src="https://raw.githubusercontent.com/flemay/3musketeers/vhs-demo/demo.gif" width="800px"/>
 </div>
 
-_The demo was generated with VHS using the 3 Musketeers ([source](https://github.com/flemay/3musketeers/tree/main/demo))_
+_The demo was generated with VHS using the 3 Musketeers ([source](https://github.com/flemay/3musketeers/tree/main/demo))._
 
 ---
 
