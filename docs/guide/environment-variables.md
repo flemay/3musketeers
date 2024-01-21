@@ -12,6 +12,23 @@ Often there are many environment variables and having them in a `.env` file beco
 The code in this section is expected to be fully functional.
 :::
 
+## Naming and envfile structure
+
+Environment variables for an application can be mixed with other environment variables coming from other applications/dependencies. One way to distinguish from one to another is to prepend with something like `ENV_`. This makes it easy when you want to only see them: `env | grep ENV_`. One example is GitHub Actions as it uses [environment variables starting with `GITHUB_`][linkGitHubActionsEnvVars].
+
+Also, environment variables can be used at different stages of software development: build, test, deploy, and run time. Naming them accordingly may be a good idea.
+
+Naming variables and structuring envfile is a personal taste. Currently I prefer structuring it by ordering variables and descriptions:
+
+```bash
+# env.template
+
+# ENV_MY_VAR_1 is description 1
+# ENV_MY_VAR_2 is description 2
+ENV_MY_VAR_1
+ENV_MY_VAR_2
+```
+
 ## Envfile and expectations
 
 Given the file `.env`:
@@ -51,23 +68,6 @@ docker compose run --rm alpine env
 ::: tip
 Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
 :::
-
-## Naming and envfile structure
-
-Environment variables for an application can be mixed with other environment variables coming from other applications/dependencies. One way to distinguish from one to another is to prepend with something like `ENV_`. This makes it easy when you want to only see them: `env | grep ENV_`. One example is GitHub Actions as it uses [environment variables starting with `GITHUB_`][linkGitHubActionsEnvVars].
-
-Also, environment variables can be used at different stages of software development: build, test, deploy, and run time. Naming them accordingly may be a good idea.
-
-Naming variables and structuring envfile is a personal taste. Currently I prefer structuring it by ordering variables and descriptions:
-
-```bash
-# env.template
-
-# ENV_MY_VAR_1 is description 1
-# ENV_MY_VAR_2 is description 2
-ENV_MY_VAR_1
-ENV_MY_VAR_2
-```
 
 ## Template and example envfiles
 
