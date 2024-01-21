@@ -52,26 +52,21 @@ docker compose run --rm alpine env
 Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
 :::
 
-## Structure envfile
+## Naming and envfile structure
 
-Environment variables can be used at different stages of software development: build, test, deploy, and run time. The following is an example how to keep envfile structured.
+Environment variables for an application can be mixed with other environment variables coming from other applications/dependencies. One way to distinguish from one to another is to prepend with something like `ENV_`. This makes it easy when you want to only see them: `env | grep ENV_`. One example is GitHub Actions as it uses [environment variables starting with `GITHUB_`][linkGitHubActionsEnvVars].
+
+Also, environment variables can be used at different stages of software development: build, test, deploy, and run time. Naming them accordingly may be a good idea.
+
+Naming variables and structuring envfile is a personal taste. Currently I prefer structuring it by ordering variables and descriptions:
 
 ```bash
-# .env
-# All
-ENV
+# env.template
 
-# Deploy
-AWS_VPC
-
-# Test
-CODECOV_URL
-
-# Build and deploy
-BUILD_DIR
-
-# Test and run
-DB_HOST
+# ENV_MY_VAR_1 is description 1
+# ENV_MY_VAR_2 is description 2
+ENV_MY_VAR_1
+ENV_MY_VAR_2
 ```
 
 ## Template and example envfiles
@@ -497,3 +492,4 @@ Questions:
 [link12factorConfig]: https://12factor.net/config
 [linkDockerEnvfile]: https://docs.docker.com/compose/env-file/
 [linkDockerComposeVarialeSubstitution]: https://docs.docker.com/compose/compose-file/#variable-substitution
+[linkGitHubActionsEnvVars]: https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
