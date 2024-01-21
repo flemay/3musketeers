@@ -18,7 +18,7 @@ Environment variables for an application can be mixed with other environment var
 
 Also, environment variables can be used at different stages of software development: build, test, deploy, and run time. Naming them accordingly may be a good idea.
 
-Naming variables and structuring envfile is a personal taste. Currently I prefer structuring it by ordering variables and descriptions:
+Naming variables and structuring envfile are a personal taste. Currently I prefer structuring it by ordering variables and descriptions:
 
 ```bash
 # env.template
