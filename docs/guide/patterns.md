@@ -15,9 +15,9 @@ The code in this section is expected to be fully functional.
 ::: tip
 The [3 Musketeers repository][link3MusketeersGitHub] applies the patterns:
 
-- Compose: [this website development](https://github.com/flemay/3musketeers?tab=readme-ov-file#3-musketeers-website-development)
-- Docker: section [Getting started](https://github.com/flemay/3musketeers?tab=readme-ov-file#getting-started)
-- Docker-in-Docker: [demo generated with VHS](https://github.com/flemay/3musketeers/tree/main/demo)
+- Compose: [this website development][link3MusketeersWebsiteDevelopment]
+- Docker: section [Getting started][link3MusketeersGettingStarted]
+- Docker-out-of-Docker: [demo generated with VHS][link3MusketeersDemoCode]
 :::
 
 ## Compose
@@ -230,17 +230,15 @@ echo:
 make echo
 ```
 
-## Docker-in-Docker (DinD)
+## Docker-in/out-of-Docker (DinD/DooD)
 
-::: info DIND EXPLAINED
-Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker outlines some of the pros and cons of doing so (and some nasty gotchas you might run into). This 3 Musketeers pattern is about "The socket solution" described in his post.
-:::
-
-So far, the patterns are for hosts (environments) that provide access to Make, Docker (and daemon), and Compose. However, there are times when the environment provided is Docker containers with no access to Make, Docker, or Compose. The 3 Musketeers can be applied by using a Docker image that provides Make, Docker (client), and Compose, such as [flemay/musketeers][linkMusketeersImage], given it has access to the Docker socket which allows Docker (client) to connect to the Docker engine.
+There are many articles and videos talking about Docker-in-Docker (DinD) and Docker-out-of-Docker (DooD) with pros and cons. This section describes a pattern that can be applied to both. A Docker container contains Make, Docker, and Compose which communicates to a Docker daemon, whether it is on a host (DooD) or inside another container (DinD). In such case, an image like [flemay/musketeers][linkMusketeersImage] can be used.
 
 ![pattern-dind](./assets/pattern-dind.mmd.svg)
 
-An example is with GitLab CI. [It allows you to access Docker within a Docker container][linkGitLabDinD]. A pipeline configuration would look like the following:
+An example of DooD is the [3 Musketeers demo generated with VHS][link3MusketeersDemoCode].
+
+Another example is GitLab CI which allows [access to Docker daemon within a Docker container][linkGitLabDinD]. A pipeline configuration would look like the following:
 
 ```yaml
 # .gitlab-ci.yml
@@ -259,8 +257,18 @@ test:
     - make test
 ```
 
-[linkDocker]: docker
-[linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
+Some references:
+
+- Jérôme Petazzoni's excellent [blog post][linkDinD] on using Docker-in-Docker outlines some of the pros and cons of doing so (and some nasty gotchas you might run into).
+- [Docker-in-Docker: Containerized CI Workflows (DockerCon 2023)][linkDinDDockerCon]
+
+
+[link3MusketeersDemoCode]: https://github.com/flemay/3musketeers/tree/main/demo
+[link3MusketeersGettingStarted]: https://github.com/flemay/3musketeers?tab=readme-ov-file#getting-started
 [link3MusketeersGitHub]: https://github.com/flemay/3musketeers
+[link3MusketeersWebsiteDevelopment]: https://github.com/flemay/3musketeers?tab=readme-ov-file#3-musketeers-website-development
+[linkDinDDockerCon]: https://www.youtube.com/watch?v=JyEwKm-OfxA
 [linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+[linkDocker]: docker
 [linkGitLabDinD]: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
+[linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers
