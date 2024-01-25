@@ -60,10 +60,10 @@ graph TB
     subgraph golang-alpine-container [Container: golang:alpine]
         go-run[go run main.go]
     end
-    dir-demo-src{{"**Host directory: ./src/**
+    dir-demo-src{{"**Host directory: src/**
     main.go
     ..."}}
-    golang-alpine-container-.->|volume:bind\n./src/ <-> /opt/app/|dir-demo-src
+    golang-alpine-container-.->|volume:bind\nsrc/ <-> /opt/app/|dir-demo-src
     go-run-->|8|hello-world[/'Hello, World!'/]
     vhs-->|9\nouput/demo.gif|dir-demo
 ```
@@ -85,8 +85,8 @@ Flow:
 7. The Docker daemon creates a service `golang`.
 	- The container is based on the official Go Docker image.
 	- The details of the service is in `src/docker-compose.yml`.
-	- The service `golang` defines a volume that maps the host directory `./src/` to the container directory `/opt/app/`. That directory contains the source file `main.go`.
-		- It is important to note that the full path to the host directory `./src/` is passed to the service (using environment variable `ENV_HOST_SRC_DIR`) and not the container path `/opt/demo/src/` even if the command originated from the container `vhs`. This is because the Docker daemon (being outside of the container) would not know the location of `/opt/demo/src/`.
+	- The service `golang` defines a volume that maps the host directory `src/` to the container directory `/opt/app/`. That directory contains the source file `main.go`.
+		- It is important to note that the full path to the host directory `src/` is passed to the service (using environment variable `ENV_HOST_SRC_DIR`) and not the container path `/opt/demo/src/` even if the command originated from the container `vhs`. This is because the Docker daemon (being outside of the container) would not know the location of `/opt/demo/src/`.
 		- The variable substitution `${ENV_HOST_SRC_DIR:-.}` sets the `source` to the value of the environment variable `ENV_HOST_SRC_DIR`. If not present, it sets it to `.` which means current directory. This allows the Go application example to work with and without Docker-outside-of-Docker (DooD).
 	- `go run main.go` is executed inside the container.
 8. `Hello, World!` is printed out.
