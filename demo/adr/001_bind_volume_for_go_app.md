@@ -45,10 +45,10 @@ Implementation:
     volumes:
       # ...
       - type: volume
-        source: go_src
-        target: /opt/go_src
+        source: src
+        target: /opt/app
 volumes:
-  go_src:
+  src:
 ```
 
 ```yml
@@ -56,12 +56,12 @@ volumes:
 # ...
     volumes:
       - type: volume
-        source: demo_go_src
+        source: demo_src
         target: /opt/app
 volumes:
   # The name of the volume created by the docker-compose.yml above
   # can be found with the command `docker volume ls | grep demo`
-  demo_go_src:
+  demo_src:
     external: true
 ```
 
