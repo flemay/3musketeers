@@ -15,7 +15,7 @@ Set TypingSpeed 45ms
 #Set PlaybackSpeed 0.5
 
 Hide
-Type "cd src"
+Type "cd app"
 Enter
 Ctrl+L
 Show
@@ -40,7 +40,7 @@ Sleep 1s
 Type "docker compose version"
 Sleep 500ms
 Enter
-Sleep 1s
+Sleep 2s
 Hide
 Ctrl+L
 Show
@@ -63,9 +63,9 @@ Ctrl+C
 Type "go run main.go"
 Sleep 500ms
 Enter
-Sleep 3s
+Sleep 2s
 Type "# It failed because the host does not have Go installed"
-Sleep 1s
+Sleep 2s
 Hide
 Ctrl+C
 Ctrl+L
@@ -98,10 +98,10 @@ Ctrl+L
 Show
 
 # Makefile
-Type "# [4/4] Makefile: typing \"
+Type "# [4/4] Makefile: \"
 Sleep 500ms
 Enter
-Type "# `docker compose run --rm golang go run main.go` \"
+Type "# Typing `docker compose run --rm golang go run main.go` \"
 Sleep 500ms
 Enter
 Type "# is long and hard to remember. Makefile to the rescue"
@@ -121,4 +121,4 @@ Ctrl+C
 Type "make run"
 Sleep 500ms
 Enter
-Sleep 5s
+Sleep 4s

@@ -14,4 +14,4 @@ services:
     working_dir: /opt/demo
     env_file: "${ENVFILE:-.env}"
     environment:
-      - ENV_HOST_SRC_DIR=${ENV_HOST_SRC_DIR}
+      - ENV_HOST_APP_DIR=${ENV_HOST_APP_DIR}

@@ -3,7 +3,7 @@ services:
     image: golang:alpine
     volumes:
       - type: bind
-        source: ${ENV_HOST_SRC_DIR:-.}
+        source: ${ENV_HOST_APP_DIR:-.}
         target: /opt/app
         read_only: true
     working_dir: /opt/app
