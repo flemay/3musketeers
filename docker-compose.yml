@@ -1,6 +1,5 @@
 # node:alpine is not used because the plugin-last-updated uses `git` and alpine
 # does not have it.
-version: '3.8'
 services:
   node: &node
     image: node

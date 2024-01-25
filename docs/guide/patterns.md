@@ -17,7 +17,7 @@ The [3 Musketeers repository][link3MusketeersGitHub] applies the patterns:
 
 - Compose: [this website development][link3MusketeersWebsiteDevelopment]
 - Docker: section [Getting started][link3MusketeersGettingStarted]
-- Docker-out-of-Docker: [demo generated with VHS][link3MusketeersDemoCode]
+- Docker-outside-of-Docker: [demo generated with VHS][link3MusketeersDemoCode]
 :::
 
 ## Compose
@@ -230,9 +230,9 @@ echo:
 make echo
 ```
 
-## Docker-in/out-of-Docker (DinD/DooD)
+## Docker-in/outside-of-Docker (DinD/DooD)
 
-There are many articles and videos talking about Docker-in-Docker (DinD) and Docker-out-of-Docker (DooD) with pros and cons. This section describes a pattern that can be applied to both. A Docker container contains Make, Docker, and Compose which communicates to a Docker daemon, whether it is on a host (DooD) or inside another container (DinD). In such case, an image like [flemay/musketeers][linkMusketeersImage] can be used.
+There are many articles and videos talking about Docker-in-Docker (DinD) and Docker-outside-of-Docker (DooD) with pros and cons. This section describes a pattern that can be applied to both. A Docker container contains Make, Docker, and Compose which communicates to a Docker daemon, whether it is on a host (DooD) or inside another container (DinD). In such case, an image like [flemay/musketeers][linkMusketeersImage] can be used.
 
 ![pattern-dind](./assets/pattern-dind.mmd.svg)
 

@@ -20,19 +20,13 @@ Enter
 Ctrl+L
 Show
 
-Type "# Let's create 'Hello, World!' application in Go using \"
-Sleep 500ms
-Enter
-Type "# the 3 Musketeers!"
+Type "# Let's create 'Hello, World!' application in Go using the 3 Musketeers!"
 Sleep 1s
 Ctrl+C
 Ctrl+L
 
 # Prerequisites
-Type "# [1/4] Prerequisites: first, verify the host has \"
-Sleep 500ms
-Enter
-Type "# Make, Docker, and Compose"
+Type "# [1/4] Prerequisites: first, verify the host has Make, Docker and Compose"
 Sleep 1s
 Ctrl+C
 Type "make --version"
@@ -47,7 +41,9 @@ Type "docker compose version"
 Sleep 500ms
 Enter
 Sleep 1s
+Hide
 Ctrl+L
+Show
 
 # main.go
 Type "# [2/4] Time to define our Go application"
@@ -60,7 +56,6 @@ Sleep 3s
 Hide
 Type ":wq"
 Enter
-#Ctrl+L
 Show
 Type "# Run it with Go"
 Sleep 1s
@@ -71,14 +66,16 @@ Enter
 Sleep 3s
 Type "# It failed because the host does not have Go installed"
 Sleep 1s
+Hide
 Ctrl+C
 Ctrl+L
+Show
 
 # docker-compose.yml
-Type "# [3/4] Compose: define our Go environment using an \"
+Type "# [3/4] Compose: define our Go environment using an offical"
 Sleep 500ms
 Enter
-Type "# offical Go Docker image where our application will be executed"
+Type "# Go Docker image where our application will be executed"
 Sleep 1s
 Ctrl+C
 Type "vim docker-compose.yml"
@@ -96,7 +93,9 @@ Type "docker compose run --rm golang go run main.go"
 Sleep 500ms
 Enter
 Sleep 4s
+Hide
 Ctrl+L
+Show
 
 # Makefile
 Type "# [4/4] Makefile: typing \"

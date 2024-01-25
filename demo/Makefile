@@ -5,7 +5,7 @@ COMPOSE_RUN_VHS = ENV_HOST_SRC_DIR=$(HOST_SRC_DIR) docker compose run --rm vhs
 COMPOSE_RUN_VHS_BASH = ENV_HOST_SRC_DIR=$(HOST_SRC_DIR) docker compose run --rm --entrypoint bash vhs
 ENVFILE ?= env.template
 
-all: envfile deps record prune
+all: envfile deps test record prune
 
 envfile:
 	cp -f $(ENVFILE) .env
