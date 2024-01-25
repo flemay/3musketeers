@@ -87,7 +87,7 @@ Flow:
 	- The details of the service is in `src/docker-compose.yml`.
 	- The service `golang` defines a volume that maps the host directory `./src/` to the container directory `/opt/app/`. That directory contains the source file `main.go`.
 		- It is important to note that the full path to the host directory `./src/` is passed to the service (using environment variable `ENV_HOST_SRC_DIR`) and not the container path `/opt/demo/src/` even if the command originated from the container `vhs`. This is because the Docker daemon (being outside of the container) would not know the location of `/opt/demo/src/`.
-		- The variable substitution `${ENV_HOST_SRC_DIR:-.}` sets the `source` to the value of the environment variable `ENV_HOST_SRC_DIR` if present, otherwise it sets it to `.` which means current directory. This allows the Go application example to work with and without Docker-outside-of-Docker (DooD).
+		- The variable substitution `${ENV_HOST_SRC_DIR:-.}` sets the `source` to the value of the environment variable `ENV_HOST_SRC_DIR`. If not present, it sets it to `.` which means current directory. This allows the Go application example to work with and without Docker-outside-of-Docker (DooD).
 	- `go run main.go` is executed inside the container.
 8. `Hello, World!` is printed out.
 9. `vhs` saves the record `demo.gif` into directory `/opt/demo/output/` which is also accessible from the host directory `./output/`.
