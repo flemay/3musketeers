@@ -65,7 +65,7 @@ volumes:
     external: true
 ```
 
-Finally, `demo.tape` would have an instruction to copy the directory `src/` to the volume mounted on `/opt/go_src/` so that the Go container can have access.
+Finally, `demo.tape` would have an instruction to copy the directory `src/` to the volume mounted on `/opt/app/` so that the Go container can have access.
 
 ## More information
 
