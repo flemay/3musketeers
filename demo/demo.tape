@@ -22,8 +22,9 @@ Show
 
 Type "# Let's create 'Hello, World!' application in Go using the 3 Musketeers!"
 Sleep 1s
-Ctrl+C
+Hide
 Ctrl+L
+Show
 
 # Prerequisites
 Type "# [1/4] Prerequisites: first, verify the host has Make, Docker and Compose"
@@ -63,7 +64,7 @@ Ctrl+C
 Type "go run main.go"
 Sleep 500ms
 Enter
-Sleep 2s
+Sleep 1s
 Type "# It failed because the host does not have Go installed"
 Sleep 2s
 Hide
@@ -104,7 +105,9 @@ Enter
 Type "# Typing `docker compose run --rm golang go run main.go` \"
 Sleep 500ms
 Enter
-Type "# is long and hard to remember. Makefile to the rescue"
+Type "# is long and hard to remember."
+Sleep 500ms
+Type " Make file to the rescue!"
 Sleep 1s
 Ctrl+C
 Type "vim Makefile"
