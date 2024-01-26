@@ -11,8 +11,8 @@ The demo shows the execution of a Go application with the 3 Musketeers tools: Ma
 
 ## Decision drivers
 
+* The solution should work with Docker-outside-of-Docker (DooD).
 * The source files shown in the demo should be copied/pasted and work as is with Docker. ie No need to setup DooD.
-* The solution should work with DooD.
 
 ## Considered options
 
@@ -21,7 +21,7 @@ The demo shows the execution of a Go application with the 3 Musketeers tools: Ma
 
 ## Decision outcome
 
-Chosen option: "Bind volume", because the code remained clean and it works with and without Docker-outside-of-Docker.
+Chosen option: "Bind volume", because the code remains clean and it works with and without Docker-outside-of-Docker.
 
 ## Pros and cons of the options
 
