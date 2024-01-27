@@ -23,6 +23,7 @@ Show
 Type "# Let's create 'Hello, World!' application in Go using the 3 Musketeers!"
 Sleep 1s
 Hide
+Ctrl+C
 Ctrl+L
 Show
 
@@ -99,15 +100,12 @@ Ctrl+L
 Show
 
 # Makefile
-Type "# [4/4] Makefile: \"
-Sleep 500ms
-Enter
-Type "# Typing `docker compose run --rm golang go run main.go` \"
+Type "# [4/4] Make: Typing `docker compose run --rm golang go run main.go` \"
 Sleep 500ms
 Enter
 Type "# is long and hard to remember."
 Sleep 500ms
-Type " Make file to the rescue!"
+Type " Make to the rescue!"
 Sleep 1s
 Ctrl+C
 Type "vim Makefile"
