@@ -63,7 +63,7 @@ cloneAndSetPublishBranch() {
     local _currentBranch=""
     _currentBranch=$(git rev-parse --abbrev-ref HEAD)
     if [[ "${envGitPublishBranch}" == "${_currentBranch}" ]]; then
-        printf "Error: ENV_PUBLISH_BRANCH cannot be '%s'\n" "${_currentBranch}"
+        printf "Error: ENV_GIT_PUBLISH_BRANCH cannot be '%s'\n" "${_currentBranch}"
         exit 1
     fi
 
