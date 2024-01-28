@@ -7,15 +7,15 @@ IFS=$'\n\t'
 
 [[ -f "/.dockerenv" ]] || { printf "Error: must be executed inside Docker container\n" 1>&2; exit 1; }
 
-declare envGitEmail="${ENV_GIT_EMAIL:?}"
-declare envGitName="${ENV_GIT_NAME:?}"
-declare envGitPublishBranch="${ENV_GIT_PUBLISH_BRANCH:?}"
-declare envGitPublishIncludePatterns="${ENV_GIT_PUBLISH_INCLUDE_PATTERNS:?}"
-declare envGitRepoURL="${ENV_GIT_REPO_URL:?}"
-declare envGitToken="${ENV_GIT_TOKEN:?}"
-declare envGitUsername="${ENV_GIT_USERNAME:?}"
-declare envPublishDir="${ENV_PUBLISH_DIR:?}"
-declare envTmpDir="${ENV_TMP_DIR:?}"
+readonly envGitEmail="${ENV_GIT_EMAIL:?}"
+readonly envGitName="${ENV_GIT_NAME:?}"
+readonly envGitPublishBranch="${ENV_GIT_PUBLISH_BRANCH:?}"
+readonly envGitPublishIncludePatterns="${ENV_GIT_PUBLISH_INCLUDE_PATTERNS:?}"
+readonly envGitRepoURL="${ENV_GIT_REPO_URL:?}"
+readonly envGitToken="${ENV_GIT_TOKEN:?}"
+readonly envGitUsername="${ENV_GIT_USERNAME:?}"
+readonly envPublishDir="${ENV_PUBLISH_DIR:?}"
+readonly envTmpDir="${ENV_TMP_DIR:?}"
 
 # Gets the name of the repo from envGitRepoURL
 # Ex: https://github.com/flemay/3musketeers.git -> 3musketeers
