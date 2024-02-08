@@ -80,14 +80,7 @@ _The demo was generated with VHS using the 3 Musketeers ([source](demo))._
 
 Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
 
-<!-- Copy of diagrams/getting-started.mmd -->
-```mermaid
-graph LR
-    host[Host]-->make[make echo]
-    make-->docker["Docker"]
-    docker-->container(("echo 'Hello, World!'
-    (container)"))
-```
+<img src="./diagrams/getting-started.mmd.svg" width="70%">
 
 ### Prerequisites
 
