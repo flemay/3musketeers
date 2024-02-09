@@ -50,7 +50,7 @@
 
 The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
 
-<img src="./diagrams/overview.mmd.svg" width="85%">
+<img src="./diagrams/overview.mmd.svg" width="90%">
 
 ## Why?
 
@@ -80,7 +80,7 @@ _The demo was generated with VHS using the 3 Musketeers ([source](demo))._
 
 Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
 
-<img src="./diagrams/getting-started.mmd.svg" width="85%">
+<img src="./diagrams/getting-started.mmd.svg" width="90%">
 
 ### Prerequisites
 
