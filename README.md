@@ -2,7 +2,6 @@
 # 3 Musketeers
 
 <div align="center">
-
 <img src="docs/public/img/hero-v2.svg" width="300">
 
 **Test, build, and deploy your apps from anywhere, the same way!**
@@ -10,7 +9,6 @@
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License][linkLicenseBadge]][linkLicense]
-
 </div>
 
 <details>
@@ -52,31 +50,7 @@
 
 The 3 Musketeers is a pattern for developing software in a repeatable and consistent manner. It leverages Make as an orchestration tool to test, build, run, and deploy applications using Docker and Docker Compose. The Make and Docker/Compose commands for each application are maintained as part of the application’s source code and are invoked in the same way whether run locally or on a CI/CD server.
 
-<!-- Copy of diagrams/overview.mmd -->
-```mermaid
-graph LR
-    host["**Host**
-    Linux
-    MacOS
-    Windows
-    CI/CD
-    ..."]
-    make["**Make**
-    test
-    build
-    run
-    deploy
-    ..."]
-    host-->make
-    make-->docker["Docker
-    Compose"]
-    container(("&nbsp;&nbsp;&nbsp;&nbsp;**Container(s)**&nbsp;&nbsp;&nbsp;&nbsp;
-        Go
-        Python
-        PostgreSQL
-        ..."))
-    docker-->container
-```
+<img src="./diagrams/overview.mmd.svg" width="90%">
 
 ## Why?
 
@@ -106,14 +80,7 @@ _The demo was generated with VHS using the 3 Musketeers ([source](demo))._
 
 Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The command `make echo` will be calling Docker to run the command `echo 'Hello, World!'` inside a container.
 
-<!-- Copy of diagrams/getting-started.mmd -->
-```mermaid
-graph LR
-    host[Host]-->make[make echo]
-    make-->docker["Docker"]
-    docker-->container(("echo 'Hello, World!'
-    (container)"))
-```
+<img src="./diagrams/getting-started.mmd.svg" width="90%">
 
 ### Prerequisites
 

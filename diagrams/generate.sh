@@ -9,6 +9,6 @@ find *.mmd -type f \
             -p /puppeteer-config.json \
             -b transparent \
             -i {}'
-printf "Copy *.svg to docs/guide/assets"
+printf "Copy *.svg to docs/guide/assets\n"
 rm -fr /docs/guide/assets/*.svg
 cp *.svg /opt/docs/guide/assets
