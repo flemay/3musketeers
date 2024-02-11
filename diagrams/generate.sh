@@ -6,8 +6,9 @@ find *.mmd -type f \
     | xargs -I {} sh -c \
         'printf "File: %s\n" {}; \
         /home/mermaidcli/node_modules/.bin/mmdc \
-            -p /puppeteer-config.json \
-            -b transparent \
+            --puppeteerConfigFile /puppeteer-config.json \
+            --backgroundColor transparent \
+            --theme neutral \
             -i {}'
 printf "Copy *.svg to docs/guide/assets\n"
 rm -fr /docs/guide/assets/*.svg
