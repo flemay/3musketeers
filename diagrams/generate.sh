@@ -11,5 +11,5 @@ find *.mmd -type f \
             --theme neutral \
             -i {}'
 printf "Copy *.svg to docs/guide/assets\n"
-#rm -fr /docs/guide/assets/*.svg
-#cp *.svg /opt/docs/guide/assets
+rm -fr /docs/guide/assets/*.svg
+cp *.svg /opt/docs/guide/assets
