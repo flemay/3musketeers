@@ -67,8 +67,10 @@ _test:
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
 _deploy:
-	npx netlify --telemetry-disable
-	npx netlify deploy --dir=docs/.vitepress/dist --prod
+	npx wrangler pages deploy docs/.vitepress/dist \
+	--project-name=$(ENV_CLOUDFLARE_PROJECT_NAME) \
+	--branch=$(ENV_CLOUDFLARE_PRODUCTION_BRANCH_NAME) \
+	--commit-message="Deploy!"
 
 pruneDocker:
 	docker-compose down --remove-orphans --volumes

@@ -5,7 +5,8 @@
   "devDependencies": {
     "doctoc": "^2.2.1",
     "netlify-cli": "*",
-    "vitepress": "*"
+    "vitepress": "*",
+    "wrangler": "^3.30.1"
   },
   "repository": {
     "type": "git",
