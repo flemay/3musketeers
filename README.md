@@ -164,7 +164,7 @@ make all
 
 The 3 Musketeers website is deployed to [Cloudflare Pages][linkCloudflarePages]. This section shows how to create, deploy, and delete a Pages project using [Wrangler CLI][linkCloudflareWranglerCLI]. This is handy for previewing new changes.
 
-Given build, test and deployment are going to be done with GitHub Actions, this section follows the [direct upload][linkCloudflareDirectUpload] and [Run Wrangler in CI/CD][linkCloudflareWranglerCICD] directives.
+Given build, test and deployment are going to be done with GitHub Actions, this section follows the [Direct Upload][linkCloudflareDirectUpload] and [Run Wrangler in CI/CD][linkCloudflareWranglerCICD] directives.
 
 Lastly, this section assumes the application was built and tested (see previous section `Development`).
 
@@ -205,14 +205,14 @@ env | grep ENV_
 # List current projects
 npx wrangler pages project list
 
-# (if `ENV_CLOUDFLARE_PROJECT_NAME` is part of the list, update file `.env` with a new project name
+# If `ENV_CLOUDFLARE_PROJECT_NAME` is part of the list, update file `.env` with a new project name
 
 exit
 ```
 
-#### 2. Create new Pages project
+#### 2. Create
 
-This section creates a new Pages project with Wrangler CLI.
+This section creates a new Pages project.
 
 ```bash
 # All the following commands will be run inside a container
@@ -237,7 +237,7 @@ exit
 
 #### 3. Deploy
 
-This section deploys the website to an existing Cloudflare project.
+This section deploys the website to an existing Cloudflare Pages project.
 
 ```bash
 # All the following commands will be run inside a container
