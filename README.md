@@ -7,7 +7,6 @@
 **Test, build, and deploy your apps from anywhere, the same way!**
 
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
-[![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License][linkLicenseBadge]][linkLicense]
 </div>
 
@@ -94,7 +93,6 @@ Create the following 2 files:
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
 services:
   alpine:
     image: alpine
@@ -118,15 +116,14 @@ For more information, visit [3 Musketeers website][link3Musketeers].
 
 ## 3 Musketeers website development
 
-This repository is the [3 Musketeers website][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
+This repository is the [3 Musketeers website][link3Musketeers] built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
 ### Prerequisites
 
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
-- [Netlify](https://netlify.com) account
-- [Netlify personal access token](https://app.netlify.com/user/applications)
+- [Cloudflare Pages][linkCloudflarePages] account
 
 ### Development
 
@@ -165,64 +162,104 @@ make all
 
 ### Deployment
 
-The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI][linkNetlifyCLI]. This is handy for previewing new changes.
+The 3 Musketeers website is deployed to [Cloudflare Pages][linkCloudflarePages]. This section shows how to create site, deploy, and delete using Wrangler CLI][linkCloudflareWranglerCLI]. This is handy for previewing new changes.
 
-#### Create a new site
+Given the build, test and deployment are going to be done with GitHub Actions, this section follows the [direct upload][linkCloudflareDirectUpload] and [Run Wrangler in CI/CD][linkCloudflareWranglerCICD] directives.
 
-This section creates a new empty Netlify site. Ensure the `.env` file contains the access token.
+Lastly, this section assumes the application was built and tested (see previous section `Development`).
+
+#### Cloudflare account ID and API token
+
+To interact with Cloudflare Pages with Wrangler CLI, Cloudflare account ID and API token are required.
+
+1. Account ID: [Find account and zone IDs][linkCloudflareFindAccountAndZoneIDs]
+1. API token
+	1. [Create API token][linkCloudflareCreateAPIToken]
+	1. Use `Edit Cloudflare Workers` template
+	1. Permissions:
+		- Account - Cloudflare Pages - Edit
+	1. Set a TIL
+1. Set the values in the `.env` file (based of `env.template`)
+1. Do not forget to delete the API token once it is not longer used
+
+#### Create a new Pages project
+
+This section creates a new Pages project with Wrangler CLI. Ensure the `.env` file contains the account ID and API token.
 
 ```bash
 # All the following commands will be run inside a container
 make shell
 
-# Disable telemetry (optional)
-yarn run netlify --telemetry-disable
+# You can always see the values of environment variables
+env | grep ENV_
 
-# Create new Netlify blank site
-yarn run netlify sites:create --disable-linking
-# Answer the questions regarding the team and site name
-# Site name can be something like 3musketeers-preview-{random 5 digit numbers}
-Site Created
+# List your current Pages projects
+npx wrangler pages project list
 
-Admin URL: https://app.netlify.com/sites/site-name
-URL:       https://site-name.netlify.app
-Site ID:   site-id
+# Create a new project that is not in the list above
+npx wrangler pages project create 3musketeers-test --production-branch=main
+#✨ Successfully created the '3musketeers-test' project. It will be available at https://3musketeers-test.pages.dev/ once you create your first deployment.
+#To deploy a folder of assets, run 'wrangler pages deploy [directory]'.
 
-# You can always get back that information
-yarn run netlify sites:list
+# Now, the new project should be listed and take note of the project domain
+npx wrangler pages project list
 
-# Copy the ID to .env
+# Project is empty which should not be hosted! (My project domain for this example is 3musketeers-test.pages.dev)
+curl -I https://3musketeers-test.pages.dev
+#HTTP/2 522
+#...
 
 # Exit the container
 exit
 ```
 
+Copy the project and production branch names to `.env` file. In this example, `3musketeers-test` and `main` were used. Take note of the URL where the project will be served (ex: `https://3musketeers-test.pages.dev`)
+
 #### Deploy
 
-This section deploys the website to an existing netlify site. Ensure the `.env` file contains the right site ID and access token.
-
-```bash
-# Build the website
-make build
-# Deploy to netlify
-make deploy
-# Test the website
-curl https://site-name.netlify.app
-# Clean up directory
-make prune
-```
-
-#### Delete
-
-This section deletes a netlify site. Ensure the `.env` file contains the right site ID and access token.
+This section deploys the website to an existing Cloudflare project. Ensure the `.env` file contains the project and branch names as well as account ID and API token.
 
 ```bash
 # All the following commands will be run inside a container
 make shell
-# Disable telemetry (optional)
-yarn run netlify --telemetry-disable
-# Delete the site (optional)
-yarn run netlify sites:delete
+
+# Deploy!
+npx wrangler pages deploy docs/.vitepress/dist \
+	--project-name=${ENV_CLOUDFLARE_PROJECT_NAME} \
+	--branch=${ENV_CLOUDFLARE_BRANCH_NAME} \
+	--commit-message="Deploy!"
+#✨ Success! Uploaded 81 files (4.28 sec)
+#✨ Deployment complete! Take a peek over at https://some-id.3musketeers-test.pages.dev
+
+# Project is no longer empty!
+curl -I https://3musketeers-test.pages.dev
+#HTTP/2 200
+#...
+
+# Exit the container
+exit
+```
+
+As a side note, `make deploy` can be used instead.
+
+#### Delete
+
+This section shows how to delete a Cloudflare Pages project. Ensure the `.env` file contains the project and branch names as well as account ID and API token.
+
+```bash
+# All the following commands will be run inside a container
+make shell
+
+npx wrangler pages project delete ${ENV_CLOUDFLARE_PROJECT_NAME}
+#? Are you sure you want to delete "3musketeers-test"? This action cannot be undone. › y
+#Deleting 3musketeers-test
+#Successfully deleted 3musketeers-test
+
+# Check the site is not there
+curl -I https://3musketeers-test.pages.dev
+#HTTP/2 530
+#...
+
 # Exit the container
 exit
 ```
@@ -295,7 +332,7 @@ Thanks goes to [contributors][linkContributors].
 [MIT][linkLicense]
 
 
-[link3Musketeers]: https://3musketeersdev.netlify.app
+[link3Musketeers]: https://3musketeers.pages.dev
 [linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge
@@ -310,6 +347,13 @@ Thanks goes to [contributors][linkContributors].
 [linkGitHubActionsProjectBadge]: https://img.shields.io/github/actions/workflow/status/flemay/3musketeers/deploy.yml?style=for-the-badge&logo=github
 [linkGitHubActions]: https://github.com/features/actions
 [linkGitHubActionsSecrets]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+
+[linkCloudflarePages]: https://pages.cloudflare.com/
+[linkCloudflareDirectUpload]: https://developers.cloudflare.com/pages/get-started/direct-upload/
+[linkCloudflareWranglerCICD]: https://developers.cloudflare.com/workers/wrangler/ci-cd/
+[linkCloudflareFindAccountAndZoneIDs]: https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/
+[linkCloudflareCreateAPIToken]: https://dash.cloudflare.com/profile/api-tokens
+[linkCloudflareWranglerCLI]: https://developers.cloudflare.com/workers/wrangler/
 
 [linkNetlify]: https://netlify.com
 [linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys

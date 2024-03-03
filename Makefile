@@ -69,7 +69,7 @@ deploy:
 _deploy:
 	npx wrangler pages deploy docs/.vitepress/dist \
 	--project-name=$(ENV_CLOUDFLARE_PROJECT_NAME) \
-	--branch=$(ENV_CLOUDFLARE_PRODUCTION_BRANCH_NAME) \
+	--branch=$(ENV_CLOUDFLARE_BRANCH_NAME) \
 	--commit-message="Deploy!"
 
 pruneDocker:

@@ -4,7 +4,6 @@
   "description": "Test, build, and deploy your apps from anywhere, the same way.",
   "devDependencies": {
     "doctoc": "^2.2.1",
-    "netlify-cli": "*",
     "vitepress": "*",
     "wrangler": "^3.30.1"
   },
