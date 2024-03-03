@@ -162,13 +162,13 @@ make all
 
 ### Deployment
 
-The 3 Musketeers website is deployed to [Cloudflare Pages][linkCloudflarePages]. This section shows how to create site, deploy, and delete using Wrangler CLI][linkCloudflareWranglerCLI]. This is handy for previewing new changes.
+The 3 Musketeers website is deployed to [Cloudflare Pages][linkCloudflarePages]. This section shows how to create, deploy, and delete a Pages project using [Wrangler CLI][linkCloudflareWranglerCLI]. This is handy for previewing new changes.
 
-Given the build, test and deployment are going to be done with GitHub Actions, this section follows the [direct upload][linkCloudflareDirectUpload] and [Run Wrangler in CI/CD][linkCloudflareWranglerCICD] directives.
+Given build, test and deployment are going to be done with GitHub Actions, this section follows the [direct upload][linkCloudflareDirectUpload] and [Run Wrangler in CI/CD][linkCloudflareWranglerCICD] directives.
 
 Lastly, this section assumes the application was built and tested (see previous section `Development`).
 
-#### Cloudflare account ID and API token
+#### 0. Cloudflare account ID and API token
 
 To interact with Cloudflare Pages with Wrangler CLI, Cloudflare account ID and API token are required.
 
@@ -182,26 +182,48 @@ To interact with Cloudflare Pages with Wrangler CLI, Cloudflare account ID and A
 1. Set the values in the `.env` file (based of `env.template`)
 1. Do not forget to delete the API token once it is not longer used
 
-#### Create a new Pages project
+#### 1. Envfile
 
-This section creates a new Pages project with Wrangler CLI. Ensure the `.env` file contains the account ID and API token.
+The following sections use the values from the file `.env`. Create file `.env` (based on `env.template`) with the correct values.
+
+Example:
+
+```bash
+# .env
+ENV_CLOUDFLARE_BRANCH_NAME=main
+ENV_CLOUDFLARE_PROJECT_NAME=3musketeers-test
+ENV_SECRET_CLOUDFLARE_ACCOUNT_ID=id-from-previous-section
+ENV_SECRET_CLOUDFLARE_API_TOKEN=token-from-previous-section
+```
+
+Verify:
+
+```bash
+make shell
+env | grep ENV_
+
+# List current projects
+npx wrangler pages project list
+
+# (if `ENV_CLOUDFLARE_PROJECT_NAME` is part of the list, update file `.env` with a new project name
+
+exit
+```
+
+#### 2. Create new Pages project
+
+This section creates a new Pages project with Wrangler CLI.
 
 ```bash
 # All the following commands will be run inside a container
 make shell
 
-# You can always see the values of environment variables
-env | grep ENV_
-
-# List your current Pages projects
-npx wrangler pages project list
-
-# Create a new project that is not in the list above
-npx wrangler pages project create 3musketeers-test --production-branch=main
+# Create a new project
+npx wrangler pages project create ${ENV_CLOUDFLARE_PROJECT_NAME} --production-branch=${ENV_CLOUDFLARE_BRANCH_NAME}
 #✨ Successfully created the '3musketeers-test' project. It will be available at https://3musketeers-test.pages.dev/ once you create your first deployment.
 #To deploy a folder of assets, run 'wrangler pages deploy [directory]'.
 
-# Now, the new project should be listed and take note of the project domain
+# The new project should be listed and take note of the project domain
 npx wrangler pages project list
 
 # Project is empty which should not be hosted! (My project domain for this example is 3musketeers-test.pages.dev)
@@ -213,11 +235,9 @@ curl -I https://3musketeers-test.pages.dev
 exit
 ```
 
-Copy the project and production branch names to `.env` file. In this example, `3musketeers-test` and `main` were used. Take note of the URL where the project will be served (ex: `https://3musketeers-test.pages.dev`)
+#### 3. Deploy
 
-#### Deploy
-
-This section deploys the website to an existing Cloudflare project. Ensure the `.env` file contains the project and branch names as well as account ID and API token.
+This section deploys the website to an existing Cloudflare project.
 
 ```bash
 # All the following commands will be run inside a container
@@ -242,14 +262,15 @@ exit
 
 As a side note, `make deploy` can be used instead.
 
-#### Delete
+#### 4. Delete
 
-This section shows how to delete a Cloudflare Pages project. Ensure the `.env` file contains the project and branch names as well as account ID and API token.
+This section shows how to delete a Cloudflare Pages project.
 
 ```bash
 # All the following commands will be run inside a container
 make shell
 
+# Delete the Pages project
 npx wrangler pages project delete ${ENV_CLOUDFLARE_PROJECT_NAME}
 #? Are you sure you want to delete "3musketeers-test"? This action cannot be undone. › y
 #Deleting 3musketeers-test
