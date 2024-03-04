@@ -8,7 +8,7 @@ aside: false
 Here are projects that apply the 3 Musketeers:
 
 - [3 Musketeers repository][link3MusketeersRepo]
-	- [This website][link3MusketeersDevelopment] which is built with VitePress and deployed to Netlify using GitHub Actions
+	- [This website][link3MusketeersDevelopment] which is built with VitePress and deployed to Cloudflare Pages using GitHub Actions
 	- [Diagrams][link3MusketeersDiagrams] generated with Mermaid
 	- [Demo][link3MusketeersDemo] generated with VHS
 - [envvars][linkEnvvars] is a small Go application that uses GitHub Actions to build, test, and create a Docker image.

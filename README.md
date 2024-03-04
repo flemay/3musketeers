@@ -205,7 +205,8 @@ env | grep ENV_
 # List current projects
 npx wrangler pages project list
 
-# If `ENV_CLOUDFLARE_PROJECT_NAME` is part of the list, update file `.env` with a new project name
+# If `ENV_CLOUDFLARE_PROJECT_NAME` is part of the list, skip section `2. Create`
+# or update file `.env` with a new project name
 
 exit
 ```
@@ -219,7 +220,7 @@ This section creates a new Pages project.
 make shell
 
 # Create a new project
-npx wrangler pages project create ${ENV_CLOUDFLARE_PROJECT_NAME} --production-branch=${ENV_CLOUDFLARE_BRANCH_NAME}
+npx wrangler pages project create "${ENV_CLOUDFLARE_PROJECT_NAME}" --production-branch="${ENV_CLOUDFLARE_BRANCH_NAME}"
 #✨ Successfully created the '3musketeers-test' project. It will be available at https://3musketeers-test.pages.dev/ once you create your first deployment.
 #To deploy a folder of assets, run 'wrangler pages deploy [directory]'.
 
@@ -245,8 +246,8 @@ make shell
 
 # Deploy!
 npx wrangler pages deploy docs/.vitepress/dist \
-	--project-name=${ENV_CLOUDFLARE_PROJECT_NAME} \
-	--branch=${ENV_CLOUDFLARE_BRANCH_NAME} \
+	--project-name="${ENV_CLOUDFLARE_PROJECT_NAME}" \
+	--branch="${ENV_CLOUDFLARE_BRANCH_NAME}" \
 	--commit-message="Deploy!"
 #✨ Success! Uploaded 81 files (4.28 sec)
 #✨ Deployment complete! Take a peek over at https://some-id.3musketeers-test.pages.dev
@@ -271,7 +272,7 @@ This section shows how to delete a Cloudflare Pages project.
 make shell
 
 # Delete the Pages project
-npx wrangler pages project delete ${ENV_CLOUDFLARE_PROJECT_NAME}
+npx wrangler pages project delete "${ENV_CLOUDFLARE_PROJECT_NAME}"
 #? Are you sure you want to delete "3musketeers-test"? This action cannot be undone. › y
 #Deleting 3musketeers-test
 #Successfully deleted 3musketeers-test
@@ -287,10 +288,10 @@ exit
 
 ### CI/CD
 
-[GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Netlify.
+[GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Cloudflare Pages.
 
-- A dedicated Netlify personal access token has been created for Github Actions
-- Environment variables required for deploying to Netlify are set as [secrets for GitHub Actions][linkGitHubActionsSecrets]
+- A dedicated Cloudflare API token has been created for Github Actions
+- Environment variables required for deploying to Cloudflare Pages are set as [secrets in GitHub Actions][linkGitHubActionsSecrets]
 - The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good real life example
 
 ### Visual elements
@@ -321,8 +322,6 @@ exit
 - Diagrams
     - [Mermaid][linkMermaid] is used to generate diagrams
     - All diagrams are in the directory [diagrams](diagrams)
-- README badges
-    - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
 ## Contributing
 
@@ -336,7 +335,7 @@ Thanks goes to [contributors][linkContributors].
 - [Compose][linkCompose]
 - [Make][linkMake]
 - [VitePress][linkVitePress]
-- [Netlify][linkNetlifyProjectBadge]
+- [Cloudflare Pages][linkCloudflarePages]
 - [GitHub Actions][linkGitHubActions]
 - [Vectornator][linkVectornator]
 - [Procreate][linkProcreate]
@@ -375,12 +374,6 @@ Thanks goes to [contributors][linkContributors].
 [linkCloudflareFindAccountAndZoneIDs]: https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/
 [linkCloudflareCreateAPIToken]: https://dash.cloudflare.com/profile/api-tokens
 [linkCloudflareWranglerCLI]: https://developers.cloudflare.com/workers/wrangler/
-
-[linkNetlify]: https://netlify.com
-[linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
-[linkNetlifyProjectBadge]: https://img.shields.io/netlify/f1862de7-2548-42c8-84e2-fb7dfae6bff8?label=Deploy&logo=netlify&style=for-the-badge
-[linkNetlifyCLI]: https://cli.netlify.com/commands/
-[linkNetlifyDeploymentBadge]: https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/
 
 [linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
