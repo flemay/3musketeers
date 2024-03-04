@@ -125,7 +125,7 @@ This repository is the [3 Musketeers website][link3Musketeers] built with [ViteP
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
-- [Cloudflare Pages][linkCloudflarePages] account
+- [Cloudflare][linkCloudflarePages] account
 
 ### Development
 
