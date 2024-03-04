@@ -291,7 +291,7 @@ exit
 [GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Cloudflare Pages.
 
 - A dedicated Cloudflare API token has been created for Github Actions
-- Environment variables required for deploying to Cloudflare Pages are set as [variables] and [secrets][linkGitHubActionsSecrets] in GitHub Actions
+- Environment variables required for deploying to Cloudflare Pages are set as [variables][linkGitHubActionsVariables] and [secrets][linkGitHubActionsSecrets] in GitHub Actions
 - The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good real life example
 
 ### Visual elements
