@@ -7,7 +7,6 @@
 **Test, build, and deploy your apps from anywhere, the same way!**
 
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
-[![Netlify Status][linkNetlifyProjectBadge]][linkNetlifyProject]
 [![License][linkLicenseBadge]][linkLicense]
 </div>
 
@@ -25,14 +24,16 @@
 - [Demo](#demo)
 - [Getting started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Steps](#steps)
+  - [Hello, World!](#hello-world)
 - [3 Musketeers website development](#3-musketeers-website-development)
   - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
-    - [Create a new site](#create-a-new-site)
-    - [Deploy](#deploy)
-    - [Delete](#delete)
+    - [0. Cloudflare account ID and API token](#0-cloudflare-account-id-and-api-token)
+    - [1. Envfile](#1-envfile)
+    - [2. Create](#2-create)
+    - [3. Deploy](#3-deploy)
+    - [4. Delete](#4-delete)
   - [CI/CD](#cicd)
   - [Visual elements](#visual-elements)
 - [Contributing](#contributing)
@@ -94,7 +95,6 @@ Create the following 2 files:
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
 services:
   alpine:
     image: alpine
@@ -118,15 +118,14 @@ For more information, visit [3 Musketeers website][link3Musketeers].
 
 ## 3 Musketeers website development
 
-This repository is the [3 Musketeers website][link3Musketeers] website built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
+This repository is the [3 Musketeers website][link3Musketeers] built with [VitePress][linkVitePress]. This section explains how to develop, test, and deploy using the 3 Musketeers.
 
 ### Prerequisites
 
 - [Docker](https://www.docker.com/)
 - [Compose](https://docs.docker.com/compose/)
 - [Make](https://www.gnu.org/software/make/)
-- [Netlify](https://netlify.com) account
-- [Netlify personal access token](https://app.netlify.com/user/applications)
+- [Cloudflare][linkCloudflarePages] account
 
 ### Development
 
@@ -165,75 +164,137 @@ make all
 
 ### Deployment
 
-The 3 Musketeers website is deployed to Netlify. This section shows how to create site, deploy, and delete using [Netlify CLI][linkNetlifyCLI]. This is handy for previewing new changes.
+The 3 Musketeers website is deployed to [Cloudflare Pages][linkCloudflarePages]. This section shows how to create, deploy, and delete a Pages project using [Wrangler CLI][linkCloudflareWranglerCLI]. This is handy for previewing new changes.
 
-#### Create a new site
+Given build, test and deployment are going to be done with GitHub Actions, this section follows the [Direct Upload][linkCloudflareDirectUpload] and [Run Wrangler in CI/CD][linkCloudflareWranglerCICD] directives.
 
-This section creates a new empty Netlify site. Ensure the `.env` file contains the access token.
+Lastly, this section assumes the application was built and tested (see previous section `Development`).
+
+#### 0. Cloudflare account ID and API token
+
+To interact with Cloudflare Pages with Wrangler CLI, Cloudflare account ID and API token are required.
+
+1. Account ID: [Find account and zone IDs][linkCloudflareFindAccountAndZoneIDs]
+1. API token
+	1. [Create API token][linkCloudflareCreateAPIToken]
+	1. Use `Edit Cloudflare Workers` template
+	1. Permissions:
+		- Account - Cloudflare Pages - Edit
+	1. Set a TIL
+1. Set the values in the `.env` file (based of `env.template`)
+1. Do not forget to delete the API token once it is not longer used
+
+#### 1. Envfile
+
+The following sections use the values from the file `.env`. Create file `.env` (based on `env.template`) with the correct values.
+
+Example:
+
+```bash
+# .env
+ENV_CLOUDFLARE_BRANCH_NAME=main
+ENV_CLOUDFLARE_PROJECT_NAME=3musketeers-test
+ENV_SECRET_CLOUDFLARE_ACCOUNT_ID=id-from-previous-section
+ENV_SECRET_CLOUDFLARE_API_TOKEN=token-from-previous-section
+```
+
+Verify:
+
+```bash
+make shell
+env | grep ENV_
+
+# List current projects
+npx wrangler pages project list
+
+# If `ENV_CLOUDFLARE_PROJECT_NAME` is part of the list, skip section `2. Create`
+# or update file `.env` with a new project name
+
+exit
+```
+
+#### 2. Create
+
+This section creates a new Pages project.
 
 ```bash
 # All the following commands will be run inside a container
 make shell
 
-# Disable telemetry (optional)
-yarn run netlify --telemetry-disable
+# Create a new project
+npx wrangler pages project create "${ENV_CLOUDFLARE_PROJECT_NAME}" --production-branch="${ENV_CLOUDFLARE_BRANCH_NAME}"
+#✨ Successfully created the '3musketeers-test' project. It will be available at https://3musketeers-test.pages.dev/ once you create your first deployment.
+#To deploy a folder of assets, run 'wrangler pages deploy [directory]'.
 
-# Create new Netlify blank site
-yarn run netlify sites:create --disable-linking
-# Answer the questions regarding the team and site name
-# Site name can be something like 3musketeers-preview-{random 5 digit numbers}
-Site Created
+# The new project should be listed and take note of the project domain
+npx wrangler pages project list
 
-Admin URL: https://app.netlify.com/sites/site-name
-URL:       https://site-name.netlify.app
-Site ID:   site-id
-
-# You can always get back that information
-yarn run netlify sites:list
-
-# Copy the ID to .env
+# Project is empty which should not be hosted! (My project domain for this example is 3musketeers-test.pages.dev)
+curl -I https://3musketeers-test.pages.dev
+#HTTP/2 522
+#...
 
 # Exit the container
 exit
 ```
 
-#### Deploy
+#### 3. Deploy
 
-This section deploys the website to an existing netlify site. Ensure the `.env` file contains the right site ID and access token.
-
-```bash
-# Build the website
-make build
-# Deploy to netlify
-make deploy
-# Test the website
-curl https://site-name.netlify.app
-# Clean up directory
-make prune
-```
-
-#### Delete
-
-This section deletes a netlify site. Ensure the `.env` file contains the right site ID and access token.
+This section deploys the website to an existing Cloudflare Pages project.
 
 ```bash
 # All the following commands will be run inside a container
 make shell
-# Disable telemetry (optional)
-yarn run netlify --telemetry-disable
-# Delete the site (optional)
-yarn run netlify sites:delete
+
+# Deploy!
+npx wrangler pages deploy docs/.vitepress/dist \
+	--project-name="${ENV_CLOUDFLARE_PROJECT_NAME}" \
+	--branch="${ENV_CLOUDFLARE_BRANCH_NAME}" \
+	--commit-message="Deploy!"
+#✨ Success! Uploaded 81 files (4.28 sec)
+#✨ Deployment complete! Take a peek over at https://some-id.3musketeers-test.pages.dev
+
+# Project is no longer empty!
+curl -I https://3musketeers-test.pages.dev
+#HTTP/2 200
+#...
+
+# Exit the container
+exit
+```
+
+As a side note, `make deploy` can be used instead.
+
+#### 4. Delete
+
+This section shows how to delete a Cloudflare Pages project.
+
+```bash
+# All the following commands will be run inside a container
+make shell
+
+# Delete the Pages project
+npx wrangler pages project delete "${ENV_CLOUDFLARE_PROJECT_NAME}"
+#? Are you sure you want to delete "3musketeers-test"? This action cannot be undone. › y
+#Deleting 3musketeers-test
+#Successfully deleted 3musketeers-test
+
+# Check the site is not there
+curl -I https://3musketeers-test.pages.dev
+#HTTP/2 530
+#...
+
 # Exit the container
 exit
 ```
 
 ### CI/CD
 
-[GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Netlify.
+[GitHub Actions][linkGitHubActions] is used to test PRs and deploy changes made to `main` branch to Cloudflare Pages.
 
-- A dedicated Netlify personal access token has been created for Github Actions
-- Environment variables required for deploying to Netlify are set as [secrets for GitHub Actions][linkGitHubActionsSecrets]
-- The GitHub Actions workflows follow the 3 Musketeers pattern so it is a good real life example
+- A dedicated Cloudflare API token has been created for Github Actions
+- Environment variables required for deploying to Cloudflare Pages are set as [variables][linkGitHubActionsVariables] and [secrets][linkGitHubActionsSecrets] in GitHub Actions
+- The GitHub Actions workflows follow the 3 Musketeers pattern
 
 ### Visual elements
 
@@ -263,8 +324,6 @@ exit
 - Diagrams
     - [Mermaid][linkMermaid] is used to generate diagrams
     - All diagrams are in the directory [diagrams](diagrams)
-- README badges
-    - [Netlify deployment badge][linkNetlifyDeploymentBadge]
 
 ## Contributing
 
@@ -278,7 +337,7 @@ Thanks goes to [contributors][linkContributors].
 - [Compose][linkCompose]
 - [Make][linkMake]
 - [VitePress][linkVitePress]
-- [Netlify][linkNetlifyProjectBadge]
+- [Cloudflare Pages][linkCloudflarePages]
 - [GitHub Actions][linkGitHubActions]
 - [Vectornator][linkVectornator]
 - [Procreate][linkProcreate]
@@ -295,7 +354,7 @@ Thanks goes to [contributors][linkContributors].
 [MIT][linkLicense]
 
 
-[link3Musketeers]: https://3musketeersdev.netlify.app
+[link3Musketeers]: https://3musketeers.pages.dev
 [linkContributing]: ./docs/guide/contributing.md
 [linkContributors]: CONTRIBUTORS
 [linkLicenseBadge]: https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge
@@ -309,13 +368,15 @@ Thanks goes to [contributors][linkContributors].
 [linkGitHubActionsProject]: https://github.com/flemay/3musketeers/actions
 [linkGitHubActionsProjectBadge]: https://img.shields.io/github/actions/workflow/status/flemay/3musketeers/deploy.yml?style=for-the-badge&logo=github
 [linkGitHubActions]: https://github.com/features/actions
+[linkGitHubActionsVariables]: https://docs.github.com/en/actions/learn-github-actions/variables
 [linkGitHubActionsSecrets]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
 
-[linkNetlify]: https://netlify.com
-[linkNetlifyProject]: https://app.netlify.com/sites/wizardly-khorana-16f9c6/deploys
-[linkNetlifyProjectBadge]: https://img.shields.io/netlify/f1862de7-2548-42c8-84e2-fb7dfae6bff8?label=Deploy&logo=netlify&style=for-the-badge
-[linkNetlifyCLI]: https://cli.netlify.com/commands/
-[linkNetlifyDeploymentBadge]: https://www.netlify.com/blog/2019/01/29/sharing-the-love-with-netlify-deployment-badges/
+[linkCloudflarePages]: https://pages.cloudflare.com/
+[linkCloudflareDirectUpload]: https://developers.cloudflare.com/pages/get-started/direct-upload/
+[linkCloudflareWranglerCICD]: https://developers.cloudflare.com/workers/wrangler/ci-cd/
+[linkCloudflareFindAccountAndZoneIDs]: https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/
+[linkCloudflareCreateAPIToken]: https://dash.cloudflare.com/profile/api-tokens
+[linkCloudflareWranglerCLI]: https://developers.cloudflare.com/workers/wrangler/
 
 [linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
 [linkProjectStargazers]: https://starchart.cc/flemay/3musketeers

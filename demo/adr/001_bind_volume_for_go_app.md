@@ -76,4 +76,4 @@ Finally, `demo.tape` would have an instruction to copy the directory `app/` to t
 
 
 [linkBindVolumeImplementation]: ../README.md#implementation
-[linkDockerOutsideOfDocker]: https://3musketeersdev.netlify.app/guide/patterns.html#docker-in-outside-of-docker-dind-dood
+[linkDockerOutsideOfDocker]: https://3musketeers.pages.dev/guide/patterns.html#docker-in-outside-of-docker-dind-dood
