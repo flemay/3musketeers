@@ -181,7 +181,7 @@ To interact with Cloudflare Pages with Wrangler CLI, Cloudflare account ID and A
 	1. Permissions:
 		- Account - Cloudflare Pages - Edit
 	1. Set a TIL
-1. Set the values in the `.env` file (based of `env.template`)
+1. These values will be used in section `1. Envfile`
 1. Do not forget to delete the API token once it is not longer used
 
 #### 1. Envfile
