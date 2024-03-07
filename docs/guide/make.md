@@ -5,8 +5,10 @@ Make is a cross-platform build tool to test and build software and it is used as
 Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
 ::: info
-The snippets in this section bring support for the documentation and are expected to be incomplete.
+* The snippets in this section bring support for the documentation and are expected to be incomplete.
+* [Makefile Tutorial](https://makefiletutorial.com/) is a great place to learn more about Make and Makefile.
 :::
+
 
 ## target vs _target
 
