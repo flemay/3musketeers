@@ -22,3 +22,9 @@ features:
   - title: Confidence
     details: Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
 ---
+
+## Demo
+
+<div align="center">
+	<img alt="Animated demo" src="https://raw.githubusercontent.com/flemay/3musketeers/vhs-demo/demo.gif" width="800px"/>
+</div>
