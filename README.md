@@ -38,7 +38,6 @@
   - [Visual elements](#visual-elements)
 - [Contributing](#contributing)
 - [References](#references)
-- [Stargazers over time](#stargazers-over-time)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
