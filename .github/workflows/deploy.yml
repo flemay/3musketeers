@@ -8,7 +8,7 @@ on:
       - 'docs/**'
       - 'Makefile'
       - 'package.json'
-      - 'yarn.lock'
+      - 'package-lock.json'
       - '.github/workflows/deploy.yml'
   schedule:
     - cron: '0 6 1 * *'
