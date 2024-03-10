@@ -345,10 +345,6 @@ Thanks goes to [contributors][linkContributors].
 - [Mermaid][linkMermaid]
 - [Preparing a perfect image for the og:image tag][linkArtegenceArticle]
 
-## Stargazers over time
-
-[![Stargazers over time][linkProjectStargazersSVG]][linkProjectStargazers]
-
 ## License
 
 [MIT][linkLicense]
@@ -377,9 +373,6 @@ Thanks goes to [contributors][linkContributors].
 [linkCloudflareFindAccountAndZoneIDs]: https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids/
 [linkCloudflareCreateAPIToken]: https://dash.cloudflare.com/profile/api-tokens
 [linkCloudflareWranglerCLI]: https://developers.cloudflare.com/workers/wrangler/
-
-[linkProjectStargazersSVG]: https://starchart.cc/flemay/3musketeers.svg
-[linkProjectStargazers]: https://starchart.cc/flemay/3musketeers
 
 [linkVitePress]: https://vitepress.vuejs.org/
 [linkFaviconio]: https://favicon.io
