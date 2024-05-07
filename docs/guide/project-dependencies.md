@@ -14,7 +14,6 @@ Example from The [3 Musketeers repository](https://github.com/flemay/3musketeers
 
 ```yaml
 # docker-compose.yml
-version: '3.7'
 services:
   node:
     image: node
@@ -27,13 +26,12 @@ Official images may not always solve project's dependency requirements and if ot
 
 ```yaml
 # docker-compose.yml
-version: '3.7'
 services:
   theservice:
     image: theorganisation/theimage
 ```
 
-## Local custom Docker images
+## Dev container
 
 If a project has specific dependency requirements, then creating (and maintaining) custom Docker images may be overkill. Instead, the project could have a Dockerfile that encapsulates the dependencies. This approach requires the image to be built locally before use.
 
@@ -53,7 +51,6 @@ RUN npm install -g \
 
 ```yaml
 # docker-compose.yml
-version: '3.7'
 services:
   mycontainer:
     build: .

@@ -350,7 +350,49 @@ Examples in this section use `.env` to pass environment variables to a container
 
 Another option is to change the Makefile in a way to use the specified file and not overwrite the `.env` file with it.
 
-## Check env vars in Makefile
+## Load envfile from Makefile
+
+Most of the time, environment variables in envfile are passed to the containers via Docker and Compose. There are times when accessing variables before passing to Docker is handy. Environment variables in an envfile can be explicitly loaded from Make:
+
+```bash
+# .env
+MESSAGE="Hello, World"
+```
+
+```makefile
+# Snippet from https://lithic.tech/blog/2020-05/makefile-dot-env
+ifneq (,$(wildcard ./.env))
+	include .env
+	export
+endif
+
+echo:
+	echo "$(MESSAGE)"
+```
+
+However, this does not work well if the envfile contains key-only variables:
+
+```bash
+# .env
+MESSAGE
+```
+
+Make will return:
+
+```bash
+make echo
+#.env:1: *** missing separator.  Stop.
+```
+
+Given that it does not work well with key-only variables, I simply tend to define the variables directly in the Makefile:
+
+```makefile
+MESSAGE ?= "Hello, World!"
+echo:
+	echo "$(MESSAGE)"
+```
+
+## Check presence of env vars in Makefile
 
 Here is a way for checking the presence of environment variables before executing a Make target.
 
