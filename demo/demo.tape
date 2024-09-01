@@ -73,14 +73,14 @@ Ctrl+C
 Ctrl+L
 Show
 
-# docker-compose.yml
+# compose.yml
 Type "# [3/4] Compose: define our Go environment using an offical"
 Sleep 500ms
 Enter
 Type "# Go Docker image where our application will be executed"
 Sleep 1s
 Ctrl+C
-Type "vim docker-compose.yml"
+Type "vim compose.yml"
 Sleep 1s
 Enter
 Sleep 3s

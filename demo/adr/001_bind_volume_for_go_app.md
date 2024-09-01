@@ -42,7 +42,7 @@ Instead of providing `ENV_HOST_APP_DIR` to the Go container, it would use an ext
 Implementation:
 
 ```yml
-# docker-compose.yml
+# compose.yml
 # ...
     volumes:
       # ...
@@ -54,14 +54,14 @@ volumes:
 ```
 
 ```yml
-# app/docker-compose.yml
+# app/compose.yml
 # ...
     volumes:
       - type: volume
         source: demo_app
         target: /opt/app
 volumes:
-  # The name of the volume created by the docker-compose.yml above
+  # The name of the volume created by the compose.yml above
   # can be found with the command `docker volume ls | grep demo`
   demo_app:
     external: true
