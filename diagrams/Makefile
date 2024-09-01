@@ -1,5 +1,5 @@
 COMPOSE_PULL = docker compose pull
-COMPOSE_RUN_MERMAID_SH = docker-compose run --rm --entrypoint sh mermaid
+COMPOSE_RUN_MERMAID_SH = docker compose run --rm --entrypoint sh mermaid
 
 all: deps mermaid prune
 
@@ -13,4 +13,4 @@ shell:
 	$(COMPOSE_RUN_MERMAID_SH)
 
 prune:
-	docker-compose down --remove-orphans --volumes
+	docker compose down --remove-orphans --volumes

@@ -1,7 +1,7 @@
-COMPOSE_PULL = docker-compose pull
-COMPOSE_RUN_NODE = docker-compose run --rm node
-COMPOSE_UP_NODE = docker-compose up -d node
-COMPOSE_UP_NODE_DEV = docker-compose up node_dev
+COMPOSE_PULL = docker compose pull
+COMPOSE_RUN_NODE = docker compose run --rm node
+COMPOSE_UP_NODE = docker compose up -d node
+COMPOSE_UP_NODE_DEV = docker compose up node_dev
 ENVFILE ?= env.template
 SERVE_BASE_URL ?= http://node:5173
 
@@ -73,7 +73,7 @@ _deploy:
 	--commit-message="Deploy!"
 
 pruneDocker:
-	docker-compose down --remove-orphans --volumes
+	docker compose down --remove-orphans --volumes
 
 prune:
 	$(COMPOSE_RUN_NODE) bash -c "rm -fr docs/.vitepress/dist docs/.vitepress/.cache"

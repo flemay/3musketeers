@@ -41,10 +41,10 @@ ENV_B=
 ENV_C=env_c
 ```
 
-And the file `docker-compose.yml`:
+And the file `compose.yml`:
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 services:
   alpine:
     image: alpine
@@ -118,7 +118,7 @@ ENV_VAR_B=b
     - env.template
     - env.example
     - makefile
-    - docker-compose.yml
+    - compose.yml
     - application source code
     - pipeline-as-code file
 - Error prone
@@ -160,10 +160,10 @@ And the file `env.example`:
 ENV_MY_VAR=MY_VALUE
 ```
 
-And the file `docker-compose.yml`:
+And the file `compose.yml`:
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 version: "3.8"
 services:
   alpine:
@@ -177,7 +177,7 @@ services:
 ```
 
 ::: info
-The `docker-compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. This was required for using Compose otherwise Compose would simply fail. Examples in this section will use `.env` except when generating the file.
+The `compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. This was required for using Compose otherwise Compose would simply fail. Examples in this section will use `.env` except when generating the file.
 :::
 
 #### Explicit
@@ -190,7 +190,7 @@ Explicit is the method I prefer the most.
 
 ```make
 # Makefile
-COMPOSE_RUN_ALPINE = docker-compose run alpine
+COMPOSE_RUN_ALPINE = docker compose run alpine
 ENVFILE ?= env.template
 
 envfile:
@@ -225,7 +225,7 @@ Targets requiring `.env` file will get it created if it does not exist. The `.en
 
 ```make
 # Makefile
-COMPOSE_RUN_ALPINE = docker-compose run alpine
+COMPOSE_RUN_ALPINE = docker compose run alpine
 ENVFILE ?= env.template
 
 .env:
@@ -262,7 +262,7 @@ Targets requiring `.env` file will get it created if it does not exist. The `.en
 
 ```makefile
 # Makefile
-COMPOSE_RUN_ALPINE = docker-compose run alpine
+COMPOSE_RUN_ALPINE = docker compose run alpine
 ifdef ENVFILE
 	ENVFILE_TARGET=envfile
 else
@@ -299,7 +299,7 @@ make target ENVFILE=env.example
 
 ### With Make and Docker
 
-Everything covered in section [With Make and Compose][linkSectionWithMakeAndCompose] can be applied here except Docker won't use `docker-compose.yml`. Here's an example with the explicit method:
+Everything covered in section [With Make and Compose][linkSectionWithMakeAndCompose] can be applied here except Docker won't use `compose.yml`. Here's an example with the explicit method:
 
 ```makefile
 # Makefile
@@ -446,7 +446,7 @@ ENV_MESSAGE="Hello, World!"
 ```
 
 ```yml
-# docker-compose.yml
+# compose.yml
 version: '3.8'
 services:
   alpine:
@@ -461,7 +461,7 @@ services:
 
 ```makefile
 # Makefile
-COMPOSE_RUN_ALPINE = docker-compose run alpine
+COMPOSE_RUN_ALPINE = docker compose run alpine
 ENVFILE ?= env.template
 
 envfile:

@@ -86,7 +86,7 @@ Mounting volumes with Docker on Mac or Windows can be slow. For instance, develo
 On Mac, using the `native_osx` strategy can also help. The Docker Compose file would look like the following:
 
 ```yaml
-# docker-compose.yml
+# compose.yml
  yourservice:
     image: animage
     volumes:

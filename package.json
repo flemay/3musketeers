@@ -15,6 +15,7 @@
     "docker",
     "make",
     "makefile",
+    "compose",
     "docker-compose",
     "cicd",
     "methodology"

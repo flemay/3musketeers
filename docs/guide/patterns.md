@@ -39,7 +39,7 @@ There are [ways][linkDocker] to add Make to your Docker image if it does not hav
 :::
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 version: '3'
 services:
   alpine:
@@ -67,7 +67,7 @@ make echo
 Make calls Compose which executes a shell/bash command inside a Docker container.
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 version: '3'
 services:
   alpine:
@@ -122,7 +122,7 @@ chmod +x make.sh
 ```
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 version: '3.8'
 services:
   alpine:
@@ -158,7 +158,7 @@ func main() {
 ```
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 version: '3'
 services:
   golang:
@@ -194,7 +194,7 @@ There are many languages and tools out there to make task implementation easy su
 ```
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 version: '3'
 services:
   node:
@@ -207,7 +207,7 @@ services:
 ```makefile
 # Makefile
 echo:
-	docker-compose run --rm node npm run echo
+	docker compose run --rm node npm run echo
 ```
 
 ```bash

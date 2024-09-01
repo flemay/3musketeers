@@ -13,7 +13,7 @@ This approach relies on official Docker images to manage dependencies. For insta
 Example from The [3 Musketeers repository](https://github.com/flemay/3musketeers):
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 services:
   node:
     image: node
@@ -25,7 +25,7 @@ services:
 Official images may not always solve project's dependency requirements and if other projects share the same requirements, then custom Docker images may be a good fit. The images are built by the organization, and deployed to a Docker registry. From a project perspective, it is the same as using official Docker images except, this time, the organization is responsible of maintaining them.
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 services:
   theservice:
     image: theorganisation/theimage
@@ -50,7 +50,7 @@ RUN npm install -g \
 ```
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 services:
   mycontainer:
     build: .

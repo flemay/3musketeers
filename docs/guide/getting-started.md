@@ -17,7 +17,7 @@ Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The comm
 Create the following 2 files:
 
 ```yaml
-# docker-compose.yml
+# compose.yml
 services:
   alpine:
     image: alpine
