@@ -137,7 +137,7 @@ make deps
 # Start vitepress server for local development
 make dev
 # Wait till the message 'vite v2.5.3 dev server running at' appears
-# Access the website in your browser at http://localhost:8080/
+# Access the website in your browser at http://127.0.0.1:5173/
 # \<ctrl-c\> to stop
 
 # Build static site
@@ -145,7 +145,7 @@ make build
 
 # Serve static site for local development
 make serveDev
-# Access the website in your browser at http://localhost:8080/
+# Access the website in your browser at http://127.0.0.1:5173/
 # \<ctrl-c\> to stop
 
 # Serve static website (headless)
