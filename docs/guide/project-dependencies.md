@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Project dependencies
 
 Dependencies play a major role when comes time to test, build, and deploy a project. A project can have many dependencies such as programing languages, third party packages, databases, etc. This section covers some approaches to handle them with the 3 Musketeers.
@@ -40,8 +44,6 @@ If a project has specific dependency requirements, then creating (and maintainin
 FROM alpine:latest
 RUN apk --update add bash curl nodejs npm git \
   && rm -rf /var/cache/apk/*
-# install Hugo
-# ...
 # install node modules
 RUN npm install -g \
     postcss-cli \
@@ -52,11 +54,34 @@ RUN npm install -g \
 ```yaml
 # compose.yml
 services:
-  mycontainer:
+  devcontainer:
     build: .
-    image: flemay/myimage:local
 # ...
 ```
+
+### Share Dev container between services
+
+There are situations where having multiple services sharing the same image is useful. For instance, there could be a base service that does not expose any port and another service that does. The base image would be used in CI without any port collision and the other one used locally.
+
+```yaml
+# compose.yml
+services:
+  devcontainer: &devcontainer
+    build: .
+    image: localhost:5000/myproject-devcontainer
+    pull_policy: never
+
+  devcontainer-withports:
+    <<: *devcontainer
+    ports:
+      - "127.0.0.1:3000:3000"
+```
+
+In the snippet above, `devcontainer` includes the combination of [`build`, `image` and `pull_policy`](https://docs.docker.com/reference/compose-file/build/#using-build-and-image) to direct `Compose` to build the image `localhost:5000/myproject-devcontainer` if it is not cached already. The reason why the name is specified is for service `devcontainer-withports` to use the same image. By default, if `image` is omitted, `Compose` would build 2 images: `myproject-devcontainer` and `myproject-devcontainer-withports`.
+
+[Fragment](https://docs.docker.com/reference/compose-file/fragments/) is used to repeat the configuration of service `devcontainer` in service `devcontainer-withports`.
+
+Lastly, the image name contains `localhost:5000/` to prevent from pushing the image to a different Docker registry by mistake. With the command `docker compose push devcontainer`, `Compose` will attempt to push the image `localhost:5000/myproject-devcontainer` and fail unless there is a registry service running locally.
 
 ## Share dependencies with host or not
 
