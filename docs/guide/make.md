@@ -194,9 +194,9 @@ _test:
 	@echo "_test"
 ```
 
-## Reducing boilerplate
+## Reduce boilerplate
 
-Sometimes it may be redundant to always define a `target` that calls `_target`.
+Sometimes it may be redundant to always define a `target` that just calls `_target`.
 
 One option is the following:
 
