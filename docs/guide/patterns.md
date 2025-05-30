@@ -8,17 +8,15 @@ In a nutshell, Make calls either Docker or Compose which then runs a Command ins
 
 ![pattern-overview](./assets/pattern.mmd.svg)
 
-::: info
-The code in this section is expected to be fully functional.
-:::
+> [!NOTE]
+> The code in this section is expected to be fully functional.
 
-::: tip
-The [3 Musketeers repository][link3MusketeersGitHub] applies the patterns:
-
-- Compose: [this website development][link3MusketeersWebsiteDevelopment]
-- Docker: section [Getting started][link3MusketeersGettingStarted]
-- Docker-outside-of-Docker: [demo generated with VHS][link3MusketeersDemoCode]
-:::
+> [!TIP]
+> The [3 Musketeers repository][link3MusketeersGitHub] applies the patterns:
+>
+> - Compose: [this website development][link3MusketeersWebsiteDevelopment]
+> - Docker: section [Getting started][link3MusketeersGettingStarted]
+> - Docker-outside-of-Docker: [demo generated with VHS][link3MusketeersDemoCode]
 
 ## Compose
 
@@ -34,9 +32,8 @@ Here are some examples illustrating Compose with different commands.
 
 Make calls Compose which then calls another Make target inside a Docker container. This requires the Docker image (that runs the command) to have Make installed.
 
-::: tip
-There are [ways][linkDocker] to add Make to your Docker image if it does not have it.
-:::
+> [!TIP]
+> There are [ways][linkDocker] to add Make to your Docker image if it does not have it.
 
 ```yaml
 # compose.yml
@@ -49,7 +46,7 @@ services:
     working_dir: /opt/app
 ```
 
-```makefile
+```make
 # Makefile
 echo:
 	docker compose run --rm alpine make _echo
@@ -74,7 +71,7 @@ services:
     image: alpine
 ```
 
-```makefile
+```make
 # Makefile
 echo:
 	docker compose run --rm alpine sh -c 'echo Hello, World!'
@@ -132,7 +129,7 @@ services:
     working_dir: /opt/app
 ```
 
-```makefile
+```make
 # Makefile
 test:
 	docker compose run --rm alpine make.sh deps test
@@ -168,7 +165,7 @@ services:
     working_dir: /opt/app
 ```
 
-```makefile
+```make
 # Makefile
 echo:
 	docker compose run --rm golang go run main.go
@@ -204,7 +201,7 @@ services:
     working_dir: /opt/app
 ```
 
-```makefile
+```make
 # Makefile
 echo:
 	docker compose run --rm node npm run echo
@@ -220,7 +217,7 @@ Make calls directly Docker instead of Compose. Everything that is done with Comp
 
 ![pattern-docker](./assets/pattern-docker.mmd.svg)
 
-```makefile
+```make
 # Makefile
 echo:
 	docker run --rm alpine echo 'Hello, World!'

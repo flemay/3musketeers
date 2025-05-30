@@ -8,9 +8,8 @@ Development following [the twelve-factor app][link12factor] use the [environment
 
 Often there are many environment variables and having them in a `.env` file becomes handy. Docker and Compose do use [environment variables file][linkDockerEnvfile] to pass the variables to the containers.
 
-::: info
-The code in this section is expected to be fully functional.
-:::
+> [!NOTE]
+> The code in this section is expected to be fully functional.
 
 ## Naming and envfile structure
 
@@ -65,17 +64,15 @@ docker compose run --rm alpine env
 # Same as Docker
 ```
 
-::: tip
-Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
-:::
+> [!TIP]
+> Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
 
 ## Template and example envfiles
 
 `env.template` and `env.example` files provide some help when managing environment variables in a project.
 
-::: danger ENVFILES AND SOURCE CONTROL
-As `env.template` and `env.example` files are meant to be part of the source code, never include sensitive values like passwords. Additionally, include `.env*` in your `.gitignore`.
-:::
+> [!CAUTION] ENVFILES AND SOURCE CONTROL
+> As `env.template` and `env.example` files are meant to be part of the source code, never include sensitive values like passwords. Additionally, include `.env*` in your `.gitignore`.
 
 ### env.template
 
@@ -128,9 +125,8 @@ ENV_VAR_B=b
 
 Given all environment variables are set in your CI/CD pipeline, creating a `.env` file based on `env.template` allows values of those environment variables to be passed to the Docker container environments.
 
-::: tip
-This is demonstrated in section [Tutorial][linkSectionTutorial]
-:::
+> [!TIP]
+> This is demonstrated in section [Tutorial][linkSectionTutorial]
 
 ## Day-to-day development
 
@@ -176,17 +172,15 @@ services:
     working_dir: /opt/app
 ```
 
-::: info
-The `compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. This was required for using Compose otherwise Compose would simply fail. Examples in this section will use `.env` except when generating the file.
-:::
+> [!NOTE]
+> The `compose.yml` above has the [variable substitution][linkDockerComposeVarialeSubstitution] `env_file: ${ENVFILE:-.env}`, which allows the use of a different file that `.env` by defining the environment variable `ENVFILE`. This was required for using Compose otherwise Compose would simply fail. Examples in this section will use `.env` except when generating the file.
 
 #### Explicit
 
 Targets requiring `.env` file will fail if the file does not exist. The `.env` file can be created with `envfile` target.
 
-::: tip
-Explicit is the method I prefer the most.
-:::
+> [!TIP]
+> Explicit is the method I prefer the most.
 
 ```make
 # Makefile
@@ -260,7 +254,7 @@ make envfile target ENVFILE=env.example
 
 Targets requiring `.env` file will get it created if it does not exist. The `.env` file can be overwritten by setting `ENVFILE` environment variable.
 
-```makefile
+```make
 # Makefile
 COMPOSE_RUN_ALPINE = docker compose run alpine
 ifdef ENVFILE
@@ -301,7 +295,7 @@ make target ENVFILE=env.example
 
 Everything covered in section [With Make and Compose][linkSectionWithMakeAndCompose] can be applied here except Docker won't use `compose.yml`. Here's an example with the explicit method:
 
-```makefile
+```make
 # Makefile
 MAKEFILE_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 DOCKER_RUN_ALPINE = docker run --rm \
@@ -359,7 +353,7 @@ Most of the time, environment variables in envfile are passed to the containers 
 MESSAGE="Hello, World"
 ```
 
-```makefile
+```make
 # Snippet from https://lithic.tech/blog/2020-05/makefile-dot-env
 ifneq (,$(wildcard ./.env))
 	include .env
@@ -386,7 +380,7 @@ make echo
 
 Given that it does not work well with key-only variables, I simply tend to define the variables directly in the Makefile:
 
-```makefile
+```make
 MESSAGE ?= "Hello, World!"
 echo:
 	echo "$(MESSAGE)"
@@ -396,7 +390,7 @@ echo:
 
 Here is a way for checking the presence of environment variables before executing a Make target.
 
-```makefile
+```make
 # Makefile
 echo: env-ENV_MESSAGE
 	@docker run --rm alpine echo "$(ENV_MESSAGE)"
@@ -445,7 +439,7 @@ ENV_MESSAGE
 ENV_MESSAGE="Hello, World!"
 ```
 
-```yml
+```yaml
 # compose.yml
 version: '3.8'
 services:
@@ -459,7 +453,7 @@ services:
     working_dir: /opt/app
 ```
 
-```makefile
+```make
 # Makefile
 COMPOSE_RUN_ALPINE = docker compose run alpine
 ENVFILE ?= env.template

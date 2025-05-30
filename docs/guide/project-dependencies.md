@@ -6,9 +6,8 @@ outline: 'deep'
 
 Dependencies play a major role when comes time to test, build, and deploy a project. A project can have many dependencies such as programing languages, third party packages, databases, etc. This section covers some approaches to handle them with the 3 Musketeers.
 
-::: tip
-It is not uncommon for a project to combine the approaches. For instance, a project may have a local Docker images for some dependencies and use an official database image.
-:::
+> [!TIP]
+> It is not uncommon for a project to combine the approaches. For instance, a project may have a local Docker images for some dependencies and use an official database image.
 
 ## Official Docker images
 

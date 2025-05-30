@@ -40,12 +40,10 @@ _The demo was generated with VHS using the 3 Musketeers ([source](https://github
 
 ---
 
-::: info
-The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo was inspired by existing drawings on the Internet.
-:::
+> [!NOTE]
+> The 3 Musketeers is not affiliated with Docker, Inc. or Docker Project in any way. The logo was inspired by existing drawings on the Internet.
 
-::: warning OPINIONATED
-This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines, or even [contribute][linkContributing].
-:::
+> [!WARNING] OPINIONATED
+> This website contains opinionated guidelines and tips based on our experience using the 3 Musketeers and are subject to change over time. Feel free to use/share your own guidelines, or even [contribute][linkContributing].
 
 [linkContributing]: contributing
