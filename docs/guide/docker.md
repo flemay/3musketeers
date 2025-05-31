@@ -8,19 +8,18 @@ Docker is the most important musketeer of the three. Many tasks such as testing,
 
 ## Useful Docker images
 
-::: warning SECURITY
-Docker images are like any other software. You should do your own research before using them and this list does not make an exception.
-:::
+> [!WARNING] SECURITY
+> Docker images are like any other software. You should do your own research before using them and this list does not make an exception.
 
 * [flemay/musketeers][linkDockerHubMusketeers] has useful tools for a 3 Musketeers project including Docker, Compose, Make, and more. It also allows to do [Docker-in-Docker (DinD)][linkPatternDinD].
 * [jwilder/dockerize][linkDockerHubDockerize]: There is often a need to wait for a service to start before interacting with it. For instance, waiting for a database container to be ready before running a migration. The image `jwilder/dockerize` can be used to help with this scenario.
 
-  ```makefile
-  # Makefile
-  dbStart:
-    docker compose up -d db
-    docker compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
-  ```
+```make
+# Makefile
+dbStart:
+  docker compose up -d db
+  docker compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
+```
 
 * [dockerlint][linkDockerHubDockerlint] validates your Dockerfiles
 * [shellcheck][linkDockerHubShellcheck] lints your shell scripts
@@ -52,7 +51,7 @@ If you only want to call `make` with common shell commands, or want to use `git`
 
 Whenever a command runs another command it installs `make` and then executes `make _target`. Depending on how many times a command is run, this may be inefficient as it needs to download `make` every time.
 
-```makefile
+```make
 # Makefile
 MAKEFILE_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 hello:
@@ -75,9 +74,8 @@ RUN apk add --update make
 # ...
 ```
 
-::: tip
-Publishing your custom image is not required. Refer to section [Project dependencies][linkProjectDependencies] for more details.
-:::
+> [!TIP]
+> Publishing your custom image is not required. Refer to section [Project dependencies][linkProjectDependencies] for more details.
 
 ## Docker development is slow
 

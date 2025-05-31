@@ -107,7 +107,7 @@ NETLIFY_SITE_ID
 
 ## Makefile
 
-```Makefile
+```make
 deploy:
 	$(COMPOSE_RUN_NODE) make _deploy
 _deploy:

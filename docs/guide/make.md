@@ -4,27 +4,24 @@ Make is a cross-platform build tool to test and build software and it is used as
 
 Having a clean `Makefile` is key. It helps to understand it quickly and is easier to maintain. Therefore, having some conventions like [target vs _target][linkTargetVSUnderscoreTarget], and [Pipeline targets][linkPipelineTargets] really aim to make the developer's life easier. The conventions are for the context of the 3 Musketeers.
 
-::: info
-* The snippets in this section bring support for the documentation and are expected to be incomplete.
-* [Makefile Tutorial](https://makefiletutorial.com/) is a great place to learn more about Make and Makefile.
-:::
-
+> [!NOTE]
+> * The snippets in this section bring support for the documentation and are expected to be incomplete.
+> * [Makefile Tutorial](https://makefiletutorial.com/) is a great place to learn more about Make and Makefile.
 
 ## target vs _target
 
-::: info
-This is mainly when using [Make in a pattern][linkPatternsMake].
-:::
+> [!NOTE]
+> This is mainly when using [Make in a pattern][linkPatternsMake].
 
 Using `target` and `_target` is a naming convention to distinguish targets that can be called on any platform (Windows, Linux, MacOS) versus those that need specific environment/dependencies.
 
-```makefile
+```make
 # Makefile
-# buid target uses Compose which is available on Windows, Unix, and MacOS
+# Target `deploy` uses Compose which is available on Windows, Unix, and MacOS
 deploy:
 	docker compose run --rm serverless make _deploy
 
-# This _deploy target depends on a NodeJS environment and Serverless Framework which may not be available on the hosts.
+# Target `_deploy` depends on a NodeJS environment and Serverless Framework which may not be available on the hosts.
 # It is executed in a Docker container that provides the right environment for its execution.
 # If the host has NodeJS and Serverless Framework installed, `make _build` can be called.
 _deploy:
@@ -37,7 +34,7 @@ _deploy:
 
 By default `.PHONY` can be left out unless the target collides with the name of file/folder. One case is a target `test` which often conflicts with a folder named `test`.
 
-```makefile
+```make
 # Makefile
 # can be written into a single line with other targets that need .PHONY
 .PHONY: test targetA targetB
@@ -56,7 +53,7 @@ Sometimes you want the target to match the name of a file in which case `.PHONY`
 
 Docker and Compose commands can be assigned to variables.
 
-```makefile
+```make
 # Makefile
 COMPOSE_RUN_NODE = docker compose run --rm serverless
 
@@ -66,7 +63,7 @@ deploy:
 
 Or
 
-```makefile
+```make
 # Makefile
 NODE_RUN = docker compose run --rm serverless
 
@@ -78,11 +75,10 @@ deploy:
 
 To make the Makefile easier to read, avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`. Even more, restrict `target` to file dependencies only. This allows one to call a specific target without worrying that other targets will be executed too.
 
-::: info
-Use [Pipeline targets][linkPipelineTargets] as a way to describe the list of dependencies.
-:::
+> [!NOTE]
+> Use [Pipeline targets][linkPipelineTargets] as a way to describe the list of dependencies.
 
-```makefile
+```make
 # Makefile
 deploy: package.zip
 	$(COMPOSE_RUN_NODE) make _deploy
@@ -92,25 +88,25 @@ deploy: package.zip
 
 Section [Target dependencies][linkTargetDependencies] suggests to limit target dependencies as mush as possible but there is one exception: pipeline targets.
 
-We call Pipeline targets the targets that have a```list of dependencies, usually other targets. They are often used in CI to reduce the number of Make calls and keep the CI pipelines clean.
+We call pipeline targets the targets that have a list of dependencies, usually other targets. They are often used in CI to reduce the number of Make calls and keep the CI pipelines clean.
 
 It is best having them at the top of the Makefile as they give an understanding of the application pipelines when reading the Makefile.
 
-```makefile
+```make
 # Makefile
-# pipeline targets first
+# Pipeline targets first
 stageTest: build test clean
 
 # other targets below
 ```
 
-## make and target all
+## Target `all`
 
 Running only `make` will trigger the first target from the Makefile. A convention among developer is to have a target `all` as the first target. In the 3 Musketeers context, `all` is a perfect [pipeline target][linkPipelineTargets] to document and test locally the sequence of targets to test, build, run, etc.
 
-```makefile
+```make
 # Makefile
-# first target
+# First target
 all: deps test build clean
 
 # other targets below
@@ -123,6 +119,27 @@ make all
 make
 ```
 
+## Target `noTargetGuard`
+
+Another option to handle `make` with no target is to have the first target to return an error. Something like
+
+```make
+# Makefile
+# First target
+noTargetGuard:
+  @echo "Error: target is required"
+  exit 1
+
+# other targets below
+```
+
+```sh
+make
+# Error: target required
+# exit 1
+# make: *** [noTargetGuard] Error 1
+```
+
 ## Ordering targets
 
 Ordering targets in some ways may help maintaining the Makefile in the long run. Here are some suggestions:
@@ -131,47 +148,132 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 - Targets [all][linkMakeAndTargetAll] and [pipeline target][linkPipelineTargets] at the top of the file (after the variables)
 - Ordering targets in a build pipeline flow
 
-	```makefile
-	# Makefile
-	deps:
-		# ...
-	test:
-		# ...
-	build:
-		# ...
-	deploy:
-		# ...
-	```
+```make
+# Makefile
+deps:
+	# ...
+test:
+	# ...
+build:
+	# ...
+deploy:
+	# ...
+```
 
 - Group [target and _target][linkTargetVSUnderscoreTarget] together
 
-	```makefile
-	# Makefile
-	deps:
-		# ...
-	_deps:
-		# ...
-	test:
-		# ...
-	_test:
-		# ...
-	```
+```make
+# Makefile
+DOCKER_RUN = docker run -it -v $(PWD)/Makefile:/go/Makefile --rm golang
+
+deps:
+	$(DOCKER_RUN) make _deps
+_deps:
+	@echo "_deps"
+
+test:
+	$(DOCKER_RUN) make _test
+_test:
+	@echo "_test"
+```
 
 - Alternatively, [target and _target][linkTargetVSUnderscoreTarget] can be separated if too verbose.
 
-	```makefile
-	# Makefile
-	deps:
-		# ...
-	test:
-		# ...
-	_deps:
-		# ...
-	_test:
-		# ...
-	```
+```make
+# Makefile
+DOCKER_RUN = docker run -it -v $(PWD)/Makefile:/go/Makefile --rm golang
 
-- Utility targets defined at the bottom of the Makefile
+deps:
+	$(DOCKER_RUN) make _deps
+test:
+	$(DOCKER_RUN) make _test
+
+_deps:
+	@echo "_deps"
+_test:
+	@echo "_test"
+```
+
+## Reduce boilerplate
+
+Sometimes it may be redundant to always define a `target` that just calls `_target`.
+
+One option is the following:
+
+```make
+# Makefile
+DOCKER_RUN = docker run -it -v $(PWD)/Makefile:/go/Makefile --rm golang
+
+deps build deploy:
+	$(DOCKER_RUN) make _$@
+
+_deps:
+	@echo "_deps"
+_build:
+	@echo "_build"
+_deploy:
+	@echo "_deploy"
+```
+
+Or using multiple lines:
+
+```make
+# Makefile
+DOCKER_RUN = docker run -it -v $(PWD)/Makefile:/go/Makefile --rm golang
+
+deps \
+build \
+deploy:
+	$(DOCKER_RUN) make _$@
+
+_deps:
+	@echo "_deps"
+_build:
+	@echo "_build"
+_deploy:
+	@echo "_deploy"
+```
+
+```sh
+make deps
+#docker run -it -v /tmp/maketest/Makefile:/go/Makefile --rm golang make _deps
+#_deps
+```
+
+Another option, although less explicit, is to use a catch-all:
+
+```make
+# Makefile
+ DOCKER_RUN = docker run -it -v $(PWD)/Makefile:/go/Makefile --rm golang
+
+.DEFAULT:
+	@echo "Target '$<' is in catch-all"
+	$(DOCKER_RUN) make _$<
+
+_deps:
+	@echo "_deps"
+_build:
+	@echo "_build"
+_deploy:
+	@echo "_deploy"
+test:
+	@echo "Target 'test' is not in catch-all"
+	$(DOCKER_RUN) make _test
+_test:
+	@echo "_test"
+```
+
+```sh
+make deps
+# Target 'deps' is in catch-all
+# docker run -it -v /tmp/maketest/Makefile:/go/Makefile --rm golang make _deps
+# _deps
+
+make test
+# Target 'test' is not in catch-all
+# docker run -it -v /tmp/maketest/Makefile:/go/Makefile --rm golang make _test
+# _test
+```
 
 ## Target and single responsibility
 
@@ -189,15 +291,14 @@ The target `envfile` creates the file `.env` which is very useful for a project 
 
 ## Project dependencies
 
-::: info
-Refer to [project dependencies][linkProjectDependencies] section for more information.
-:::
+> [!NOTE]
+> Refer to [project dependencies][linkProjectDependencies] section for more information.
 
 It is a good thing to have a target `deps` for installing all the dependencies required to test, build, and deploy an application.
 
 A tar file of the dependencies can be created as an artifact to be passed along through the CI/CD stages. This step is useful as it acts as a cache. Subsequent CI/CD stages will have the exact same dependencies. Moreover, it is faster to pass along a tar file than a folder with many files.
 
-```makefile
+```make
 # Makefile
 COMPOSE_RUN_NODE = docker compose run --rm node
 DEPS_DIRS = node_modules
@@ -226,10 +327,9 @@ _depsUnpack: $(DEPS_ARTIFACT)
 
 It is up to the CI/CD pipeline to call the targets **explicitly** in the right order, i.e: `make deps depsPack` and `make depsUnpack test`. Alternatively, the Makefile can have targets like `ciDeps: deps depsPack` and `ciTest: depsUnpack test`.
 
-::: info DEPS_DIRS
-DEPS_DIRS is language agnostic and can include many directories:
-DEPS_DIRS = node_modules vendor packages/**/dist/*
-:::
+> [!NOTE] DEPS_DIRS
+> DEPS_DIRS is language agnostic and can include many directories:
+> DEPS_DIRS = node_modules vendor packages/**/dist/*
 
 ## Calling multiple targets in a single command
 
@@ -246,7 +346,7 @@ make envfile anotherTarget ENVFILE=your.envfile
 
 The symbol `@` prevents the command to be printed out prior its execution. Useful when there are secrets at stake.
 
-```makefile
+```make
 # Makefile
 # If '@ 'is omitted, `DOCKER_PASSWORD` would be revealed.
 push:
@@ -259,7 +359,7 @@ push:
 
 The symbol `-` allows the execution to continue even if the command failed.
 
-```makefile
+```make
 # Makefile
 TAG=v1.0.0
 
@@ -291,7 +391,7 @@ rm: cannot remove ‘vendor/gopkg.in/yaml.v2/README.md’: Permission denied
 
 This happens because the creation of those files was done with a different user (in a container as root) and the current user does not have permission to delete them. One way to mitigate this is to call the command in the docker container.
 
-```makefile
+```make
 # Makefile
 cleanDocker:
 	docker compose down --remove-orphans
@@ -310,7 +410,7 @@ Sometimes a target needs to run a container in order to execute its task.
 
 For instance, a target `test` may need a database to run prior executing the tests.
 
-```makefile
+```make
 # Makefile
 # target test calls cleanDocker before starting a postgres container
 test: cleanDocker startPostgres
@@ -331,7 +431,7 @@ cleanDocker:
 
 The Makefile can be split into smaller files.
 
-```makefile
+```make
 # Makefile
 # makefiles/deploy.mk
 deploy:
@@ -341,7 +441,7 @@ _deploy:
 	serverless deploy
 ```
 
-```makefile
+```make
 # Makefile
 # Makefile
 include makefiles/*.mk
@@ -355,7 +455,7 @@ In some situations, targets become very complex due to the syntax and limitation
 
 [This][linkSelfDocumentedMakefileGist] is pretty neat for self-documenting the Makefile.
 
-```makefile
+```make
 # Makefile
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'

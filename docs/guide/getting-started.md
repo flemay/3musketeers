@@ -23,7 +23,7 @@ services:
     image: alpine
 ```
 
-```makefile
+```make
 # Makefile
 echo:
 	docker compose run --rm alpine echo 'Hello, World!'
