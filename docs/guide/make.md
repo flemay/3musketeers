@@ -49,28 +49,6 @@ _test:
 
 Sometimes you want the target to match the name of a file in which case `.PHONY` would not be used. See [Environment variables & .env file][linkEnvironmentVariables] for an example.
 
-## Docker and Compose commands as variables
-
-Docker and Compose commands can be assigned to variables.
-
-```make
-# Makefile
-COMPOSE_RUN_NODE = docker compose run --rm serverless
-
-deploy:
-	$(COMPOSE_RUN_NODE) make _deploy
-```
-
-Or
-
-```make
-# Makefile
-NODE_RUN = docker compose run --rm serverless
-
-deploy:
-	$(NODE_RUN) make _deploy
-```
-
 ## Target dependencies
 
 To make the Makefile easier to read, avoid having many target dependencies: `target: a b c`. Restrict the dependencies only to `target` and not `_target`. Even more, restrict `target` to file dependencies only. This allows one to call a specific target without worrying that other targets will be executed too.
@@ -194,7 +172,23 @@ _test:
 	@echo "_test"
 ```
 
-## Reduce boilerplate
+## Reduce repetitiveness
+
+### Docker and Compose commands as variables
+
+Docker and Compose commands can be assigned to variables.
+
+```make
+# Makefile
+DOCKER_RUN = docker run -it -v $(PWD)/Makefile:/go/Makefile --rm golang
+
+deploy:
+	$(DOCKER_RUN) make _deploy
+_deploy:
+	@echo "_deploy"
+```
+
+### Group targets
 
 Sometimes it may be redundant to always define a `target` that just calls `_target`.
 
@@ -239,6 +233,8 @@ make deps
 #docker run -it -v /tmp/maketest/Makefile:/go/Makefile --rm golang make _deps
 #_deps
 ```
+
+### Catch-all with `.DEFAULT`
 
 Another option, although less explicit, is to use a catch-all:
 
