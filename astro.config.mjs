@@ -7,12 +7,22 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "3 Musketeers",
+      description:
+        "Test, build, and deploy your apps from anywhere, the same way!",
+      logo: {
+        src: "./src/assets/logo/hero-v2.svg",
+      },
       favicon: "favicon.ico",
       social: [{
         icon: "github",
         label: "GitHub",
         href: "https://github.com/flemay/3musketeers",
       }],
+      editLink: {
+        // baseUrl: "https://github.com/flemay/3musketeers/edit/main/",
+        baseUrl: "https://github.com/flemay/3musketeers",
+      },
+      lastUpdated: true,
       sidebar: [
         {
           label: "About",
