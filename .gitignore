@@ -1,7 +1,9 @@
+.astro
 .vscode
 .DS_Store
 *.swp
 node_modules
+vendor
 *.log
 .env*
 .wrangler

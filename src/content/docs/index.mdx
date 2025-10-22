@@ -1,0 +1,33 @@
+---
+title: 3 Musketeers
+description: Test, build, and deploy your apps from anywhere, the same way.
+template: splash
+hero:
+  tagline: Test, build, and deploy your apps from anywhere, the same way!
+  image:
+    file: ../../assets/logo/hero-v2.svg
+  actions:
+    - text: Getting Started
+      link: /guides/getting-started/
+      icon: right-arrow
+    - text: Read the 3 Musketeers docs
+      link: https://starlight.astro.build
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why?
+
+<CardGrid stagger>
+  <Card title="Consistency" icon="approve-check-circle">
+    Run the same commands no matter where you are: Linux, MacOS, Windows, CI/CD tools that supports Docker like GitHub Actions, Travis CI, CircleCI, and GitLab CI.
+  </Card>
+  <Card title="Control" icon="approve-check-circle">
+    Take control of languages, versions, and tools you need, and version source control your pipelines with your preferred VCS like GitHub and GitLab.
+  </Card>
+  <Card title="Confidence" icon="approve-check-circle">
+    Test your code and pipelines locally before your CI/CD tool runs it. Feel confident that if it works locally, it will work in your CI/CD server.
+  </Card>
+</CardGrid>

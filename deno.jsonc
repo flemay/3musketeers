@@ -1,0 +1,66 @@
+{
+  "tasks": {
+    "astro": {
+      // Uses `deno run` bare specifiers
+      "command": "DENO_COMPAT=1 ASTRO_TELEMETRY_DISABLED=1 deno run -P astro $ASTRO_CMD"
+    },
+    "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
+    // DENO_COMPAT=1 is required otherwise build fails
+    // https://github.com/withastro/starlight/issues/2930
+    "build": "rm -fr dist && DENO_COMPAT=1 ASTRO_TELEMETRY_DISABLED=1 deno run -P astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 deno run -P astro preview",
+    // As of now, Deno does not support MDX https://github.com/dprint/dprint-plugin-markdown/issues/93
+    "fmt": "deno fmt 'src/**/*.*'",
+    "check": "deno check && deno lint && deno fmt --check",
+    "install": "deno install --allow-scripts=npm:sharp",
+    "outdated": "deno outdated",
+    "update": "deno outdated --update --latest",
+    "clean": "deno clean && rm -fr node_modules vendor dist"
+  },
+  "permissions": {
+    "default": {
+      "env": true,
+      "read": ["/proc/version", "/opt/app/", "/opt", "/"],
+      "write": [
+        "/opt/app/.astro",
+        "/opt/app/node_modules/.astro",
+        "/opt/app/node_modules/.vite"
+      ],
+      "sys": true,
+      "ffi": [
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.4/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
+        "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.4/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
+        "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.4/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
+      ],
+      "net": ["localhost", "0.0.0.0:4321"],
+      "run": true
+    }
+  },
+  "compilerOptions": {
+    "erasableSyntaxOnly": true
+  },
+  "lint": {
+    "rules": {
+      "include": [
+        "camelcase",
+        "default-param-last",
+        "eqeqeq",
+        "explicit-function-return-type",
+        "explicit-module-boundary-types",
+        "no-await-in-loop",
+        "no-boolean-literal-for-arguments"
+      ]
+    }
+  },
+  "vendor": true,
+  "unstable": [
+    "fmt-component"
+  ],
+  "nodeModulesDir": "auto",
+  "exclude": ["dist"],
+  "imports": {
+    "@astrojs/starlight": "npm:@astrojs/starlight",
+    "astro": "npm:astro",
+    "sharp": "npm:sharp"
+  }
+}

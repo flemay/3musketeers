@@ -1,42 +1,14 @@
-# node:alpine is not used because the plugin-last-updated uses `git` and alpine
-# does not have it.
 services:
-  node: &node
-    image: node
+  devcontainer:
+    build: .
+    working_dir: /opt/app
     volumes:
       - type: bind
         source: .
         target: /opt/app
-      # use type volume for node dependencies to speed up development with docker
-      - type: volume
-        source: node_modules
-        target: /opt/app/node_modules
-    working_dir: /opt/app
-    command: ${COMPOSE_COMMAND:-bash}
-    env_file: .env
     environment:
-      - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID}
-      - CLOUDFLARE_API_TOKEN=${ENV_SECRET_CLOUDFLARE_API_TOKEN}
-      # WRANGLER_SEND_METRICS is set to a value otherwise deploying will be asked if we want to send metrics which is not good when automating
-      - WRANGLER_SEND_METRICS=false
-
-  # node_dev is for local development and not on a CI/CD where there could be port conflict
-  node_dev:
-    <<: *node
+      - TZ=${ENV_TZ:-UTC}
+    env_file: .env
+    command: ${COMPOSE_COMMAND:-bash}
     ports:
-      - "127.0.0.1:5173:5173"
-
-  # service deps allows to copy node dependencies from volume node_modules to the
-  # host. This allows IDE features like autocomplete to work without impacting
-  # development with docker
-  deps:
-    image: node
-    volumes:
-      - type: volume
-        source: node_modules
-        target: /opt/deps/node_modules
-
-volumes:
-  # docker volume node_modules is for node dependencies
-  # this speeds up development with docker
-  node_modules:
+      - "127.0.0.1:4321:4321"

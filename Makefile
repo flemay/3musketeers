@@ -1,86 +1,31 @@
-COMPOSE_PULL = docker compose pull
-COMPOSE_RUN_NODE = docker compose run --rm node
-COMPOSE_UP_NODE = docker compose up -d node
-COMPOSE_UP_NODE_DEV = docker compose up node_dev
+noTargetGuard:
+	@echo "Choose a target"
+	exit 1
+
+COMPOSE_BUILD_DEV = docker compose build --no-cache devcontainer
+COMPOSE_RUN_DEV = docker compose run --service-ports --rm devcontainer
+COMPOSE_RUN_DEV_MAKE = docker compose run --rm devcontainer make
+COMPOSE_RUN_DEV_DENO_TASK = docker compose run --rm devcontainer deno task
 ENVFILE ?= env.template
-SERVE_BASE_URL ?= http://node:5173
-
-all:
-	ENVFILE=env.example $(MAKE) ciTest
-
-ciTest: envfile pruneDocker deps build serve test prune
-
-ciDeploy: envfile pruneDocker deps build serve test deploy prune
 
 envfile:
 	cp -f $(ENVFILE) .env
 
 deps:
-	$(COMPOSE_PULL) node
-	$(COMPOSE_RUN_NODE) npm install
+	$(COMPOSE_BUILD_DEV)
+	$(COMPOSE_RUN_DEV_DENO_TASK) install
 
-depsUpgrade:
-	$(COMPOSE_PULL)
-	$(COMPOSE_RUN_NODE) npm upgrade
+fmt \
+check \
+dev \
+build:
+	$(COMPOSE_RUN_DEV_DENO_TASK) $@
 
-depsAudit:
-	-$(COMPOSE_RUN_NODE) npm outdated
-	$(COMPOSE_RUN_NODE) npm audit
-
-depsCopy:
-	rm -fr node_modules
-	docker compose create deps
-	docker compose cp deps:/opt/deps/node_modules .
-	docker compose rm -f deps
+clean:
+	$(COMPOSE_RUN_DEV_DENO_TASK) clean
+	docker compose down --rmi "all" --remove-orphans --volumes
+	rm -fr .env
 
 shell:
-	$(COMPOSE_RUN_NODE) bash
+	$(COMPOSE_RUN_DEV)
 
-dev:
-	COMPOSE_COMMAND="make _dev" $(COMPOSE_UP_NODE_DEV)
-_dev:
-	npx vitepress dev --host 0.0.0.0 docs
-
-build:
-	$(COMPOSE_RUN_NODE) make _build
-_build:
-	npx vitepress build docs
-
-serve:
-	$(info serve will sleep 5 seconds to make sure the server is up)
-	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE)
-	$(COMPOSE_RUN_NODE) sleep 5
-_serve:
-	npx vitepress serve docs --port 5173
-
-serveDev:
-	COMPOSE_COMMAND="make _serve" $(COMPOSE_UP_NODE_DEV)
-
-test:
-	$(COMPOSE_RUN_NODE) make _test SERVE_BASE_URL=$(SERVE_BASE_URL)
-_test:
-	echo "Test home page"
-	curl $(SERVE_BASE_URL) | grep "Get started" > /dev/null
-	echo "Test docs page"
-	curl $(SERVE_BASE_URL)/guide/getting-started.html | grep "Hello, World!" > /dev/null
-
-deploy:
-	$(COMPOSE_RUN_NODE) make _deploy
-_deploy:
-	npx wrangler pages deploy docs/.vitepress/dist \
-	--project-name=$(ENV_CLOUDFLARE_PROJECT_NAME) \
-	--branch=$(ENV_CLOUDFLARE_BRANCH_NAME) \
-	--commit-message="Deploy!"
-
-pruneDocker:
-	docker compose down --remove-orphans --volumes
-
-prune:
-	$(COMPOSE_RUN_NODE) bash -c "rm -fr docs/.vitepress/dist docs/.vitepress/.cache"
-	$(MAKE) pruneDocker
-	rm -fr .env node_modules
-
-toc:
-	$(COMPOSE_RUN_NODE) make _toc
-_toc:
-	npx doctoc README.md --notitle
