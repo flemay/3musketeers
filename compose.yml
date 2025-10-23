@@ -8,6 +8,11 @@ services:
         target: /opt/app
     environment:
       - TZ=${ENV_TZ:-UTC}
+      - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID}
+      - CLOUDFLARE_API_TOKEN=${ENV_SECRET_CLOUDFLARE_API_TOKEN}
+      - # WRANGLER_SEND_METRICS is set to a value otherwise deploying will be asked if we want to send metrics which is not good when automating
+        WRANGLER_SEND_METRICS=false
+      - ASTRO_TELEMETRY_DISABLED=1
     env_file: .env
     command: ${COMPOSE_COMMAND:-bash}
     ports:

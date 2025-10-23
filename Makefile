@@ -18,7 +18,9 @@ deps:
 fmt \
 check \
 dev \
-build:
+build \
+preview \
+deploy:
 	$(COMPOSE_RUN_DEV_DENO_TASK) $@
 
 clean:
