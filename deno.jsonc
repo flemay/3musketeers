@@ -4,7 +4,7 @@
       // Uses `deno run` bare specifiers
       // DENO_COMPAT=1 is required otherwise build fails
       // https://github.com/withastro/starlight/issues/2930
-      "command": "DENO_COMPAT=1 deno run -P=dev --no-prompt astro $ASTRO_CMD"
+      "command": "DENO_COMPAT=1 deno run -P=astro --no-prompt astro $ASTRO_CMD"
     },
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
     "build": "rm -fr dist && ASTRO_CMD='build' deno task astro",
@@ -16,13 +16,13 @@
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
     "clean": "deno clean && rm -fr node_modules vendor dist",
-    "deploy": "deno run -P=deploy wrangler pages deploy dist --project-name=\"$ENV_CLOUDFLARE_PROJECT_NAME\" --branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\" --commit-message=\"Deploy\"",
-    "cf:list": "deno run -P=deploy wrangler pages project list",
-    "cf:create": "deno run -P=deploy wrangler pages project create \"$ENV_CLOUDFLARE_PROJECT_NAME\" --production-branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\"",
-    "cf:delete": "deno run -P=deploy wrangler pages project delete \"$ENV_CLOUDFLARE_PROJECT_NAME\""
+    "deploy": "deno run -P=wrangler wrangler pages deploy dist --project-name=\"$ENV_CLOUDFLARE_PROJECT_NAME\" --branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\" --commit-message=\"Deploy\"",
+    "cf:list": "deno run -P=wrangler wrangler pages project list",
+    "cf:create": "deno run -P=wrangler wrangler pages project create \"$ENV_CLOUDFLARE_PROJECT_NAME\" --production-branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\"",
+    "cf:delete": "deno run -P=wrangler wrangler pages project delete \"$ENV_CLOUDFLARE_PROJECT_NAME\""
   },
   "permissions": {
-    "dev": {
+    "astro": {
       "env": true,
       "read": ["/proc/version", "/opt/app/", "/opt", "/"],
       "write": [
@@ -40,7 +40,7 @@
       "net": ["localhost", "0.0.0.0:4321", "127.0.0.1:4321"],
       "run": true
     },
-    "deploy": {
+    "wrangler": {
       "env": true,
       "run": ["/usr/local/lib/node_modules/deno/deno"]
     }
