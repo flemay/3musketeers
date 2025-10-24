@@ -1,11 +1,20 @@
 services:
   devcontainer:
+    # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
     build: .
+    image: flemay/3musketeers-devcontainer:local
+    pull_policy: never
     working_dir: /opt/app
     volumes:
       - type: bind
         source: .
         target: /opt/app
+      - type: volume
+        source: node_modules
+        target: /opt/app/node_modules
+      - type: volume
+        source: vendor
+        target: /opt/app/vendor
     environment:
       - TZ=${ENV_TZ:-UTC}
       - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID}
@@ -15,5 +24,16 @@ services:
       - ASTRO_TELEMETRY_DISABLED=1
     env_file: .env
     command: ${COMPOSE_COMMAND:-bash}
+
+  # devcontainer_with_ports is for local development and not on a CI/CD where there could be port conflict
+  devcontainer_with_ports:
+    image: flemay/3musketeers-devcontainer:local
+    depends_on:
+      - devcontainer
     ports:
       - "127.0.0.1:4321:4321"
+
+# "Volumes are ideal for performance-critical data processing and long-term storage needs." https://docs.docker.com/engine/storage/
+volumes:
+  node_modules:
+  vendor:
