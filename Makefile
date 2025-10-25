@@ -4,7 +4,7 @@ noTargetGuard:
 
 COMPOSE_BUILD_BASE = docker compose build base
 COMPOSE_RUN_CI = docker compose run --rm ci
-COMPOSE_UP_CI = docker compose up ci
+COMPOSE_UP_CI = docker compose up ci -d
 COMPOSE_RUN_DEV = docker compose run --service-ports --rm dev
 COMPOSE_UP_DEV = docker compose up dev
 
@@ -41,7 +41,7 @@ dev:
 # - https://docs.docker.com/reference/compose-file/services/#healthcheck
 preview:
 	$(info Target `preview` will sleep 5 seconds to make sure the server is up)
-	COMPOSE_COMMAND="deno task preview" $(COMPOSE_UP_CI) -d
+	COMPOSE_COMMAND="deno task preview" $(COMPOSE_UP_CI)
 	$(COMPOSE_RUN_CI) sleep 5
 
 previewDev:
