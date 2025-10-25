@@ -5,6 +5,8 @@
   // - Tasks like `astro` uses `deno run` bare specifiers
   // - `DENO_COMPAT=1` is required otherwise astro build fails
   //   - https://github.com/withastro/starlight/issues/2930
+  // - `--allowed-hosts=ci,dev` allows a container to connect to another container running the preview
+  //   - https://github.com/withastro/astro/issues/13060
   // TODO:
   // - Add `astro check` to the task `check`
   "tasks": {
@@ -13,7 +15,7 @@
     },
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
     "build": "rm -fr dist && ASTRO_CMD='build' deno task astro",
-    "preview": "ASTRO_CMD='preview --host 0.0.0.0' deno task astro",
+    "preview": "ASTRO_CMD='preview --host=0.0.0.0 --allowed-hosts=ci,dev' deno task astro",
     "fmt": "deno fmt 'src/**/*.*'",
     "check": "deno check && deno lint && deno fmt --check",
     "install": "deno install --allow-scripts=npm:sharp",

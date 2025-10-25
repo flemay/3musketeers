@@ -15,7 +15,7 @@
 # It is also faster to install `deno` with `npm` than installing `nodejs` and `npm` from `denoland/deno:debian`
 FROM node:slim
 RUN apt update \
-  && apt install -y make git \
+  && apt install -y make git curl \
   && apt clean
 RUN npm install -g deno \
   && deno --version
