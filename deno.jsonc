@@ -1,18 +1,20 @@
 {
-  // The tasks should be run inside a Docker container
+  // Notes:
+  // - The tasks should be run inside a Docker container
+  // - As of now, Deno does not support MDX https://github.com/dprint/dprint-plugin-markdown/issues/93
+  // - Tasks like `astro` uses `deno run` bare specifiers
+  // - `DENO_COMPAT=1` is required otherwise astro build fails
+  //   - https://github.com/withastro/starlight/issues/2930
+  // TODO:
+  // - Add `astro check` to the task `check`
   "tasks": {
     "astro": {
-      // Uses `deno run` bare specifiers
-      // DENO_COMPAT=1 is required otherwise astro build fails
-      // https://github.com/withastro/starlight/issues/2930
       "command": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD"
     },
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
     "build": "rm -fr dist && ASTRO_CMD='build' deno task astro",
     "preview": "ASTRO_CMD='preview --host 0.0.0.0' deno task astro",
-    // As of now, Deno does not support MDX https://github.com/dprint/dprint-plugin-markdown/issues/93
     "fmt": "deno fmt 'src/**/*.*'",
-    // TODO Add `astro check`
     "check": "deno check && deno lint && deno fmt --check",
     "install": "deno install --allow-scripts=npm:sharp",
     "outdated": "deno outdated",

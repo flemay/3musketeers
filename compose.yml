@@ -1,10 +1,11 @@
 services:
+  # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
   base: &base
-    # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
     build: .
     image: flemay/3musketeers-devcontainer:local
     pull_policy: never
 
+  # WRANGLER_SEND_METRICS is set to a value otherwise deploying will be asked if we want to send metrics which is not good when automating
   devcontainer: &devcontainer
     image: flemay/3musketeers-devcontainer:local
     depends_on:
@@ -24,7 +25,6 @@ services:
       - TZ=${ENV_TZ:-UTC}
       - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID}
       - CLOUDFLARE_API_TOKEN=${ENV_SECRET_CLOUDFLARE_API_TOKEN}
-      - # WRANGLER_SEND_METRICS is set to a value otherwise deploying will be asked if we want to send metrics which is not good when automating
         WRANGLER_SEND_METRICS=false
       - ASTRO_TELEMETRY_DISABLED=1
     env_file: .env
