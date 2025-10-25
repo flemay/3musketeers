@@ -12,6 +12,7 @@
     "preview": "ASTRO_CMD='preview --host 0.0.0.0' deno task astro",
     // As of now, Deno does not support MDX https://github.com/dprint/dprint-plugin-markdown/issues/93
     "fmt": "deno fmt 'src/**/*.*'",
+    // TODO Add `astro check`
     "check": "deno check && deno lint && deno fmt --check",
     "install": "deno install --allow-scripts=npm:sharp",
     "outdated": "deno outdated",
@@ -33,7 +34,7 @@
       ],
       "sys": true,
       "ffi": [
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.4/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.5/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
         "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.4/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
         "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.4/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
@@ -68,9 +69,9 @@
   "nodeModulesDir": "auto",
   "exclude": ["dist"],
   "imports": {
-    "@astrojs/starlight": "npm:@astrojs/starlight",
-    "astro": "npm:astro",
-    "sharp": "npm:sharp",
-    "wrangler": "npm:wrangler@^4.44.0"
+    "@astrojs/starlight": "npm:@astrojs/starlight@0.36.1",
+    "astro": "npm:astro@5.15.1",
+    "sharp": "npm:sharp@0.34.4",
+    "wrangler": "npm:wrangler@^4.45.0"
   }
 }

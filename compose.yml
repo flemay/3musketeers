@@ -1,9 +1,14 @@
 services:
-  devcontainer:
+  base: &base
     # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
     build: .
     image: flemay/3musketeers-devcontainer:local
     pull_policy: never
+
+  devcontainer: &devcontainer
+    image: flemay/3musketeers-devcontainer:local
+    depends_on:
+      - base
     working_dir: /opt/app
     volumes:
       - type: bind
@@ -27,9 +32,7 @@ services:
 
   # devcontainer_with_ports is for local development and not on a CI/CD where there could be port conflict
   devcontainer_with_ports:
-    image: flemay/3musketeers-devcontainer:local
-    depends_on:
-      - devcontainer
+    <<: *devcontainer
     ports:
       - "127.0.0.1:4321:4321"
 
