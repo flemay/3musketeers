@@ -2,6 +2,8 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
+const githubUrl = "https://github.com/flemay/3musketeers";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -19,25 +21,25 @@ export default defineConfig({
       social: [{
         icon: "github",
         label: "GitHub",
-        href: "https://github.com/flemay/3musketeers",
+        href: githubUrl,
       }],
       editLink: {
         // baseUrl: "https://github.com/flemay/3musketeers/edit/main/",
-        baseUrl: "https://github.com/flemay/3musketeers",
+        baseUrl: githubUrl,
       },
       lastUpdated: true,
       sidebar: [
         {
           label: "About",
-          items: [
-            { slug: "about" },
-          ],
+          autogenerate: { directory: "about" },
         },
         {
           label: "Guides",
-          items: [
-            { slug: "guides/getting-started" },
-          ],
+          autogenerate: { directory: "guides" },
+        },
+        {
+          label: "Resources",
+          autogenerate: { directory: "resources" },
         },
       ],
     }),
