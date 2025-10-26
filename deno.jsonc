@@ -16,7 +16,7 @@
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
     "build": "rm -fr dist && ASTRO_CMD='build' deno task astro",
     "preview": "ASTRO_CMD='preview --host=0.0.0.0 --allowed-hosts=ci,dev' deno task astro",
-    "fmt": "deno fmt 'src/**/*.*'",
+    "fmt": "deno fmt",
     "check": "deno check && deno lint && deno fmt --check",
     "install": "deno install --allow-scripts=npm:sharp",
     "outdated": "deno outdated",
@@ -53,6 +53,7 @@
   "compilerOptions": {
     "erasableSyntaxOnly": true
   },
+  "exclude": ["dist/", ".astro/", "docs/", "demo/", "misc/", "diagrams/"],
   "lint": {
     "rules": {
       "include": [
@@ -66,12 +67,15 @@
       ]
     }
   },
+  "fmt": {
+    // "include": ["src/", "README.md", "deno.jsonc", "./astro.config.mjs"],
+    "exclude": ["src/assets/diagrams/*.svg"]
+  },
   "vendor": true,
   "unstable": [
     "fmt-component"
   ],
   "nodeModulesDir": "auto",
-  "exclude": ["dist"],
   "imports": {
     "@astrojs/starlight": "npm:@astrojs/starlight@0.36.1",
     "astro": "npm:astro@5.15.1",
