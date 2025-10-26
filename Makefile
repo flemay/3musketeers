@@ -1,5 +1,5 @@
 noTargetGuard:
-	@echo "Choose a target"
+	$(error target is missing)
 	exit 1
 
 COMPOSE_PULL_BUSYBOX = docker compose pull busybox
@@ -62,9 +62,9 @@ testPreview:
 	$(COMPOSE_RUN_CI) make _testPreview ASTRO_URL=$(ASTRO_URL)
 
 _testPreview:
-	echo "Test home page"
+	$(info Test home page)
 	curl $(ASTRO_URL) | grep "Get started" > /dev/null
-	echo "Test Getting started"
+	$(info Test Getting started)
 	curl $(ASTRO_URL)/guides/getting-started/ | grep "Getting Started" > /dev/null
 
 # clean removes everything that has been created
