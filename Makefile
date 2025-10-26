@@ -16,11 +16,14 @@ envfile:
 
 # deps creates the base image used by other compose services
 # It installs dependencies
-# It copies deps from Docker volumes to the host. This is handy for auto-completion from IDE among other things.
-# TODO: I could potentially look into [dev containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
 deps:
 	$(COMPOSE_BUILD_BASE)
 	$(COMPOSE_RUN_CI) deno task install
+
+# It copies deps from Docker volumes to the host. This is handy for auto-completion from IDE among other things.
+# If there is a docker running and using the Docker volumes, it will fail deleting node_modules and vendor. Run command `docker compose down` to mitigate the issue
+# TODO: I could potentially look into [dev containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+copyDepsToHost:
 	rm -fr node_modules vendor
 	docker compose create ci
 	docker compose cp ci:/opt/app/node_modules .
