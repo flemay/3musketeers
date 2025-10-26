@@ -2,6 +2,7 @@
 title: Contributing
 sidebar:
   order: 3
+tableOfContents: false
 ---
 
 Contributions are greatly appreciated and here are different ways:
