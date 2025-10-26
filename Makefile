@@ -2,6 +2,8 @@ noTargetGuard:
 	@echo "Choose a target"
 	exit 1
 
+COMPOSE_PULL_BUSYBOX = docker compose pull busybox
+COMPOSE_RUN_BUSYBOX = docker compose run --rm busybox
 COMPOSE_BUILD_BASE = docker compose build base
 COMPOSE_RUN_CI = docker compose run --rm ci
 COMPOSE_UP_CI = docker compose up ci -d
@@ -11,8 +13,11 @@ COMPOSE_UP_DEV = docker compose up dev
 ENVFILE ?= env.template
 ASTRO_URL ?= http://ci:4321
 
+ciTest: clean envfile deps build preview testPreview clean
+ciDeploy: clean envfile deps build preview testPreview deploy clean
+
 envfile:
-	cp -f $(ENVFILE) .env
+	$(COMPOSE_RUN_BUSYBOX) sh -c "cp -f $(ENVFILE) .env"
 
 # deps creates the base image used by other compose services
 # It installs dependencies
@@ -24,7 +29,7 @@ deps:
 # If there is a docker running and using the Docker volumes, it will fail deleting node_modules and vendor. Run command `docker compose down` to mitigate the issue
 # TODO: I could potentially look into [dev containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
 copyDepsToHost:
-	rm -fr node_modules vendor
+	$(COMPOSE_RUN_BUSYBOX) sh -c "rm -fr node_modules vendor"
 	docker compose create ci
 	docker compose cp ci:/opt/app/node_modules .
 	docker compose cp ci:/opt/app/vendor .
@@ -63,17 +68,12 @@ _testPreview:
 	curl $(ASTRO_URL)/guides/getting-started/ | grep "Getting Started" > /dev/null
 
 # clean removes everything that has been created
-# It also deletes the deps folders from the host (instead of container) because they were copied from the volumes with `docker compose cp`
+# It also deletes the deps folders, that could've been copied to the host (`make copyDepsToHost`), with `busybox` service as it does not mount them with volumens.
 # There is no need to call `deno clean` as `"vendor": true` is used in `deno.jsonc`
 clean:
-	$(COMPOSE_RUN_CI) make _clean
+	docker compose down
+	$(COMPOSE_RUN_BUSYBOX) sh -c "rm -fr dist .env node_modules vendor"
 	docker compose down --rmi "all" --remove-orphans --volumes
-	rm -fr .env node_modules vendor
-
-# Deleting node_modules and vendor folder will fail: `rm: cannot remove 'node_modules': Device or resource busy`. This is because both folders are part of a Docker data volume
-# Moreover, there is no need to delete node_modules and vendor from within the container as the date will get deleted with `docker compose down`
-_clean:
-	rm -fr dist
 
 shell:
 	$(COMPOSE_RUN_CI) bash

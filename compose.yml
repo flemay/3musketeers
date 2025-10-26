@@ -1,4 +1,12 @@
 services:
+  busybox:
+    image: busybox
+    working_dir: /opt/app
+    volumes:
+      - type: bind
+        source: .
+        target: /opt/app
+
   # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
   base: &base
     build: .
@@ -23,8 +31,8 @@ services:
         target: /opt/app/vendor
     environment:
       - TZ=${ENV_TZ:-UTC}
-      - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID}
-      - CLOUDFLARE_API_TOKEN=${ENV_SECRET_CLOUDFLARE_API_TOKEN}
+      - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID:-""}
+      - CLOUDFLARE_API_TOKEN=${ENV_SECRET_CLOUDFLARE_API_TOKEN:-""}
       - WRANGLER_SEND_METRICS=false
       - ASTRO_TELEMETRY_DISABLED=1
     env_file: .env
