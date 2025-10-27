@@ -1,6 +1,5 @@
 ---
 title: Examples
-tableOfContents: false
 ---
 
 Here are projects that apply the 3 Musketeers:
