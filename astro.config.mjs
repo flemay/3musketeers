@@ -27,7 +27,6 @@ export default defineConfig({
         href: githubUrl,
       }],
       editLink: {
-        // baseUrl: "https://github.com/flemay/3musketeers/edit/main/",
         baseUrl: githubUrl,
       },
       lastUpdated: true,

@@ -1,0 +1,20 @@
+---
+// https://starlight.astro.build/guides/overriding-components/#only-override-on-specific-pages
+import Default from "@astrojs/starlight/components/Footer.astro";
+
+const isHomepage = Astro.locals.starlightRoute.id === "";
+---
+<style>
+  .centered-footer {
+    text-align: center;
+    width: 100%;
+  }
+</style>
+
+{
+  isHomepage ? <footer class="centered-footer">Built with Starlight 🌟</footer> : (
+    <Default>
+      <slot />
+    </Default>
+  )
+}
