@@ -4,7 +4,8 @@
   --sl-color-accent-low: #00273d;
   --sl-color-accent: #0071a7;
   --sl-color-accent-high: #92d1fe;
-  --sl-color-white: #ffffff;
+  /* Softer white is better for on the eye */
+  --sl-color-white: #e0e0e0;
   --sl-color-gray-1: #e7eff2;
   --sl-color-gray-2: #bac4c8;
   --sl-color-gray-3: #7b8f96;

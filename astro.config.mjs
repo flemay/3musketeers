@@ -15,7 +15,7 @@ export default defineConfig({
         src: "./src/assets/logo/hero-v2.svg",
       },
       customCss: [
-        "./src/styles/custom.css",
+        "./src/styles/global.css",
       ],
       components: {
         Footer: "./src/components/Footer.astro",
