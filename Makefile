@@ -1,6 +1,5 @@
 noTargetGuard:
 	$(error target is missing)
-	exit 1
 
 COMPOSE_PULL_BUSYBOX = docker compose pull busybox
 COMPOSE_RUN_BUSYBOX = docker compose run --rm busybox
@@ -72,7 +71,7 @@ _testPreview:
 # There is no need to call `deno clean` as `"vendor": true` is used in `deno.jsonc`
 clean:
 	docker compose down
-	$(COMPOSE_RUN_BUSYBOX) sh -c "rm -fr dist .env node_modules vendor"
+	$(COMPOSE_RUN_BUSYBOX) sh -c "rm -fr dist .env node_modules vendor .astro"
 	docker compose down --rmi "all" --remove-orphans --volumes
 
 shell:
