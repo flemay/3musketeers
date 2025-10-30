@@ -4,6 +4,8 @@ sidebar:
   order: 5
 ---
 
+import { Steps, FileTree } from '@astrojs/starlight/components';
+
 Development following [the twelve-factor app][link12factor] use the
 [environment variables to configure][link12factorConfig] their application.
 
@@ -75,7 +77,7 @@ docker compose run --rm alpine env
 # Same as Docker
 ```
 
-:::tipe
+:::tip
 
 Refer to section [Tutorial][linkSectionTutorial] for in-depth demonstration.
 
@@ -240,7 +242,7 @@ targetA:
 targetB: .env
     $(COMPOSE_RUN_ALPINE) cat .env
 
-prune:
+clean:
 	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm -f .env
 ```
 
@@ -275,7 +277,7 @@ envfile:
 target: .env
 	$(COMPOSE_RUN_ALPINE) cat .env
 
-prune: .env
+clean: .env
 	$(COMPOSE_RUN_ALPINE) rm .env
 ```
 
@@ -316,7 +318,7 @@ envfile:
 target: $(ENVFILE_TARGET)
 	$(COMPOSE_RUN_ALPINE) cat .env
 
-prune: $(ENVFILE_TARGET)
+clean: $(ENVFILE_TARGET)
   $(COMPOSE_RUN_ALPINE) rm .env
 ```
 
@@ -364,7 +366,7 @@ targetA:
 targetB: .env
 	$(DOCKER_RUN_ALPINE_WITH_ENVFILE) cat .env
 
-prune:
+clean:
 	$(DOCKER_RUN_ALPINE) rm .env
 ```
 
@@ -481,92 +483,106 @@ docker run --rm -e ECHO=musketeers alpine sh -c 'echo $ECHO'
 
 This simple tutorial shows how environment variables and envfiles play together.
 
-Create the following 4 files:
+<Steps>
 
-```dotenv title="env.template"
-ENV_MESSAGE
-```
+1. Final folder structure:
 
-```dotenv title="env.example"
-ENV_MESSAGE="Hello, World!"
-```
+   <FileTree>
+   - tutorial
+     - compose.yml
+     - env.example
+     - env.template
+     - Makefile
+   </FileTree>
 
-```yaml title="compose.yml"
-version: "3.8"
-services:
-  alpine:
-    image: alpine
-    env_file: ${ENVFILE:-.env}
-    volumes:
-      - type: bind
-        source: "."
-        target: /opt/app
-    working_dir: /opt/app
-```
+1. Create the following 4 files:
 
-```make title="Makefile"
-COMPOSE_RUN_ALPINE = docker compose run alpine
-ENVFILE ?= env.template
+   ```dotenv title="env.template"
+   ENV_MESSAGE
+   ```
 
-envfile:
-	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
+   ```dotenv title="env.example"
+   ENV_MESSAGE="Hello, World!"
+   ```
 
-showMessage:
-	$(COMPOSE_RUN_ALPINE) sh -c '\
-		echo "# cat .env"; \
-		cat .env; \
-		echo "# env | grep ENV_MESSAGE"; \
-		env | grep ENV_MESSAGE || true'
+   ```yaml title="compose.yml"
+   version: "3.8"
+   services:
+     alpine:
+       image: alpine
+       env_file: ${ENVFILE:-.env}
+       volumes:
+         - type: bind
+           source: "."
+           target: /opt/app
+       working_dir: /opt/app
+   ```
 
-prune:
-	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm -f .env
-	ENVFILE=$(ENVFILE) docker compose down --remove-orphans
-```
+   ```make title="Makefile"
+   COMPOSE_RUN_ALPINE = docker compose run alpine
+   ENVFILE ?= env.template
 
-Then run the commands:
+   envfile:
+   	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) cp $(ENVFILE) .env
 
-```bash
-unset ENV_MESSAGE
-make prune
+   showMessage:
+   	$(COMPOSE_RUN_ALPINE) sh -c '\
+   		echo "# cat .env"; \
+   		cat .env; \
+   		echo "# env | grep ENV_MESSAGE"; \
+   		env | grep ENV_MESSAGE || true'
 
-make showMessage
-#Failed to load .env: no such file or directory
+   clean:
+   	ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE) rm -f .env
+   	ENVFILE=$(ENVFILE) docker compose down --remove-orphans
+   ```
 
-# Create .env based on env.templates
-make envfile
-make showMessage
-## cat .env
-#ENV_MESSAGE
-# env | grep ENV_MESSAGE
-#
+1. Then run the following commands:
 
-export ENV_MESSAGE="Hello!"
-make showMessage
-## cat .env
-#ENV_MESSAGE
-## env | grep ENV_MESSAGE
-#ENV_MESSAGE=Hello!
+   ```bash
+   unset ENV_MESSAGE
+   make clean
 
-# Create .env file based on env.example.
-# Keep in mind ENV_MESSAGE is still set to "Hello!"
-make envfile ENVFILE=env.example
-make showMessage
-## cat .env
-#ENV_MESSAGE="Hello, World!"
-## env | grep ENV_MESSAGE
-#ENV_MESSAGE=Hello, World!
+   make showMessage
+   #Failed to load .env: no such file or directory
 
-make prune
-unset ENV_MESSAGE
-```
+   # Create .env based on env.templates
+   make envfile
+   make showMessage
+   ## cat .env
+   #ENV_MESSAGE
+   # env | grep ENV_MESSAGE
+   #
+
+   export ENV_MESSAGE="Hello!"
+   make showMessage
+   ## cat .env
+   #ENV_MESSAGE
+   ## env | grep ENV_MESSAGE
+   #ENV_MESSAGE=Hello!
+
+   # Create .env file based on env.example.
+   # Keep in mind ENV_MESSAGE is still set to "Hello!"
+   make envfile ENVFILE=env.example
+   make showMessage
+   ## cat .env
+   #ENV_MESSAGE="Hello, World!"
+   ## env | grep ENV_MESSAGE
+   #ENV_MESSAGE=Hello, World!
+
+   make clean
+   unset ENV_MESSAGE
+   ```
+
+</Steps>
 
 Questions:
 
 1. Why does command `make showMessage` fail if file `.env` is not present?
-1. Why don't commands `make prune` and `make envfile` fail when file `.env` is
+1. Why don't commands `make clean` and `make envfile` fail when file `.env` is
    not present?
 1. What would be the main reason to use
-   `ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE)` in targets `envfile` and `prune`
+   `ENVFILE=$(ENVFILE) $(COMPOSE_RUN_ALPINE)` in targets `envfile` and `clean`
    but not in target `showMessage`? _Hint: Do they need to have values from file
    `.env` for their task?_
 1. Why is `ENV_MESSAGE` in the last `make showMessage` set to `Hello, World!`

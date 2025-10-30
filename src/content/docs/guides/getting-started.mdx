@@ -4,8 +4,7 @@ sidebar:
   order: 1
 ---
 
-import { Steps } from '@astrojs/starlight/components'; import { FileTree } from
-'@astrojs/starlight/components';
+import { Steps, FileTree } from '@astrojs/starlight/components';
 
 Let's print out `Hello, World!` in the terminal using the 3 Musketeers. The
 command `make echo` will be calling Docker to run the command
@@ -23,31 +22,28 @@ command `make echo` will be calling Docker to run the command
 
 <Steps>
 
-1. Overview of final folder
+1. Final folder structure:
 
    <FileTree>
    - hello-world
      - compose.yml
      - Makefile
-
    </FileTree>
 
-1. Create file `compose.yml`
+1. Create the following 2 files:
 
    ```yaml title="compose.yml"
    services:
-     alpine:
-       image: alpine
+     busybox:
+       image: busybox
    ```
-
-1. Create file `Makefile`
 
    ```make title="Makefile"
    echo:
-    docker compose run --rm alpine echo 'Hello, World!'
+   	docker compose run --rm busybox echo 'Hello, World!'
    ```
 
-1. Run the command
+1. Run the command:
 
    ```bash
    make echo
