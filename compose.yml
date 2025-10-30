@@ -10,12 +10,12 @@ services:
   # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
   base: &base
     build: .
-    image: flemay/3musketeers-devcontainer:local
+    image: localhost:5000/3musketeers-devcontainer:local
     pull_policy: never
 
   # WRANGLER_SEND_METRICS is set to a value otherwise deploying will be asked if we want to send metrics which is not good when automating
   ci: &ci
-    image: flemay/3musketeers-devcontainer:local
+    image: localhost:5000/3musketeers-devcontainer:local
     depends_on:
       - base
     working_dir: /opt/app
