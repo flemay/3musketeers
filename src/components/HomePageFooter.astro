@@ -1,0 +1,25 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+---
+
+<footer>
+  Built with Starlight
+  <Icon name="starlight" />
+  Deno
+  <Icon name="deno" />
+  , and more!
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  footer :global(svg) {
+    vertical-align: middle;
+  }
+</style>
