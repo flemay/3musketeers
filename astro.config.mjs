@@ -18,7 +18,7 @@ export default defineConfig({
         "./src/styles/global.css",
       ],
       components: {
-        Footer: "./src/components/Footer.astro",
+        Footer: "./src/components/ConditionalFooter.astro",
       },
       favicon: "favicon.ico",
       social: [{
