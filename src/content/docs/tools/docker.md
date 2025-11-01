@@ -1,7 +1,7 @@
 ---
 title: Docker
 sidebar:
-  order: 4
+  order: 2
 ---
 
 Docker is the most important musketeer of the three. Many tasks such as testing,

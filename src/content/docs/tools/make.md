@@ -1,7 +1,7 @@
 ---
 title: Make
 sidebar:
-  order: 3
+  order: 1
 ---
 
 Make is a cross-platform build tool to test and build software and it is used as

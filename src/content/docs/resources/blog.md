@@ -1,6 +1,5 @@
 ---
 title: Blog
-tableOfContents: false
 ---
 
 - [Tips for how to use 3 Musketeers to supercharge your Developer Experience](https://www.drewkhoury.com/post/2023-09-13_3-musketeers-docker-make-compose-tips/),

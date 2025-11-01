@@ -1,7 +1,7 @@
 ---
 title: Compose
 sidebar:
-  order: 5
+  order: 3
 ---
 
 Docker Compose, or simply Compose, manages Docker containers in a very neat way.

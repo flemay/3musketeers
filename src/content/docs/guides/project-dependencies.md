@@ -1,7 +1,7 @@
 ---
 title: Project Dependencies
 sidebar:
-  order: 6
+  order: 4
 ---
 
 Dependencies play a major role when comes time to test, build, and deploy a
