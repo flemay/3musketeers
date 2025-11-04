@@ -20,7 +20,7 @@ export default defineConfig({
       components: {
         Footer: "./src/components/ConditionalFooter.astro",
       },
-      favicon: "favicon.ico",
+      favicon: "favicon_io/favicon.ico",
       social: [{
         icon: "github",
         label: "GitHub",

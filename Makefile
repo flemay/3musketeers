@@ -1,5 +1,5 @@
 noTargetGuard:
-	$(error target is missing)
+	$(error Target is missing)
 
 COMPOSE_PULL_BUSYBOX = docker compose pull busybox
 COMPOSE_RUN_BUSYBOX = docker compose run --rm busybox
@@ -12,8 +12,8 @@ COMPOSE_UP_DEV = docker compose up dev
 ENVFILE ?= env.template
 ASTRO_URL ?= http://ci:4321
 
-ciTest: clean envfile deps build preview testPreview clean
-ciDeploy: clean envfile deps build preview testPreview deploy clean
+ciTest: clean envfile deps check build preview testPreview clean
+ciDeploy: clean envfile deps check build preview testPreview deploy clean
 
 envfile:
 	$(COMPOSE_RUN_BUSYBOX) sh -c "cp -f $(ENVFILE) .env"
