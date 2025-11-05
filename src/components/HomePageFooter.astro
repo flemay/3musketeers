@@ -3,19 +3,35 @@ import { Icon } from "@astrojs/starlight/components";
 ---
 
 <footer>
-  Built with Starlight
-  <Icon name="starlight" />
-  and <a href="/about/built-with">more</a>!
+  <div>
+    Built with Starlight
+    <Icon name="starlight" />
+    and <a href="/about/built-with">more</a>!
+  </div>
+  <div>
+    <a href="https://github.com/flemay/3musketeers/blob/main/LICENSE">MIT
+      License
+    </a> © 2018 - present
+  </div>
 </footer>
 
 <style>
   footer {
-    margin-top: 3rem;
+    margin-top: 5rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.25rem;
     flex-wrap: wrap;
+
+    a {
+      text-decoration: none;
+      font-weight: 700;
+      color: inherit;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 
   footer :global(svg) {
