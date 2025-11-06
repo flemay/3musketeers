@@ -8,10 +8,6 @@ const githubUrl = "https://github.com/flemay/3musketeers";
 export default defineConfig({
   integrations: [
     starlight({
-      expressiveCode: {
-        // https://expressive-code.com/reference/configuration/#tabwidth
-        tabWidth: 0,
-      },
       title: "3 Musketeers",
       description:
         "Test, build, and deploy your apps from anywhere, the same way!",
@@ -23,6 +19,11 @@ export default defineConfig({
       ],
       components: {
         Footer: "./src/components/ConditionalFooter.astro",
+      },
+      expressiveCode: {
+        // https://expressive-code.com/reference/configuration/#tabwidth
+        // There are many `make` code blocks which requires tabs. Setting `tabWidth` will preserve those tabs.
+        tabWidth: 0,
       },
       head: [
         {
