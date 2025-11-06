@@ -24,30 +24,30 @@ command `make echo` will be calling Docker to run the command
 
 1. Final folder structure:
 
-   <FileTree>
-   - hello-world
-     - compose.yml
-     - Makefile
-   </FileTree>
+    <FileTree>
+    - hello-world
+      - compose.yml
+      - Makefile
+    </FileTree>
 
 1. Create the following 2 files:
 
-   ```yaml title="compose.yml"
-   services:
-     busybox:
-       image: busybox
-   ```
+    ```yaml title="compose.yml"
+    services:
+      busybox:
+        image: busybox
+    ```
 
-   ```make title="Makefile"
-   echo:
-   	docker compose run --rm busybox echo 'Hello, World!'
-   ```
+    ```make title="Makefile"
+    echo:
+    	docker compose run --rm busybox echo 'Hello, World!'
+    ```
 
 1. Run the command:
 
-   ```bash
-   make echo
-   ```
+    ```bash
+    make echo
+    ```
 
 </Steps>
 
