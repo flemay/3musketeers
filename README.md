@@ -17,16 +17,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Overview](#overview)
-- [Why?](#why)
-  - [Consistency](#consistency)
-  - [Control](#control)
-  - [Confidence](#confidence)
-- [Demo](#demo)
-- [Getting started](#getting-started)
+- [3 Musketeers website](#3-musketeers-website)
   - [Prerequisites](#prerequisites)
-  - [Hello, World!](#hello-world)
-- [3 Musketeers website development](#3-musketeers-website-development)
-  - [Prerequisites](#prerequisites-1)
   - [Development](#development)
   - [Deployment](#deployment)
     - [0. Cloudflare account ID and API token](#0-cloudflare-account-id-and-api-token)
@@ -37,7 +29,6 @@
   - [CI/CD](#cicd)
   - [Visual elements](#visual-elements)
 - [Contributing](#contributing)
-- [References](#references)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -57,7 +48,7 @@ on a CI/CD server.
 
 More on the [3 Musketeers website][link3Musketeers].
 
-## 3 Musketeers website development
+## 3 Musketeers website
 
 This repository is the [3 Musketeers website][link3Musketeers] built with
 [Astro Starlight][linkAstroStarlight]. This section explains how to develop,

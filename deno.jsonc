@@ -10,6 +10,9 @@
   // TODO:
   // - Add `astro check` to the task `check`
   "tasks": {
+    "toc": {
+      "command": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle"
+    },
     "astro": {
       "command": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD"
     },
@@ -29,7 +32,12 @@
   "permissions": {
     "astro": {
       "env": true,
-      "read": ["/proc/version", "/opt/app/", "/opt", "/"],
+      "read": [
+        "/proc/version",
+        "/opt/app/",
+        "/opt",
+        "/"
+      ],
       "write": [
         "/opt/app/.astro",
         "/opt/app/node_modules/.astro",
@@ -42,18 +50,40 @@
         "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.4/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
         "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.4/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
-      "net": ["localhost", "0.0.0.0:4321", "127.0.0.1:4321"],
+      "net": [
+        "localhost",
+        "0.0.0.0:4321",
+        "127.0.0.1:4321"
+      ],
       "run": true
     },
     "wrangler": {
       "env": true,
-      "run": ["/usr/local/lib/node_modules/deno/deno"]
+      "run": [
+        "/usr/local/lib/node_modules/deno/deno"
+      ]
+    },
+    "toc": {
+      "read": [
+        "README.md"
+      ],
+      "write": [
+        "README.md"
+      ],
+      "env": true
     }
   },
   "compilerOptions": {
     "erasableSyntaxOnly": true
   },
-  "exclude": ["dist/", ".astro/", "docs/", "demo/", "misc/", "diagrams/"],
+  "exclude": [
+    "dist/",
+    ".astro/",
+    "docs/",
+    "demo/",
+    "misc/",
+    "diagrams/"
+  ],
   "lint": {
     "rules": {
       "include": [
@@ -69,7 +99,9 @@
   },
   "fmt": {
     // "include": ["src/", "README.md", "deno.jsonc", "./astro.config.mjs"],
-    "exclude": ["src/assets/diagrams/*.svg"]
+    "exclude": [
+      "src/assets/diagrams/*.svg"
+    ]
   },
   "vendor": true,
   "unstable": [
@@ -79,6 +111,7 @@
   "imports": {
     "@astrojs/starlight": "npm:@astrojs/starlight@0.36.1",
     "astro": "npm:astro@5.15.1",
+    "doctoc": "npm:doctoc@^2.2.1",
     "sharp": "npm:sharp@0.34.4",
     "wrangler": "npm:wrangler@^4.45.0"
   }
