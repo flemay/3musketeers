@@ -37,7 +37,9 @@ copyDepsToHost:
 fmt \
 check \
 build \
-deploy:
+deploy \
+toc \
+update:
 	$(COMPOSE_RUN_CI) deno task $@
 
 dev:

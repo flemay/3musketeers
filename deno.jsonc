@@ -109,10 +109,10 @@
   ],
   "nodeModulesDir": "auto",
   "imports": {
-    "@astrojs/starlight": "npm:@astrojs/starlight@0.36.1",
-    "astro": "npm:astro@5.15.1",
+    "@astrojs/starlight": "npm:@astrojs/starlight@0.36.2",
+    "astro": "npm:astro@5.15.4",
     "doctoc": "npm:doctoc@^2.2.1",
-    "sharp": "npm:sharp@0.34.4",
-    "wrangler": "npm:wrangler@^4.45.0"
+    "sharp": "npm:sharp@0.34.5",
+    "wrangler": "npm:wrangler@^4.46.0"
   }
 }
