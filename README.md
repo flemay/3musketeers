@@ -1,7 +1,7 @@
 # 3 Musketeers
 
 <div align="center">
-<img src="docs/public/img/hero-v2.svg" width="300">
+<img src="src/assets/logo/hero-v2.svg" width="300">
 
 **Test, build, and deploy your apps from anywhere, the same way!**
 
