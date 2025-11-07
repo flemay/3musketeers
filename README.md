@@ -46,7 +46,7 @@ Docker/Compose commands for each application are maintained as part of the
 application’s source code and are invoked in the same way whether run locally or
 on a CI/CD server.
 
-More on the [3 Musketeers website][link3Musketeers].
+For more information, please visit the [official website][link3Musketeers].
 
 ## 3 Musketeers website
 
