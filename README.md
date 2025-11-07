@@ -76,7 +76,10 @@ test, and deploy using the 3 Musketeers methodology.
 # Create a .env file
 make envfile ENVFILE=env.example
 # Install dependencies
-make deps
+make deps copyDepsToHost
+
+# Format and check
+make fmt check
 
 # Start Astro server for local development
 make dev
