@@ -17,7 +17,7 @@
       "command": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD"
     },
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
-    "build": "rm -fr dist && ASTRO_CMD='build' deno task astro",
+    "build": "rm -fr dist && ASTRO_CMD='build --debug --verbose' deno task astro",
     "preview": "ASTRO_CMD='preview --host=0.0.0.0 --allowed-hosts=ci,dev' deno task astro",
     "fmt": "deno fmt",
     "check": "deno check --no-remote --doc && deno lint && deno fmt --check",
@@ -32,10 +32,8 @@
   "permissions": {
     "astro": {
       "env": true,
+      // For some reasons, Astro needs access to /proc/version, /opt, and /
       "read": [
-        "/proc/version",
-        "/opt/app/",
-        "/opt",
         "/"
       ],
       "write": [
