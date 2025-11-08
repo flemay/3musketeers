@@ -20,7 +20,7 @@
     "build": "rm -fr dist && ASTRO_CMD='build' deno task astro",
     "preview": "ASTRO_CMD='preview --host=0.0.0.0 --allowed-hosts=ci,dev' deno task astro",
     "fmt": "deno fmt",
-    "check": "deno check && deno lint && deno fmt --check",
+    "check": "deno check --no-remote --doc && deno lint && deno fmt --check",
     "install": "deno install --quiet --allow-scripts=npm:sharp",
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
@@ -47,9 +47,9 @@
       "sys": true,
       "ffi": [
         "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.52.5/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.5/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node"
-        // "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
-        // "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.5/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
+        "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
+        "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
       "net": [
         "localhost",
@@ -99,7 +99,6 @@
     }
   },
   "fmt": {
-    // "include": ["src/", "README.md", "deno.jsonc", "./astro.config.mjs"],
     "exclude": [
       "src/assets/diagrams/*.svg"
     ]
