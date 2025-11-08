@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - force-upload
     paths:
       - ".github/workflows/deploy.yml"
       - "astro.config.mjs"
