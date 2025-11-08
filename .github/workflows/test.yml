@@ -1,5 +1,8 @@
 name: Test
 on:
+  push:
+    branches:
+      - deno-starlight
   pull_request:
     paths-ignore:
       - demo/**
