@@ -4,18 +4,13 @@ noTargetGuard:
 COMPOSE_PULL_BUSYBOX = docker compose pull busybox
 COMPOSE_RUN_BUSYBOX = docker compose run --rm busybox
 COMPOSE_BUILD_BASE = docker compose build base
-COMPOSE_RUN_CI = docker compose run --rm ci
-COMPOSE_UP_CI = docker compose up ci -d
-COMPOSE_RUN_DEV = docker compose run --service-ports --rm dev
-COMPOSE_UP_DEV = docker compose up dev
+COMPOSE_RUN_CI = COMPOSE_ENVFILE=$(ENVFILE) docker compose run --rm ci
+COMPOSE_UP_CI = COMPOSE_ENVFILE=$(ENVFILE) docker compose up ci -d
+COMPOSE_RUN_DEV = COMPOSE_ENVFILE=$(ENVFILE) docker compose run --service-ports --rm dev
+COMPOSE_UP_DEV = COMPOSE_ENVFILE=$(ENVFILE) docker compose up dev
 
 ASTRO_URL ?= http://ci:4321
-
-ifneq ("$(wildcard .env)","")
-	ENVFILE ?= .env
-else
-	ENVFILE ?= env.template
-endif
+ENVFILE ?= $(if $(wildcard .env),.env,env.template)
 
 ciTest: clean envfile deps check build preview testPreview clean
 ciDeploy: clean envfile deps check build preview testPreview deploy clean
