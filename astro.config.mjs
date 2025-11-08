@@ -68,7 +68,7 @@ export default defineConfig({
         href: githubUrl,
       }],
       editLink: {
-        baseUrl: githubUrl,
+        baseUrl: `${githubUrl}/blob/main`,
       },
       lastUpdated: true,
       tableOfContents: {
