@@ -4,12 +4,10 @@ on:
     paths-ignore:
       - demo/**
       - diagrams/**
-      - '*.drawio'
-      - '*.md'
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
-    - uses: actions/checkout@v1
-    - name: Test
-      run: make ciTest
+      - uses: actions/checkout@v5
+      - name: Test
+        run: make ciTest

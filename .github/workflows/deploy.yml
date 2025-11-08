@@ -4,23 +4,26 @@ on:
     branches:
       - main
     paths:
-      - 'docker-compose.yml'
-      - 'docs/**'
-      - 'Makefile'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/deploy.yml'
-  schedule:
-    - cron: '0 6 1 * *'
+      - ".github/workflows/deploy.yml"
+      - "astro.config.mjs"
+      - "compose.yml"
+      - "deno.jsonc"
+      - "deno.lock"
+      - "Dockerfile"
+      - "Makefile"
+      - "public"
+      - "src/**"
+  # schedule:
+  #   - cron: "0 6 1 * *"
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
-    - uses: actions/checkout@v1
-    - name: Deploy
-      run: make ciDeploy
-      env:
-        ENV_CLOUDFLARE_BRANCH_NAME: ${{ vars.ENV_CLOUDFLARE_BRANCH_NAME }}
-        ENV_CLOUDFLARE_PROJECT_NAME: ${{ vars.ENV_CLOUDFLARE_PROJECT_NAME }}
-        ENV_SECRET_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.ENV_SECRET_CLOUDFLARE_ACCOUNT_ID }}
-        ENV_SECRET_CLOUDFLARE_API_TOKEN: ${{ secrets.ENV_SECRET_CLOUDFLARE_API_TOKEN }}
+      - uses: actions/checkout@v5
+      - name: Deploy
+        run: make ciDeploy
+        env:
+          ENV_CLOUDFLARE_BRANCH_NAME: ${{ vars.ENV_CLOUDFLARE_BRANCH_NAME }}
+          ENV_CLOUDFLARE_PROJECT_NAME: ${{ vars.ENV_CLOUDFLARE_PROJECT_NAME }}
+          ENV_SECRET_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.ENV_SECRET_CLOUDFLARE_ACCOUNT_ID }}
+          ENV_SECRET_CLOUDFLARE_API_TOKEN: ${{ secrets.ENV_SECRET_CLOUDFLARE_API_TOKEN }}

@@ -1,0 +1,14 @@
+---
+// https://starlight.astro.build/guides/overriding-components/#only-override-on-specific-pages
+import Default from "@astrojs/starlight/components/Footer.astro";
+import HomePageFooter from "./HomePageFooter.astro";
+
+const isHomepage = Astro.locals.starlightRoute.id === "";
+---
+{
+  isHomepage ? <HomePageFooter /> : (
+    <Default>
+      <slot />
+    </Default>
+  )
+}

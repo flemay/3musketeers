@@ -1,14 +1,10 @@
+.astro
 .vscode
 .DS_Store
 *.swp
 node_modules
+vendor
 *.log
 .env*
 .wrangler
-
-# vitepress subfolder
-docs/.vitepress/**/*/
-!docs/.vitepress/components
-!docs/.vitepress/config.js
-!docs/.vitepress/public
-!docs/.vitepress/theme
+dist
