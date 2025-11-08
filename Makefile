@@ -9,8 +9,13 @@ COMPOSE_UP_CI = docker compose up ci -d
 COMPOSE_RUN_DEV = docker compose run --service-ports --rm dev
 COMPOSE_UP_DEV = docker compose up dev
 
-ENVFILE ?= env.template
 ASTRO_URL ?= http://ci:4321
+
+ifneq ("$(wildcard .env)","")
+	ENVFILE ?= .env
+else
+	ENVFILE ?= env.template
+endif
 
 ciTest: clean envfile deps check build preview testPreview clean
 ciDeploy: clean envfile deps check build preview testPreview deploy clean
