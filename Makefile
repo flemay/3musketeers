@@ -38,6 +38,7 @@ copyDepsToHost:
 
 deploy:
 	git rev-parse --is-shallow-repository
+	git rev-list --count HEAD
 	# cat dist/about/what-is-3musketeers/index.html | grep "Last updated"
 
 fmt \
