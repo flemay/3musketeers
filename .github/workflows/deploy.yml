@@ -20,6 +20,11 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v5
+        with:
+          # Fetch all history for all branches and tags
+          # so last updated timestamps are available for Astro when building
+          # https://starlight.astro.build/reference/configuration/?utm_source=chatgpt.com#lastupdated
+          fetch-depth: 0
       - name: Deploy
         run: make ciDeploy
         env:
