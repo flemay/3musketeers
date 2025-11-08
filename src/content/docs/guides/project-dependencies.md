@@ -79,31 +79,35 @@ any port collision and the other one used locally.
 
 ```yaml title="compose.yml"
 services:
-  devcontainer: &devcontainer
+  base: &base
     build: .
-    image: localhost:5000/myproject-devcontainer
+    image: localhost:5000/myproject-devcontainer:local
     pull_policy: never
 
-  devcontainer-withports:
-    <<: *devcontainer
+  ci: &ci
+    image: localhost:5000/myproject-devcontainer:local
+    depends_on:
+      - base
+    working_dir: /opt/app
+
+  dev:
+    <<: *ci
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:4321:4321"
 ```
 
-In the snippet above, `devcontainer` includes the combination of
+In the snippet above, `base` includes the combination of
 [`build`, `image` and `pull_policy`][linkComposeUsingBuildAndImage] to direct
 `Compose` to build the image `localhost:5000/myproject-devcontainer` if it is
-not cached already. The reason why the name is specified is for service
-`devcontainer-withports` to use the same image. By default, if `image` is
-omitted, `Compose` would build 2 images: `myproject-devcontainer` and
-`myproject-devcontainer-withports`.
+not cached already. The reason why the name is specified is for service `ci` and
+`dev` to use the same image, otherwise `Compose` would create 3 distinct images.
 
-[Fragment][linkComposeFragments] is used to repeat the configuration of service
-`devcontainer` in service `devcontainer-withports`.
+[Fragment][linkComposeFragments] is used to repeat the configuration between the
+services.
 
 Lastly, the image name contains `localhost:5000/` to prevent from pushing the
 image to a different Docker registry by mistake. With the command
-`docker compose push devcontainer`, `Compose` will attempt to push the image
+`docker compose push base`, `Compose` will attempt to push the image
 `localhost:5000/myproject-devcontainer` and fail unless there is a registry
 service running locally.
 

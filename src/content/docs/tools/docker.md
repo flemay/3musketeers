@@ -27,11 +27,11 @@ before using them and this list does not make an exception.
   database container to be ready before running a migration. The image
   `jwilder/dockerize` can be used to help with this scenario.
 
-```make title="Makefile"
-dbStart:
-  docker compose up -d db
-  docker compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
-```
+  ```make title="Makefile"
+  dbStart:
+    docker compose up -d db
+    docker compose run --rm dockerize -wait tcp://db:3306 -timeout 60s
+  ```
 
 - [dockerlint][linkDockerHubDockerlint] validates your Dockerfiles
 - [shellcheck][linkDockerHubShellcheck] lints your shell scripts

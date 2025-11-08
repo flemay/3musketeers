@@ -2,8 +2,6 @@
 title: Patterns
 sidebar:
   order: 2
-tableOfContents:
-  maxHeadingLevel: 4
 ---
 
 In a nutshell, Make calls either Docker or Compose which then runs a Command
@@ -47,8 +45,8 @@ installed.
 
 :::tip
 
-There are [ways][linkDocker] to add Make to your Docker image if it does not
-have it.
+There are [ways][linkDockerImageWithoutMake] to add Make to your Docker image if
+it does not have it.
 
 :::
 
@@ -283,6 +281,6 @@ Some references:
 [link3MusketeersWebsiteDevelopment]: https://github.com/flemay/3musketeers?tab=readme-ov-file#3-musketeers-website-development
 [linkDinDDockerCon]: https://www.youtube.com/watch?v=JyEwKm-OfxA
 [linkDinD]: https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
-[linkDocker]: /guides/docker
+[linkDockerImageWithoutMake]: /tools/docker#image-without-make
 [linkGitLabDinD]: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 [linkMusketeersImage]: https://cloud.docker.com/u/flemay/repository/docker/flemay/musketeers

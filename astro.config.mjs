@@ -5,6 +5,7 @@ import starlight from "@astrojs/starlight";
 const githubUrl = "https://github.com/flemay/3musketeers";
 
 // https://astro.build/config
+// https://starlight.astro.build/reference/configuration/
 export default defineConfig({
   integrations: [
     starlight({
@@ -70,6 +71,9 @@ export default defineConfig({
         baseUrl: githubUrl,
       },
       lastUpdated: true,
+      tableOfContents: {
+        maxHeadingLevel: 5,
+      },
       sidebar: [
         {
           label: "About",

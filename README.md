@@ -47,7 +47,7 @@ application’s source code and are invoked in the same way whether run locally 
 on a CI/CD server.
 
 > [!NOTE]
-> For more information, please visit the [official website][link3Musketeers].
+> To learn more, please visit the [official website][link3Musketeers].
 
 ## 3 Musketeers website
 

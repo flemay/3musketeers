@@ -145,14 +145,14 @@ return an error. Something like
 ```make title="Makefile"
 # First target
 noTargetGuard:
-	$(error target is missing)
+	$(error Target is missing)
 
 # other targets below
 ```
 
 ```sh
 make
-# Makefile:2: *** target is missing.  Stop.
+# Makefile:2: *** Target is missing.  Stop.
 ```
 
 ## Ordering targets
@@ -161,8 +161,8 @@ Ordering targets in some ways may help maintaining the Makefile in the long run.
 Here are some suggestions:
 
 - Variables defined at the top
-- Targets [all][linkMakeAndTargetAll] and [pipeline target][linkPipelineTargets]
-  at the top of the file (after the variables)
+- Targets [all][linkTargetAll] and [pipeline target][linkPipelineTargets] at the
+  top of the file (after the variables)
 - Ordering targets in a build pipeline flow
 
 ```make title="Makefile"
@@ -545,7 +545,7 @@ target01: This message will also show up when typing 'make help'
 target02: This message will show up too!!!
 ```
 
-[linkMakeAndTargetAll]: #make-and-target-all
+[linkTargetAll]: #target-all
 [linkPipelineTargets]: #pipeline-targets
 [linkTargetVSUnderscoreTarget]: #target-vs-_target
 [linkTargetDependencies]: #target-dependencies
