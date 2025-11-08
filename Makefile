@@ -37,7 +37,8 @@ copyDepsToHost:
 	docker compose rm -f ci
 
 deploy:
-	cat dist/about/what-is-3musketeers/index.html | grep "Last updated"
+	git rev-parse --is-shallow-repository
+	# cat dist/about/what-is-3musketeers/index.html | grep "Last updated"
 
 fmt \
 check \
