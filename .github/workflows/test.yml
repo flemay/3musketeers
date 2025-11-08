@@ -1,14 +1,9 @@
 name: Test
 on:
-  push:
-    branches:
-      - deno-starlight
   pull_request:
     paths-ignore:
       - demo/**
       - diagrams/**
-      - "*.drawio"
-      - "*.md"
 jobs:
   test:
     runs-on: ubuntu-24.04-arm

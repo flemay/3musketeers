@@ -3,18 +3,22 @@ on:
   push:
     branches:
       - main
+      - deno-starlight
     paths:
-      - "docker-compose.yml"
-      - "docs/**"
-      - "Makefile"
-      - "package.json"
-      - "package-lock.json"
       - ".github/workflows/deploy.yml"
-  schedule:
-    - cron: "0 6 1 * *"
+      - "astro.config.mjs"
+      - "compose.yml"
+      - "deno.jsonc"
+      - "deno.lock"
+      - "Dockerfile"
+      - "Makefile"
+      - "public"
+      - "src/**"
+  # schedule:
+  #   - cron: "0 6 1 * *"
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v5
       - name: Deploy
