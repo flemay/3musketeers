@@ -48,8 +48,8 @@
       "ffi": [
         "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.52.5/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
         "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.5/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
-        "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.4/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
-        "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.4/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
+        "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
+        "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
       "net": [
         "localhost",
