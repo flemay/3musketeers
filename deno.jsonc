@@ -24,7 +24,7 @@
     "install": "deno install --quiet --allow-scripts=npm:sharp",
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
-    "deploy": "echo \"<!-- build: $(date -u) -->\" >> dist/force-upload.html && deno run -P=wrangler wrangler pages deploy dist --project-name=\"$ENV_CLOUDFLARE_PROJECT_NAME\" --branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\" --commit-message=\"Deploy\"",
+    "deploy": "deno run -P=wrangler wrangler pages deploy dist --project-name=\"$ENV_CLOUDFLARE_PROJECT_NAME\" --branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\" --commit-message=\"Deploy\"",
     "deploy:list": "deno run -P=wrangler wrangler pages project list",
     "deploy:create": "deno run -P=wrangler wrangler pages project create \"$ENV_CLOUDFLARE_PROJECT_NAME\" --production-branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\"",
     "deploy:delete": "deno run -P=wrangler wrangler pages project delete \"$ENV_CLOUDFLARE_PROJECT_NAME\""

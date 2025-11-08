@@ -36,10 +36,12 @@ copyDepsToHost:
 	docker compose cp ci:/opt/app/vendor .
 	docker compose rm -f ci
 
+deploy:
+	cat dist/about/what-is-3musketeers/index.html | grep "Last updated"
+
 fmt \
 check \
 build \
-deploy \
 toc \
 update:
 	$(COMPOSE_RUN_CI) deno task $@
