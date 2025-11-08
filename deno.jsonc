@@ -36,7 +36,7 @@
         // For some reasons, Astro needs access to /proc/version, /opt, and /
         "allow": [
           "/"
-        ],
+        ]
         // Something is not working when habing a `deny`. Not sure if it is a Deno bug.
         // "deny": [
         //   ".env*"
