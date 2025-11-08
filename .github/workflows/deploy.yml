@@ -26,6 +26,8 @@ jobs:
           # so last updated timestamps are available for Astro when building
           # https://starlight.astro.build/reference/configuration/#lastupdated
           fetch-depth: 0
+      - name: Allow Git to trust this directory
+        run: git config --global --add safe.directory /opt/app
       - name: Deploy
         run: make ciDeploy
         env:
