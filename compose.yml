@@ -35,7 +35,7 @@ services:
       - CLOUDFLARE_API_TOKEN=${ENV_SECRET_CLOUDFLARE_API_TOKEN:-""}
       - WRANGLER_SEND_METRICS=false
       - ASTRO_TELEMETRY_DISABLED=1
-    env_file: .env
+    env_file: "{.env:-env.template}"
     command: ${COMPOSE_COMMAND:-bash}
 
   # Service `dev` is for local development and not on a CI/CD where there could be port conflict
