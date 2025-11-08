@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - deno-starlight
     paths:
       - ".github/workflows/deploy.yml"
       - "astro.config.mjs"
