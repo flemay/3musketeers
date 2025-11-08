@@ -18,7 +18,7 @@
     "toc": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle",
     "astro": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD",
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
-    "build": "rm -fr dist && DEBUG=\"starlight*\" ASTRO_CMD='build' deno task astro",
+    "build": "rm -fr dist && git config --global --add safe.directory /opt/app && ASTRO_CMD='build' deno task astro",
     "build:debug": {
       "description": "deno task build:debug >& debug.log",
       "command": "DEBUG=\"astro:*,vite:*\" ASTRO_CMD='build --verbose >& debug.log' deno task astro"
