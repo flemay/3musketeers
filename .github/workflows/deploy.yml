@@ -23,7 +23,7 @@ jobs:
         with:
           # Fetch all history for all branches and tags
           # so last updated timestamps are available for Astro when building
-          # https://starlight.astro.build/reference/configuration/?utm_source=chatgpt.com#lastupdated
+          # https://starlight.astro.build/reference/configuration/#lastupdated
           fetch-depth: 0
       - name: Deploy
         run: make ciDeploy
