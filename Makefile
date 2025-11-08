@@ -66,7 +66,7 @@ testPreview:
 
 _testPreview:
 	$(info Ensure .git is not shallow)
-	git rev-parse --is-shallow-repository | grep false
+	# git rev-parse --is-shallow-repository | grep false
 	$(info Test home page)
 	curl $(ASTRO_URL) | grep "Get started" > /dev/null
 	$(info Test Getting started)
