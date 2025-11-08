@@ -8,7 +8,7 @@ COMPOSE_BUILD_BASE = docker compose build base
 COMPOSE_RUN_CI = COMPOSE_ENVFILE=.env docker compose run --rm ci
 COMPOSE_UP_CI = COMPOSE_ENVFILE=.env docker compose up ci -d
 COMPOSE_RUN_DEV = COMPOSE_ENVFILE=.env docker compose run --service-ports --rm dev
-COMPOSE_UP_DEV = COMPOSE_ENVFILE=$(ENVFILE) docker compose up dev
+COMPOSE_UP_DEV = COMPOSE_ENVFILE=.env docker compose up dev
 
 ASTRO_URL ?= http://ci:4321
 # ENVFILE ?= $(if $(wildcard .env),.env,env.template)
@@ -36,14 +36,10 @@ copyDepsToHost:
 	docker compose cp ci:/opt/app/vendor .
 	docker compose rm -f ci
 
-deploy:
-	git rev-parse --is-shallow-repository
-	git rev-list --count HEAD
-	# cat dist/about/what-is-3musketeers/index.html | grep "Last updated"
-
 fmt \
 check \
 build \
+deploy \
 toc \
 update:
 	$(COMPOSE_RUN_CI) deno task $@
@@ -69,10 +65,14 @@ testPreview:
 	$(COMPOSE_RUN_CI) make _testPreview ASTRO_URL=$(ASTRO_URL)
 
 _testPreview:
+	$(info Ensure .git is not shallow)
+	git rev-parse --is-shallow-repository | grep false
 	$(info Test home page)
 	curl $(ASTRO_URL) | grep "Get started" > /dev/null
 	$(info Test Getting started)
 	curl $(ASTRO_URL)/guides/getting-started/ | grep "Getting Started" > /dev/null
+	$(info Ensure presence of `Last updated` field)
+	curl $(ASTRO_URL)/guides/getting-started/ | grep "Last updated" > /dev/null
 
 # clean removes everything that has been created
 # It also deletes the deps folders, that could've been copied to the host (`make copyDepsToHost`), with `busybox` service as it does not mount them with volumens.

@@ -10,20 +10,20 @@
   // TODO:
   // - Add `astro check` to the task `check`
   "tasks": {
-    "toc": {
-      "command": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle"
-    },
-    "astro": {
-      "command": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD"
-    },
-    "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
-    "build": "rm -fr dist && ASTRO_CMD='build --debug --verbose' deno task astro",
-    "preview": "ASTRO_CMD='preview --host=0.0.0.0 --allowed-hosts=ci,dev' deno task astro",
-    "fmt": "deno fmt",
-    "check": "deno check --no-remote --doc && deno lint && deno fmt --check",
     "install": "deno install --quiet --allow-scripts=npm:sharp",
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
+    "fmt": "deno fmt",
+    "check": "deno check --no-remote --doc && deno lint && deno fmt --check",
+    "toc": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle",
+    "astro": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD",
+    "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
+    "build": "rm -fr dist && DEBUG=\"starlight*\" ASTRO_CMD='build' deno task astro",
+    "build:debug": {
+      "description": "deno task build:debug >& debug.log",
+      "command": "DEBUG=\"astro:*,vite:*\" ASTRO_CMD='build --verbose >& debug.log' deno task astro"
+    },
+    "preview": "ASTRO_CMD='preview --host=0.0.0.0 --allowed-hosts=ci,dev' deno task astro",
     "deploy": "deno run -P=wrangler wrangler pages deploy dist --project-name=\"$ENV_CLOUDFLARE_PROJECT_NAME\" --branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\" --commit-message=\"Deploy\"",
     "deploy:list": "deno run -P=wrangler wrangler pages project list",
     "deploy:create": "deno run -P=wrangler wrangler pages project create \"$ENV_CLOUDFLARE_PROJECT_NAME\" --production-branch=\"$ENV_CLOUDFLARE_BRANCH_NAME\"",
@@ -32,10 +32,16 @@
   "permissions": {
     "astro": {
       "env": true,
-      // For some reasons, Astro needs access to /proc/version, /opt, and /
-      "read": [
-        "/"
-      ],
+      "read": {
+        // For some reasons, Astro needs access to /proc/version, /opt, and /
+        "allow": [
+          "/"
+        ],
+        // Something is not working when habing a `deny`. Not sure if it is a Deno bug.
+        // "deny": [
+        //   ".env*"
+        // ]
+      },
       "write": [
         "/opt/app/.astro",
         "/opt/app/node_modules/.astro",
