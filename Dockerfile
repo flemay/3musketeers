@@ -19,4 +19,5 @@ RUN apt update \
   && apt clean
 RUN npm install -g deno \
   && deno --version
+RUN git config --global --add safe.directory /opt/app
 WORKDIR /opt/app
