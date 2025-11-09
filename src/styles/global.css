@@ -35,6 +35,6 @@
 /*   filter: drop-shadow(2px 4px 6px var(--sl-color-text-accent)); */
 /* } */
 
-@view-transition {
-  navigation: auto;
-}
+/* @view-transition { */
+/*   navigation: auto; */
+/* } */
