@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           # Fetch all history for all branches and tags
-          # This enables Astro's last updated feature
+          # This enables Starlight's last updated feature
           # https://starlight.astro.build/reference/configuration/#lastupdated
           fetch-depth: 0
       - name: Deploy
