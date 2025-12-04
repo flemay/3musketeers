@@ -11,7 +11,7 @@
 #   && apt install -y make nodejs npm \
 #   && apt clean
 
-# node is currently chosen because astro build somehow calls `npx`. If `npx is not present, pagefind search pages are not generated
+# node is currently chosen because astro build somehow calls `npx`. If `npx` is not present, pagefind search pages are not generated
 # It is also faster to install `deno` with `npm` than installing `nodejs` and `npm` from `denoland/deno:debian`
 FROM node:slim
 RUN apt update \
