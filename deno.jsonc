@@ -10,7 +10,6 @@
   // TODO:
   // - Add `astro check` to the task `check`
   "tasks": {
-    // "install": "deno install --quiet --allow-scripts=npm:sharp",
     "install": "deno install --quiet",
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
