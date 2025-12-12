@@ -10,11 +10,11 @@
   // TODO:
   // - Add `astro check` to the task `check`
   "tasks": {
-    "install": "deno install --quiet --allow-scripts=npm:sharp",
+    "install": "deno install --quiet",
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
     "fmt": "deno fmt",
-    "check": "deno check --no-remote --doc && deno lint && deno fmt --check",
+    "check": "deno check --unstable-tsgo --no-remote --doc && deno lint && deno fmt --check && deno audit --ignore-unfixable",
     "toc": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle",
     "astro": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD",
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
@@ -37,7 +37,7 @@
         "allow": [
           "/"
         ]
-        // Something is not working when habing a `deny`. Not sure if it is a Deno bug.
+        // Something is not working when having a `deny` (or even `ignore`): the last updated is not present.
         // "deny": [
         //   ".env*"
         // ]
@@ -51,8 +51,8 @@
       "sys": true,
       // Paths require update whenever rollup and sharp change version, as well as when running on different architecture (arm, x86)
       "ffi": [
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.52.5/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.52.5/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.53.3/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.53.3/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
         "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
         "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
@@ -112,12 +112,22 @@
   "unstable": [
     "fmt-component"
   ],
-  "nodeModulesDir": "auto",
+  "lock": {
+    "frozen": true
+  },
   "imports": {
-    "@astrojs/starlight": "npm:@astrojs/starlight@0.36.2",
-    "astro": "npm:astro@5.15.4",
+    "@astrojs/starlight": "npm:@astrojs/starlight@0.37.1",
+    "astro": "npm:astro@5.16.5",
     "doctoc": "npm:doctoc@^2.2.1",
     "sharp": "npm:sharp@0.34.5",
-    "wrangler": "npm:wrangler@^4.46.0"
+    "wrangler": "npm:wrangler@^4.54.0"
+  },
+  "allowScripts": {
+    "allow": ["npm:sharp@0.34.5"],
+    "deny": [
+      "npm:esbuild@0.27.0",
+      "npm:sharp@0.33.5",
+      "npm:workerd@1.20251210.0"
+    ]
   }
 }

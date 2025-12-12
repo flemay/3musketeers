@@ -3,7 +3,7 @@ noTargetGuard:
 
 COMPOSE_PULL_BUSYBOX = docker compose pull busybox
 COMPOSE_RUN_BUSYBOX = docker compose run --rm busybox
-COMPOSE_BUILD_BASE = docker compose build base
+COMPOSE_BUILD_BASE = docker compose build --no-cache base
 # COMPOSE_RUN_CI = COMPOSE_ENVFILE=$(ENVFILE) docker compose run --rm ci
 COMPOSE_RUN_CI = COMPOSE_ENVFILE=.env docker compose run --rm ci
 COMPOSE_UP_CI = COMPOSE_ENVFILE=.env docker compose up ci -d
