@@ -10,11 +10,11 @@
   // TODO:
   // - Add `astro check` to the task `check`
   "tasks": {
-    "install": "deno install --quiet",
+    "install": "deno install --quiet && deno audit --ignore-unfixable",
     "outdated": "deno outdated",
     "update": "deno outdated --update --latest",
     "fmt": "deno fmt",
-    "check": "deno check --unstable-tsgo --no-remote --doc && deno lint && deno fmt --check && deno audit --ignore-unfixable",
+    "check": "deno check --unstable-tsgo --no-remote --doc && deno lint && deno fmt --check",
     "toc": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle",
     "astro": "DENO_COMPAT=1 deno run --cached-only -P=astro --no-prompt astro $ASTRO_CMD",
     "dev": "ASTRO_CMD='dev --host 0.0.0.0' deno task astro",
@@ -123,7 +123,9 @@
     "wrangler": "npm:wrangler@^4.54.0"
   },
   "allowScripts": {
-    "allow": ["npm:sharp@0.34.5"],
+    "allow": [
+      "npm:sharp@0.34.5"
+    ],
     "deny": [
       "npm:esbuild@0.27.0",
       "npm:sharp@0.33.5",
