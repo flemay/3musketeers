@@ -33,20 +33,26 @@
     "astro": {
       "env": true,
       "read": {
-        // For some reasons, Astro needs access to /proc/version, /opt, and /
         "allow": [
-          "/"
+          "/lerna.json",
+          "/opt/app",
+          "/opt/lerna.json",
+          "/opt/package.json",
+          "/opt/pnpm-workspace.yaml",
+          "/package.json",
+          "/pnpm-workspace.yaml",
+        ],
+        "ignore": [
+          "/",
+          // For some reason, ignoring .env* files prevents the last updated date to be displayed.
+          // "/opt/app/.env*"
         ]
-        // Something is not working when having a `deny` (or even `ignore`): the last updated is not present.
-        // "deny": [
-        //   ".env*"
-        // ]
       },
       "write": [
         "/opt/app/.astro",
+        "/opt/app/dist"
         "/opt/app/node_modules/.astro",
         "/opt/app/node_modules/.vite",
-        "/opt/app/dist"
       ],
       "sys": true,
       // Paths require update whenever rollup and sharp change version, as well as when running on different architecture (arm, x86)
