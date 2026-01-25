@@ -23,7 +23,7 @@
 # Prior `@astrojs/starlight` verison `[0.37.4](https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md)`, NodeJS was used as base image because `astro build` would call `npx`. If `npx` wasn't present, `pagefind` page would not get generated.
 FROM denoland/deno:debian
 RUN apt update \
-  && apt install -y git curl \
+  && apt install -y git curl make \
   && apt clean
 # The following is required for Starlight `Last updated` timestamp to sucessfully access `.git` on Linux.
 # It seems Starlight just silently fails if any error occurs and keeps the build running.
