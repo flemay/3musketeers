@@ -20,11 +20,14 @@ ciDeploy: clean envfile deps check build preview testPreview deploy clean
 envfile:
 	$(COMPOSE_RUN_BUSYBOX) sh -c "cp -f $(ENVFILE) .env"
 
-# deps creates the base image used by other compose services
-# It installs dependencies
+# deps creates the base image used by other compose services.
+# It installs dependencies.
+# Note: `docker compose build --no-cache` didn't seem to fetch latest Dockerfile FROM image.
 deps:
+	docker compose down --rmi "all" --remove-orphans --volumes
 	$(COMPOSE_BUILD_BASE)
 	$(COMPOSE_RUN_CI) deno task install
+	$(info Tip: for local development, run `make copyDepsToHost` to copy dependencies to your host)
 
 # It copies deps from Docker volumes to the host. This is handy for auto-completion from IDE among other things.
 # If there is a docker running and using the Docker volumes, it will fail deleting node_modules and vendor. Run command `docker compose down` to mitigate the issue

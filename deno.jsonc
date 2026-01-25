@@ -7,12 +7,12 @@
   //   - https://github.com/withastro/starlight/issues/2930
   // - `--allowed-hosts=ci,dev` allows a container to connect to another container running the preview
   //   - https://github.com/withastro/astro/issues/13060
-  // TODO:
+  // @todo:
   // - Add `astro check` to the task `check`
   "tasks": {
     "install": "deno install --quiet && deno audit --ignore-unfixable",
     "outdated": "deno outdated",
-    "update": "deno outdated --update --latest",
+    "update": "deno outdated --update --latest --frozen=false",
     "fmt": "deno fmt",
     "check": "deno check --unstable-tsgo --no-remote --doc && deno lint && deno fmt --check",
     "toc": "deno run --cached-only -P=toc --no-prompt doctoc README.md --notitle",
@@ -51,8 +51,8 @@
       "sys": true,
       // Paths require update whenever rollup and sharp change version, as well as when running on different architecture (arm, x86)
       "ffi": [
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.53.3/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.53.3/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.56.0/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.56.0/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
         "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
         "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
@@ -116,11 +116,11 @@
     "frozen": true
   },
   "imports": {
-    "@astrojs/starlight": "npm:@astrojs/starlight@0.37.1",
-    "astro": "npm:astro@5.16.5",
+    "@astrojs/starlight": "npm:@astrojs/starlight@0.37.4",
+    "astro": "npm:astro@5.16.15",
     "doctoc": "npm:doctoc@^2.2.1",
     "sharp": "npm:sharp@0.34.5",
-    "wrangler": "npm:wrangler@^4.54.0"
+    "wrangler": "npm:wrangler@^4.60.0"
   },
   "allowScripts": {
     "allow": [
