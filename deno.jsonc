@@ -40,19 +40,19 @@
           "/opt/package.json",
           "/opt/pnpm-workspace.yaml",
           "/package.json",
-          "/pnpm-workspace.yaml",
+          "/pnpm-workspace.yaml"
         ],
         "ignore": [
-          "/",
+          "/"
           // For some reason, ignoring .env* files prevents the last updated date to be displayed.
           // "/opt/app/.env*"
         ]
       },
       "write": [
         "/opt/app/.astro",
-        "/opt/app/dist"
+        "/opt/app/dist",
         "/opt/app/node_modules/.astro",
-        "/opt/app/node_modules/.vite",
+        "/opt/app/node_modules/.vite"
       ],
       "sys": true,
       // Paths require update whenever rollup and sharp change version, as well as when running on different architecture (arm, x86)
