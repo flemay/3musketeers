@@ -3,7 +3,7 @@ noTargetGuard:
 
 COMPOSE_PULL_BUSYBOX = docker compose pull busybox
 COMPOSE_RUN_BUSYBOX = docker compose run --rm busybox
-COMPOSE_BUILD_BASE = docker compose build --no-cache base
+COMPOSE_BUILD_BASE = docker compose build --no-cache --pull base
 # COMPOSE_RUN_CI = COMPOSE_ENVFILE=$(ENVFILE) docker compose run --rm ci
 COMPOSE_RUN_CI = COMPOSE_ENVFILE=.env docker compose run --rm ci
 COMPOSE_UP_CI = COMPOSE_ENVFILE=.env docker compose up ci -d
@@ -44,8 +44,15 @@ check \
 build \
 deploy \
 toc \
-update:
+outdated:
 	$(COMPOSE_RUN_CI) deno task $@
+
+# Update deps to latest.
+# This is a workaround as the command `deno update --latest --frozen=false` should work as per Deno's documentation but fails.
+# https://docs.deno.com/runtime/fundamentals/modules/#frozen-lockfile
+# Using `deno task --frozen=false` does work. Similar to `deno install --frozen=false`
+update:
+	$(COMPOSE_RUN_CI) deno task --frozen=false update
 
 dev:
 	COMPOSE_COMMAND="deno task $@" $(COMPOSE_UP_DEV)

@@ -9,6 +9,7 @@
   //   - https://github.com/withastro/astro/issues/13060
   // @todo:
   // - Add `astro check` to the task `check`
+  // - May want to upgrade with command like `npx @astrojs/upgrade`
   "tasks": {
     "install": "deno install --quiet && deno audit --ignore-unfixable",
     "outdated": "deno outdated",
@@ -40,7 +41,9 @@
           "/opt/package.json",
           "/opt/pnpm-workspace.yaml",
           "/package.json",
-          "/pnpm-workspace.yaml"
+          "/pnpm-workspace.yaml",
+          "/proc",
+          "/run"
         ],
         "ignore": [
           "/"
@@ -57,8 +60,8 @@
       "sys": true,
       // Paths require update whenever rollup and sharp change version, as well as when running on different architecture (arm, x86)
       "ffi": [
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.56.0/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
-        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.56.0/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-x64-gnu@4.57.1/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node",
+        "/opt/app/node_modules/.deno/@rollup+rollup-linux-arm64-gnu@4.57.1/node_modules/@rollup/rollup-linux-arm64-gnu/rollup.linux-arm64-gnu.node",
         "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
         "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
@@ -122,11 +125,11 @@
     "frozen": true
   },
   "imports": {
-    "@astrojs/starlight": "npm:@astrojs/starlight@0.37.4",
-    "astro": "npm:astro@5.16.15",
-    "doctoc": "npm:doctoc@^2.2.1",
+    "@astrojs/starlight": "npm:@astrojs/starlight@0.37.6",
+    "astro": "npm:astro@5.17.3",
+    "doctoc": "npm:doctoc@^2.3.0",
     "sharp": "npm:sharp@0.34.5",
-    "wrangler": "npm:wrangler@^4.60.0"
+    "wrangler": "npm:wrangler@^4.67.0"
   },
   "allowScripts": {
     "allow": [
