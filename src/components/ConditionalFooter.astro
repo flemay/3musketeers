@@ -5,10 +5,8 @@ import HomePageFooter from "./HomePageFooter.astro";
 
 const isHomepage = Astro.locals.starlightRoute.id === "";
 ---
-{
-  isHomepage ? <HomePageFooter /> : (
-    <Default>
-      <slot />
-    </Default>
-  )
-}
+{isHomepage ? <HomePageFooter /> : (
+   <Default>
+     <slot />
+   </Default>
+ )}
