@@ -8,33 +8,6 @@
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![License][linkLicenseBadge]][linkLicense]
 
-</div>
-
-<details>
-  <summary>Table of Contents</summary>
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Overview](#overview)
-- [3 Musketeers website](#3-musketeers-website)
-  - [Prerequisites](#prerequisites)
-  - [Development](#development)
-  - [Deployment](#deployment)
-    - [0. Cloudflare account ID and API token](#0-cloudflare-account-id-and-api-token)
-    - [1. Envfile](#1-envfile)
-    - [2. Create](#2-create)
-    - [3. Deploy](#3-deploy)
-    - [4. Delete](#4-delete)
-  - [CI/CD](#cicd)
-  - [Visual elements](#visual-elements)
-- [Contributing](#contributing)
-- [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-</details>
-
 ## Overview
 
 <!-- Part of src/content/docs/about/what-is-3musketeers.md -->
@@ -68,7 +41,7 @@ test, and deploy using the 3 Musketeers methodology.
 # Create a .env file
 make envfile ENVFILE=env.example
 # Install dependencies
-make deps copyDepsToHost
+make deps
 
 # Format and check
 make fmt check

@@ -26,7 +26,7 @@ envfile:
 deps:
 	docker compose down --rmi "all" --remove-orphans --volumes
 	$(COMPOSE_BUILD_BASE)
-	$(COMPOSE_RUN_CI) deno task install
+	$(COMPOSE_RUN_CI) pnpm run deps
 	$(info Tip: for local development, run `make copyDepsToHost` to copy dependencies to your host)
 
 # It copies deps from Docker volumes to the host. This is handy for auto-completion from IDE among other things.
@@ -43,9 +43,8 @@ fmt \
 check \
 build \
 deploy \
-toc \
 outdated:
-	$(COMPOSE_RUN_CI) deno task $@
+	$(COMPOSE_RUN_CI) pnpm run $@
 
 # Update deps to latest.
 # This is a workaround as the command `deno update --latest --frozen=false` should work as per Deno's documentation but fails.

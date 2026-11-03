@@ -1,11 +1,11 @@
 services:
   busybox:
     image: busybox
-    working_dir: /opt/app
+    working_dir: /workspace
     volumes:
       - type: bind
         source: .
-        target: /opt/app
+        target: /workspace
 
   # https://docs.docker.com/reference/compose-file/build/#using-build-and-image
   base: &base
@@ -18,17 +18,14 @@ services:
     image: 3musketeers.local/dev:local
     depends_on:
       - base
-    working_dir: /opt/app
+    working_dir: /workspace
     volumes:
       - type: bind
         source: .
-        target: /opt/app
+        target: /workspace
       - type: volume
         source: node_modules
-        target: /opt/app/node_modules
-      - type: volume
-        source: vendor
-        target: /opt/app/vendor
+        target: /workspace/node_modules
     environment:
       - TZ=${ENV_TZ:-UTC}
       - CLOUDFLARE_ACCOUNT_ID=${ENV_SECRET_CLOUDFLARE_ACCOUNT_ID:-""}
@@ -47,4 +44,3 @@ services:
 # "Volumes are ideal for performance-critical data processing and long-term storage needs." https://docs.docker.com/engine/storage/
 volumes:
   node_modules:
-  vendor:
