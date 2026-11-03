@@ -49,40 +49,23 @@
         "/opt/app/node_modules/.deno/@img+sharp-linuxmusl-arm64@0.34.5/node_modules/@img/sharp-linuxmusl-arm64/lib/sharp-linuxmusl-arm64.node",
         "/opt/app/node_modules/.deno/@img+sharp-linux-arm64@0.34.5/node_modules/@img/sharp-linux-arm64/lib/sharp-linux-arm64.node"
       ],
-      "net": [
-        "localhost",
-        "0.0.0.0:4321",
-        "127.0.0.1:4321"
-      ],
+      "net": ["localhost", "0.0.0.0:4321", "127.0.0.1:4321"],
       "run": true
     },
     "wrangler": {
       "env": true,
-      "run": [
-        "/usr/bin/deno"
-      ]
+      "run": ["/usr/bin/deno"]
     },
     "toc": {
-      "read": [
-        "README.md"
-      ],
-      "write": [
-        "README.md"
-      ],
+      "read": ["README.md"],
+      "write": ["README.md"],
       "env": true
     }
   },
   "compilerOptions": {
     "erasableSyntaxOnly": true
   },
-  "exclude": [
-    "dist/",
-    ".astro/",
-    "docs/",
-    "demo/",
-    "misc/",
-    "diagrams/"
-  ],
+  "exclude": ["dist/", ".astro/", "docs/", "demo/", "misc/", "diagrams/"],
   "lint": {
     "rules": {
       "include": [
@@ -97,14 +80,10 @@
     }
   },
   "fmt": {
-    "exclude": [
-      "src/assets/diagrams/*.svg"
-    ]
+    "exclude": ["src/assets/diagrams/*.svg"]
   },
   "vendor": true,
-  "unstable": [
-    "fmt-component"
-  ],
+  "unstable": ["fmt-component"],
   "lock": {
     "frozen": true
   },
@@ -116,9 +95,7 @@
     "wrangler": "npm:wrangler@^4.83.0"
   },
   "allowScripts": {
-    "allow": [
-      "npm:sharp@0.34.5"
-    ],
+    "allow": ["npm:sharp@0.34.5"],
     "deny": [
       "npm:esbuild@0.27.0",
       "npm:sharp@0.33.5",
