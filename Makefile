@@ -8,6 +8,7 @@ COMPOSE_BUILD_BASE = docker compose build --no-cache --pull base
 COMPOSE_RUN_CI = COMPOSE_ENVFILE=.env docker compose run --rm ci
 COMPOSE_UP_CI = COMPOSE_ENVFILE=.env docker compose up ci -d
 COMPOSE_RUN_DEV = COMPOSE_ENVFILE=.env docker compose run --service-ports --rm dev
+COMPOSE_EXEC_DEV = COMPOSE_ENVFILE=.env docker compose exec dev
 COMPOSE_UP_DEV = COMPOSE_ENVFILE=.env docker compose up dev
 
 ASTRO_URL ?= http://ci:4321
@@ -94,3 +95,6 @@ shell:
 
 shellDev:
 	$(COMPOSE_RUN_DEV) bash
+
+execDev:
+	$(COMPOSE_EXEC_DEV) bash

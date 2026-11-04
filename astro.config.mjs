@@ -79,19 +79,19 @@ export default defineConfig({
       sidebar: [
         {
           label: "About",
-          autogenerate: { directory: "about" },
+          items: [{ autogenerate: { directory: "about" } }],
         },
         {
           label: "Guides",
-          autogenerate: { directory: "guides" },
+          items: [{ autogenerate: { directory: "guides" } }],
         },
         {
           label: "Tools",
-          autogenerate: { directory: "tools" },
+          items: [{ autogenerate: { directory: "tools" } }],
         },
         {
           label: "Resources",
-          autogenerate: { directory: "resources" },
+          items: [{ autogenerate: { directory: "resources" } }],
         },
       ],
     }),

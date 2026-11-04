@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:24
 RUN apt update \
   && apt clean
 RUN npm install -g pnpm@12
