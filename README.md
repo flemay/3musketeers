@@ -8,6 +8,8 @@
 [![Build Status][linkGitHubActionsProjectBadge]][linkGitHubActionsProject]
 [![License][linkLicenseBadge]][linkLicense]
 
+</div>
+
 ## Overview
 
 <!-- Part of src/content/docs/about/what-is-3musketeers.md -->
