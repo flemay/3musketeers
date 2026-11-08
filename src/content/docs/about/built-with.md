@@ -8,7 +8,7 @@ Relevant tools and resources that helped creating this website.
 
 - Development:
   - [Astro][linkAstro], [Starlight][linkStarlight], and its dependencies
-  - [Deno][linkDeno]
+  - [Node][linkNode] and [pnpm][linkPnpm]
   - [Docker][linkDocker] and [Compose][linkCompose]
   - [Make][linkMake]
 - Deployment and hosting:
@@ -24,7 +24,8 @@ Relevant tools and resources that helped creating this website.
 [linkAstro]: https://astro.build/
 [linkCloudflarePages]: https://pages.cloudflare.com/
 [linkCompose]: https://docs.docker.com/compose
-[linkDeno]: https://deno.com/
+[linkNode]: https://nodejs.org/
+[linkPnpm]: https://pnpm.io/
 [linkDocker]: https://www.docker.com
 [linkFaviconio]: https://favicon.io
 [linkGitHubActions]: https://github.com/features/actions
