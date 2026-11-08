@@ -43,8 +43,8 @@ make envfile ENVFILE=env.example
 # Install dependencies
 make deps
 
-# Format and check
-make fmt check
+# Check
+make check
 
 # Start Astro server for local development
 make dev
@@ -93,15 +93,15 @@ API token are required.
 1. Account ID: [Find account and zone IDs][linkCloudflareFindAccountAndZoneIDs]
 1. API token
    1. [Create API token][linkCloudflareCreateAPIToken]
-   1. Use `Edit Cloudflare Workers` template
    1. Update the `Token name`
-   1. Permissions:
-      1. Account - Cloudflare Pages - Edit
-      1. Remove other permissions
-   1. Include your account
+   1. Click `Start from scratch`
+   1. `Developer Platform` -> `Pages`
+   1. Select `Read` and `Edit`
    1. Set a short-lived TTL
-   1. Click `Continue to summary`
-1. These values will be used in the following section `1. Envfile`
+   1. Click `Review token`
+   1. Click `Create token`
+   1. Save securely Account ID and API token
+      1. These values will be used in the following section `1. Envfile`
 
 #### 1. Envfile
 
@@ -118,64 +118,48 @@ ENV_SECRET_CLOUDFLARE_ACCOUNT_ID=id-from-previous-section
 ENV_SECRET_CLOUDFLARE_API_TOKEN=token-from-previous-section
 ```
 
-Verify:
-
-```bash
-make shell
-# Check the env vars are correctly set
-env | grep ENV_
-# List current projects on CloudFlare
-deno task deploy:list
-exit
-```
-
-#### 2. Create
+#### 2. List, create, deploy, and delete
 
 This section creates a new Pages project. This step is only needed if
 `ENV_CLOUDFLARE_PROJECT_NAME` wasn't listed in step `1. Envfile`.
 
 ```bash
 make shell
-# Create a new project
-deno task deploy:create
+
+#######
+# LIST
+#######
+# Check the env vars are correctly set
+env | grep ENV_
+# List current projects on CloudFlare
+pnpm run deploy:list
+
+#########
+# Create
+#########
+# Create a new project (only if it does not exist)
+pnpm run deploy:create
 # The new project and its domain should be listed
-deno task deploy:list
+pnpm run deploy:list
 # Project is empty which should not be hosted
 curl -I https://${ENV_CLOUDFLARE_PROJECT_NAME}.pages.dev
 #HTTP/2 522
-#...
-# Exit the container
-exit
-```
 
-#### 3. Deploy
-
-This section deploys the website to an existing Cloudflare Pages project.
-
-```bash
-make shell
-# Deploy the files to the project
-deno task deploy
-# Project is no longer empty!
+#########
+# Deploy
+#########
+pnpm run deploy
 curl -I https://${ENV_CLOUDFLARE_PROJECT_NAME}.pages.dev
 #HTTP/2 200
-#...
-# Exit the container
-exit
-```
 
-Note: `make deploy` can also be used.
-
-#### 4. Delete
-
-This section shows how to delete a Cloudflare Pages project.
-
-```bash
-make shell
-deno task deploy:delete
+#########
+# Delete
+#########
+pnpm run deploy:delete
 #? Are you sure you want to delete "<ENV_CLOUDFLARE_PROJECT_NAME>"? This action cannot be undone. › y
 # Check the project is no longer listed
-deno task deploy:list
+pnpm run deploy:list
+
 exit
 ```
 
