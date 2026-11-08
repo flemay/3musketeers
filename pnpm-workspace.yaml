@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: false
+  workerd: false
+# 3 days
+minimumReleaseAge: 4320

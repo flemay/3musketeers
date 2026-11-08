@@ -8,6 +8,7 @@ COMPOSE_BUILD_BASE = docker compose build --no-cache --pull base
 COMPOSE_RUN_CI = COMPOSE_ENVFILE=.env docker compose run --rm ci
 COMPOSE_UP_CI = COMPOSE_ENVFILE=.env docker compose up ci -d
 COMPOSE_RUN_DEV = COMPOSE_ENVFILE=.env docker compose run --service-ports --rm dev
+COMPOSE_EXEC_DEV = COMPOSE_ENVFILE=.env docker compose exec dev
 COMPOSE_UP_DEV = COMPOSE_ENVFILE=.env docker compose up dev
 
 ASTRO_URL ?= http://ci:4321
@@ -26,7 +27,7 @@ envfile:
 deps:
 	docker compose down --rmi "all" --remove-orphans --volumes
 	$(COMPOSE_BUILD_BASE)
-	$(COMPOSE_RUN_CI) deno task install
+	$(COMPOSE_RUN_CI) pnpm run deps
 	$(info Tip: for local development, run `make copyDepsToHost` to copy dependencies to your host)
 
 # It copies deps from Docker volumes to the host. This is handy for auto-completion from IDE among other things.
@@ -39,34 +40,36 @@ copyDepsToHost:
 	docker compose cp ci:/opt/app/vendor .
 	docker compose rm -f ci
 
-fmt \
 check \
 build \
-deploy \
-toc \
-outdated:
-	$(COMPOSE_RUN_CI) deno task $@
+deploy:
+	$(COMPOSE_RUN_CI) pnpm run $@
 
-# Update deps to latest.
-# This is a workaround as the command `deno update --latest --frozen=false` should work as per Deno's documentation but fails.
-# https://docs.deno.com/runtime/fundamentals/modules/#frozen-lockfile
-# Using `deno task --frozen=false` does work. Similar to `deno install --frozen=false`
-update:
-	$(COMPOSE_RUN_CI) deno task --frozen=false update
+depsAudit:
+	$(COMPOSE_RUN_CI) pnpm run deps:audit
+
+depsOutdated:
+	$(COMPOSE_RUN_CI) pnpm run deps:outdated
+
+depsUpgrade:
+	$(COMPOSE_RUN_CI) pnpm run deps:upgrade
+
+checkFix:
+	$(COMPOSE_RUN_CI) pnpm run check:fix
 
 dev:
-	COMPOSE_COMMAND="deno task $@" $(COMPOSE_UP_DEV)
+	COMPOSE_COMMAND="pnpm run $@" $(COMPOSE_UP_DEV)
 
 # TODO:
 # - Instead of `sleep` Could potentially look at compose service health_check
 # - https://docs.docker.com/reference/compose-file/services/#healthcheck
 preview:
 	$(info Target `preview` will sleep 5 seconds to make sure the server is up)
-	COMPOSE_COMMAND="deno task preview" $(COMPOSE_UP_CI)
+	COMPOSE_COMMAND="pnpm run $@" $(COMPOSE_UP_CI)
 	$(COMPOSE_RUN_CI) sleep 5
 
 previewDev:
-	COMPOSE_COMMAND="deno task preview" $(COMPOSE_UP_DEV)
+	COMPOSE_COMMAND="pnpm run preview" $(COMPOSE_UP_DEV)
 
 # testPreview test against a running preview in ci container
 # If preview is running in dev container, run the following:
@@ -84,10 +87,9 @@ _testPreview:
 
 # clean removes everything that has been created
 # It also deletes the deps folders, that could've been copied to the host (`make copyDepsToHost`), with `busybox` service as it does not mount them with volumens.
-# There is no need to call `deno clean` as `"vendor": true` is used in `deno.jsonc`
 clean:
 	docker compose down
-	$(COMPOSE_RUN_BUSYBOX) sh -c "rm -fr dist .env node_modules vendor .astro"
+	$(COMPOSE_RUN_BUSYBOX) sh -c "rm -fr dist .env node_modules .astro"
 	docker compose down --rmi "all" --remove-orphans --volumes
 
 shell:
@@ -95,3 +97,6 @@ shell:
 
 shellDev:
 	$(COMPOSE_RUN_DEV) bash
+
+execDev:
+	$(COMPOSE_EXEC_DEV) bash

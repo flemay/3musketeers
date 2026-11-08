@@ -1,6 +1,7 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+
 import starlight from "@astrojs/starlight";
+import { defineConfig } from "astro/config";
 
 const githubUrl = "https://github.com/flemay/3musketeers";
 
@@ -16,9 +17,7 @@ export default defineConfig({
       logo: {
         src: "./src/assets/logo/hero-v2.svg",
       },
-      customCss: [
-        "./src/styles/global.css",
-      ],
+      customCss: ["./src/styles/global.css"],
       components: {
         Footer: "./src/components/ConditionalFooter.astro",
       },
@@ -63,11 +62,13 @@ export default defineConfig({
         },
       ],
       favicon: "favicon_io/favicon.ico",
-      social: [{
-        icon: "github",
-        label: "GitHub",
-        href: githubUrl,
-      }],
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: githubUrl,
+        },
+      ],
       editLink: {
         baseUrl: `${githubUrl}/blob/main`,
       },
@@ -78,19 +79,19 @@ export default defineConfig({
       sidebar: [
         {
           label: "About",
-          autogenerate: { directory: "about" },
+          items: [{ autogenerate: { directory: "about" } }],
         },
         {
           label: "Guides",
-          autogenerate: { directory: "guides" },
+          items: [{ autogenerate: { directory: "guides" } }],
         },
         {
           label: "Tools",
-          autogenerate: { directory: "tools" },
+          items: [{ autogenerate: { directory: "tools" } }],
         },
         {
           label: "Resources",
-          autogenerate: { directory: "resources" },
+          items: [{ autogenerate: { directory: "resources" } }],
         },
       ],
     }),

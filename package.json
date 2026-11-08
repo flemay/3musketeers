@@ -1,0 +1,34 @@
+{
+  "name": "3musketeers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deps": "pnpm clean-install",
+    "deps:outdated": "pnpm outdated",
+    "deps:audit": "pnpm audit",
+    "deps:upgrade": "pnpm up",
+    "check": "biome check",
+    "check:fix": "biome check --fix",
+    "dev": "astro dev --host 0.0.0.0",
+    "build": "rm -fr dist && astro build",
+    "preview": "astro preview --host 0.0.0.0 --allowed-hosts=ci,dev",
+    "deploy": "wrangler pages deploy dist --project-name=\"${ENV_CLOUDFLARE_PROJECT_NAME}\" --branch=\"${ENV_CLOUDFLARE_BRANCH_NAME}\" --commit-message=\"Deploy\"",
+    "deploy:list": "wrangler pages project list",
+    "deploy:create": "wrangler pages project create \"${ENV_CLOUDFLARE_PROJECT_NAME}\" --production-branch=\"${ENV_CLOUDFLARE_BRANCH_NAME}\"",
+    "deploy:delete": "wrangler pages project delete \"${ENV_CLOUDFLARE_PROJECT_NAME}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.5",
+    "wrangler": "^4.157.0"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.9",
+    "astro": "^7.4.5",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2"
+  }
+}
